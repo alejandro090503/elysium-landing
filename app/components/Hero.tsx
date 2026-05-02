@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { MeshGradient } from '@/app/components/ui/MeshGradient'
-import { CharReveal, TextReveal } from '@/app/components/ui/TextReveal'
+import { TextReveal } from '@/app/components/ui/TextReveal'
 import { Sparkles } from '@/app/components/ui/Sparkles'
 import { WordRotate } from '@/app/components/ui/WordRotate'
 
@@ -53,14 +53,17 @@ export function Hero() {
         </motion.div>
 
         {/* Brand wordmark with sparkles */}
-        <div className="relative mb-6 md:mb-10">
+        <div className="relative mb-8 md:mb-10 py-2">
           <Sparkles count={8} color="#A16207" />
-          <h1 className="relative font-heading leading-[0.85]">
-            <CharReveal
-              text="Elysium"
-              className="block bg-gradient-to-br from-rose-primary via-rose-dark to-gold bg-clip-text text-transparent text-[26vw] md:text-[16vw] lg:text-[14rem] font-normal"
-            />
-          </h1>
+          <motion.h1
+            className="relative font-heading bg-gradient-to-br from-rose-primary via-rose-dark to-gold bg-clip-text text-transparent text-[24vw] md:text-[16vw] lg:text-[14rem] font-normal leading-[1.1]"
+            style={{ paddingBlock: '0.05em' }}
+            initial={reduced ? undefined : { opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Elysium
+          </motion.h1>
         </div>
 
         {/* Tagline with rotating word */}
