@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { TextReveal } from '@/app/components/ui/TextReveal'
 import { SparklesText } from '@/app/components/ui/sparkles-text'
 import { IPhoneFrame } from '@/app/components/ui/IPhoneFrame'
@@ -17,6 +17,16 @@ export function Showcase() {
   const sectionRef = useRef<HTMLElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const [activeIdx, setActiveIdx] = useState(0)
+  const reduced = useReducedMotion()
+
+  // Scroll-driven 3D tilt: iPhones lean back when entering, flatten by mid-section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'center center'],
+  })
+  const rotateX = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [24, 0])
+  const scale = useTransform(scrollYProgress, [0, 1], reduced ? [1, 1] : [0.82, 1])
+  const titleY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [60, 0])
 
   const handleDotClick = (idx: number) => {
     if (!trackRef.current) return
@@ -66,7 +76,10 @@ export function Showcase() {
       aria-labelledby="showcase-heading"
     >
       {/* Title */}
-      <div className="px-5 max-w-5xl mx-auto text-center mb-12 md:mb-16">
+      <motion.div
+        className="px-5 max-w-5xl mx-auto text-center mb-12 md:mb-16"
+        style={{ y: titleY }}
+      >
         <motion.p
           className="text-[10px] sm:text-xs md:text-sm font-semibold tracking-[0.3em] uppercase text-gold mb-5"
           initial={{ opacity: 0, y: 20 }}
@@ -100,27 +113,31 @@ export function Showcase() {
         >
           Invitaciones reales que ya entregamos. Desliza para elegir cuál ver y desliza dentro de cada iPhone para explorarla.
         </motion.p>
-      </div>
+      </motion.div>
 
-      {/* Horizontal scroll track */}
-      <div className="relative">
-        <div
-          ref={trackRef}
-          className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-12 px-[calc(50%-150px)] md:px-[calc(50%-160px)]"
-          style={{ scrollPaddingInline: '50%' }}
+      {/* 3D-tilted horizontal scroll track */}
+      <div className="relative" style={{ perspective: '1400px' }}>
+        <motion.div
+          style={{ rotateX, scale, transformOrigin: '50% 100%' }}
         >
-          {EXAMPLES.map((ex, i) => (
-            <ShowcasePhone key={ex.slug} example={ex} index={i} />
-          ))}
-        </div>
+          <div
+            ref={trackRef}
+            className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-12 px-[calc(50%-150px)] md:px-[calc(50%-160px)]"
+            style={{ scrollPaddingInline: '50%' }}
+          >
+            {EXAMPLES.map((ex, i) => (
+              <ShowcasePhone key={ex.slug} example={ex} index={i} />
+            ))}
+          </div>
+        </motion.div>
 
-        {/* Edge fades (desktop) */}
+        {/* Edge fades */}
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-rose-bg to-transparent"
+          className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-rose-bg to-transparent z-10"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-rose-bg to-transparent"
+          className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-rose-bg to-transparent z-10"
           aria-hidden
         />
       </div>
