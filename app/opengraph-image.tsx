@@ -6,20 +6,27 @@ export const alt =
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-async function loadGoogleFont(family: string, text: string) {
-  const url = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(
-    family
-  )}&text=${encodeURIComponent(text)}`
+async function loadGoogleFont(query: string, text: string): Promise<ArrayBuffer> {
+  const url = `https://fonts.googleapis.com/css2?family=${query}&text=${encodeURIComponent(
+    text
+  )}`
   const css = await (await fetch(url)).text()
   const match = css.match(/src: url\((.+?)\) format\('(opentype|truetype)'\)/)
-  if (!match) throw new Error(`Could not load font ${family}`)
+  if (!match) throw new Error(`Could not load font ${query}`)
   const fontRes = await fetch(match[1])
   if (!fontRes.ok) throw new Error(`Font fetch failed: ${fontRes.status}`)
   return fontRes.arrayBuffer()
 }
 
+const ALL_NON_BRAND_TEXT =
+  'INVITACIONES DIGITALES Invitaciones que cuentan tu historia BODAS XV AÑOS BAUTIZOS·'
+
 export default async function Image() {
-  const greatVibes = await loadGoogleFont('Great Vibes', 'Elysium')
+  const [greatVibes, interRegular, interSemibold] = await Promise.all([
+    loadGoogleFont('Great+Vibes', 'Elysium'),
+    loadGoogleFont('Inter:wght@400', ALL_NON_BRAND_TEXT),
+    loadGoogleFont('Inter:wght@600', ALL_NON_BRAND_TEXT),
+  ])
 
   return new ImageResponse(
     (
@@ -33,6 +40,7 @@ export default async function Image() {
           flexDirection: 'column',
           background:
             'linear-gradient(135deg, #FCE7F3 0%, #FDF2F8 50%, #FEF3C7 100%)',
+          fontFamily: 'Inter',
           position: 'relative',
         }}
       >
@@ -73,6 +81,7 @@ export default async function Image() {
             border: '1px solid rgba(161, 98, 7, 0.35)',
             background: 'rgba(255, 255, 255, 0.55)',
             color: '#A16207',
+            fontFamily: 'Inter',
             fontSize: 22,
             fontWeight: 600,
             letterSpacing: '0.28em',
@@ -112,8 +121,9 @@ export default async function Image() {
         <div
           style={{
             display: 'flex',
+            fontFamily: 'Inter',
             fontSize: 36,
-            fontWeight: 300,
+            fontWeight: 400,
             color: '#374151',
             marginTop: 8,
           }}
@@ -129,6 +139,7 @@ export default async function Image() {
             gap: 12,
             marginTop: 40,
             color: '#A16207',
+            fontFamily: 'Inter',
             fontSize: 18,
             fontWeight: 600,
             letterSpacing: '0.2em',
@@ -147,6 +158,18 @@ export default async function Image() {
           data: greatVibes,
           style: 'normal',
           weight: 400,
+        },
+        {
+          name: 'Inter',
+          data: interRegular,
+          style: 'normal',
+          weight: 400,
+        },
+        {
+          name: 'Inter',
+          data: interSemibold,
+          style: 'normal',
+          weight: 600,
         },
       ],
     }
