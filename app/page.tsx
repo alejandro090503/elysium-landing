@@ -1,3 +1,4 @@
+import { ResetScroll } from '@/app/components/ResetScroll'
 import { Hero } from '@/app/components/Hero'
 import { StatsStrip } from '@/app/components/StatsStrip'
 import { Features } from '@/app/components/Features'
@@ -11,6 +12,7 @@ import { ScrollProgress } from '@/app/components/ui/ScrollProgress'
 export default function Home() {
   return (
     <main>
+      <ResetScroll />
       <ScrollProgress />
       <Hero />
       <StatsStrip />

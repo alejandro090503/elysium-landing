@@ -43,6 +43,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${greatVibes.variable} ${cormorant.variable}`}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }",
+          }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   )
