@@ -1,6 +1,8 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
+import { MeshGradient } from '@/app/components/ui/MeshGradient'
+import { TextReveal } from '@/app/components/ui/TextReveal'
 import { WHATSAPP_URL, FORM_URL } from '@/app/lib/constants'
 
 export function FinalCTA() {
@@ -8,68 +10,110 @@ export function FinalCTA() {
 
   return (
     <section
-      className="relative py-24 md:py-32 px-6 overflow-hidden"
+      className="relative overflow-hidden py-32 md:py-48 px-6 bg-gray-950"
       aria-labelledby="cta-heading"
     >
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-rose-bg-dark via-rose-bg to-white" />
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-rose-primary/[0.03]"
-        animate={reduced ? undefined : { scale: [1, 1.1, 1] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      <MeshGradient intensity="rich" />
+
+      {/* Subtle grid texture */}
+      <div
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)',
+          backgroundSize: '64px 64px',
+        }}
         aria-hidden
       />
 
-      <div className="relative z-10 max-w-3xl mx-auto text-center">
-        <motion.h2
-          id="cta-heading"
-          className="font-heading text-5xl md:text-7xl text-rose-primary mb-6"
-          initial={reduced ? undefined : { opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          ¿Listo para tu invitación?
-        </motion.h2>
-
+      <div className="relative z-10 max-w-5xl mx-auto text-center">
         <motion.p
-          className="text-xl text-gray-500 mb-10 max-w-lg mx-auto leading-relaxed"
+          className="text-xs md:text-sm font-semibold tracking-[0.3em] uppercase text-gold-light mb-8"
           initial={reduced ? undefined : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.15 }}
+          transition={{ duration: 0.6 }}
         >
-          Empieza hoy sin compromisos. Recibe tu propuesta en menos de 24 horas
+          Empieza hoy
+        </motion.p>
+
+        <h2 id="cta-heading" className="mb-8">
+          <TextReveal
+            as="span"
+            text="Tu historia merece"
+            className="block font-body text-5xl md:text-7xl lg:text-8xl font-light text-white leading-[1.0] tracking-tight"
+          />
+          <span className="block mt-2 md:mt-4">
+            <TextReveal
+              as="span"
+              delay={0.3}
+              text="contarse bonito."
+              className="font-heading text-7xl md:text-9xl lg:text-[12rem] bg-gradient-to-br from-rose-primary via-rose-dark to-gold bg-clip-text text-transparent leading-none"
+            />
+          </span>
+        </h2>
+
+        <motion.p
+          className="text-base md:text-xl text-white/70 mb-12 max-w-xl mx-auto leading-relaxed"
+          initial={reduced ? undefined : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          Empieza el formulario ahora. Recibe tu propuesta en menos de 24 horas
           y paga solo si te encanta.
         </motion.p>
 
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           initial={reduced ? undefined : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2.5 bg-rose-primary text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg shadow-rose-primary/25 hover:bg-rose-dark transition-colors min-h-[48px]"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
-            Escribir por WhatsApp
-          </a>
           <a
             href={FORM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 border-2 border-gold text-gold px-8 py-4 rounded-full text-lg font-semibold hover:bg-gold hover:text-white transition-colors min-h-[48px]"
+            className="group relative inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-9 py-5 rounded-full text-base md:text-lg font-semibold min-h-[56px] overflow-hidden transition-transform hover:scale-[1.02] active:scale-[0.98]"
           >
-            Llenar formulario
+            <span className="relative z-10">Llenar formulario</span>
+            <svg
+              className="relative z-10 w-5 h-5 transition-transform group-hover:translate-x-1"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center justify-center gap-2 border border-white/20 backdrop-blur-md bg-white/5 text-white px-9 py-5 rounded-full text-base md:text-lg font-semibold min-h-[56px] hover:bg-white/10 transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm0 1.67c2.21 0 4.28.86 5.84 2.42a8.218 8.218 0 012.42 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.188 8.188 0 01-1.26-4.38c0-4.54 3.69-8.24 8.22-8.24z" />
+            </svg>
+            Escribir por WhatsApp
           </a>
         </motion.div>
+
+        <motion.p
+          className="mt-10 text-xs md:text-sm text-white/40 tracking-wide"
+          initial={reduced ? undefined : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 1.1 }}
+        >
+          Sin anticipos · Cambios ilimitados · Solo $750 MXN
+        </motion.p>
       </div>
     </section>
   )
