@@ -71,7 +71,7 @@ export function SparklesText({
       {sparkles.map((sparkle) => (
         <SparkleSvg key={sparkle.id} {...sparkle} />
       ))}
-      <span className="relative">{text}</span>
+      {text}
     </span>
   )
 }
