@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion'
 import { CountUp } from '@/app/components/ui/CountUp'
 import { TextReveal } from '@/app/components/ui/TextReveal'
 
@@ -32,10 +32,15 @@ export function WhyUs() {
     target: ref,
     offset: ['start end', 'center center'],
   })
+  const smooth = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 28,
+    restDelta: 0.001,
+  })
 
-  const cardScale = useTransform(scrollYProgress, [0, 1], reduced ? [1, 1] : [0.85, 1])
-  const cardRotate = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [-2, 0])
-  const glowOpacity = useTransform(scrollYProgress, [0, 0.6, 1], [0, 0.6, 1])
+  const cardScale = useTransform(smooth, [0, 1], reduced ? [1, 1] : [0.9, 1])
+  const cardRotate = useTransform(smooth, [0, 1], reduced ? [0, 0] : [-1.5, 0])
+  const glowOpacity = useTransform(smooth, [0, 0.6, 1], [0, 0.5, 0.9])
 
   return (
     <section

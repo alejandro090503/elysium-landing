@@ -50,10 +50,10 @@ export function SparklesText({
     const interval = setInterval(() => {
       setSparkles((curr) =>
         curr.map((star) =>
-          star.lifespan <= 0 ? generateStar() : { ...star, lifespan: star.lifespan - 0.1 }
+          star.lifespan <= 0 ? generateStar() : { ...star, lifespan: star.lifespan - 0.3 }
         )
       )
-    }, 100)
+    }, 300)
 
     return () => clearInterval(interval)
   }, [colors.first, colors.second, sparklesCount, reduced])

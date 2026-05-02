@@ -28,7 +28,7 @@ export function FinalCTA() {
         aria-hidden
       />
 
-      <Sparkles count={20} color="#FBBF24" />
+      <Sparkles count={10} color="#FBBF24" />
 
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         <motion.p
@@ -50,7 +50,7 @@ export function FinalCTA() {
           <span className="block mt-1 md:mt-3">
             <SparklesText
               text="contarse bonito."
-              sparklesCount={16}
+              sparklesCount={10}
               colors={{ first: '#FBBF24', second: '#DB2777' }}
               className="font-heading text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] bg-gradient-to-br from-rose-primary via-rose-dark to-gold bg-clip-text text-transparent leading-none"
             />

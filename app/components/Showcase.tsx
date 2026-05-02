@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion'
 import { TextReveal } from '@/app/components/ui/TextReveal'
 import { SparklesText } from '@/app/components/ui/sparkles-text'
 import { IPhoneFrame } from '@/app/components/ui/IPhoneFrame'
@@ -19,14 +19,19 @@ export function Showcase() {
   const [activeIdx, setActiveIdx] = useState(0)
   const reduced = useReducedMotion()
 
-  // Scroll-driven 3D tilt: iPhones lean back when entering, flatten by mid-section
+  // Scroll-driven 3D tilt with spring smoothing for buttery animation
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'center center'],
   })
-  const rotateX = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [24, 0])
-  const scale = useTransform(scrollYProgress, [0, 1], reduced ? [1, 1] : [0.82, 1])
-  const titleY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [60, 0])
+  const smooth = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 28,
+    restDelta: 0.001,
+  })
+  const rotateX = useTransform(smooth, [0, 1], reduced ? [0, 0] : [22, 0])
+  const scale = useTransform(smooth, [0, 1], reduced ? [1, 1] : [0.85, 1])
+  const titleY = useTransform(smooth, [0, 1], reduced ? [0, 0] : [40, 0])
 
   const handleDotClick = (idx: number) => {
     if (!trackRef.current) return
@@ -98,7 +103,7 @@ export function Showcase() {
           <span className="block mt-2">
             <SparklesText
               text="recibirla."
-              sparklesCount={14}
+              sparklesCount={8}
               colors={{ first: '#DB2777', second: '#A16207' }}
               className="font-heading text-6xl sm:text-7xl md:text-9xl bg-gradient-to-br from-rose-primary via-rose-dark to-gold bg-clip-text text-transparent leading-none"
             />
@@ -126,7 +131,12 @@ export function Showcase() {
             style={{ scrollPaddingInline: '50%' }}
           >
             {EXAMPLES.map((ex, i) => (
-              <ShowcasePhone key={ex.slug} example={ex} index={i} />
+              <ShowcasePhone
+                key={ex.slug}
+                example={ex}
+                index={i}
+                activeIdx={activeIdx}
+              />
             ))}
           </div>
         </motion.div>
@@ -173,27 +183,27 @@ export function Showcase() {
   )
 }
 
-function ShowcasePhone({ example, index }: { example: Example; index: number }) {
+function ShowcasePhone({
+  example,
+  index,
+  activeIdx,
+}: {
+  example: Example
+  index: number
+  activeIdx: number
+}) {
   const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
+  const [hasEverLoaded, setHasEverLoaded] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const url = `https://${example.slug}.vercel.app`
 
+  // Load only the active phone and its immediate neighbors. Once loaded, keep loaded.
+  const distance = Math.abs(index - activeIdx)
+  const shouldRenderIframe = hasEverLoaded || distance <= 1
+
   useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          obs.disconnect()
-        }
-      },
-      { rootMargin: '300px' }
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
+    if (shouldRenderIframe) setHasEverLoaded(true)
+  }, [shouldRenderIframe])
 
   return (
     <div
@@ -210,7 +220,7 @@ function ShowcasePhone({ example, index }: { example: Example; index: number }) 
         <IPhoneFrame
           className="w-[280px] md:w-[300px] h-[580px] md:h-[620px]"
         >
-          {visible ? (
+          {shouldRenderIframe ? (
             <>
               <iframe
                 src={url}
@@ -222,7 +232,8 @@ function ShowcasePhone({ example, index }: { example: Example; index: number }) 
                 style={{
                   width: IFRAME_WIDTH,
                   height: IFRAME_HEIGHT,
-                  transform: `scale(${SCALE})`,
+                  transform: `scale(${SCALE}) translateZ(0)`,
+                  willChange: 'transform',
                 }}
               />
               {!loaded && (
@@ -232,7 +243,16 @@ function ShowcasePhone({ example, index }: { example: Example; index: number }) 
               )}
             </>
           ) : (
-            <div className="w-full h-full bg-rose-bg animate-pulse" />
+            <div className="w-full h-full bg-gradient-to-br from-rose-bg to-rose-bg-dark flex items-center justify-center">
+              <div ref={ref} className="text-center px-6">
+                <p className="font-heading text-3xl text-rose-primary mb-1">
+                  {example.name}
+                </p>
+                <p className="text-xs text-gray-500 tracking-widest uppercase">
+                  Desliza para cargar
+                </p>
+              </div>
+            </div>
           )}
         </IPhoneFrame>
       </motion.div>

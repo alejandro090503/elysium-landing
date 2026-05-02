@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, ReactNode } from 'react'
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion'
 import { TextReveal } from '@/app/components/ui/TextReveal'
 
 interface Feature {
@@ -133,16 +133,21 @@ function StackedCard({
     target: ref,
     offset: ['start end', 'end start'],
   })
+  const smooth = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 28,
+    restDelta: 0.001,
+  })
 
   const scale = useTransform(
-    scrollYProgress,
+    smooth,
     [0, 0.5, 1],
-    reduced ? [1, 1, 1] : [0.92, 1, 0.95]
+    reduced ? [1, 1, 1] : [0.94, 1, 0.97]
   )
   const opacity = useTransform(
-    scrollYProgress,
+    smooth,
     [0, 0.2, 0.8, 1],
-    [0.4, 1, 1, 0.5]
+    [0.5, 1, 1, 0.6]
   )
 
   const stickyTop = `calc(20vh + ${index * 12}px)`
@@ -155,19 +160,21 @@ function StackedCard({
     >
       <motion.article
         style={{ scale, opacity }}
-        className={`relative overflow-hidden rounded-[2rem] md:rounded-[2.5rem] border border-rose-primary/10 bg-gradient-to-br ${feature.bg} backdrop-blur-xl p-8 md:p-14 shadow-xl shadow-rose-primary/5`}
+        className={`relative overflow-hidden rounded-[2rem] md:rounded-[2.5rem] border border-rose-primary/10 bg-gradient-to-br ${feature.bg} backdrop-blur-xl p-8 md:p-14 shadow-xl shadow-rose-primary/5 flex flex-col items-center text-center`}
       >
         {/* Number */}
         <div className="absolute top-6 right-6 md:top-10 md:right-10 text-[10px] md:text-xs font-mono text-gray-400 tracking-[0.3em]">
           {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
         </div>
 
-        <div className={`${feature.accent} mb-6 md:mb-8`}>{feature.icon}</div>
+        <div className={`${feature.accent} mb-6 md:mb-8 flex justify-center`}>
+          {feature.icon}
+        </div>
 
-        <h3 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-semibold text-gray-900 mb-4 md:mb-6 leading-[1.05] tracking-tight max-w-3xl">
+        <h3 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-semibold text-gray-900 mb-4 md:mb-6 leading-[1.05] tracking-tight max-w-3xl mx-auto">
           {feature.title}
         </h3>
-        <p className="text-base sm:text-lg md:text-2xl text-gray-600 leading-relaxed max-w-2xl">
+        <p className="text-base sm:text-lg md:text-2xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
           {feature.desc}
         </p>
       </motion.article>

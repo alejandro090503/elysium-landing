@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion'
 import { TextReveal } from '@/app/components/ui/TextReveal'
 
 const STEPS = [
@@ -35,8 +35,13 @@ export function HowItWorks() {
     target: ref,
     offset: ['start 70%', 'end 70%'],
   })
+  const smooth = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 28,
+    restDelta: 0.001,
+  })
 
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
+  const lineHeight = useTransform(smooth, [0, 1], ['0%', '100%'])
 
   return (
     <section className="relative py-32 md:py-48 px-6" aria-labelledby="how-heading">
@@ -81,7 +86,7 @@ export function HowItWorks() {
                   step={step}
                   isEven={isEven}
                   index={i}
-                  scrollYProgress={scrollYProgress}
+                  scrollYProgress={smooth}
                 />
               )
             })}

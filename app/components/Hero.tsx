@@ -54,7 +54,7 @@ export function Hero() {
 
         {/* Brand wordmark with sparkles */}
         <div className="relative mb-6 md:mb-10">
-          <Sparkles count={14} color="#A16207" />
+          <Sparkles count={8} color="#A16207" />
           <h1 className="relative font-heading leading-[0.85]">
             <CharReveal
               text="Elysium"
