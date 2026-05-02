@@ -1,26 +1,34 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion'
 import { TextReveal } from '@/app/components/ui/TextReveal'
 import { SparklesText } from '@/app/components/ui/sparkles-text'
 import { IPhoneFrame } from '@/app/components/ui/IPhoneFrame'
 import { EXAMPLES, type Example } from '@/app/lib/constants'
 
-// Render iframes at iPhone-Pro-Max viewport so invitations designed for
-// any mobile width (375 / 390 / 414 / 430) all have enough lienzo and
-// don't look "zoomed in". Then scale down to fit the display phone.
 const PHONE_WIDTH = 280
 const IFRAME_WIDTH = 430
 const SCALE = PHONE_WIDTH / IFRAME_WIDTH
 const PHONE_HEIGHT = 580
 const IFRAME_HEIGHT = Math.ceil(PHONE_HEIGHT / SCALE)
 
+const REPEAT = 3
+
 export function Showcase() {
   const sectionRef = useRef<HTMLElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const [activeIdx, setActiveIdx] = useState(0)
   const reduced = useReducedMotion()
+
+  // Triple the EXAMPLES so the carousel feels infinite. We start scrolled into
+  // the middle copy and silently teleport to the equivalent slot whenever the
+  // user reaches a boundary copy. Identical phones make the jump invisible.
+  const items = useMemo(
+    () => Array.from({ length: REPEAT }, () => EXAMPLES).flat(),
+    []
+  )
+  const middleStart = EXAMPLES.length
 
   // Scroll-driven 3D tilt with spring smoothing for buttery animation
   const { scrollYProgress } = useScroll({
@@ -36,25 +44,39 @@ export function Showcase() {
   const scale = useTransform(smooth, [0, 1], reduced ? [1, 1] : [0.85, 1])
   const titleY = useTransform(smooth, [0, 1], reduced ? [0, 0] : [40, 0])
 
-  const handleDotClick = (idx: number) => {
-    if (!trackRef.current) return
-    const cards = trackRef.current.querySelectorAll<HTMLElement>('[data-phone]')
-    const target = cards[idx]
+  // Center on a specific original index (0..EXAMPLES.length-1) within the middle copy
+  const scrollToOriginal = (originalIdx: number, behavior: ScrollBehavior = 'smooth') => {
+    const el = trackRef.current
+    if (!el) return
+    const cards = el.querySelectorAll<HTMLElement>('[data-phone]')
+    const target = cards[middleStart + originalIdx]
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
+      target.scrollIntoView({ behavior, inline: 'center', block: 'nearest' })
     }
   }
 
+  // Initial position: middle copy
+  useEffect(() => {
+    scrollToOriginal(0, 'instant' as ScrollBehavior)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Detect closest card to center → activeIdx (modular). Teleport on boundary.
   useEffect(() => {
     const el = trackRef.current
     if (!el) return
     let raf = 0
+    let teleportTimer: ReturnType<typeof setTimeout> | null = null
+    let isTeleporting = false
+
     const onScroll = () => {
       cancelAnimationFrame(raf)
       raf = requestAnimationFrame(() => {
         const rect = el.getBoundingClientRect()
         const center = rect.left + rect.width / 2
         const cards = el.querySelectorAll<HTMLElement>('[data-phone]')
+        if (!cards.length) return
+
         let bestIdx = 0
         let bestDist = Infinity
         cards.forEach((card, i) => {
@@ -66,7 +88,27 @@ export function Showcase() {
             bestIdx = i
           }
         })
-        setActiveIdx(bestIdx)
+        setActiveIdx(bestIdx % EXAMPLES.length)
+
+        // Schedule teleport check on scroll end
+        if (teleportTimer) clearTimeout(teleportTimer)
+        teleportTimer = setTimeout(() => {
+          if (isTeleporting) return
+          // If active card is in copy 0 or copy 2, teleport to equivalent in copy 1
+          if (bestIdx < EXAMPLES.length || bestIdx >= EXAMPLES.length * 2) {
+            const targetIdx = middleStart + (bestIdx % EXAMPLES.length)
+            const target = cards[targetIdx]
+            if (target) {
+              isTeleporting = true
+              const offset = target.offsetLeft - cards[bestIdx].offsetLeft
+              el.scrollLeft += offset
+              // Brief lockout to avoid re-triggering on the synthetic scroll
+              setTimeout(() => {
+                isTeleporting = false
+              }, 80)
+            }
+          }
+        }, 180)
       })
     }
     el.addEventListener('scroll', onScroll, { passive: true })
@@ -74,8 +116,9 @@ export function Showcase() {
     return () => {
       el.removeEventListener('scroll', onScroll)
       cancelAnimationFrame(raf)
+      if (teleportTimer) clearTimeout(teleportTimer)
     }
-  }, [])
+  }, [middleStart])
 
   return (
     <section
@@ -123,24 +166,25 @@ export function Showcase() {
         </motion.p>
       </motion.div>
 
-      {/* 3D-tilted horizontal scroll track */}
+      {/* 3D-tilted infinite horizontal scroll track */}
       <div className="relative" style={{ perspective: '1400px' }}>
-        <motion.div
-          style={{ rotateX, scale, transformOrigin: '50% 100%' }}
-        >
+        <motion.div style={{ rotateX, scale, transformOrigin: '50% 100%' }}>
           <div
             ref={trackRef}
             className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-12 px-[calc(50%-150px)] md:px-[calc(50%-160px)]"
             style={{ scrollPaddingInline: '50%' }}
           >
-            {EXAMPLES.map((ex, i) => (
-              <ShowcasePhone
-                key={ex.slug}
-                example={ex}
-                index={i}
-                activeIdx={activeIdx}
-              />
-            ))}
+            {items.map((ex, i) => {
+              const original = i % EXAMPLES.length
+              return (
+                <ShowcasePhone
+                  key={`${ex.slug}-${i}`}
+                  example={ex}
+                  originalIdx={original}
+                  activeIdx={activeIdx}
+                />
+              )
+            })}
           </div>
         </motion.div>
 
@@ -155,17 +199,24 @@ export function Showcase() {
         />
       </div>
 
-      {/* Dots navigation */}
-      <div className="flex items-center justify-center gap-2 mb-8" role="tablist" aria-label="Cambiar invitación">
+      {/* Animated horizontal "Desliza" hint */}
+      <HorizontalScrollHint />
+
+      {/* Dots navigation (one per unique invitation) */}
+      <div
+        className="mt-2 flex items-center justify-center gap-2"
+        role="tablist"
+        aria-label="Cambiar invitación"
+      >
         {EXAMPLES.map((ex, i) => (
           <button
             key={ex.slug}
             type="button"
-            onClick={() => handleDotClick(i)}
+            onClick={() => scrollToOriginal(i)}
             aria-label={`Ver ${ex.name}`}
             aria-selected={activeIdx === i}
             role="tab"
-            className={`min-w-[44px] min-h-[44px] flex items-center justify-center transition-all`}
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             <span
               className={`block h-2 rounded-full transition-all ${
@@ -175,33 +226,52 @@ export function Showcase() {
           </button>
         ))}
       </div>
-
-      {/* Scroll hint */}
-      <p className="text-center text-xs md:text-sm text-gray-400 tracking-wide flex items-center justify-center gap-2">
-        <ArrowIcon direction="left" />
-        Desliza para elegir
-        <ArrowIcon direction="right" />
-      </p>
     </section>
+  )
+}
+
+function HorizontalScrollHint() {
+  const reduced = useReducedMotion()
+  return (
+    <div
+      className="flex items-center justify-center gap-3 text-gray-400 mt-2"
+      aria-hidden
+    >
+      <motion.div
+        className="h-[2px] w-12 bg-gradient-to-l from-rose-primary/70 to-transparent"
+        animate={reduced ? undefined : { scaleX: [0.3, 1, 0.3] }}
+        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ transformOrigin: 'right center' }}
+      />
+      <span className="text-[10px] tracking-[0.3em] uppercase whitespace-nowrap">
+        Desliza
+      </span>
+      <motion.div
+        className="h-[2px] w-12 bg-gradient-to-r from-rose-primary/70 to-transparent"
+        animate={reduced ? undefined : { scaleX: [0.3, 1, 0.3] }}
+        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
+        style={{ transformOrigin: 'left center' }}
+      />
+    </div>
   )
 }
 
 function ShowcasePhone({
   example,
-  index,
+  originalIdx,
   activeIdx,
 }: {
   example: Example
-  index: number
+  originalIdx: number
   activeIdx: number
 }) {
-  const ref = useRef<HTMLDivElement>(null)
   const [hasEverLoaded, setHasEverLoaded] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const url = `https://${example.slug}.vercel.app`
 
-  // Load only the active phone and its immediate neighbors. Once loaded, keep loaded.
-  const distance = Math.abs(index - activeIdx)
+  // Modular distance so neighbors wrap around (last ↔ first)
+  const rawDistance = Math.abs(originalIdx - activeIdx)
+  const distance = Math.min(rawDistance, EXAMPLES.length - rawDistance)
   const shouldRenderIframe = hasEverLoaded || distance <= 1
 
   useEffect(() => {
@@ -210,7 +280,6 @@ function ShowcasePhone({
 
   return (
     <div
-      ref={ref}
       data-phone
       className="snap-center flex-shrink-0 flex flex-col items-center"
     >
@@ -218,11 +287,13 @@ function ShowcasePhone({
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
-        transition={{ duration: 0.6, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+        transition={{
+          duration: 0.6,
+          delay: originalIdx * 0.06,
+          ease: [0.22, 1, 0.36, 1],
+        }}
       >
-        <IPhoneFrame
-          className="w-[280px] md:w-[300px] h-[580px] md:h-[620px]"
-        >
+        <IPhoneFrame className="w-[280px] md:w-[300px] h-[580px] md:h-[620px]">
           {shouldRenderIframe ? (
             <>
               <iframe
@@ -247,7 +318,7 @@ function ShowcasePhone({
             </>
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-rose-bg to-rose-bg-dark flex items-center justify-center">
-              <div ref={ref} className="text-center px-6">
+              <div className="text-center px-6">
                 <p className="font-heading text-3xl text-rose-primary mb-1">
                   {example.name}
                 </p>
@@ -265,7 +336,9 @@ function ShowcasePhone({
         <p className="font-heading text-2xl md:text-3xl text-rose-primary leading-tight">
           {example.name}
         </p>
-        <p className="text-xs md:text-sm text-gray-500 font-medium mb-2">{example.type}</p>
+        <p className="text-xs md:text-sm text-gray-500 font-medium mb-2">
+          {example.type}
+        </p>
         <a
           href={url}
           target="_blank"
@@ -274,7 +347,17 @@ function ShowcasePhone({
           aria-label={`Ver invitación completa de ${example.name}`}
         >
           Ver completa
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
             <polyline points="15 3 21 3 21 9" />
             <line x1="10" y1="14" x2="21" y2="3" />
@@ -282,25 +365,5 @@ function ShowcasePhone({
         </a>
       </div>
     </div>
-  )
-}
-
-function ArrowIcon({ direction }: { direction: 'left' | 'right' }) {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={direction === 'left' ? 'rotate-180' : ''}
-      aria-hidden
-    >
-      <line x1="5" y1="12" x2="19" y2="12" />
-      <polyline points="12 5 19 12 12 19" />
-    </svg>
   )
 }

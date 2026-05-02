@@ -4,25 +4,53 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion'
 import { CountUp } from '@/app/components/ui/CountUp'
 import { TextReveal } from '@/app/components/ui/TextReveal'
+import { BorderBeam } from '@/app/components/ui/BorderBeam'
+import {
+  DollarIcon,
+  ClockIcon,
+  HeartIcon,
+  FormIcon,
+} from '@/app/components/ui/PromiseIcons'
+import type { ReactNode } from 'react'
 
-const PROMISES = [
+interface Promise {
+  headline: string
+  desc: string
+  icon: ReactNode
+  beamFrom: string
+  beamTo: string
+}
+
+const PROMISES: Promise[] = [
   {
     headline: '$0 de anticipo',
     desc: 'Empezamos a trabajar de inmediato. Sin enganches.',
+    icon: <DollarIcon />,
+    beamFrom: '#DB2777',
+    beamTo: '#A16207',
   },
   {
     headline: 'Propuesta en 24h',
     desc: 'Recibe tu invitación lista para revisar al día siguiente.',
+    icon: <ClockIcon />,
+    beamFrom: '#A16207',
+    beamTo: '#DB2777',
   },
   {
     headline: 'Pagas si te encanta',
     desc: 'Iteramos hasta que sea perfecta. Si no te convence, no pagas.',
+    icon: <HeartIcon />,
+    beamFrom: '#DB2777',
+    beamTo: '#FBBF24',
   },
   {
     headline: 'Datos sobre la marcha',
     desc: 'No necesitas tenerlo todo al inicio. Actualizamos sin costo extra.',
+    icon: <FormIcon />,
+    beamFrom: '#A16207',
+    beamTo: '#DB2777',
   },
-] as const
+]
 
 export function WhyUs() {
   const ref = useRef<HTMLDivElement>(null)
@@ -123,28 +151,62 @@ export function WhyUs() {
           </motion.div>
         </div>
 
-        {/* Promises grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
+        {/* Promises grid with Border Beam + animated icons */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {PROMISES.map((p, i) => (
             <motion.div
               key={p.headline}
-              className="relative rounded-2xl bg-white border border-gray-100 p-6 md:p-7"
-              initial={reduced ? undefined : { opacity: 0, y: 20 }}
+              className="relative rounded-3xl p-[1.5px] overflow-hidden"
+              initial={reduced ? undefined : { opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-30px' }}
               transition={{
-                duration: 0.5,
-                delay: i * 0.08,
+                duration: 0.7,
+                delay: i * 0.12,
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              <div className="text-3xl md:text-4xl font-bold text-rose-primary mb-2 tracking-tight">
-                0{i + 1}
+              {/* Border beam: rotating gradient that becomes the card border */}
+              <BorderBeam
+                duration={9}
+                delay={i * 2}
+                colorFrom={p.beamFrom}
+                colorTo={p.beamTo}
+              />
+
+              {/* Card content surface (covers center, leaves 1.5px edge for beam) */}
+              <div className="relative bg-white rounded-[inherit] p-7 md:p-8 z-10 overflow-hidden h-full">
+                {/* Subtle inner aurora */}
+                <div
+                  className="absolute inset-0 opacity-50 pointer-events-none"
+                  style={{
+                    background: `radial-gradient(circle at 100% 0%, ${p.beamFrom}10, transparent 50%), radial-gradient(circle at 0% 100%, ${p.beamTo}08, transparent 50%)`,
+                  }}
+                  aria-hidden
+                />
+
+                {/* Content */}
+                <div className="relative">
+                  <div className="flex items-start justify-between mb-5">
+                    <div className="text-5xl md:text-6xl font-bold leading-none tracking-tight bg-gradient-to-br from-rose-primary via-rose-dark to-gold bg-clip-text text-transparent">
+                      0{i + 1}
+                    </div>
+                    <div
+                      className="text-rose-primary"
+                      style={{ color: p.beamFrom }}
+                    >
+                      {p.icon}
+                    </div>
+                  </div>
+
+                  <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-1.5 tracking-tight">
+                    {p.headline}
+                  </h3>
+                  <p className="text-sm md:text-base text-gray-500 leading-relaxed">
+                    {p.desc}
+                  </p>
+                </div>
               </div>
-              <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-1">
-                {p.headline}
-              </h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{p.desc}</p>
             </motion.div>
           ))}
         </div>
