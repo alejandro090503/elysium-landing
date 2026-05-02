@@ -1,4 +1,4 @@
-export const WHATSAPP_NUMBER = '5215512345678'
+export const WHATSAPP_NUMBER = '524421235312'
 export const WHATSAPP_MESSAGE = 'Hola, me interesa una invitación digital ✨'
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
 export const FORM_URL = 'https://elysium-form.vercel.app'

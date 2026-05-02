@@ -44,20 +44,27 @@ export function Showcase() {
   const scale = useTransform(smooth, [0, 1], reduced ? [1, 1] : [0.85, 1])
   const titleY = useTransform(smooth, [0, 1], reduced ? [0, 0] : [40, 0])
 
-  // Center on a specific original index (0..EXAMPLES.length-1) within the middle copy
+  // Center on a specific original index — scrolls ONLY the horizontal track,
+  // never the window. (scrollIntoView would scroll the page vertically too.)
   const scrollToOriginal = (originalIdx: number, behavior: ScrollBehavior = 'smooth') => {
     const el = trackRef.current
     if (!el) return
     const cards = el.querySelectorAll<HTMLElement>('[data-phone]')
     const target = cards[middleStart + originalIdx]
-    if (target) {
-      target.scrollIntoView({ behavior, inline: 'center', block: 'nearest' })
-    }
+    if (!target) return
+    const targetLeft =
+      target.offsetLeft - (el.clientWidth - target.offsetWidth) / 2
+    el.scrollTo({ left: targetLeft, behavior })
   }
 
-  // Initial position: middle copy
+  // Initial position: middle copy. Uses scrollLeft (no window scroll side-effect).
   useEffect(() => {
-    scrollToOriginal(0, 'instant' as ScrollBehavior)
+    const el = trackRef.current
+    if (!el) return
+    const cards = el.querySelectorAll<HTMLElement>('[data-phone]')
+    const target = cards[middleStart]
+    if (!target) return
+    el.scrollLeft = target.offsetLeft - (el.clientWidth - target.offsetWidth) / 2
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
