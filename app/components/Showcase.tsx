@@ -274,7 +274,10 @@ function ShowcasePhone({
 }) {
   const [hasEverLoaded, setHasEverLoaded] = useState(false)
   const [loaded, setLoaded] = useState(false)
-  const url = `https://${example.slug}.vercel.app`
+  // Cache-bust the iframe src so any browser-cached 403 (from earlier when
+  // SSO was active) is invalidated. The link target stays clean.
+  const baseUrl = `https://${example.slug}.vercel.app`
+  const iframeUrl = `${baseUrl}/?v=2026-05-02`
 
   // Modular distance so neighbors wrap around (last ↔ first)
   const rawDistance = Math.abs(originalIdx - activeIdx)
@@ -304,7 +307,7 @@ function ShowcasePhone({
           {shouldRenderIframe ? (
             <>
               <iframe
-                src={url}
+                src={iframeUrl}
                 title={`Vista previa: ${example.name}`}
                 sandbox="allow-scripts allow-same-origin"
                 loading="lazy"
@@ -347,7 +350,7 @@ function ShowcasePhone({
           {example.type}
         </p>
         <a
-          href={url}
+          href={baseUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:text-gold-light transition-colors min-h-[44px] px-3"
