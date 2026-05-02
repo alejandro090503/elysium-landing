@@ -1,4 +1,5 @@
 import { Hero } from '@/app/components/Hero'
+import { StatsStrip } from '@/app/components/StatsStrip'
 import { Features } from '@/app/components/Features'
 import { WhyUs } from '@/app/components/WhyUs'
 import { HowItWorks } from '@/app/components/HowItWorks'
@@ -12,6 +13,7 @@ export default function Home() {
     <main>
       <ScrollProgress />
       <Hero />
+      <StatsStrip />
       <Features />
       <WhyUs />
       <HowItWorks />
