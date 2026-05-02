@@ -7,8 +7,11 @@ import { SparklesText } from '@/app/components/ui/sparkles-text'
 import { IPhoneFrame } from '@/app/components/ui/IPhoneFrame'
 import { EXAMPLES, type Example } from '@/app/lib/constants'
 
+// Render iframes at iPhone-Pro-Max viewport so invitations designed for
+// any mobile width (375 / 390 / 414 / 430) all have enough lienzo and
+// don't look "zoomed in". Then scale down to fit the display phone.
 const PHONE_WIDTH = 280
-const IFRAME_WIDTH = 375
+const IFRAME_WIDTH = 430
 const SCALE = PHONE_WIDTH / IFRAME_WIDTH
 const PHONE_HEIGHT = 580
 const IFRAME_HEIGHT = Math.ceil(PHONE_HEIGHT / SCALE)
