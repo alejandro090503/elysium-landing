@@ -8,7 +8,7 @@ export const EXAMPLES = [
   { name: 'Valentina & Rodrigo', slug: 'boda-valentina-rodrigo', type: 'Boda' },
   { name: 'Diego & Camila', slug: 'boda-diego-camila', type: 'Boda' },
   { name: 'Guillermo & Fátima', slug: 'boda-guillermo-fatima', type: 'Boda' },
-  { name: 'Víctor & Fernanda', slug: 'boda-victor-fernanda', type: 'Boda' },
+  { name: 'Santiago & Valentina', slug: 'boda-santiago-valentina', type: 'Boda' },
   { name: 'XV de Renata', slug: 'xv-renata', type: 'XV Años' },
 ] as const
 
