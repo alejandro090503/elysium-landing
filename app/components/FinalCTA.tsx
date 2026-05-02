@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { MeshGradient } from '@/app/components/ui/MeshGradient'
 import { TextReveal } from '@/app/components/ui/TextReveal'
 import { Sparkles } from '@/app/components/ui/Sparkles'
+import { SparklesText } from '@/app/components/ui/sparkles-text'
 import { WHATSAPP_URL, FORM_URL } from '@/app/lib/constants'
 
 export function FinalCTA() {
@@ -47,10 +48,10 @@ export function FinalCTA() {
             className="block font-body text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-light text-white leading-[1.0] tracking-tight"
           />
           <span className="block mt-1 md:mt-3">
-            <TextReveal
-              as="span"
-              delay={0.3}
+            <SparklesText
               text="contarse bonito."
+              sparklesCount={16}
+              colors={{ first: '#FBBF24', second: '#DB2777' }}
               className="font-heading text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] bg-gradient-to-br from-rose-primary via-rose-dark to-gold bg-clip-text text-transparent leading-none"
             />
           </span>

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ContainerScroll } from '@/app/components/ui/container-scroll-animation'
 import { TextReveal } from '@/app/components/ui/TextReveal'
+import { SparklesText } from '@/app/components/ui/sparkles-text'
 
 const SHOWCASE_URL = 'https://boda-carlos-victoria.vercel.app'
 
@@ -53,10 +54,10 @@ export function Showcase() {
                 className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
               />
               <span className="block mt-2">
-                <TextReveal
-                  as="span"
-                  delay={0.2}
+                <SparklesText
                   text="recibirla."
+                  sparklesCount={14}
+                  colors={{ first: '#DB2777', second: '#A16207' }}
                   className="font-heading text-6xl sm:text-7xl md:text-9xl bg-gradient-to-br from-rose-primary via-rose-dark to-gold bg-clip-text text-transparent leading-none"
                 />
               </span>
