@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elysium Invitaciones · Paquetes y Proceso</title>
+  <meta name="description" content="Invitaciones digitales personalizadas. Dos paquetes: $750 invitación + RSVP por WhatsApp, o $950 invitación + panel personalizado de invitados con confirmaciones en tiempo real." />
+  <meta name="theme-color" content="#FDF2F8" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Elysium Invitaciones — Paquetes y Proceso" />
+  <meta property="og:description" content="Dos paquetes desde $750 MXN. Invitación digital + RSVP, o invitación + panel personalizado." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_MX" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Infant:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose: #DB2777;
+      --rose-dark: #BE185D;
+      --rose-bg: #FDF2F8;
+      --rose-bg-dark: #FCE7F3;
+      --gold: #A16207;
+      --gold-light: #CA8A04;
+      --amber: #FEF3C7;
+      --ink: #1F2937;
+      --muted: #6B7280;
+      --soft: #9CA3AF;
+      --hairline: rgba(31, 41, 55, 0.08);
+    }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: 'Cormorant Infant', Georgia, 'Times New Roman', serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, var(--rose-bg) 0%, #FFFFFF 35%, var(--rose-bg) 100%);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    main {
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 28px 22px 56px;
+      position: relative;
+    }
+
+    /* ─────── HEADER ─────── */
+    .header {
+      text-align: center;
+      padding: 18px 0 32px;
+      position: relative;
+    }
+
+    .header::before, .header::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .header::before {
+      top: -120px; right: -90px;
+      width: 280px; height: 280px;
+      background: rgba(219, 39, 119, 0.18);
+    }
+    .header::after {
+      top: 0; left: -100px;
+      width: 280px; height: 280px;
+      background: rgba(161, 98, 7, 0.15);
+    }
+
+    .header > * { position: relative; z-index: 1; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(161, 98, 7, 0.3);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: var(--gold);
+      font-family: 'Cormorant Infant', serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    .brand {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(80px, 22vw, 112px);
+      line-height: 1.15;
+      font-weight: 400;
+      background: linear-gradient(135deg, var(--rose) 0%, var(--rose-dark) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      padding: 0.04em 0;
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 18px;
+      font-style: italic;
+      margin-top: 4px;
+      letter-spacing: 0.005em;
+    }
+
+    /* ─────── SECTION GENERIC ─────── */
+    section { margin: 48px 0; position: relative; }
+    section:last-of-type { margin-bottom: 32px; }
+
+    .eyebrow {
+      display: block;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Infant', serif;
+      font-weight: 300;
+      font-size: clamp(28px, 7vw, 36px);
+      text-align: center;
+      color: var(--ink);
+      letter-spacing: -0.018em;
+      line-height: 1.1;
+      margin-bottom: 32px;
+    }
+
+    .section-title em {
+      font-family: 'Great Vibes', cursive;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1.4em;
+      background: linear-gradient(135deg, var(--rose), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      padding: 0 0.04em;
+      display: inline-block;
+    }
+
+    /* ─────── PROCESS / STEPS ─────── */
+    .steps {
+      list-style: none;
+      position: relative;
+      padding-left: 64px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 24px;
+      bottom: 24px;
+      width: 2px;
+      background: linear-gradient(180deg,
+        rgba(219, 39, 119, 0.5) 0%,
+        rgba(161, 98, 7, 0.5) 100%);
+      border-radius: 1px;
+    }
+
+    .step { position: relative; padding-bottom: 26px; }
+    .step:last-child { padding-bottom: 0; }
+
+    .step-num {
+      position: absolute;
+      left: -64px;
+      top: -2px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid var(--rose);
+      color: var(--rose);
+      font-family: 'Cormorant Infant', serif;
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px rgba(219, 39, 119, 0.18);
+    }
+
+    .step-title {
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--ink);
+      margin-bottom: 4px;
+      letter-spacing: -0.005em;
+    }
+
+    .step-desc {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    /* ─────── PACKAGES ─────── */
+    .packages {
+      display: grid;
+      gap: 22px;
+      margin-top: 8px;
+    }
+
+    .pkg {
+      position: relative;
+      background: #fff;
+      border-radius: 26px;
+      padding: 34px 24px 28px;
+      border: 1px solid rgba(219, 39, 119, 0.12);
+      box-shadow: 0 8px 28px rgba(219, 39, 119, 0.06);
+    }
+
+    .pkg-premium {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(161, 98, 7, 0.12), transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(219, 39, 119, 0.10), transparent 50%),
+        #fff;
+      border: 1.5px solid rgba(161, 98, 7, 0.45);
+      box-shadow: 0 12px 36px rgba(161, 98, 7, 0.14);
+    }
+
+    .pkg-tag {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 5px 16px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .pkg-basic .pkg-tag {
+      background: #fff;
+      color: var(--rose);
+      border: 1.5px solid var(--rose);
+    }
+
+    .pkg-premium .pkg-tag {
+      background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(161, 98, 7, 0.3);
+    }
+
+    .pkg-name {
+      font-size: 23px;
+      font-weight: 600;
+      color: var(--ink);
+      text-align: center;
+      margin: 6px 0 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .pkg-sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .price {
+      text-align: center;
+      margin: 18px 0 8px;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 4px;
+      line-height: 1;
+    }
+
+    .currency {
+      font-size: 30px;
+      color: var(--ink);
+      font-weight: 400;
+      align-self: flex-start;
+      padding-top: 14px;
+    }
+
+    .amount {
+      font-size: 72px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--rose) 0%, var(--rose-dark) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .mxn {
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      align-self: flex-end;
+      padding-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .price-note {
+      text-align: center;
+      color: var(--soft);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--hairline), transparent);
+      margin: 18px 0 14px;
+    }
+
+    .features {
+      list-style: none;
+    }
+
+    .features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 8px 0;
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .features li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23DB2777'/%3E%3Cstop offset='100%25' stop-color='%23A16207'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='11' cy='11' r='11' fill='url(%23g)'/%3E%3Cpath d='M6.5 11.5 9.5 14.5 15.5 8' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-top: 2px;
+    }
+
+    .features li.muted {
+      color: var(--muted);
+    }
+    .features li.muted::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Ccircle cx='11' cy='11' r='10.5' fill='none' stroke='%23E5E7EB' stroke-width='1.5'/%3E%3Cpath d='M6.5 11.5 9.5 14.5 15.5 8' fill='none' stroke='%23D1D5DB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+
+    .features li strong {
+      font-weight: 700;
+    }
+
+    /* ─────── CTA ─────── */
+    .cta-section {
+      text-align: center;
+      padding: 40px 0 8px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 32px;
+      background: #fff;
+      color: var(--ink);
+      border-radius: 999px;
+      font-size: 17px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 10px 28px rgba(219, 39, 119, 0.22), 0 2px 4px rgba(0,0,0,0.04);
+      border: 1px solid rgba(219, 39, 119, 0.1);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      min-height: 56px;
+    }
+
+    .cta-btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 4px 14px rgba(219, 39, 119, 0.2);
+    }
+
+    .cta-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: #25D366;
+      flex-shrink: 0;
+    }
+
+    .cta-sub {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─────── FOOTER ─────── */
+    footer {
+      text-align: center;
+      padding: 36px 0 12px;
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    footer .ig {
+      display: inline-block;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
+    }
+
+    footer .copy {
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    /* Small phones */
+    @media (max-width: 360px) {
+      main { padding: 24px 16px 48px; }
+      .steps { padding-left: 56px; }
+      .step-num { left: -56px; width: 44px; height: 44px; font-size: 14px; }
+      .steps::before { left: 21px; }
+      .pkg { padding: 32px 20px 24px; }
+      .amount { font-size: 64px; }
+    }
+
+    /* Wider screens: keep flyer-card feel */
+    @media (min-width: 720px) {
+      main { padding: 56px 24px 80px; }
+    }
+
+    @media print {
+      body { background: white; }
+      .header::before, .header::after { display: none; }
+      .cta-btn { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="badge">Invitaciones Digitales</div>
+      <h1 class="brand">Elysium</h1>
+      <p class="tagline">Invitaciones que cuentan tu historia</p>
+    </header>
+
+    <!-- PROCESS -->
+    <section>
+      <span class="eyebrow">Cómo trabajamos</span>
+      <h2 class="section-title">Tu invitación, <em>paso a paso</em></h2>
+
+      <ol class="steps">
+        <li class="step">
+          <div class="step-num">01</div>
+          <h3 class="step-title">Llenas el formulario</h3>
+          <p class="step-desc">Te compartimos un formulario donde nos detallas todos los aspectos de tu evento: nombres, fecha, lugar, fotos, paleta de colores, padrinos, mesa de regalos y más.</p>
+        </li>
+
+        <li class="step">
+          <div class="step-num">02</div>
+          <h3 class="step-title">Empezamos tu propuesta</h3>
+          <p class="step-desc">Comenzamos a diseñar tu invitación de inmediato — sin anticipos.</p>
+        </li>
+
+        <li class="step">
+          <div class="step-num">03</div>
+          <h3 class="step-title">Te entregamos la propuesta</h3>
+          <p class="step-desc">En menos de 24 horas recibes el primer diseño listo para revisar desde tu celular.</p>
+        </li>
+
+        <li class="step">
+          <div class="step-num">04</div>
+          <h3 class="step-title">Pulimos cada detalle</h3>
+          <p class="step-desc">Iteramos juntos hasta que cada palabra, color y foto quede exactamente como tú la imaginas. Cambios ilimitados.</p>
+        </li>
+
+        <li class="step">
+          <div class="step-num">05</div>
+          <h3 class="step-title">Tu invitación queda lista</h3>
+          <p class="step-desc">Recibes tu link personalizado listo para compartir con todos tus invitados por WhatsApp.</p>
+        </li>
+
+        <li class="step">
+          <div class="step-num">06</div>
+          <h3 class="step-title">Te entregamos tu panel</h3>
+          <p class="step-desc">Te damos acceso a tu panel personalizado para gestionar a tus invitados desde cualquier dispositivo.</p>
+        </li>
+
+        <li class="step">
+          <div class="step-num">07</div>
+          <h3 class="step-title">Te enseñamos a usarlo</h3>
+          <p class="step-desc">Aprendes a crear pases personalizados por invitado o familia, ver las confirmaciones en tiempo real y generar tu lista de asistentes automática.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- PACKAGES -->
+    <section>
+      <span class="eyebrow">Elige tu paquete</span>
+      <h2 class="section-title">Diseñado para que digas <em>que sí</em></h2>
+
+      <div class="packages">
+        <!-- $750 -->
+        <article class="pkg pkg-basic">
+          <div class="pkg-tag">Esencial</div>
+          <h3 class="pkg-name">Invitación Digital</h3>
+          <p class="pkg-sub">Para quien quiere lo esencial bien hecho</p>
+
+          <div class="price">
+            <span class="currency">$</span>
+            <span class="amount">750</span>
+            <span class="mxn">MXN</span>
+          </div>
+          <p class="price-note">Pago único · Sin sorpresas</p>
+
+          <div class="divider"></div>
+
+          <ul class="features">
+            <li>Invitación digital <strong>100% personalizada</strong></li>
+            <li>Cuenta regresiva, galería, mapa, música, mesa de regalos</li>
+            <li>Itinerario, dress code, padrinos y hospedaje</li>
+            <li><strong>Confirmación de asistencia por WhatsApp</strong></li>
+            <li>Cambios ilimitados hasta que sea perfecta</li>
+            <li>Link compartible para todos tus invitados</li>
+          </ul>
+        </article>
+
+        <!-- $950 -->
+        <article class="pkg pkg-premium">
+          <div class="pkg-tag">Completo · Recomendado</div>
+          <h3 class="pkg-name">Invitación + Panel</h3>
+          <p class="pkg-sub">Para quien quiere control total de su evento</p>
+
+          <div class="price">
+            <span class="currency">$</span>
+            <span class="amount">950</span>
+            <span class="mxn">MXN</span>
+          </div>
+          <p class="price-note">Pago único · Sin sorpresas</p>
+
+          <div class="divider"></div>
+
+          <ul class="features">
+            <li><strong>Todo lo del paquete Esencial</strong></li>
+            <li><strong>Panel personalizado</strong> para gestionar invitados</li>
+            <li>Asigna <strong>pases personalizados</strong> por invitado o familia</li>
+            <li><strong>Confirmaciones en tiempo real</strong> en tu panel</li>
+            <li>Lista de asistentes <strong>automática</strong></li>
+            <li>Capacitación 1:1 para que sepas usarlo</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <a
+        class="cta-btn"
+        href="https://wa.me/524421235312?text=Hola%2C%20me%20interesa%20una%20invitaci%C3%B3n%20digital%20%E2%9C%A8"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm0 1.67c2.21 0 4.28.86 5.84 2.42a8.218 8.218 0 012.42 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.188 8.188 0 01-1.26-4.38c0-4.54 3.69-8.24 8.22-8.24z" />
+        </svg>
+        Escribir por WhatsApp
+      </a>
+      <p class="cta-sub">Sin anticipos · Cambios ilimitados · Respuesta en 24h</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <a
+        class="ig"
+        href="https://instagram.com/elysium.invitaciones"
+        target="_blank"
+        rel="noopener noreferrer"
+      >@elysium.invitaciones</a>
+      <p class="copy">© 2026 Elysium · Hecho con cariño en México</p>
+    </footer>
+  </main>
+</body>
+</html>
