@@ -23,18 +23,18 @@ interface Promise {
 
 const PROMISES: Promise[] = [
   {
-    headline: '$0 de anticipo',
-    desc: 'Empezamos a trabajar de inmediato. Sin enganches.',
-    icon: <DollarIcon />,
-    beamFrom: '#DB2777',
-    beamTo: '#A16207',
-  },
-  {
     headline: 'Propuesta en 24h',
     desc: 'Recibe tu invitación lista para revisar al día siguiente.',
     icon: <ClockIcon />,
     beamFrom: '#A16207',
     beamTo: '#DB2777',
+  },
+  {
+    headline: 'Sin compromisos',
+    desc: 'Empezamos sin presión. Tú decides cuándo avanzar.',
+    icon: <DollarIcon />,
+    beamFrom: '#DB2777',
+    beamTo: '#A16207',
   },
   {
     headline: 'Pagas si te encanta',

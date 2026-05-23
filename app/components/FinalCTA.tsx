@@ -120,7 +120,7 @@ export function FinalCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 1.1 }}
         >
-          Sin anticipos · Cambios ilimitados · Solo $750 MXN
+          Cambios ilimitados · Respuesta en 24h
         </motion.p>
       </div>
     </section>

@@ -13,7 +13,7 @@ const STEPS = [
   {
     number: '02',
     title: 'Recibes tu propuesta',
-    desc: 'En menos de 24 horas, tu invitación lista para revisar. Cero adelanto.',
+    desc: 'En menos de 24 horas, tu invitación lista para revisar.',
   },
   {
     number: '03',
