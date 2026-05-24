@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Elysium — OG preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Infant:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1200px; height: 630px; }
+
+    body {
+      font-family: 'Cormorant Infant', Georgia, serif;
+      background: linear-gradient(135deg, #FCE7F3 0%, #FDF2F8 50%, #FEF3C7 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* decorative orbs */
+    body::before, body::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::before {
+      top: -260px; right: -200px;
+      width: 720px; height: 720px;
+      background: rgba(219, 39, 119, 0.22);
+    }
+    body::after {
+      bottom: -260px; left: -200px;
+      width: 720px; height: 720px;
+      background: rgba(161, 98, 7, 0.20);
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 60px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(161, 98, 7, 0.35);
+      background: rgba(255, 255, 255, 0.6);
+      color: #A16207;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .badge::before {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #A16207;
+    }
+
+    .brand {
+      font-family: 'Great Vibes', cursive;
+      font-size: 280px;
+      line-height: 1;
+      background: linear-gradient(135deg, #DB2777 0%, #BE185D 45%, #A16207 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      padding: 20px 0;
+      margin-top: -8px;
+    }
+
+    .tagline {
+      font-size: 34px;
+      color: #374151;
+      margin-top: 6px;
+      font-weight: 400;
+    }
+
+    .prices {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+    }
+    .price-pill {
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: white;
+    }
+    .price-pill.basic {
+      background: linear-gradient(135deg, #DB2777, #BE185D);
+      box-shadow: 0 8px 22px rgba(219, 39, 119, 0.3);
+    }
+    .price-pill.premium {
+      background: linear-gradient(135deg, #BE185D, #A16207);
+      box-shadow: 0 8px 22px rgba(161, 98, 7, 0.3);
+    }
+    .sep {
+      color: rgba(161, 98, 7, 0.5);
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .accent {
+      margin-top: 24px;
+      color: #A16207;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="badge">Paquetes y Proceso</div>
+    <div class="brand">Elysium</div>
+    <div class="tagline">Invitaciones digitales que cuentan tu historia</div>
+    <div class="prices">
+      <span class="price-pill basic">$750 Esencial</span>
+      <span class="sep">·</span>
+      <span class="price-pill premium">$950 Completo</span>
+    </div>
+    <div class="accent">Bodas · XV Años · Bautizos</div>
+  </div>
+</body>
+</html>

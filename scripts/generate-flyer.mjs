@@ -67,6 +67,28 @@ try {
     margin: { top: '0', right: '0', bottom: '0', left: '0' },
   })
   console.log(`✓ PDF written: ${pdfPath}`)
+
+  // ─── Social preview (OG image) — 1200x630 ───
+  const ogUrl = URL.replace(/flyer\.html$/, 'flyer-og.html')
+  console.log(`Rendering social preview from: ${ogUrl}`)
+
+  const ogPage = await browser.newPage()
+  await ogPage.setViewport({
+    width: 1200,
+    height: 630,
+    deviceScaleFactor: 1,
+  })
+  await ogPage.goto(ogUrl, { waitUntil: 'networkidle0', timeout: 60_000 })
+  await ogPage.evaluate(() => document.fonts.ready)
+  await new Promise((r) => setTimeout(r, 500))
+
+  const ogPath = join(OUT_DIR, 'flyer-og.png')
+  await ogPage.screenshot({
+    path: ogPath,
+    type: 'png',
+    clip: { x: 0, y: 0, width: 1200, height: 630 },
+  })
+  console.log(`✓ OG PNG written: ${ogPath}`)
 } finally {
   await browser.close()
 }
