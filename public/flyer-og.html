@@ -11,27 +11,21 @@
     html, body { width: 1200px; height: 630px; }
 
     :root {
-      --cream-50: #FFFCF7;
-      --cream-100: #FBF6EB;
-      --cream-200: #F5EDD8;
-      --cream-300: #EADFCB;
-      --gold-400: #B89968;
-      --gold-500: #A07C30;
-      --gold-600: #8B6F2A;
-      --gold-700: #6B5418;
-      --gold-800: #4A3914;
-      --ink-900: #2A2118;
-      --ink-700: #4A3F30;
-      --ink-500: #6B5D48;
-      --ink-400: #A89A82;
+      /* 6-color premium palette */
+      --pearl:     #FBF8F1;
+      --ivory:     #EAE0CC;
+      --champagne: #D4AF7F;
+      --bronze:    #9B7B43;
+      --espresso:  #2B1F14;
+      --smoke:     #8B7E66;
     }
 
     body {
       font-family: 'Cormorant Infant', Georgia, serif;
       background:
-        radial-gradient(circle at 100% 0%, rgba(184, 153, 104, 0.22), transparent 50%),
-        radial-gradient(circle at 0% 100%, rgba(212, 185, 129, 0.20), transparent 50%),
-        linear-gradient(135deg, var(--cream-100) 0%, var(--cream-50) 50%, var(--cream-200) 100%);
+        radial-gradient(circle at 100% 0%, rgba(212, 175, 127, 0.26), transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(155, 123, 67, 0.18), transparent 50%),
+        linear-gradient(135deg, var(--ivory) 0%, var(--pearl) 50%, var(--ivory) 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -41,7 +35,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Decorative orbs */
     body::before, body::after {
       content: '';
       position: absolute;
@@ -53,19 +46,18 @@
     body::before {
       top: -260px; right: -180px;
       width: 700px; height: 700px;
-      background: rgba(184, 153, 104, 0.30);
+      background: rgba(212, 175, 127, 0.30);
     }
     body::after {
       bottom: -260px; left: -180px;
       width: 700px; height: 700px;
-      background: rgba(107, 84, 24, 0.18);
+      background: rgba(155, 123, 67, 0.20);
     }
 
-    /* Top promo ribbon */
     .ribbon {
       width: 100%;
-      background: linear-gradient(90deg, var(--gold-800) 0%, var(--gold-600) 50%, var(--gold-800) 100%);
-      color: var(--cream-100);
+      background: var(--espresso);
+      color: var(--pearl);
       padding: 14px 60px;
       font-size: 16px;
       font-weight: 700;
@@ -78,10 +70,10 @@
       align-items: center;
       justify-content: center;
       gap: 24px;
+      border-bottom: 1px solid var(--champagne);
     }
-
     .ribbon .dot {
-      color: rgba(255, 252, 247, 0.6);
+      color: var(--champagne);
       font-size: 11px;
     }
 
@@ -89,7 +81,7 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 32px 60px 24px;
+      padding: 30px 60px 24px;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -104,9 +96,9 @@
       gap: 12px;
       padding: 10px 24px;
       border-radius: 999px;
-      background: rgba(255, 252, 247, 0.9);
-      border: 1px solid var(--gold-500);
-      color: var(--gold-700);
+      background: var(--pearl);
+      border: 1px solid var(--champagne);
+      color: var(--bronze);
       font-size: 18px;
       font-weight: 700;
       letter-spacing: 0.28em;
@@ -117,14 +109,14 @@
       content: '';
       width: 7px; height: 7px;
       border-radius: 50%;
-      background: var(--gold-500);
+      background: var(--bronze);
     }
 
     .brand {
       font-family: 'Great Vibes', cursive;
       font-size: 232px;
       line-height: 1;
-      background: linear-gradient(135deg, var(--gold-400) 0%, var(--gold-500) 45%, var(--gold-700) 100%);
+      background: linear-gradient(135deg, var(--champagne) 0%, var(--bronze) 50%, var(--espresso) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -134,7 +126,7 @@
 
     .tagline {
       font-size: 28px;
-      color: var(--ink-700);
+      color: var(--smoke);
       margin-top: 4px;
       font-weight: 400;
       font-style: italic;
@@ -176,20 +168,20 @@
     }
 
     .price-pill.basic {
-      background: var(--cream-50);
-      color: var(--gold-700);
-      border: 1.5px solid var(--gold-500);
-      box-shadow: 0 8px 22px rgba(107, 84, 24, 0.14);
+      background: var(--pearl);
+      color: var(--bronze);
+      border: 1.5px solid var(--champagne);
+      box-shadow: 0 8px 22px rgba(155, 123, 67, 0.16);
     }
     .price-pill.premium {
-      background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-700) 100%);
-      color: var(--cream-100);
-      box-shadow: 0 10px 26px rgba(107, 84, 24, 0.32);
+      background: linear-gradient(135deg, var(--champagne) 0%, var(--bronze) 100%);
+      color: var(--pearl);
+      box-shadow: 0 10px 26px rgba(43, 31, 20, 0.32);
     }
 
     .sep {
       align-self: center;
-      color: var(--gold-500);
+      color: var(--champagne);
       font-size: 18px;
       font-weight: 700;
     }
