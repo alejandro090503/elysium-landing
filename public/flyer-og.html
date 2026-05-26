@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Elysium — OG preview</title>
+  <title>Elysium — OG preview · Mayo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Infant:wght@300;400;600;700&display=swap" rel="stylesheet" />
@@ -10,135 +10,217 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { width: 1200px; height: 630px; }
 
+    :root {
+      --cream-50: #FFFCF7;
+      --cream-100: #FBF6EB;
+      --cream-200: #F5EDD8;
+      --cream-300: #EADFCB;
+      --gold-400: #B89968;
+      --gold-500: #A07C30;
+      --gold-600: #8B6F2A;
+      --gold-700: #6B5418;
+      --gold-800: #4A3914;
+      --ink-900: #2A2118;
+      --ink-700: #4A3F30;
+      --ink-500: #6B5D48;
+      --ink-400: #A89A82;
+    }
+
     body {
       font-family: 'Cormorant Infant', Georgia, serif;
-      background: linear-gradient(135deg, #FCE7F3 0%, #FDF2F8 50%, #FEF3C7 100%);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(184, 153, 104, 0.22), transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(212, 185, 129, 0.20), transparent 50%),
+        linear-gradient(135deg, var(--cream-100) 0%, var(--cream-50) 50%, var(--cream-200) 100%);
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       position: relative;
       overflow: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* decorative orbs */
+    /* Decorative orbs */
     body::before, body::after {
       content: '';
       position: absolute;
       border-radius: 50%;
-      filter: blur(100px);
+      filter: blur(120px);
       pointer-events: none;
       z-index: 0;
     }
     body::before {
-      top: -260px; right: -200px;
-      width: 720px; height: 720px;
-      background: rgba(219, 39, 119, 0.22);
+      top: -260px; right: -180px;
+      width: 700px; height: 700px;
+      background: rgba(184, 153, 104, 0.30);
     }
     body::after {
-      bottom: -260px; left: -200px;
-      width: 720px; height: 720px;
-      background: rgba(161, 98, 7, 0.20);
+      bottom: -260px; left: -180px;
+      width: 700px; height: 700px;
+      background: rgba(107, 84, 24, 0.18);
+    }
+
+    /* Top promo ribbon */
+    .ribbon {
+      width: 100%;
+      background: linear-gradient(90deg, var(--gold-800) 0%, var(--gold-600) 50%, var(--gold-800) 100%);
+      color: var(--cream-100);
+      padding: 14px 60px;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .ribbon .dot {
+      color: rgba(255, 252, 247, 0.6);
+      font-size: 11px;
     }
 
     .content {
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 0 60px;
+      padding: 32px 60px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 14px;
-      padding: 12px 28px;
+      gap: 12px;
+      padding: 10px 24px;
       border-radius: 999px;
-      border: 1px solid rgba(161, 98, 7, 0.35);
-      background: rgba(255, 255, 255, 0.6);
-      color: #A16207;
-      font-size: 22px;
+      background: rgba(255, 252, 247, 0.9);
+      border: 1px solid var(--gold-500);
+      color: var(--gold-700);
+      font-size: 18px;
       font-weight: 700;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
     .badge::before {
       content: '';
-      width: 8px; height: 8px;
+      width: 7px; height: 7px;
       border-radius: 50%;
-      background: #A16207;
+      background: var(--gold-500);
     }
 
     .brand {
       font-family: 'Great Vibes', cursive;
-      font-size: 280px;
+      font-size: 232px;
       line-height: 1;
-      background: linear-gradient(135deg, #DB2777 0%, #BE185D 45%, #A16207 100%);
+      background: linear-gradient(135deg, var(--gold-400) 0%, var(--gold-500) 45%, var(--gold-700) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      padding: 20px 0;
+      padding: 12px 0;
       margin-top: -8px;
     }
 
     .tagline {
-      font-size: 34px;
-      color: #374151;
-      margin-top: 6px;
+      font-size: 28px;
+      color: var(--ink-700);
+      margin-top: 4px;
       font-weight: 400;
+      font-style: italic;
     }
 
     .prices {
-      margin-top: 28px;
+      margin-top: 22px;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: center;
       gap: 18px;
     }
+
     .price-pill {
-      padding: 10px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 24px;
       border-radius: 999px;
       font-size: 22px;
       font-weight: 700;
       letter-spacing: 0.04em;
-      color: white;
     }
-    .price-pill.basic {
-      background: linear-gradient(135deg, #DB2777, #BE185D);
-      box-shadow: 0 8px 22px rgba(219, 39, 119, 0.3);
+    .price-pill .label {
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.85;
     }
-    .price-pill.premium {
-      background: linear-gradient(135deg, #BE185D, #A16207);
-      box-shadow: 0 8px 22px rgba(161, 98, 7, 0.3);
+    .price-pill .strike {
+      font-size: 16px;
+      text-decoration: line-through;
+      opacity: 0.65;
+      font-weight: 500;
     }
-    .sep {
-      color: rgba(161, 98, 7, 0.5);
-      font-size: 22px;
-      font-weight: 700;
+    .price-pill .now {
+      font-size: 24px;
+      font-weight: 800;
     }
 
-    .accent {
-      margin-top: 24px;
-      color: #A16207;
-      font-size: 16px;
+    .price-pill.basic {
+      background: var(--cream-50);
+      color: var(--gold-700);
+      border: 1.5px solid var(--gold-500);
+      box-shadow: 0 8px 22px rgba(107, 84, 24, 0.14);
+    }
+    .price-pill.premium {
+      background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-700) 100%);
+      color: var(--cream-100);
+      box-shadow: 0 10px 26px rgba(107, 84, 24, 0.32);
+    }
+
+    .sep {
+      align-self: center;
+      color: var(--gold-500);
+      font-size: 18px;
       font-weight: 700;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
     }
   </style>
 </head>
 <body>
+  <div class="ribbon">
+    <span>Mayo · Mes de las madres</span>
+    <span class="dot">◆</span>
+    <span>21% OFF en ambos paquetes</span>
+    <span class="dot">◆</span>
+    <span>Hasta el 30 de mayo</span>
+  </div>
+
   <div class="content">
-    <div class="badge">Paquetes y Proceso</div>
+    <div class="badge">Promoción Mayo</div>
     <div class="brand">Elysium</div>
-    <div class="tagline">Invitaciones digitales que cuentan tu historia</div>
+    <div class="tagline">Invitaciones que cuentan tu historia</div>
     <div class="prices">
-      <span class="price-pill basic">$750 Esencial</span>
-      <span class="sep">·</span>
-      <span class="price-pill premium">$950 Completo</span>
+      <span class="price-pill basic">
+        <span class="label">Esencial</span>
+        <span class="strike">$950</span>
+        <span class="now">$750</span>
+      </span>
+      <span class="sep">◆</span>
+      <span class="price-pill premium">
+        <span class="label">Completo</span>
+        <span class="strike">$1,200</span>
+        <span class="now">$950</span>
+      </span>
     </div>
-    <div class="accent">Bodas · XV Años · Bautizos</div>
   </div>
 </body>
 </html>
