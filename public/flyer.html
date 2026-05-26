@@ -367,6 +367,64 @@
       box-shadow: 0 4px 12px rgba(107, 84, 24, 0.25);
     }
 
+    /* Discount medallion — wax-seal heritage feel */
+    .discount-medal {
+      position: absolute;
+      top: -16px;
+      right: 16px;
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: var(--cream-50);
+      color: var(--gold-700);
+      border: 1px double var(--gold-500);
+      outline: 1px solid var(--cream-50);
+      outline-offset: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-7deg);
+      box-shadow: 0 8px 20px rgba(107, 84, 24, 0.18);
+      z-index: 6;
+      font-family: 'Cormorant Infant', serif;
+    }
+    .discount-medal::before {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      border-radius: 50%;
+      border: 1px solid rgba(160, 124, 48, 0.3);
+      pointer-events: none;
+    }
+    .discount-medal .pct {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .discount-medal .label {
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-top: 3px;
+      color: var(--gold-600);
+      font-weight: 700;
+    }
+    .pkg-premium .discount-medal {
+      background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-700) 100%);
+      color: var(--cream-50);
+      border: 1px double var(--cream-100);
+      outline-color: var(--gold-500);
+      box-shadow: 0 10px 24px rgba(107, 84, 24, 0.32);
+    }
+    .pkg-premium .discount-medal::before {
+      border-color: rgba(255, 252, 247, 0.35);
+    }
+    .pkg-premium .discount-medal .label {
+      color: rgba(255, 252, 247, 0.85);
+    }
+
     .pkg-name {
       font-size: 24px;
       font-weight: 600;
@@ -671,10 +729,10 @@
       <div class="packages">
         <!-- Esencial -->
         <article class="pkg pkg-basic">
-          <div class="pkg-tag">
-            Esencial
-            <span class="dot">·</span>
-            -21% Mayo
+          <div class="pkg-tag">Esencial</div>
+          <div class="discount-medal" aria-label="21% de descuento en mayo">
+            <span class="pct">−21%</span>
+            <span class="label">Mayo</span>
           </div>
           <h3 class="pkg-name">Invitación Digital</h3>
           <p class="pkg-sub">Para quien quiere lo esencial bien hecho</p>
@@ -701,12 +759,12 @@
           </ul>
         </article>
 
-        <!-- Completo -->
+        <!-- Eterna -->
         <article class="pkg pkg-premium">
-          <div class="pkg-tag">
-            Completo · Recomendado
-            <span class="dot">·</span>
-            -21% Mayo
+          <div class="pkg-tag">Eterna · Recomendado</div>
+          <div class="discount-medal" aria-label="21% de descuento en mayo">
+            <span class="pct">−21%</span>
+            <span class="label">Mayo</span>
           </div>
           <h3 class="pkg-name">Invitación + Panel</h3>
           <p class="pkg-sub">Para quien quiere control total de su evento</p>
@@ -726,7 +784,7 @@
           <ul class="features">
             <li><strong>Todo lo del paquete Esencial</strong></li>
             <li><strong>Panel personalizado</strong> para gestionar invitados</li>
-            <li>Asigna <strong>pases personalizados</strong> por invitado o familia</li>
+            <li>Asigna <strong>pases personalizados</strong> por invitado</li>
             <li><strong>Confirmaciones en tiempo real</strong> en tu panel</li>
             <li>Lista de asistentes <strong>automática</strong></li>
             <li>Capacitación 1:1 para que sepas usarlo</li>
