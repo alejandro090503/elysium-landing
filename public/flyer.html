@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elysium Invitaciones · Paquetes y Promoción Mayo</title>
-  <meta name="description" content="Promoción Mayo · Mes de las Madres. 21% off en ambos paquetes hasta el 30 de mayo. Invitación digital desde $750 MXN, paquete completo desde $950 MXN." />
-  <meta name="theme-color" content="#FBF6EB" />
+  <title>Elysium Invitaciones · Promoción Mayo</title>
+  <meta name="description" content="Promoción Mayo · Mes de las Madres. 21% off en ambos paquetes hasta el 30 de mayo. Invitación digital desde $750 MXN." />
+  <meta name="theme-color" content="#FBF8F1" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Elysium Invitaciones · Promoción Mayo · 21% OFF" />
@@ -18,7 +18,7 @@
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Elysium Invitaciones — Promoción Mayo 21% off hasta el 30 de mayo" />
+  <meta property="og:image:alt" content="Elysium Invitaciones — Promoción Mayo 21% off" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -34,40 +34,44 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* Cream backgrounds */
-      --cream-50: #FFFCF7;
-      --cream-100: #FBF6EB;
-      --cream-200: #F5EDD8;
-      --cream-300: #EADFCB;
-      --cream-400: #D8C9A8;
+      /* Pearl/Ivory backgrounds — soft, luminous */
+      --pearl: #FBF8F1;
+      --ivory: #F5EDDE;
+      --cream: #EDE2C9;
+      --cream-200: #E5D5B5;
+      --cream-300: #D6C5A0;
 
-      /* Premium gold */
-      --gold-200: #D4B981;
-      --gold-400: #B89968;
-      --gold-500: #A07C30;
-      --gold-600: #8B6F2A;
-      --gold-700: #6B5418;
-      --gold-800: #4A3914;
+      /* Bright champagne gold range — no muddy yellow */
+      --gold-100: #F4E6CB;
+      --gold-200: #E8D29E;
+      --gold-300: #DDC089;
+      --gold-400: #D4AF7F;     /* MAIN champagne gold */
+      --gold-500: #C9A263;
+      --gold-600: #B5895B;
+      --gold-700: #8B6F3D;
+      --shimmer: #EFD18F;      /* sparkle highlight */
+      --shimmer-bright: #F5DCA0;
 
-      /* Warm ink (text) */
-      --ink-900: #2A2118;
-      --ink-700: #4A3F30;
-      --ink-600: #6B5D48;
-      --ink-500: #8C7E66;
-      --ink-400: #A89A82;
+      /* Warm dark — for the marquee, not muddy */
+      --mocha-900: #1F1611;
+      --mocha-800: #2D2018;
+      --mocha-700: #4D3B2C;
+      --mocha-500: #6B5C45;
+      --mocha-400: #8C7C65;
+      --mocha-300: #A89A82;
 
-      --hairline: rgba(107, 84, 24, 0.16);
+      --hairline: rgba(139, 111, 61, 0.15);
     }
 
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
     body {
       font-family: 'Cormorant Infant', Georgia, 'Times New Roman', serif;
-      color: var(--ink-900);
+      color: var(--mocha-800);
       background:
-        radial-gradient(circle at 100% 0%, rgba(212, 185, 129, 0.18), transparent 45%),
-        radial-gradient(circle at 0% 100%, rgba(184, 153, 104, 0.14), transparent 45%),
-        linear-gradient(180deg, var(--cream-50) 0%, var(--cream-100) 50%, var(--cream-50) 100%);
+        radial-gradient(circle at 100% 0%, rgba(212, 175, 127, 0.22), transparent 45%),
+        radial-gradient(circle at 0% 100%, rgba(239, 209, 143, 0.18), transparent 45%),
+        linear-gradient(180deg, var(--pearl) 0%, var(--ivory) 50%, var(--pearl) 100%);
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -75,7 +79,7 @@
       overflow-x: hidden;
     }
 
-    /* ─────── MARQUEE TOP ─────── */
+    /* ─────── MARQUEE ─────── */
     .marquee {
       position: sticky;
       top: 0;
@@ -83,8 +87,12 @@
       right: 0;
       width: 100%;
       overflow: hidden;
-      background: linear-gradient(90deg, var(--gold-800) 0%, var(--gold-600) 50%, var(--gold-800) 100%);
-      border-bottom: 1px solid rgba(212, 185, 129, 0.25);
+      background:
+        linear-gradient(90deg,
+          var(--mocha-900) 0%,
+          var(--mocha-700) 50%,
+          var(--mocha-900) 100%);
+      border-bottom: 1px solid rgba(239, 209, 143, 0.3);
       z-index: 50;
     }
 
@@ -98,37 +106,32 @@
     .marquee-segment {
       display: inline-flex;
       align-items: center;
-      gap: 28px;
-      padding-right: 28px;
+      gap: 26px;
+      padding-right: 26px;
       white-space: nowrap;
-      color: var(--cream-100);
+      color: var(--shimmer);
       font-family: 'Cormorant Infant', serif;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.32em;
+      letter-spacing: 0.34em;
       text-transform: uppercase;
     }
 
     .marquee-segment span {
       display: inline-flex;
       align-items: center;
-      gap: 28px;
+      gap: 26px;
     }
 
     .marquee-diamond {
-      color: var(--gold-200);
+      color: var(--gold-400);
       font-size: 9px;
-      opacity: 0.7;
+      opacity: 0.85;
     }
 
     @keyframes marquee-scroll {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .marquee-track { animation: none; }
-      .marquee-segment:nth-child(2) { display: none; }
     }
 
     /* ─────── MAIN ─────── */
@@ -151,10 +154,10 @@
     .ornament-line {
       height: 1px;
       flex: 1;
-      background: linear-gradient(90deg, transparent, var(--gold-400), transparent);
+      background: linear-gradient(90deg, transparent, var(--gold-500), transparent);
     }
     .ornament-diamond {
-      color: var(--gold-500);
+      color: var(--gold-600);
       font-size: 10px;
       letter-spacing: 0.4em;
     }
@@ -172,15 +175,16 @@
       gap: 10px;
       padding: 8px 20px;
       border-radius: 999px;
-      background: var(--cream-50);
+      background: var(--pearl);
       border: 1px solid var(--gold-400);
-      color: var(--gold-600);
+      color: var(--gold-700);
       font-family: 'Cormorant Infant', serif;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       margin-bottom: 18px;
+      box-shadow: 0 4px 12px rgba(139, 111, 61, 0.08);
     }
     .badge::before {
       content: '';
@@ -194,7 +198,7 @@
       font-size: clamp(80px, 22vw, 112px);
       line-height: 1.15;
       font-weight: 400;
-      background: linear-gradient(135deg, var(--gold-200) 0%, var(--gold-500) 45%, var(--gold-700) 100%);
+      background: linear-gradient(135deg, var(--gold-300) 0%, var(--gold-500) 45%, var(--gold-700) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -202,20 +206,19 @@
     }
 
     .tagline {
-      color: var(--ink-600);
+      color: var(--mocha-500);
       font-size: 18px;
       font-style: italic;
       margin-top: 4px;
-      letter-spacing: 0.005em;
     }
 
-    /* ─────── SECTION GENERIC ─────── */
+    /* ─────── SECTION ─────── */
     section { margin: 48px 0; position: relative; }
     section:last-of-type { margin-bottom: 32px; }
 
     .eyebrow {
       display: block;
-      color: var(--gold-600);
+      color: var(--gold-700);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.3em;
@@ -229,7 +232,7 @@
       font-weight: 300;
       font-size: clamp(28px, 7vw, 36px);
       text-align: center;
-      color: var(--ink-900);
+      color: var(--mocha-900);
       letter-spacing: -0.018em;
       line-height: 1.1;
       margin-bottom: 32px;
@@ -267,7 +270,7 @@
       background: linear-gradient(180deg,
         var(--gold-400) 0%,
         var(--gold-700) 100%);
-      opacity: 0.45;
+      opacity: 0.55;
     }
 
     .step { position: relative; padding-bottom: 26px; }
@@ -280,7 +283,7 @@
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background: var(--cream-50);
+      background: var(--pearl);
       border: 1px solid var(--gold-500);
       color: var(--gold-700);
       font-family: 'Cormorant Infant', serif;
@@ -290,19 +293,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 14px rgba(107, 84, 24, 0.10);
+      box-shadow: 0 6px 14px rgba(139, 111, 61, 0.12);
     }
 
     .step-title {
       font-weight: 600;
       font-size: 20px;
-      color: var(--ink-900);
+      color: var(--mocha-900);
       margin-bottom: 4px;
       letter-spacing: -0.005em;
     }
 
     .step-desc {
-      color: var(--ink-600);
+      color: var(--mocha-500);
       font-size: 16px;
       line-height: 1.55;
     }
@@ -310,34 +313,33 @@
     /* ─────── PACKAGES ─────── */
     .packages {
       display: grid;
-      gap: 24px;
-      margin-top: 8px;
+      gap: 36px;
+      margin-top: 28px;
     }
 
     .pkg {
       position: relative;
-      background: var(--cream-50);
+      background: var(--pearl);
       border-radius: 26px;
-      padding: 38px 24px 28px;
-      border: 1px solid var(--cream-400);
-      box-shadow: 0 10px 30px rgba(107, 84, 24, 0.06);
+      padding: 72px 24px 28px;
+      border: 1px solid var(--cream-300);
+      box-shadow: 0 12px 32px rgba(139, 111, 61, 0.08);
     }
 
     .pkg-premium {
       background:
-        radial-gradient(circle at 100% 0%, rgba(184, 153, 104, 0.15), transparent 55%),
-        radial-gradient(circle at 0% 100%, rgba(212, 185, 129, 0.18), transparent 55%),
-        var(--cream-50);
-      border: 1.5px solid var(--gold-500);
-      box-shadow: 0 14px 40px rgba(107, 84, 24, 0.14);
+        radial-gradient(circle at 100% 0%, rgba(212, 175, 127, 0.18), transparent 55%),
+        radial-gradient(circle at 0% 100%, rgba(239, 209, 143, 0.16), transparent 55%),
+        var(--pearl);
+      border: 1.5px solid var(--gold-400);
+      box-shadow: 0 16px 44px rgba(139, 111, 61, 0.16);
     }
 
     .pkg-tag {
       position: absolute;
-      top: -13px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 6px 18px;
+      top: -14px;
+      left: 22px;
+      padding: 7px 18px;
       border-radius: 999px;
       font-family: 'Cormorant Infant', serif;
       font-size: 10px;
@@ -345,104 +347,131 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .pkg-tag .dot {
-      color: var(--gold-700);
-      opacity: 0.5;
     }
 
     .pkg-basic .pkg-tag {
-      background: var(--cream-50);
+      background: var(--pearl);
       color: var(--gold-700);
       border: 1px solid var(--gold-500);
     }
 
     .pkg-premium .pkg-tag {
       background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-700) 100%);
-      color: var(--cream-100);
-      box-shadow: 0 4px 12px rgba(107, 84, 24, 0.25);
+      color: var(--pearl);
+      box-shadow: 0 4px 12px rgba(139, 111, 61, 0.28);
     }
 
-    /* Discount medallion — wax-seal heritage feel */
+    /* ─────── DISCOUNT MEDALLION — animated, sealed ─────── */
     .discount-medal {
       position: absolute;
-      top: -16px;
-      right: 16px;
-      width: 76px;
-      height: 76px;
+      top: -40px;
+      right: -12px;
+      width: 104px;
+      height: 104px;
+      z-index: 10;
+      filter: drop-shadow(0 12px 22px rgba(139, 111, 61, 0.35));
+      animation: medal-pulse 2.4s ease-in-out infinite;
+    }
+
+    .medal-ring {
+      position: absolute;
+      inset: 0;
       border-radius: 50%;
-      background: var(--cream-50);
-      color: var(--gold-700);
-      border: 1px double var(--gold-500);
-      outline: 1px solid var(--cream-50);
-      outline-offset: 2px;
+      background: conic-gradient(
+        from 0deg,
+        var(--gold-300) 0%,
+        var(--shimmer-bright) 18%,
+        var(--gold-500) 35%,
+        var(--gold-700) 50%,
+        var(--gold-500) 65%,
+        var(--shimmer-bright) 82%,
+        var(--gold-300) 100%);
+      animation: medal-spin 8s linear infinite;
+    }
+
+    .medal-inner {
+      position: absolute;
+      inset: 5px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 32% 28%,
+          var(--shimmer-bright) 0%,
+          var(--gold-500) 45%,
+          var(--gold-700) 100%);
+      box-shadow:
+        inset 0 2px 3px rgba(255, 252, 247, 0.55),
+        inset 0 -5px 12px rgba(74, 57, 20, 0.35),
+        0 0 0 2px var(--pearl);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transform: rotate(-7deg);
-      box-shadow: 0 8px 20px rgba(107, 84, 24, 0.18);
-      z-index: 6;
-      font-family: 'Cormorant Infant', serif;
-    }
-    .discount-medal::before {
-      content: '';
-      position: absolute;
-      inset: 5px;
-      border-radius: 50%;
-      border: 1px solid rgba(160, 124, 48, 0.3);
-      pointer-events: none;
-    }
-    .discount-medal .pct {
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.01em;
-    }
-    .discount-medal .label {
-      font-size: 9px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      margin-top: 3px;
-      color: var(--gold-600);
-      font-weight: 700;
-    }
-    .pkg-premium .discount-medal {
-      background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-700) 100%);
-      color: var(--cream-50);
-      border: 1px double var(--cream-100);
-      outline-color: var(--gold-500);
-      box-shadow: 0 10px 24px rgba(107, 84, 24, 0.32);
-    }
-    .pkg-premium .discount-medal::before {
-      border-color: rgba(255, 252, 247, 0.35);
-    }
-    .pkg-premium .discount-medal .label {
-      color: rgba(255, 252, 247, 0.85);
+      color: var(--pearl);
+      transform: rotate(-10deg);
+      gap: 1px;
     }
 
+    .medal-pct {
+      font-family: 'Cormorant Infant', serif;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
+    }
+
+    .medal-off {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      margin-top: 2px;
+      opacity: 0.95;
+    }
+
+    .medal-mayo {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      margin-top: -1px;
+      opacity: 0.98;
+    }
+
+    @keyframes medal-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes medal-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+      .marquee-segment:nth-child(2) { display: none; }
+      .discount-medal { animation: none; }
+      .medal-ring { animation: none; }
+    }
+
+    /* ─────── PACKAGE CONTENT ─────── */
     .pkg-name {
       font-size: 24px;
       font-weight: 600;
-      color: var(--ink-900);
+      color: var(--mocha-900);
       text-align: center;
-      margin: 8px 0 4px;
+      margin: 6px 0 4px;
       letter-spacing: -0.012em;
     }
 
     .pkg-sub {
       text-align: center;
-      color: var(--ink-500);
+      color: var(--mocha-400);
       font-size: 14px;
       font-style: italic;
       margin-bottom: 16px;
     }
 
-    /* Price block with discount */
     .price-block {
       text-align: center;
       margin: 18px 0 6px;
@@ -450,7 +479,7 @@
 
     .price-original {
       display: inline-block;
-      color: var(--ink-400);
+      color: var(--mocha-300);
       font-size: 22px;
       font-weight: 400;
       text-decoration: line-through;
@@ -479,7 +508,10 @@
     .amount {
       font-size: 74px;
       font-weight: 700;
-      background: linear-gradient(135deg, var(--gold-400) 0%, var(--gold-600) 50%, var(--gold-700) 100%);
+      background: linear-gradient(135deg,
+        var(--gold-400) 0%,
+        var(--gold-600) 50%,
+        var(--gold-700) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -489,7 +521,7 @@
 
     .mxn {
       font-size: 14px;
-      color: var(--ink-600);
+      color: var(--mocha-500);
       letter-spacing: 0.15em;
       align-self: flex-end;
       padding-bottom: 12px;
@@ -501,12 +533,13 @@
       margin-top: 6px;
       padding: 4px 12px;
       border-radius: 999px;
-      background: var(--cream-200);
+      background: var(--ivory);
       color: var(--gold-700);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
+      border: 1px solid var(--gold-400);
     }
 
     .divider {
@@ -524,7 +557,7 @@
       align-items: flex-start;
       gap: 12px;
       padding: 8px 0;
-      color: var(--ink-900);
+      color: var(--mocha-900);
       font-size: 16px;
       line-height: 1.5;
     }
@@ -534,7 +567,7 @@
       flex-shrink: 0;
       width: 22px;
       height: 22px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23B89968'/%3E%3Cstop offset='100%25' stop-color='%236B5418'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='11' cy='11' r='11' fill='url(%23g)'/%3E%3Cpath d='M6.5 11.5 9.5 14.5 15.5 8' fill='none' stroke='%23FFFCF7' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23D4AF7F'/%3E%3Cstop offset='100%25' stop-color='%238B6F3D'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='11' cy='11' r='11' fill='url(%23g)'/%3E%3Cpath d='M6.5 11.5 9.5 14.5 15.5 8' fill='none' stroke='%23FBF8F1' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       background-size: contain;
       background-repeat: no-repeat;
       margin-top: 2px;
@@ -557,32 +590,30 @@
       gap: 12px;
       padding: 18px 36px;
       background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-700) 100%);
-      color: var(--cream-50);
+      color: var(--pearl);
       border-radius: 999px;
       font-size: 17px;
       font-weight: 600;
       text-decoration: none;
-      box-shadow: 0 14px 32px rgba(107, 84, 24, 0.28), 0 2px 6px rgba(0,0,0,0.04);
-      border: 1px solid rgba(212, 185, 129, 0.3);
+      box-shadow:
+        0 14px 32px rgba(139, 111, 61, 0.32),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(239, 209, 143, 0.4);
       transition: transform 0.18s ease, box-shadow 0.18s ease;
       min-height: 56px;
       letter-spacing: 0.01em;
     }
-
-    .cta-btn:active {
-      transform: scale(0.97);
-    }
-
+    .cta-btn:active { transform: scale(0.97); }
     .cta-btn svg {
       width: 22px;
       height: 22px;
-      fill: #FFFCF7;
+      fill: var(--pearl);
       flex-shrink: 0;
     }
 
     .cta-sub {
       margin-top: 14px;
-      color: var(--ink-600);
+      color: var(--mocha-500);
       font-size: 13px;
       letter-spacing: 0.05em;
     }
@@ -594,7 +625,7 @@
       margin-top: 14px;
       padding: 8px 16px;
       border-radius: 999px;
-      background: var(--cream-200);
+      background: var(--ivory);
       border: 1px dashed var(--gold-500);
       color: var(--gold-700);
       font-size: 12px;
@@ -607,13 +638,18 @@
       width: 6px; height: 6px;
       background: var(--gold-600);
       border-radius: 50%;
+      animation: dot-pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes dot-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
     }
 
     /* ─────── FOOTER ─────── */
     footer {
       text-align: center;
       padding: 36px 0 12px;
-      color: var(--ink-500);
+      color: var(--mocha-400);
       font-size: 13px;
     }
 
@@ -631,14 +667,15 @@
       letter-spacing: 0.04em;
     }
 
-    /* Small phones */
     @media (max-width: 360px) {
       main { padding: 24px 16px 48px; }
       .steps { padding-left: 56px; }
       .step-num { left: -56px; width: 44px; height: 44px; font-size: 16px; }
       .steps::before { left: 21px; }
-      .pkg { padding: 36px 20px 24px; }
+      .pkg { padding: 66px 18px 24px; }
       .amount { font-size: 64px; }
+      .discount-medal { width: 92px; height: 92px; top: -34px; right: -10px; }
+      .medal-pct { font-size: 28px; }
     }
 
     @media (min-width: 720px) {
@@ -646,17 +683,19 @@
     }
 
     @media print {
-      body { background: var(--cream-50); }
+      body { background: var(--pearl); }
       .marquee { display: none; }
       .cta-btn { box-shadow: none; }
+      .discount-medal { animation: none; }
+      .medal-ring { animation: none; }
     }
   </style>
 </head>
 <body>
-  <!-- ─── PROMO MARQUEE ─── -->
+  <!-- PROMO MARQUEE -->
   <div class="marquee" role="region" aria-label="Promoción mayo">
     <div class="marquee-track">
-      <div class="marquee-segment" aria-hidden="false">
+      <div class="marquee-segment">
         <span>Mayo · Mes de las madres <span class="marquee-diamond">◆</span> 21% off en ambos paquetes <span class="marquee-diamond">◆</span> Últimos días <span class="marquee-diamond">◆</span> Hasta el 30 de mayo <span class="marquee-diamond">◆</span></span>
       </div>
       <div class="marquee-segment" aria-hidden="true">
@@ -731,8 +770,11 @@
         <article class="pkg pkg-basic">
           <div class="pkg-tag">Esencial</div>
           <div class="discount-medal" aria-label="21% de descuento en mayo">
-            <span class="pct">−21%</span>
-            <span class="label">Mayo</span>
+            <div class="medal-ring" aria-hidden="true"></div>
+            <div class="medal-inner">
+              <span class="medal-pct">−21<span style="font-size:0.75em">%</span></span>
+              <span class="medal-mayo">Mayo</span>
+            </div>
           </div>
           <h3 class="pkg-name">Invitación Digital</h3>
           <p class="pkg-sub">Para quien quiere lo esencial bien hecho</p>
@@ -763,8 +805,11 @@
         <article class="pkg pkg-premium">
           <div class="pkg-tag">Eterna · Recomendado</div>
           <div class="discount-medal" aria-label="21% de descuento en mayo">
-            <span class="pct">−21%</span>
-            <span class="label">Mayo</span>
+            <div class="medal-ring" aria-hidden="true"></div>
+            <div class="medal-inner">
+              <span class="medal-pct">−21<span style="font-size:0.75em">%</span></span>
+              <span class="medal-mayo">Mayo</span>
+            </div>
           </div>
           <h3 class="pkg-name">Invitación + Panel</h3>
           <p class="pkg-sub">Para quien quiere control total de su evento</p>
@@ -784,7 +829,7 @@
           <ul class="features">
             <li><strong>Todo lo del paquete Esencial</strong></li>
             <li><strong>Panel personalizado</strong> para gestionar invitados</li>
-            <li>Asigna <strong>pases personalizados</strong> por invitado</li>
+            <li>Asigna <strong>pases&nbsp;personalizados</strong> por invitado</li>
             <li><strong>Confirmaciones en tiempo real</strong> en tu panel</li>
             <li>Lista de asistentes <strong>automática</strong></li>
             <li>Capacitación 1:1 para que sepas usarlo</li>
