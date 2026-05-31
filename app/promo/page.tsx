@@ -721,18 +721,19 @@ function StickyWhatsApp() {
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="md:hidden fixed bottom-5 right-5 z-50 flex items-center gap-2 px-5 py-3 rounded-full font-semibold"
+      aria-label="Escribir por WhatsApp"
+      className="md:hidden fixed bottom-5 right-5 z-50 flex items-center justify-center rounded-full active:scale-95 transition-transform"
       style={{
-        background: 'linear-gradient(135deg, #D4AF7F 0%, #9B7B43 100%)',
-        color: '#FBF8F1',
+        background: '#25D366',
+        color: '#FFFFFF',
+        width: 56,
+        height: 56,
         boxShadow:
-          '0 14px 32px rgba(155,123,67,0.42), 0 2px 6px rgba(43,31,20,0.18)',
-        border: '1px solid #FBF8F1',
-        fontSize: 14,
+          '0 12px 26px rgba(37, 211, 102, 0.45), 0 2px 6px rgba(0, 0, 0, 0.15)',
+        border: '1px solid rgba(255, 255, 255, 0.25)',
       }}
     >
-      <WhatsAppIcon size={18} />
-      WhatsApp
+      <WhatsAppIcon size={28} color="#FFFFFF" />
     </a>
   )
 }
