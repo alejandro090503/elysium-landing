@@ -7,11 +7,17 @@ const WHATSAPP_NUMBER = '524421235312'
 const WHATSAPP_MSG = 'Hola, vengo del anuncio Hot Sale ⚡ Quiero conocer los paquetes de Elysium'
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MSG)}`
 
-const SHOWCASE = [
-  { name: 'Paulina & Leonardo', slug: 'boda-paulina-leonardo' },
-  { name: 'Valentina & Rodrigo', slug: 'boda-valentina-rodrigo' },
-  { name: 'Diego & Camila', slug: 'boda-diego-camila' },
-] as const
+interface ShowcaseExample {
+  name: string
+  slug: string
+  query?: string
+}
+
+const SHOWCASE: ShowcaseExample[] = [
+  { name: 'Cristal & Humberto', slug: 'boda-cristal-y-humberto' },
+  { name: 'Damaris & Jesús', slug: 'boda-damaris-y-jesus' },
+  { name: 'Jennifer', slug: 'boda-jennifer', query: 'pases=1' },
+]
 
 export const metadata: Metadata = {
   title: 'Elysium · Hot Sale -21% · Invitaciones Digitales',
@@ -81,22 +87,59 @@ export default function PromoPage() {
 
 /* ───────── MARQUEE ───────── */
 function HotSaleMarquee() {
+  const segment = (
+    <span
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 22,
+        paddingRight: 22,
+        whiteSpace: 'nowrap',
+      }}
+    >
+      <span>Hot Sale</span>
+      <span style={{ color: '#D4AF7F', fontSize: 9 }}>◆</span>
+      <span>21% off en ambos paquetes</span>
+      <span style={{ color: '#D4AF7F', fontSize: 9 }}>◆</span>
+      <span>Últimos días</span>
+      <span style={{ color: '#D4AF7F', fontSize: 9 }}>◆</span>
+      <span>Hasta el 2 de junio</span>
+      <span style={{ color: '#D4AF7F', fontSize: 9 }}>◆</span>
+    </span>
+  )
+
   return (
     <div
+      role="region"
+      aria-label="Promoción Hot Sale"
       style={{
+        position: 'sticky',
+        top: 0,
+        left: 0,
+        right: 0,
         background: '#1F1611',
         color: '#FBF8F1',
-        textAlign: 'center',
         fontSize: 11,
         fontWeight: 700,
         letterSpacing: '0.32em',
         textTransform: 'uppercase',
-        padding: '11px 0',
         borderBottom: '1px solid #D4AF7F',
+        overflow: 'hidden',
+        zIndex: 40,
       }}
     >
-      Hot Sale <span style={{ color: '#D4AF7F' }}>◆</span> 21% off ambos paquetes{' '}
-      <span style={{ color: '#D4AF7F' }}>◆</span> Hasta el 2 de junio
+      <div
+        className="promo-marquee-track"
+        style={{
+          display: 'flex',
+          width: 'max-content',
+          padding: '11px 0',
+          animation: 'promo-marquee 32s linear infinite',
+        }}
+      >
+        {segment}
+        <span aria-hidden="true">{segment}</span>
+      </div>
     </div>
   )
 }
@@ -561,25 +604,39 @@ function ShowcaseSection() {
         style={{ scrollPaddingInline: '50%' }}
       >
         {SHOWCASE.map((ex) => (
-          <ShowcasePhone key={ex.slug} slug={ex.slug} name={ex.name} />
+          <ShowcasePhone key={ex.slug} slug={ex.slug} name={ex.name} query={ex.query} />
         ))}
       </div>
     </section>
   )
 }
 
-function ShowcasePhone({ slug, name }: { slug: string; name: string }) {
+function ShowcasePhone({
+  slug,
+  name,
+  query,
+}: {
+  slug: string
+  name: string
+  query?: string
+}) {
   // Render iframe at iPhone Pro Max width then scale to fit our display phone.
   const IFRAME_W = 430
   const PHONE_W = 270
   const SCALE = PHONE_W / IFRAME_W
   const PHONE_H = 540
 
+  // Build iframe URL: preserve any required query params (e.g. ?pases=1)
+  // and add cache-buster v=hot
+  const params = new URLSearchParams(query ?? '')
+  params.set('v', 'hot')
+  const iframeSrc = `https://${slug}.vercel.app/?${params.toString()}`
+
   return (
     <div className="snap-center flex-shrink-0 flex flex-col items-center">
       <IPhoneFrame className="w-[270px] h-[540px]">
         <iframe
-          src={`https://${slug}.vercel.app/?v=hot`}
+          src={iframeSrc}
           title={`Vista previa: ${name}`}
           sandbox="allow-scripts allow-same-origin"
           loading="lazy"
