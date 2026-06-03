@@ -94,40 +94,59 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      padding: 10px 24px;
+      padding: 8px 22px;
       border-radius: 999px;
       background: var(--pearl);
       border: 1px solid var(--champagne);
       color: var(--bronze);
-      font-size: 18px;
+      font-size: 15px;
       font-weight: 700;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 8px;
     }
     .badge::before {
       content: '';
-      width: 7px; height: 7px;
+      width: 6px; height: 6px;
       border-radius: 50%;
       background: var(--bronze);
     }
 
     .brand {
       font-family: 'Great Vibes', cursive;
-      font-size: 232px;
-      line-height: 1;
+      font-size: 144px;
+      line-height: 0.95;
       background: linear-gradient(135deg, var(--champagne) 0%, var(--bronze) 50%, var(--espresso) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      padding: 12px 0;
-      margin-top: -8px;
+      padding: 4px 0;
+    }
+
+    .heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      margin-top: 6px;
+      font-family: 'Cormorant Infant', serif;
+      font-size: 58px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--espresso);
+      line-height: 1;
+    }
+    .heading .heading-line {
+      flex: 0 0 70px;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, var(--bronze), transparent);
     }
 
     .tagline {
-      font-size: 28px;
+      font-size: 22px;
       color: var(--smoke);
-      margin-top: 4px;
+      margin-top: 14px;
       font-weight: 400;
       font-style: italic;
     }
@@ -199,6 +218,11 @@
   <div class="content">
     <div class="badge">Mes de las Novias</div>
     <div class="brand">Elysium</div>
+    <div class="heading">
+      <span class="heading-line"></span>
+      <span>Paquetes y Promociones</span>
+      <span class="heading-line"></span>
+    </div>
     <div class="tagline">Invitaciones que cuentan tu historia</div>
     <div class="prices">
       <span class="price-pill basic">
