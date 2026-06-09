@@ -583,9 +583,15 @@
       : 'Sin resultados'
   }
 
+  function vibrate(ms) {
+    if (navigator.vibrate) navigator.vibrate(ms)
+  }
+
   function go(delta) {
     if (!items.length) return
+    const prev = activeIdx
     activeIdx = Math.max(0, Math.min(items.length - 1, activeIdx + delta))
+    if (activeIdx !== prev) vibrate(12)
     layout()
   }
 
@@ -609,40 +615,45 @@
     layout()
   })
 
-  // Swipe / drag: short flicks advance 1, long drags advance multiple
-  let dragStart = null, dragLast = null
-  const SWIPE_STEP = 60 // px per card advance
-  function endDrag() {
-    if (dragStart === null) return
-    const dx = dragLast - dragStart
-    if (Math.abs(dx) > 25) {
-      const steps = Math.max(1, Math.round(Math.abs(dx) / SWIPE_STEP))
-      go(dx < 0 ? steps : -steps)
-    }
-    dragStart = null
+  // Swipe / drag: 1 gesture = 1 card, always. Even a hard swipe advances only once.
+  // Locks after the first threshold cross, ignores any further movement until release.
+  let dragStart = null, dragLast = null, dragLocked = false
+  const SWIPE_THRESHOLD = 30 // px
+
+  function startDrag(x) {
+    dragStart = x
+    dragLast = x
+    dragLocked = false
   }
+  function moveDrag(x) {
+    if (dragStart === null || dragLocked) return
+    dragLast = x
+    const dx = x - dragStart
+    if (Math.abs(dx) >= SWIPE_THRESHOLD) {
+      dragLocked = true
+      go(dx < 0 ? 1 : -1)
+    }
+  }
+  function endDrag() {
+    dragStart = null
+    dragLocked = false
+  }
+
   wrap.addEventListener('pointerdown', (e) => {
-    dragStart = e.clientX
-    dragLast = e.clientX
+    startDrag(e.clientX)
     try { wrap.setPointerCapture(e.pointerId) } catch {}
   })
-  wrap.addEventListener('pointermove', (e) => {
-    if (dragStart === null) return
-    dragLast = e.clientX
-  })
+  wrap.addEventListener('pointermove', (e) => moveDrag(e.clientX))
   wrap.addEventListener('pointerup', endDrag)
-  wrap.addEventListener('pointercancel', () => { dragStart = null })
-  // Fallback for older touch handling
+  wrap.addEventListener('pointercancel', endDrag)
+  // Touch fallback
   wrap.addEventListener('touchstart', (e) => {
     if (e.touches.length !== 1) return
-    dragStart = e.touches[0].clientX
-    dragLast = dragStart
+    startDrag(e.touches[0].clientX)
   }, { passive: true })
-  wrap.addEventListener('touchmove', (e) => {
-    if (dragStart === null) return
-    dragLast = e.touches[0].clientX
-  }, { passive: true })
+  wrap.addEventListener('touchmove', (e) => moveDrag(e.touches[0].clientX), { passive: true })
   wrap.addEventListener('touchend', endDrag)
+  wrap.addEventListener('touchcancel', endDrag)
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') go(-1)
