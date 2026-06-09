@@ -1,800 +1,635 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elysium Invitaciones · Junio · Mes de las Novias</title>
-  <meta name="description" content="Junio · Mes de las Novias. 20% off en ambos paquetes hasta el 30 de junio. Invitación digital desde $950 MXN." />
-  <meta name="theme-color" content="#FBF8F1" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Elysium Invitaciones · Mes de las Novias · 20% OFF" />
-  <meta property="og:description" content="Junio · Mes de las Novias. 20% off en ambos paquetes hasta el 30 de junio. Desde $950 MXN." />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="es_MX" />
-  <meta property="og:url" content="https://elysium-landing-bice.vercel.app/flyer.html" />
-  <meta property="og:image" content="https://elysium-landing-bice.vercel.app/flyer-og.png" />
-  <meta property="og:image:secure_url" content="https://elysium-landing-bice.vercel.app/flyer-og.png" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Elysium Invitaciones — Mes de las Novias 20% off" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Elysium Invitaciones · Mes de las Novias · 20% OFF" />
-  <meta name="twitter:description" content="Junio · Mes de las Novias. 20% off en ambos paquetes hasta el 30 de junio." />
-  <meta name="twitter:image" content="https://elysium-landing-bice.vercel.app/flyer-og.png" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Infant:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      /* ─────────────────────────────────────────────
-         6-COLOR PREMIUM PALETTE
-         ───────────────────────────────────────────── */
-      --pearl:     #FBF8F1;  /*  1  pearl ivory — page background  */
-      --ivory:     #EAE0CC;  /*  2  champagne cream — cards/borders */
-      --champagne: #D4AF7F;  /*  3  champagne gold — primary brand  */
-      --bronze:    #9B7B43;  /*  4  antique bronze — emphasis/CTA   */
-      --espresso:  #2B1F14;  /*  5  espresso — text + marquee bg    */
-      --smoke:     #8B7E66;  /*  6  warm smoke — secondary text     */
-
-      --hairline: rgba(155, 123, 67, 0.18);
-    }
-
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-
-    body {
-      font-family: 'Cormorant Infant', Georgia, 'Times New Roman', serif;
-      color: var(--espresso);
-      background:
-        radial-gradient(circle at 100% 0%, rgba(212, 175, 127, 0.22), transparent 45%),
-        radial-gradient(circle at 0% 100%, rgba(155, 123, 67, 0.14), transparent 45%),
-        linear-gradient(180deg, var(--pearl) 0%, var(--ivory) 50%, var(--pearl) 100%);
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ─────── MARQUEE ─────── */
-    .marquee {
-      position: sticky;
-      top: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      overflow: hidden;
-      background: var(--espresso);
-      border-bottom: 1px solid var(--champagne);
-      z-index: 50;
-    }
-
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marquee-scroll 38s linear infinite;
-      padding: 11px 0;
-    }
-
-    .marquee-segment {
-      display: inline-flex;
-      align-items: center;
-      gap: 26px;
-      padding-right: 26px;
-      white-space: nowrap;
-      color: var(--pearl);
-      font-family: 'Cormorant Infant', serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.34em;
-      text-transform: uppercase;
-    }
-    .marquee-segment span {
-      display: inline-flex;
-      align-items: center;
-      gap: 26px;
-    }
-    .marquee-diamond {
-      color: var(--champagne);
-      font-size: 9px;
-    }
-
-    @keyframes marquee-scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    /* ─────── MAIN ─────── */
-    main {
-      max-width: 540px;
-      margin: 0 auto;
-      padding: 28px 22px 56px;
-      position: relative;
-    }
-
-    /* ─────── ORNAMENT ─────── */
-    .ornament {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      margin: 0 auto 18px;
-      max-width: 220px;
-    }
-    .ornament-line {
-      height: 1px;
-      flex: 1;
-      background: linear-gradient(90deg, transparent, var(--champagne), transparent);
-    }
-    .ornament-diamond {
-      color: var(--bronze);
-      font-size: 10px;
-      letter-spacing: 0.4em;
-    }
-
-    /* ─────── HEADER ─────── */
-    .header {
-      text-align: center;
-      padding: 22px 0 26px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 20px;
-      border-radius: 999px;
-      background: var(--pearl);
-      border: 1px solid var(--champagne);
-      color: var(--bronze);
-      font-family: 'Cormorant Infant', serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-      box-shadow: 0 4px 12px rgba(155, 123, 67, 0.08);
-    }
-    .badge::before {
-      content: '';
-      width: 5px; height: 5px;
-      background: var(--bronze);
-      border-radius: 50%;
-    }
-
-    .brand {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(80px, 22vw, 112px);
-      line-height: 1.15;
-      font-weight: 400;
-      background: linear-gradient(135deg, var(--champagne) 0%, var(--bronze) 50%, var(--espresso) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      padding: 0.04em 0;
-    }
-
-    .tagline {
-      color: var(--smoke);
-      font-size: 18px;
-      font-style: italic;
-      margin-top: 4px;
-    }
-
-    /* ─────── SECTION ─────── */
-    section { margin: 48px 0; }
-    section:last-of-type { margin-bottom: 32px; }
-
-    .eyebrow {
-      display: block;
-      color: var(--bronze);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .section-title {
-      font-family: 'Cormorant Infant', serif;
-      font-weight: 300;
-      font-size: clamp(28px, 7vw, 36px);
-      text-align: center;
-      color: var(--espresso);
-      letter-spacing: -0.018em;
-      line-height: 1.1;
-      margin-bottom: 32px;
-    }
-
-    .section-title em {
-      font-family: 'Great Vibes', cursive;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 1.4em;
-      background: linear-gradient(135deg, var(--champagne), var(--bronze));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      padding: 0 0.04em;
-      display: inline-block;
-    }
-
-    /* ─────── PROCESS ─────── */
-    .steps {
-      list-style: none;
-      position: relative;
-      padding-left: 64px;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-    .steps::before {
-      content: '';
-      position: absolute;
-      left: 24px;
-      top: 24px;
-      bottom: 24px;
-      width: 1px;
-      background: linear-gradient(180deg, var(--champagne), var(--bronze));
-      opacity: 0.6;
-    }
-    .step { position: relative; padding-bottom: 26px; }
-    .step:last-child { padding-bottom: 0; }
-    .step-num {
-      position: absolute;
-      left: -64px;
-      top: -2px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--pearl);
-      border: 1px solid var(--champagne);
-      color: var(--bronze);
-      font-family: 'Cormorant Infant', serif;
-      font-style: italic;
-      font-weight: 600;
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 14px rgba(155, 123, 67, 0.14);
-    }
-    .step-title {
-      font-weight: 600;
-      font-size: 20px;
-      color: var(--espresso);
-      margin-bottom: 4px;
-      letter-spacing: -0.005em;
-    }
-    .step-desc {
-      color: var(--smoke);
-      font-size: 16px;
-      line-height: 1.55;
-    }
-
-    /* ─────── PACKAGES ─────── */
-    .packages {
-      display: grid;
-      gap: 38px;
-      margin-top: 28px;
-    }
-
-    .pkg {
-      position: relative;
-      background: var(--pearl);
-      border-radius: 26px;
-      padding: 72px 24px 28px;
-      border: 1px solid var(--ivory);
-      box-shadow: 0 12px 32px rgba(155, 123, 67, 0.08);
-    }
-
-    .pkg-premium {
-      background:
-        radial-gradient(circle at 100% 0%, rgba(212, 175, 127, 0.22), transparent 55%),
-        radial-gradient(circle at 0% 100%, rgba(155, 123, 67, 0.12), transparent 55%),
-        var(--pearl);
-      border: 1.5px solid var(--champagne);
-      box-shadow: 0 16px 44px rgba(155, 123, 67, 0.18);
-    }
-
-    .pkg-tag {
-      position: absolute;
-      top: -14px;
-      left: 22px;
-      padding: 7px 18px;
-      border-radius: 999px;
-      font-family: 'Cormorant Infant', serif;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .pkg-basic .pkg-tag {
-      background: var(--pearl);
-      color: var(--bronze);
-      border: 1px solid var(--champagne);
-    }
-    .pkg-premium .pkg-tag {
-      background: linear-gradient(135deg, var(--champagne) 0%, var(--bronze) 100%);
-      color: var(--pearl);
-      box-shadow: 0 4px 12px rgba(155, 123, 67, 0.32);
-    }
-
-    /* ─────── DISCOUNT MEDALLION ─────── */
-    .discount-medal {
-      position: absolute;
-      top: -40px;
-      right: -12px;
-      width: 104px;
-      height: 104px;
-      z-index: 10;
-      filter: drop-shadow(0 12px 22px rgba(43, 31, 20, 0.32));
-      animation: medal-pulse 2.4s ease-in-out infinite;
-    }
-
-    .medal-ring {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: conic-gradient(
-        from 0deg,
-        var(--champagne) 0%,
-        var(--pearl) 20%,
-        var(--bronze) 40%,
-        var(--champagne) 60%,
-        var(--pearl) 80%,
-        var(--champagne) 100%);
-      animation: medal-spin 8s linear infinite;
-    }
-
-    .medal-inner {
-      position: absolute;
-      inset: 5px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 32% 28%,
-          var(--pearl) 0%,
-          var(--champagne) 45%,
-          var(--bronze) 100%);
-      box-shadow:
-        inset 0 2px 3px rgba(251, 248, 241, 0.55),
-        inset 0 -5px 12px rgba(43, 31, 20, 0.35),
-        0 0 0 2px var(--pearl);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: var(--pearl);
-      transform: rotate(-10deg);
-      gap: 1px;
-    }
-
-    .medal-pct {
-      font-family: 'Cormorant Infant', serif;
-      font-size: 32px;
-      font-weight: 700;
-      line-height: 0.9;
-      letter-spacing: -0.02em;
-      text-shadow: 0 1px 2px rgba(43, 31, 20, 0.4);
-    }
-
-    .medal-mayo {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      margin-top: 2px;
-      opacity: 0.95;
-    }
-
-    @keyframes medal-pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    @keyframes medal-spin {
-      to { transform: rotate(360deg); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .marquee-track { animation: none; }
-      .marquee-segment:nth-child(2) { display: none; }
-      .discount-medal { animation: none; }
-      .medal-ring { animation: none; }
-    }
-
-    /* ─────── PACKAGE CONTENT ─────── */
-    .pkg-name {
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--espresso);
-      text-align: center;
-      margin: 6px 0 4px;
-      letter-spacing: -0.012em;
-    }
-    .pkg-sub {
-      text-align: center;
-      color: var(--smoke);
-      font-size: 14px;
-      font-style: italic;
-      margin-bottom: 16px;
-    }
-
-    .price-block {
-      text-align: center;
-      margin: 18px 0 6px;
-    }
-    .price-original {
-      display: inline-block;
-      color: var(--smoke);
-      font-size: 22px;
-      font-weight: 400;
-      text-decoration: line-through;
-      text-decoration-color: var(--champagne);
-      text-decoration-thickness: 1.5px;
-      letter-spacing: 0.02em;
-      margin-bottom: 4px;
-    }
-    .price {
-      display: flex;
-      align-items: baseline;
-      justify-content: center;
-      gap: 4px;
-      line-height: 1;
-    }
-    .currency {
-      font-size: 30px;
-      color: var(--bronze);
-      font-weight: 400;
-      align-self: flex-start;
-      padding-top: 14px;
-    }
-    .amount {
-      font-size: 74px;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--champagne) 0%, var(--bronze) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: -0.04em;
-      line-height: 1;
-    }
-    .mxn {
-      font-size: 14px;
-      color: var(--smoke);
-      letter-spacing: 0.15em;
-      align-self: flex-end;
-      padding-bottom: 12px;
-      font-weight: 600;
-    }
-    .save-pill {
-      display: inline-block;
-      margin-top: 6px;
-      padding: 4px 12px;
-      border-radius: 999px;
-      background: var(--ivory);
-      color: var(--bronze);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      border: 1px solid var(--champagne);
-    }
-
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--hairline), transparent);
-      margin: 20px 0 14px;
-    }
-
-    .features { list-style: none; }
-    .features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 8px 0;
-      color: var(--espresso);
-      font-size: 16px;
-      line-height: 1.5;
-    }
-    .features li::before {
-      content: '';
-      flex-shrink: 0;
-      width: 22px;
-      height: 22px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23D4AF7F'/%3E%3Cstop offset='100%25' stop-color='%239B7B43'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='11' cy='11' r='11' fill='url(%23g)'/%3E%3Cpath d='M6.5 11.5 9.5 14.5 15.5 8' fill='none' stroke='%23FBF8F1' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-size: contain;
-      background-repeat: no-repeat;
-      margin-top: 2px;
-    }
-    .features li strong {
-      font-weight: 700;
-      color: var(--bronze);
-    }
-
-    /* ─────── CTA ─────── */
-    .cta-section {
-      text-align: center;
-      padding: 40px 0 8px;
-    }
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 18px 36px;
-      background: linear-gradient(135deg, var(--champagne) 0%, var(--bronze) 100%);
-      color: var(--pearl);
-      border-radius: 999px;
-      font-size: 17px;
-      font-weight: 600;
-      text-decoration: none;
-      box-shadow:
-        0 14px 32px rgba(155, 123, 67, 0.32),
-        0 2px 6px rgba(43, 31, 20, 0.04);
-      border: 1px solid var(--pearl);
-      transition: transform 0.18s ease;
-      min-height: 56px;
-      letter-spacing: 0.01em;
-    }
-    .cta-btn:active { transform: scale(0.97); }
-    .cta-btn svg {
-      width: 22px;
-      height: 22px;
-      fill: var(--pearl);
-      flex-shrink: 0;
-    }
-    .cta-sub {
-      margin-top: 14px;
-      color: var(--smoke);
-      font-size: 13px;
-      letter-spacing: 0.05em;
-    }
-    .cta-urgency {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 14px;
-      padding: 8px 16px;
-      border-radius: 999px;
-      background: var(--ivory);
-      border: 1px dashed var(--champagne);
-      color: var(--bronze);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-    .cta-urgency::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--bronze);
-      border-radius: 50%;
-      animation: dot-pulse 1.6s ease-in-out infinite;
-    }
-    @keyframes dot-pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
-    }
-
-    /* ─────── FOOTER ─────── */
-    footer {
-      text-align: center;
-      padding: 36px 0 12px;
-      color: var(--smoke);
-      font-size: 13px;
-    }
-    footer .ig {
-      display: inline-block;
-      color: var(--bronze);
-      text-decoration: none;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      margin-bottom: 6px;
-    }
-    footer .copy {
-      font-size: 12px;
-      letter-spacing: 0.04em;
-    }
-
-    @media (max-width: 360px) {
-      main { padding: 24px 16px 48px; }
-      .steps { padding-left: 56px; }
-      .step-num { left: -56px; width: 44px; height: 44px; font-size: 16px; }
-      .steps::before { left: 21px; }
-      .pkg { padding: 66px 18px 24px; }
-      .amount { font-size: 64px; }
-      .discount-medal { width: 92px; height: 92px; top: -34px; right: -10px; }
-      .medal-pct { font-size: 28px; }
-    }
-    @media (min-width: 720px) {
-      main { padding: 56px 24px 80px; }
-    }
-    @media print {
-      body { background: var(--pearl); }
-      .marquee { display: none; }
-      .cta-btn { box-shadow: none; }
-      .discount-medal { animation: none; }
-      .medal-ring { animation: none; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Elysium · Paquete Eterna · Invitación + Panel de Invitados</title>
+<meta name="description" content="Invitación digital editorial + Panel de invitados en tiempo real. $1,800 MXN. Promo hasta el viernes 12 de junio." />
+<meta property="og:title" content="Elysium · Paquete Eterna · $1,800" />
+<meta property="og:description" content="Invitación digital + Panel de gestión de invitados en tiempo real. Promo hasta el viernes 12 de junio." />
+<meta property="og:image" content="https://elysium-landing-bice.vercel.app/flyer-og.png" />
+<meta property="og:url" content="https://elysium-landing-bice.vercel.app/flyer.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Infant:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --pearl:     #FBF8F1;
+    --ivory:     #EAE0CC;
+    --champagne: #D4AF7F;
+    --bronze:    #9B7B43;
+    --espresso:  #2B1F14;
+    --smoke:     #8B7E66;
+    --whatsapp:  #25D366;
+  }
+  html, body {
+    background: var(--pearl);
+    color: var(--espresso);
+    font-family: 'Cormorant Infant', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .ribbon {
+    background: var(--espresso);
+    color: var(--pearl);
+    padding: 10px 18px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--champagne);
+  }
+  .ribbon .dot { color: var(--champagne); margin: 0 10px; }
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 56px 22px 40px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(212, 175, 127, 0.32), transparent 55%),
+      linear-gradient(180deg, var(--ivory) 0%, var(--pearl) 70%);
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -120px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 200px;
+    background: radial-gradient(ellipse, rgba(155, 123, 67, 0.22), transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+  .eyebrow {
+    display: inline-block;
+    padding: 6px 16px;
+    border: 1px solid var(--champagne);
+    border-radius: 999px;
+    color: var(--bronze);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .brand {
+    font-family: 'Great Vibes', cursive;
+    font-size: 88px;
+    line-height: 0.95;
+    background: linear-gradient(135deg, var(--champagne), var(--bronze) 50%, var(--espresso));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 4px;
+  }
+  .package-name {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 38px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--espresso);
+    margin: 8px 0 6px;
+  }
+  .package-name .ornament {
+    color: var(--champagne);
+    margin: 0 14px;
+    font-size: 24px;
+    vertical-align: middle;
+  }
+  .tagline {
+    font-style: italic;
+    color: var(--smoke);
+    font-size: 18px;
+    margin-bottom: 26px;
+  }
+  .price-block {
+    display: inline-block;
+    background: linear-gradient(135deg, #fff 0%, var(--pearl) 100%);
+    border: 1.5px solid var(--champagne);
+    border-radius: 22px;
+    padding: 22px 30px 18px;
+    box-shadow: 0 10px 30px rgba(43, 31, 20, 0.10);
+  }
+  .price-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--smoke);
+    margin-bottom: 6px;
+  }
+  .price-strike {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    text-decoration: line-through;
+    color: var(--smoke);
+    opacity: 0.7;
+    display: block;
+  }
+  .price-now {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--espresso);
+    line-height: 1;
+    display: inline-block;
+  }
+  .price-now .mxn {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--smoke);
+    vertical-align: top;
+    margin-left: 4px;
+    letter-spacing: 0.1em;
+  }
+  .price-deadline {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--bronze);
+    margin-top: 8px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  section {
+    padding: 56px 22px;
+    text-align: center;
+  }
+  .section-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+  .section-sub {
+    color: var(--smoke);
+    font-size: 17px;
+    max-width: 520px;
+    margin: 0 auto 36px;
+    font-style: italic;
+  }
+  .panel-section {
+    background: linear-gradient(180deg, var(--pearl), #fff);
+    border-top: 1px solid rgba(212, 175, 127, 0.4);
+    border-bottom: 1px solid rgba(212, 175, 127, 0.4);
+  }
+  .panel-icon {
+    width: 64px; height: 64px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--champagne), var(--bronze));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--pearl);
+    font-size: 30px;
+    box-shadow: 0 12px 24px rgba(155, 123, 67, 0.3);
+  }
+  .panel-perks {
+    display: grid;
+    gap: 14px;
+    max-width: 480px;
+    margin: 24px auto 0;
+    text-align: left;
+  }
+  .panel-perks li {
+    list-style: none;
+    background: #fff;
+    border: 1px solid rgba(212, 175, 127, 0.4);
+    border-radius: 14px;
+    padding: 14px 16px 14px 46px;
+    position: relative;
+    font-size: 16px;
+    color: var(--espresso);
+    line-height: 1.4;
+  }
+  .panel-perks li::before {
+    content: '✓';
+    position: absolute;
+    left: 16px; top: 14px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--champagne);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .panel-perks strong {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-bottom: 3px;
+  }
+  .includes {
+    display: grid;
+    gap: 10px;
+    max-width: 480px;
+    margin: 28px auto 0;
+    text-align: left;
+  }
+  .includes li {
+    list-style: none;
+    padding: 12px 14px 12px 38px;
+    border-bottom: 1px dashed rgba(155, 123, 67, 0.3);
+    position: relative;
+    font-size: 16px;
+    color: var(--espresso);
+  }
+  .includes li::before {
+    content: '✦';
+    position: absolute;
+    left: 14px; top: 12px;
+    color: var(--champagne);
+    font-size: 14px;
+  }
+  .gallery-section { padding-bottom: 100px; }
+  .filters {
+    display: inline-flex;
+    background: #fff;
+    border: 1px solid rgba(212, 175, 127, 0.5);
+    border-radius: 999px;
+    padding: 4px;
+    margin-bottom: 28px;
+    box-shadow: 0 6px 16px rgba(43, 31, 20, 0.08);
+  }
+  .filters button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 9px 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--smoke);
+    border-radius: 999px;
+    transition: all 0.25s ease;
+  }
+  .filters button.active {
+    background: linear-gradient(135deg, var(--champagne), var(--bronze));
+    color: #fff;
+    box-shadow: 0 6px 14px rgba(155, 123, 67, 0.4);
+  }
+  .coverflow-wrap {
+    position: relative;
+    width: 100%;
+    height: 540px;
+    perspective: 1400px;
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .coverflow {
+    position: absolute;
+    top: 0; left: 50%;
+    width: 1px; height: 100%;
+    transform-style: preserve-3d;
+  }
+  .card {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 220px; height: 391px;
+    margin-left: -110px;
+    margin-top: -195px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 20px 50px rgba(43, 31, 20, 0.35);
+    transition: transform 0.55s cubic-bezier(0.16, 0.84, 0.44, 1), opacity 0.4s;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .card .overlay {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 14px 14px 16px;
+    background: linear-gradient(to top, rgba(43, 31, 20, 0.85), transparent);
+    color: #fff;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .card.active .overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .card .title {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  }
+  .card .open-btn {
+    display: inline-block;
+    background: var(--champagne);
+    color: var(--espresso);
+    padding: 7px 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .nav-arrows {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 14px;
+  }
+  .nav-arrows button {
+    background: #fff;
+    border: 1px solid var(--champagne);
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--bronze);
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 12px rgba(43, 31, 20, 0.10);
+    transition: transform 0.2s;
+  }
+  .nav-arrows button:active { transform: scale(0.92); }
+  .gallery-count {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--smoke);
+    margin-top: 18px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .cta-section {
+    background: linear-gradient(180deg, var(--espresso), #1a1209);
+    color: var(--pearl);
+    text-align: center;
+    padding: 64px 22px 90px;
+  }
+  .cta-section .section-eyebrow { color: var(--champagne); }
+  .cta-section .section-title { color: #fff; margin-bottom: 18px; }
+  .cta-section .section-sub { color: rgba(251, 248, 241, 0.7); }
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--whatsapp);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 16px 30px;
+    border-radius: 999px;
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.45);
+    transition: transform 0.2s;
+  }
+  .cta-button:active { transform: scale(0.96); }
+  .cta-button svg { width: 20px; height: 20px; }
+  .footer-mini {
+    margin-top: 32px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: rgba(251, 248, 241, 0.5);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .footer-mini a {
+    color: var(--champagne);
+    text-decoration: none;
+  }
+  @media (max-width: 380px) {
+    .brand { font-size: 70px; }
+    .package-name { font-size: 30px; }
+    .price-now { font-size: 52px; }
+    .card { width: 200px; height: 356px; margin-left: -100px; margin-top: -178px; }
+    .coverflow-wrap { height: 470px; }
+  }
+</style>
 </head>
 <body>
-  <!-- PROMO MARQUEE -->
-  <div class="marquee" role="region" aria-label="Promoción Mes de las Novias">
-    <div class="marquee-track">
-      <div class="marquee-segment">
-        <span>Junio · Mes de las Novias <span class="marquee-diamond">◆</span> 20% off en ambos paquetes <span class="marquee-diamond">◆</span> Últimos días <span class="marquee-diamond">◆</span> Hasta el 30 de junio <span class="marquee-diamond">◆</span></span>
-      </div>
-      <div class="marquee-segment" aria-hidden="true">
-        <span>Junio · Mes de las Novias <span class="marquee-diamond">◆</span> 20% off en ambos paquetes <span class="marquee-diamond">◆</span> Últimos días <span class="marquee-diamond">◆</span> Hasta el 30 de junio <span class="marquee-diamond">◆</span></span>
-      </div>
-    </div>
+
+<div class="ribbon">
+  Promo <span class="dot">◆</span> Hasta el viernes 12 de junio <span class="dot">◆</span> Cierra ya
+</div>
+
+<section class="hero">
+  <div class="eyebrow">Paquete Eterna</div>
+  <div class="brand">Elysium</div>
+  <div class="package-name"><span class="ornament">◆</span>Eterna<span class="ornament">◆</span></div>
+  <div class="tagline">Invitación digital + Panel de gestión de invitados</div>
+  <div class="price-block">
+    <div class="price-label">Inversión total</div>
+    <span class="price-strike">$2,200</span>
+    <div><span class="price-now">$1,800<span class="mxn">MXN</span></span></div>
+    <div class="price-deadline">Promo hasta el 12 de junio</div>
+  </div>
+</section>
+
+<section class="panel-section">
+  <div class="section-eyebrow">Lo que más vale del paquete</div>
+  <div class="panel-icon">📲</div>
+  <h2 class="section-title">Panel de invitados en tiempo real</h2>
+  <p class="section-sub">Olvídate de la hoja de Excel y de andar persiguiendo confirmaciones una por una.</p>
+  <ul class="panel-perks">
+    <li><strong>Tiempo real</strong>Ves quién confirma en el momento que lo hace, desde tu celular o tu compu.</li>
+    <li><strong>Pases por familia</strong>Cada invitado solo puede confirmar los pases que tú le asignaste. Sin sobrecupo.</li>
+    <li><strong>Exportable</strong>Bajas la lista completa lista para tu wedding planner o tu salón.</li>
+    <li><strong>Link personalizado</strong>Mandas un link único por familia con su nombre y pases ya cargados.</li>
+    <li><strong>Acceso para mamá</strong>Tu mamá (o quien quieras) ve la lista en vivo igual que tú.</li>
+  </ul>
+</section>
+
+<section>
+  <div class="section-eyebrow">El paquete completo</div>
+  <h2 class="section-title">Y además incluye</h2>
+  <p class="section-sub">Una invitación digital editorial, diseñada desde cero para tu evento.</p>
+  <ul class="includes">
+    <li><strong>Diseño editorial único</strong> — Nada de plantillas. Diseñada con tu paleta y concepto.</li>
+    <li><strong>Sobre animado</strong> — Apertura cinematográfica al abrir el link.</li>
+    <li><strong>Música personalizada</strong> — Tu canción suena al abrir la invitación.</li>
+    <li><strong>Galería interactiva</strong> — Tus fotos en formato editorial.</li>
+    <li><strong>Álbum compartido con QR</strong> — Tus invitados suben sus fotos del evento.</li>
+    <li><strong>Cuenta regresiva</strong> — Animada hasta el día del evento.</li>
+    <li><strong>Iteraciones ilimitadas</strong> — Pulimos juntos hasta que quede exacta a tu visión.</li>
+  </ul>
+</section>
+
+<section class="gallery-section">
+  <div class="section-eyebrow">Portafolio en vivo</div>
+  <h2 class="section-title">Todas nuestras invitaciones</h2>
+  <p class="section-sub">Más de 50 eventos diseñados. Desliza para verlas, toca una para abrirla.</p>
+
+  <div class="filters" id="filters" role="tablist">
+    <button data-filter="boda" class="active" role="tab">Bodas</button>
+    <button data-filter="xv" role="tab">XV Años</button>
+    <button data-filter="cumple" role="tab">Cumpleaños</button>
   </div>
 
-  <main>
-    <!-- HEADER -->
-    <header class="header">
-      <div class="badge">Invitaciones Digitales</div>
-      <h1 class="brand">Elysium</h1>
-      <p class="tagline">Invitaciones que cuentan tu historia</p>
-    </header>
+  <div class="coverflow-wrap" id="coverflowWrap">
+    <div class="coverflow" id="coverflow"></div>
+  </div>
 
-    <!-- PROCESS -->
-    <section>
-      <div class="ornament">
-        <span class="ornament-line"></span>
-        <span class="ornament-diamond">◆</span>
-        <span class="ornament-line"></span>
-      </div>
-      <span class="eyebrow">Cómo trabajamos</span>
-      <h2 class="section-title">Tu invitación, <em>paso a paso</em></h2>
+  <div class="nav-arrows">
+    <button id="prevBtn" aria-label="Anterior">‹</button>
+    <button id="nextBtn" aria-label="Siguiente">›</button>
+  </div>
 
-      <ol class="steps">
-        <li class="step">
-          <div class="step-num">01</div>
-          <h3 class="step-title">Llenas el formulario</h3>
-          <p class="step-desc">Te compartimos un formulario donde nos detallas todos los aspectos de tu evento: nombres, fecha, lugar, fotos, paleta de colores, padrinos, mesa de regalos y más.</p>
-        </li>
-        <li class="step">
-          <div class="step-num">02</div>
-          <h3 class="step-title">Empezamos tu propuesta</h3>
-          <p class="step-desc">Comenzamos a diseñar tu invitación de inmediato.</p>
-        </li>
-        <li class="step">
-          <div class="step-num">03</div>
-          <h3 class="step-title">Te entregamos la propuesta</h3>
-          <p class="step-desc">En menos de 24 horas recibes el primer diseño listo para revisar desde tu celular.</p>
-        </li>
-        <li class="step">
-          <div class="step-num">04</div>
-          <h3 class="step-title">Pulimos cada detalle</h3>
-          <p class="step-desc">Iteramos juntos hasta que cada palabra, color y foto quede exactamente como tú la imaginas. Cambios ilimitados.</p>
-        </li>
-        <li class="step">
-          <div class="step-num">05</div>
-          <h3 class="step-title">Tu invitación queda lista</h3>
-          <p class="step-desc">Recibes tu link personalizado listo para compartir con todos tus invitados.</p>
-        </li>
-      </ol>
-    </section>
+  <div class="gallery-count" id="galleryCount">Cargando…</div>
+</section>
 
-    <!-- PACKAGES -->
-    <section>
-      <div class="ornament">
-        <span class="ornament-line"></span>
-        <span class="ornament-diamond">◆</span>
-        <span class="ornament-line"></span>
-      </div>
-      <span class="eyebrow">Elige tu paquete · Mes de las Novias</span>
-      <h2 class="section-title">Diseñado para que digas <em>que sí</em></h2>
+<section class="cta-section">
+  <div class="section-eyebrow">Apartas tu fecha con $500</div>
+  <h2 class="section-title">¿Lista para diseñar la tuya?</h2>
+  <p class="section-sub">Escríbeme y arrancamos con el formulario. La propuesta personalizada te llega en 24 horas.</p>
+  <a class="cta-button" href="https://wa.me/524421235312?text=Hola%20Elysium%2C%20me%20interesa%20el%20paquete%20Eterna%20%24%201%2C800%20%F0%9F%8C%B7" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+    Escribir por WhatsApp
+  </a>
+  <div class="footer-mini">
+    Elysium Invitaciones · <a href="https://instagram.com/elysium.invitaciones" target="_blank">@elysium.invitaciones</a>
+  </div>
+</section>
 
-      <div class="packages">
-        <!-- Esencial -->
-        <article class="pkg pkg-basic">
-          <div class="pkg-tag">Esencial</div>
-          <div class="discount-medal" aria-label="20% de descuento Mes de las Novias">
-            <div class="medal-ring" aria-hidden="true"></div>
-            <div class="medal-inner">
-              <span class="medal-pct">−20<span style="font-size:0.75em">%</span></span>
-              <span class="medal-mayo">Junio</span>
-            </div>
-          </div>
-          <h3 class="pkg-name">Invitación Digital</h3>
-          <p class="pkg-sub">Para quien quiere lo esencial bien hecho</p>
+<script>
+(async function() {
+  let catalog = []
+  try {
+    const res = await fetch('/catalog.json?v=' + Date.now())
+    catalog = await res.json()
+  } catch (e) { console.error('catalog load failed', e) }
 
-          <div class="price-block">
-            <div class="price-original">$1,200 MXN</div>
-            <div class="price">
-              <span class="currency">$</span>
-              <span class="amount">950</span>
-              <span class="mxn">MXN</span>
-            </div>
-            <span class="save-pill">Ahorras $250</span>
-          </div>
+  const coverflow = document.getElementById('coverflow')
+  const filters   = document.getElementById('filters')
+  const prevBtn   = document.getElementById('prevBtn')
+  const nextBtn   = document.getElementById('nextBtn')
+  const countEl   = document.getElementById('galleryCount')
+  const wrap      = document.getElementById('coverflowWrap')
 
-          <div class="divider"></div>
+  let currentFilter = 'boda'
+  let activeIdx = 0
+  let items = []
 
-          <ul class="features">
-            <li>Invitación digital <strong>100% personalizada</strong></li>
-            <li>Cuenta regresiva, galería, mapa, música, mesa de regalos</li>
-            <li>Itinerario, dress code, padrinos y hospedaje</li>
-            <li><strong>Confirmación de asistencia por WhatsApp</strong></li>
-            <li>Cambios ilimitados hasta que sea perfecta</li>
-            <li>Link compartible para todos tus invitados</li>
-          </ul>
-        </article>
+  function applyFilter() {
+    coverflow.innerHTML = ''
+    items = catalog.filter(c => c.type === currentFilter)
+    items.forEach((it) => {
+      const card = document.createElement('div')
+      card.className = 'card'
+      card.innerHTML = `
+        <img src="${it.thumbnail}" alt="${it.title}" loading="lazy" />
+        <div class="overlay">
+          <div class="title">${it.title}</div>
+          <a class="open-btn" href="${it.url}" target="_blank" rel="noopener">Abrir invitación</a>
+        </div>`
+      coverflow.appendChild(card)
+    })
+    activeIdx = 0
+    layout()
+  }
 
-        <!-- Eterna -->
-        <article class="pkg pkg-premium">
-          <div class="pkg-tag">Eterna · Recomendado</div>
-          <div class="discount-medal" aria-label="20% de descuento Mes de las Novias">
-            <div class="medal-ring" aria-hidden="true"></div>
-            <div class="medal-inner">
-              <span class="medal-pct">−20<span style="font-size:0.75em">%</span></span>
-              <span class="medal-mayo">Junio</span>
-            </div>
-          </div>
-          <h3 class="pkg-name">Invitación + Panel</h3>
-          <p class="pkg-sub">Para quien quiere control total de su evento</p>
+  function layout() {
+    const cards = coverflow.querySelectorAll('.card')
+    cards.forEach((card, i) => {
+      const offset = i - activeIdx
+      const abs = Math.abs(offset)
+      const angle = offset * 32
+      const tx = offset * 130
+      const tz = -abs * 120
+      const opacity = abs > 3 ? 0 : 1 - abs * 0.18
+      card.style.transform = `translate3d(${tx}px, 0, ${tz}px) rotateY(${-angle}deg)`
+      card.style.opacity = opacity
+      card.style.zIndex = 100 - abs
+      card.classList.toggle('active', offset === 0)
+    })
+    if (countEl) countEl.textContent = items.length
+      ? `${activeIdx + 1} / ${items.length}`
+      : 'Sin resultados'
+  }
 
-          <div class="price-block">
-            <div class="price-original">$1,500 MXN</div>
-            <div class="price">
-              <span class="currency">$</span>
-              <span class="amount">1,200</span>
-              <span class="mxn">MXN</span>
-            </div>
-            <span class="save-pill">Ahorras $300</span>
-          </div>
+  function go(delta) {
+    if (!items.length) return
+    activeIdx = Math.max(0, Math.min(items.length - 1, activeIdx + delta))
+    layout()
+  }
 
-          <div class="divider"></div>
+  prevBtn.addEventListener('click', () => go(-1))
+  nextBtn.addEventListener('click', () => go(1))
 
-          <ul class="features">
-            <li><strong>Todo lo del paquete Esencial</strong></li>
-            <li><strong>Panel personalizado</strong> para gestionar invitados</li>
-            <li>Asigna <strong>pases&nbsp;personalizados</strong> por invitado</li>
-            <li><strong>Confirmaciones en tiempo real</strong> en tu panel</li>
-            <li>Lista de asistentes <strong>automática</strong></li>
-            <li>Capacitación 1:1 para que sepas usarlo</li>
-          </ul>
-        </article>
-      </div>
-    </section>
+  filters.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      filters.querySelectorAll('button').forEach(b => b.classList.remove('active'))
+      btn.classList.add('active')
+      currentFilter = btn.dataset.filter
+      applyFilter()
+    })
+  })
 
-    <!-- CTA -->
-    <section class="cta-section">
-      <div class="ornament">
-        <span class="ornament-line"></span>
-        <span class="ornament-diamond">◆</span>
-        <span class="ornament-line"></span>
-      </div>
-      <a
-        class="cta-btn"
-        href="https://wa.me/524421235312?text=Hola%2C%20me%20interesa%20la%20promo%20del%20Mes%20de%20las%20Novias%20de%20Elysium%20%F0%9F%8C%B7"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm0 1.67c2.21 0 4.28.86 5.84 2.42a8.218 8.218 0 012.42 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.188 8.188 0 01-1.26-4.38c0-4.54 3.69-8.24 8.22-8.24z" />
-        </svg>
-        Escribir por WhatsApp
-      </a>
-      <p class="cta-sub">Cambios ilimitados · Respuesta en 24h</p>
-      <div class="cta-urgency">Promo válida hasta el 30 de junio</div>
-    </section>
+  coverflow.addEventListener('click', (e) => {
+    const card = e.target.closest('.card')
+    if (!card) return
+    const cards = [...coverflow.querySelectorAll('.card')]
+    const idx = cards.indexOf(card)
+    if (idx === activeIdx) return
+    e.preventDefault()
+    activeIdx = idx
+    layout()
+  })
 
-    <!-- FOOTER -->
-    <footer>
-      <a class="ig" href="https://instagram.com/elysium.invitaciones" target="_blank" rel="noopener noreferrer">@elysium.invitaciones</a>
-      <p class="copy">© 2026 Elysium · Hecho con cariño en México</p>
-    </footer>
-  </main>
+  let dragStart = null, dragLast = null
+  wrap.addEventListener('pointerdown', (e) => {
+    dragStart = e.clientX
+    dragLast = e.clientX
+    wrap.setPointerCapture(e.pointerId)
+  })
+  wrap.addEventListener('pointermove', (e) => {
+    if (dragStart === null) return
+    dragLast = e.clientX
+  })
+  wrap.addEventListener('pointerup', () => {
+    if (dragStart === null) return
+    const dx = dragLast - dragStart
+    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1)
+    dragStart = null
+  })
+  wrap.addEventListener('pointercancel', () => { dragStart = null })
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') go(-1)
+    if (e.key === 'ArrowRight') go(1)
+  })
+
+  applyFilter()
+})()
+</script>
 </body>
 </html>
