@@ -79,7 +79,8 @@
   .brand {
     font-family: 'Great Vibes', cursive;
     font-size: 88px;
-    line-height: 0.95;
+    line-height: 1.15;
+    padding-top: 18px;
     background: linear-gradient(135deg, var(--champagne), var(--bronze) 50%, var(--espresso));
     -webkit-background-clip: text;
     background-clip: text;
@@ -363,25 +364,32 @@
     letter-spacing: 0.22em;
     text-transform: uppercase;
   }
-  .nav-arrows {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    margin-top: 14px;
-  }
-  .nav-arrows button {
+  .swipe-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 8px 18px;
     background: #fff;
-    border: 1px solid var(--champagne);
-    width: 42px; height: 42px;
-    border-radius: 50%;
-    cursor: pointer;
+    border: 1px solid rgba(212, 175, 127, 0.5);
+    border-radius: 999px;
     color: var(--bronze);
-    font-size: 18px;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 12px rgba(43, 31, 20, 0.10);
-    transition: transform 0.2s;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(43, 31, 20, 0.08);
   }
-  .nav-arrows button:active { transform: scale(0.92); }
+  .swipe-hint .hand {
+    display: inline-block;
+    animation: swipe-anim 1.8s ease-in-out infinite;
+    font-size: 14px;
+  }
+  @keyframes swipe-anim {
+    0%, 100% { transform: translateX(-6px); }
+    50%      { transform: translateX(6px); }
+  }
   .gallery-count {
     font-family: 'Inter', sans-serif;
     font-size: 12px;
@@ -499,9 +507,10 @@
     <div class="coverflow" id="coverflow"></div>
   </div>
 
-  <div class="nav-arrows">
-    <button id="prevBtn" aria-label="Anterior">‹</button>
-    <button id="nextBtn" aria-label="Siguiente">›</button>
+  <div class="swipe-hint">
+    <span class="hand">←</span>
+    Desliza para explorar
+    <span class="hand">→</span>
   </div>
 
   <div class="gallery-count" id="galleryCount">Cargando…</div>
@@ -530,8 +539,6 @@
 
   const coverflow = document.getElementById('coverflow')
   const filters   = document.getElementById('filters')
-  const prevBtn   = document.getElementById('prevBtn')
-  const nextBtn   = document.getElementById('nextBtn')
   const countEl   = document.getElementById('galleryCount')
   const wrap      = document.getElementById('coverflowWrap')
 
@@ -582,9 +589,6 @@
     layout()
   }
 
-  prevBtn.addEventListener('click', () => go(-1))
-  nextBtn.addEventListener('click', () => go(1))
-
   filters.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
       filters.querySelectorAll('button').forEach(b => b.classList.remove('active'))
@@ -605,23 +609,40 @@
     layout()
   })
 
+  // Swipe / drag: short flicks advance 1, long drags advance multiple
   let dragStart = null, dragLast = null
+  const SWIPE_STEP = 60 // px per card advance
+  function endDrag() {
+    if (dragStart === null) return
+    const dx = dragLast - dragStart
+    if (Math.abs(dx) > 25) {
+      const steps = Math.max(1, Math.round(Math.abs(dx) / SWIPE_STEP))
+      go(dx < 0 ? steps : -steps)
+    }
+    dragStart = null
+  }
   wrap.addEventListener('pointerdown', (e) => {
     dragStart = e.clientX
     dragLast = e.clientX
-    wrap.setPointerCapture(e.pointerId)
+    try { wrap.setPointerCapture(e.pointerId) } catch {}
   })
   wrap.addEventListener('pointermove', (e) => {
     if (dragStart === null) return
     dragLast = e.clientX
   })
-  wrap.addEventListener('pointerup', () => {
-    if (dragStart === null) return
-    const dx = dragLast - dragStart
-    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1)
-    dragStart = null
-  })
+  wrap.addEventListener('pointerup', endDrag)
   wrap.addEventListener('pointercancel', () => { dragStart = null })
+  // Fallback for older touch handling
+  wrap.addEventListener('touchstart', (e) => {
+    if (e.touches.length !== 1) return
+    dragStart = e.touches[0].clientX
+    dragLast = dragStart
+  }, { passive: true })
+  wrap.addEventListener('touchmove', (e) => {
+    if (dragStart === null) return
+    dragLast = e.touches[0].clientX
+  }, { passive: true })
+  wrap.addEventListener('touchend', endDrag)
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') go(-1)
