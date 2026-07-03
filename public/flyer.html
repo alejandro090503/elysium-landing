@@ -413,31 +413,72 @@
     box-shadow: 0 0 22px rgba(228, 196, 140, 0.14);
   }
 
-  /* ────────── ROTADOR "Tu invitación incluye" ────────── */
+  /* ────────── "Tu invitación incluye" — tarjeta editorial ────────── */
   .includes-rotator {
-    padding: 44px 22px 48px;
-    border-top: 1px solid rgba(212, 175, 127, 0.25);
+    padding: 48px 22px 52px;
   }
-  body.celestial .includes-rotator { border-color: rgba(228, 196, 140, 0.18); }
+  .inc-card {
+    position: relative;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 34px 26px 28px;
+    border: 1px solid rgba(155, 123, 67, 0.45);
+    border-radius: 4px;
+    background: linear-gradient(165deg, var(--surface) 0%, var(--pearl) 100%);
+    box-shadow: 0 14px 40px rgba(43, 31, 20, 0.08);
+    transition: background var(--t-theme) ease, border-color var(--t-theme) ease, box-shadow var(--t-theme) ease;
+  }
+  /* Marco interior tipo papelería de invitación */
+  .inc-card::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(212, 175, 127, 0.35);
+    border-radius: 2px;
+    pointer-events: none;
+    transition: border-color var(--t-theme) ease;
+  }
+  body.celestial .inc-card {
+    background: linear-gradient(165deg, rgba(26, 29, 58, 0.96), rgba(16, 18, 40, 0.94));
+    border-color: rgba(228, 196, 140, 0.5);
+    box-shadow: 0 14px 44px rgba(0, 0, 0, 0.5), 0 0 26px rgba(228, 196, 140, 0.10);
+  }
+  body.celestial .inc-card::before { border-color: rgba(228, 196, 140, 0.22); }
+  .inc-card .section-eyebrow { margin-bottom: 14px; }
+  .inc-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .inc-divider .line {
+    width: 52px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--champagne));
+  }
+  .inc-divider .line:last-child {
+    background: linear-gradient(90deg, var(--champagne), transparent);
+  }
+  .inc-divider .gem {
+    color: var(--champagne);
+    font-size: 11px;
+    animation: twinkle 3s ease-in-out infinite;
+  }
   .rotator {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
-    min-height: 52px;
-    margin-top: 6px;
+    min-height: 74px;
+    padding: 0 6px;
   }
-  .rot-orn {
-    color: var(--champagne);
-    font-size: 15px;
-    animation: twinkle 3s ease-in-out infinite;
-  }
-  .rot-orn:last-child { animation-delay: 1.5s; }
   .rot-text {
     font-family: 'Cormorant Infant', serif;
-    font-size: 31px;
-    font-weight: 600;
+    font-style: italic;
+    font-size: 30px;
+    font-weight: 500;
     line-height: 1.15;
+    text-align: center;
     color: var(--espresso);
     opacity: 1;
     filter: blur(0);
@@ -447,14 +488,25 @@
     opacity: 0;
     filter: blur(7px);
   }
-  .rot-count {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--smoke);
-    margin-top: 12px;
+  .rot-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin-top: 18px;
+  }
+  .rot-dots i {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(155, 123, 67, 0.28);
+    transition: background 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  body.celestial .rot-dots i { background: rgba(228, 196, 140, 0.22); }
+  .rot-dots i.on {
+    background: var(--champagne);
+    transform: scale(1.5);
+    box-shadow: 0 0 6px rgba(212, 175, 127, 0.6);
   }
   @keyframes twinkle {
     0%, 100% { opacity: 1; transform: scale(1); }
@@ -695,13 +747,18 @@
 </section>
 
 <section class="includes-rotator">
-  <div class="section-eyebrow">Tu invitación incluye</div>
-  <div class="rotator">
-    <span class="rot-orn">✦</span>
-    <span class="rot-text" id="rotText" aria-live="polite">Eliges tu diseño favorito</span>
-    <span class="rot-orn">✦</span>
+  <div class="inc-card">
+    <div class="section-eyebrow">Tu invitación incluye</div>
+    <div class="inc-divider">
+      <span class="line"></span>
+      <span class="gem">✦</span>
+      <span class="line"></span>
+    </div>
+    <div class="rotator">
+      <span class="rot-text" id="rotText" aria-live="polite">Eliges tu diseño favorito</span>
+    </div>
+    <div class="rot-dots" id="rotDots" aria-hidden="true"></div>
   </div>
-  <div class="rot-count" id="rotCount">1 / 10</div>
 </section>
 
 <section class="panel-section">
@@ -888,9 +945,9 @@
         spikes,
       }))
     // Cielo fijo (sin deriva): solo pulso de brillo, como un cielo real
-    farStars  = mk(Math.min(230, area / 4200 | 0), 0.4, 0.8, 0.3, 0.6, 0.006, 0.014, false)
-    midStars  = mk(Math.min(70,  area / 12000 | 0), 0.9, 1.4, 0.5, 0.9, 0.008, 0.02, false)
-    nearStars = mk(Math.min(12,  area / 65000 | 0), 1.5, 2.3, 0.7, 1, 0.004, 0.01, true)
+    farStars  = mk(Math.min(230, area / 4200 | 0), 0.3, 0.55, 0.3, 0.6, 0.006, 0.014, false)
+    midStars  = mk(Math.min(70,  area / 12000 | 0), 0.55, 0.95, 0.5, 0.9, 0.008, 0.02, false)
+    nearStars = mk(Math.min(12,  area / 65000 | 0), 0.9, 1.4, 0.7, 1, 0.004, 0.01, true)
   }
 
   function drawStar(s) {
@@ -902,18 +959,18 @@
     ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2)
     ctx.fill()
     // Halo corto y sutil solo en estrellas medianas/grandes
-    if (s.r >= 0.9) {
-      ctx.globalAlpha = a * 0.13
+    if (s.r >= 0.75) {
+      ctx.globalAlpha = a * 0.12
       ctx.beginPath()
-      ctx.arc(s.x, s.y, s.r * 2.6, 0, Math.PI * 2)
+      ctx.arc(s.x, s.y, s.r * 2.4, 0, Math.PI * 2)
       ctx.fill()
     }
-    // Picos de difracción finos (0.7px) solo en las brillantes
+    // Picos de difracción finos (0.6px) solo en las brillantes
     if (s.spikes) {
-      const L = s.r * (5 + 1.6 * Math.sin(s.tw))
-      ctx.globalAlpha = a * 0.5
+      const L = s.r * (3.6 + 1.2 * Math.sin(s.tw))
+      ctx.globalAlpha = a * 0.45
       ctx.strokeStyle = `rgb(${s.color})`
-      ctx.lineWidth = 0.7
+      ctx.lineWidth = 0.6
       ctx.beginPath()
       ctx.moveTo(s.x - L, s.y)
       ctx.lineTo(s.x + L, s.y)
@@ -1094,24 +1151,37 @@
     'Eliges tu diseño favorito',
     'Sobre animado',
     'Música personalizada',
+    'Cuenta regresiva',
     'Carrusel de fotos',
+    'Itinerario del evento',
+    'Ubicaciones con mapa',
+    'Código de vestimenta',
+    'Sección de padres y padrinos',
     'Mesa de regalos',
     'Hospedaje recomendado',
     'Clima del día',
-    'Cuenta regresiva',
-    'Sección de padrinos',
-    'Sobre interactivo',
+    'Confirmación de asistencia',
+    'Álbum compartido con QR',
+    'Frase o versículo especial',
   ]
   const rotText = document.getElementById('rotText')
-  const rotCount = document.getElementById('rotCount')
+  const rotDots = document.getElementById('rotDots')
   let rotIdx = 0
+
+  INCLUDES.forEach((_, i) => {
+    const dot = document.createElement('i')
+    if (i === 0) dot.className = 'on'
+    rotDots.appendChild(dot)
+  })
+  const dots = rotDots.children
 
   function rotNext() {
     rotText.classList.add('fading')
     setTimeout(() => {
+      dots[rotIdx].className = ''
       rotIdx = (rotIdx + 1) % INCLUDES.length
       rotText.textContent = INCLUDES[rotIdx]
-      rotCount.textContent = `${rotIdx + 1} / ${INCLUDES.length}`
+      dots[rotIdx].className = 'on'
       rotText.classList.remove('fading')
     }, reduced ? 0 : 470)
   }
