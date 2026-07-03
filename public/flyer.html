@@ -344,14 +344,8 @@
     font-size: 16px;
     color: var(--espresso);
     line-height: 1.4;
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1),
+    transition: transform 0.3s ease,
       background var(--t-theme) ease, border-color var(--t-theme) ease, box-shadow 0.4s ease, color var(--t-theme) ease;
-  }
-  .panel-perks li.in {
-    opacity: 1;
-    transform: translateY(0);
   }
   .panel-perks li:active { transform: scale(0.98); }
   @media (hover: hover) {
@@ -412,7 +406,6 @@
     opacity: 0.55;
     filter: saturate(0.6);
   }
-  body:not(.celestial) .panel-perks li.premium.in { opacity: 0.55; }
   body.celestial .panel-perks li.premium {
     border-style: solid;
     border-color: rgba(228, 196, 140, 0.55);
@@ -648,7 +641,6 @@
   @media (prefers-reduced-motion: reduce) {
     .price-block, .swipe-hint .hand, .includes li::before,
     .package-name .ornament, #nebula { animation: none !important; }
-    .panel-perks li { opacity: 1; transform: none; transition: none; }
   }
 </style>
 </head>
@@ -830,13 +822,6 @@
         startGalaxy()
         burstFromSwitch()
       }
-      // Re-stagger premium perks al encender celestial
-      if (pkg === 'celestial' && !reduced) {
-        document.querySelectorAll('.panel-perks li.premium').forEach((li, i) => {
-          li.classList.remove('in')
-          setTimeout(() => li.classList.add('in'), 120 + i * 110)
-        })
-      }
     }
   }
 
@@ -845,10 +830,11 @@
   })
   window.addEventListener('resize', positionThumb)
 
-  /* ═══════════ GALAXIA — cielo estrellado con sprites ═══════════ */
+  /* ═══════════ GALAXIA — cielo estrellado HD (núcleos nítidos) ═══════════ */
   const canvas = document.getElementById('galaxy')
   const ctx = canvas.getContext('2d')
-  const DPR = Math.min(devicePixelRatio || 1, 2)
+  // DPR completo (cap 3) para que las estrellas se vean afiladas en pantallas retina
+  const DPR = Math.min(devicePixelRatio || 1, 3)
   let W = 0, H = 0
   let farStars = [], midStars = [], nearStars = []
   let meteors = [], asteroids = [], bursts = []
@@ -856,6 +842,12 @@
 
   const rand = (a, b) => a + Math.random() * (b - a)
   const pick = (arr) => arr[Math.floor(Math.random() * arr.length)]
+  // Blanco lunar dominante, con acentos cálidos y fríos ocasionales
+  const STAR_COLORS = [
+    '255,255,255', '255,255,255', '255,255,255', '255,255,255',
+    '255,244,214', '255,236,200',
+    '208,216,255', '224,228,255',
+  ]
 
   function resizeCanvas() {
     W = window.innerWidth
@@ -865,61 +857,9 @@
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0)
   }
 
-  // Sprites pre-renderizados: glow suave (halo radial) y destello de 4 puntas.
-  // drawImage de un sprite es más rápido y MUCHO más bonito que un arc plano.
-  function makeGlow(size, inner, outer) {
-    const c = document.createElement('canvas')
-    c.width = c.height = size * 2
-    const g = c.getContext('2d')
-    const grad = g.createRadialGradient(size, size, 0, size, size, size)
-    grad.addColorStop(0, inner)
-    grad.addColorStop(0.22, outer)
-    grad.addColorStop(1, 'rgba(0,0,0,0)')
-    g.fillStyle = grad
-    g.fillRect(0, 0, size * 2, size * 2)
-    return c
-  }
-  function makeFlare(size, tint) {
-    const c = document.createElement('canvas')
-    c.width = c.height = size * 2
-    const g = c.getContext('2d')
-    g.translate(size, size)
-    // halo
-    const halo = g.createRadialGradient(0, 0, 0, 0, 0, size * 0.55)
-    halo.addColorStop(0, 'rgba(255,255,255,0.9)')
-    halo.addColorStop(0.35, tint)
-    halo.addColorStop(1, 'rgba(0,0,0,0)')
-    g.fillStyle = halo
-    g.fillRect(-size, -size, size * 2, size * 2)
-    // 4 puntas afiladas
-    g.fillStyle = tint
-    for (let i = 0; i < 4; i++) {
-      g.rotate(Math.PI / 2)
-      g.beginPath()
-      g.moveTo(0, -size * 0.045)
-      g.lineTo(size * 0.98, 0)
-      g.lineTo(0, size * 0.045)
-      g.closePath()
-      g.fill()
-    }
-    // núcleo blanco
-    g.fillStyle = 'rgba(255,255,255,0.95)'
-    g.beginPath()
-    g.arc(0, 0, size * 0.09, 0, Math.PI * 2)
-    g.fill()
-    return c
-  }
-  const SPRITES = {
-    white: makeGlow(32, 'rgba(255,255,255,1)', 'rgba(214, 220, 250, 0.55)'),
-    warm:  makeGlow(32, 'rgba(255,250,235,1)', 'rgba(228, 196, 140, 0.55)'),
-    cool:  makeGlow(32, 'rgba(246,244,255,1)', 'rgba(168, 156, 230, 0.5)'),
-    flareWarm: makeFlare(64, 'rgba(240, 214, 158, 0.75)'),
-    flareCool: makeFlare(64, 'rgba(186, 175, 240, 0.7)'),
-  }
-
   function initStars() {
     const area = W * H
-    const mk = (n, rMin, rMax, aMin, aMax, tsMin, tsMax, sprites) =>
+    const mk = (n, rMin, rMax, aMin, aMax, tsMin, tsMax, spikes) =>
       Array.from({ length: n }, () => ({
         x: Math.random() * W,
         y: Math.random() * H,
@@ -927,34 +867,56 @@
         base: rand(aMin, aMax),
         tw: rand(0, Math.PI * 2),
         ts: rand(tsMin, tsMax),
-        sprite: pick(sprites),
-        drift: rand(0.004, 0.02),
+        color: pick(STAR_COLORS),
+        spikes,
       }))
-    // 3 capas de profundidad: lejos (muchas, tenues), medio, cerca (pocas, con destello)
-    farStars  = mk(Math.min(160, area / 5500 | 0), 0.6, 1.2, 0.28, 0.55, 0.004, 0.010, [SPRITES.white, SPRITES.cool])
-    midStars  = mk(Math.min(60,  area / 14000 | 0), 1.4, 2.4, 0.5, 0.9, 0.008, 0.018, [SPRITES.white, SPRITES.warm, SPRITES.cool])
-    nearStars = mk(Math.min(15,  area / 50000 | 0), 3.4, 6, 0.65, 1, 0.004, 0.009, [SPRITES.flareWarm, SPRITES.flareCool])
+    // Cielo fijo (sin deriva): solo pulso de brillo, como un cielo real
+    farStars  = mk(Math.min(230, area / 4200 | 0), 0.4, 0.8, 0.3, 0.6, 0.006, 0.014, false)
+    midStars  = mk(Math.min(70,  area / 12000 | 0), 0.9, 1.4, 0.5, 0.9, 0.008, 0.02, false)
+    nearStars = mk(Math.min(12,  area / 65000 | 0), 1.5, 2.3, 0.7, 1, 0.004, 0.01, true)
   }
 
-  function drawStar(s, scale = 1) {
-    // Pulso suave senoidal — nunca desaparece del todo
-    const a = s.base * (0.55 + 0.45 * Math.sin(s.tw))
-    const size = s.r * 2 * scale
-    ctx.globalAlpha = Math.max(0.05, a)
-    ctx.drawImage(s.sprite, s.x - size, s.y - size, size * 2, size * 2)
+  function drawStar(s) {
+    const a = s.base * (0.6 + 0.4 * Math.sin(s.tw))
+    // Núcleo nítido
+    ctx.globalAlpha = a
+    ctx.fillStyle = `rgb(${s.color})`
+    ctx.beginPath()
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2)
+    ctx.fill()
+    // Halo corto y sutil solo en estrellas medianas/grandes
+    if (s.r >= 0.9) {
+      ctx.globalAlpha = a * 0.13
+      ctx.beginPath()
+      ctx.arc(s.x, s.y, s.r * 2.6, 0, Math.PI * 2)
+      ctx.fill()
+    }
+    // Picos de difracción finos (0.7px) solo en las brillantes
+    if (s.spikes) {
+      const L = s.r * (5 + 1.6 * Math.sin(s.tw))
+      ctx.globalAlpha = a * 0.5
+      ctx.strokeStyle = `rgb(${s.color})`
+      ctx.lineWidth = 0.7
+      ctx.beginPath()
+      ctx.moveTo(s.x - L, s.y)
+      ctx.lineTo(s.x + L, s.y)
+      ctx.moveTo(s.x, s.y - L)
+      ctx.lineTo(s.x, s.y + L)
+      ctx.stroke()
+    }
   }
 
   function spawnMeteor() {
     // Zonas variadas: cualquier x, cualquier altura del viewport
     const dir = Math.random() < 0.5 ? 1 : -1
     const ang = rand(0.4, 0.95)
-    const speed = rand(9, 15)
+    const speed = rand(10, 16)
     meteors.push({
       x: rand(-0.05, 1.05) * W,
       y: rand(0.02, 0.8) * H,
       vx: Math.cos(ang) * speed * dir,
       vy: Math.sin(ang) * speed,
-      len: rand(80, 160),
+      len: rand(110, 190),
       life: 1,
       decay: rand(0.014, 0.022),
     })
@@ -967,7 +929,7 @@
       y: rand(0.08, 0.85) * H,
       vx: rand(1.3, 2.3) * dir,
       vy: rand(-0.25, 0.45),
-      r: rand(1.6, 2.6),
+      r: rand(1.1, 1.7),
       trail: [],
     })
   }
@@ -977,7 +939,7 @@
     const rect = pkgSwitch.getBoundingClientRect()
     const cx = rect.left + rect.width / 2
     const cy = rect.top + rect.height / 2
-    for (let i = 0; i < 42; i++) {
+    for (let i = 0; i < 36; i++) {
       const a = Math.random() * Math.PI * 2
       const sp = Math.random() * 4 + 1.5
       bursts.push({
@@ -985,7 +947,7 @@
         vx: Math.cos(a) * sp,
         vy: Math.sin(a) * sp,
         life: 1,
-        r: Math.random() * 2 + 1,
+        r: Math.random() * 1.2 + 0.5,
       })
     }
   }
@@ -993,27 +955,13 @@
   function frame(t) {
     ctx.clearRect(0, 0, W, H)
 
-    // Capas de estrellas (parallax: las lejanas derivan más lento)
-    for (const s of farStars) {
-      s.tw += s.ts
-      s.y += s.drift * 0.35
-      if (s.y > H + 6) s.y = -6
-      drawStar(s)
-    }
-    for (const s of midStars) {
-      s.tw += s.ts
-      s.y += s.drift
-      if (s.y > H + 8) s.y = -8
-      drawStar(s)
-    }
-    for (const s of nearStars) {
-      s.tw += s.ts
-      // Las grandes respiran también en tamaño
-      drawStar(s, 0.88 + 0.2 * Math.sin(s.tw * 0.7))
-    }
+    // Cielo fijo: solo parpadeo, cero desplazamiento
+    for (const s of farStars)  { s.tw += s.ts; drawStar(s) }
+    for (const s of midStars)  { s.tw += s.ts; drawStar(s) }
+    for (const s of nearStars) { s.tw += s.ts; drawStar(s) }
     ctx.globalAlpha = 1
 
-    // ── Estrellas fugaces (zonas y direcciones variadas) ──
+    // ── Estrellas fugaces: trazo fino de 1px ──
     if (t > nextMeteor) {
       spawnMeteor()
       if (Math.random() < 0.25) spawnMeteor() // a veces caen en pares
@@ -1028,23 +976,26 @@
       const nx = m.vx / mag, ny = m.vy / mag
       const a = Math.min(1, m.life * 1.6)
       const tail = ctx.createLinearGradient(m.x, m.y, m.x - nx * m.len, m.y - ny * m.len)
-      tail.addColorStop(0, `rgba(255, 250, 238, ${0.95 * a})`)
-      tail.addColorStop(0.3, `rgba(228, 196, 140, ${0.5 * a})`)
-      tail.addColorStop(1, 'rgba(228, 196, 140, 0)')
+      tail.addColorStop(0, `rgba(255, 255, 255, ${0.9 * a})`)
+      tail.addColorStop(0.35, `rgba(255, 240, 210, ${0.32 * a})`)
+      tail.addColorStop(1, 'rgba(255, 240, 210, 0)')
       ctx.strokeStyle = tail
-      ctx.lineWidth = 2
+      ctx.lineWidth = 1
       ctx.lineCap = 'round'
       ctx.beginPath()
       ctx.moveTo(m.x, m.y)
       ctx.lineTo(m.x - nx * m.len, m.y - ny * m.len)
       ctx.stroke()
-      // cabeza brillante
+      // Cabeza: punto nítido pequeño
       ctx.globalAlpha = a
-      ctx.drawImage(SPRITES.warm, m.x - 8, m.y - 8, 16, 16)
+      ctx.fillStyle = '#ffffff'
+      ctx.beginPath()
+      ctx.arc(m.x, m.y, 1.3, 0, Math.PI * 2)
+      ctx.fill()
       ctx.globalAlpha = 1
     }
 
-    // ── Asteroides: brasas lentas con estela de partículas ──
+    // ── Asteroides: brasas lentas con estela fina ──
     if (t > nextAsteroid) {
       spawnAsteroid()
       nextAsteroid = t + rand(9000, 16000)
@@ -1054,27 +1005,40 @@
       ast.x += ast.vx
       ast.y += ast.vy
       ast.trail.push({ x: ast.x, y: ast.y, life: 1 })
-      if (ast.trail.length > 26) ast.trail.shift()
+      if (ast.trail.length > 22) ast.trail.shift()
+      ctx.fillStyle = 'rgb(255, 226, 180)'
       for (const p of ast.trail) {
-        p.life -= 0.04
+        p.life -= 0.05
         if (p.life <= 0) continue
-        ctx.globalAlpha = p.life * 0.45
-        ctx.drawImage(SPRITES.warm, p.x - 3, p.y - 3, 6, 6)
+        ctx.globalAlpha = p.life * 0.35
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, 0.8, 0, Math.PI * 2)
+        ctx.fill()
       }
-      ctx.globalAlpha = 0.95
-      ctx.drawImage(SPRITES.flareWarm, ast.x - ast.r * 4, ast.y - ast.r * 4, ast.r * 8, ast.r * 8)
+      // Núcleo de la brasa: nítido con halo mínimo
+      ctx.globalAlpha = 0.9
+      ctx.beginPath()
+      ctx.arc(ast.x, ast.y, ast.r, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.globalAlpha = 0.16
+      ctx.beginPath()
+      ctx.arc(ast.x, ast.y, ast.r * 2.4, 0, Math.PI * 2)
+      ctx.fill()
       ctx.globalAlpha = 1
     }
 
     // ── Polvo dorado del switch ──
     bursts = bursts.filter(b => b.life > 0)
+    ctx.fillStyle = 'rgb(240, 214, 158)'
     for (const b of bursts) {
       b.x += b.vx
       b.y += b.vy
       b.vy += 0.05
       b.life -= 0.02
       ctx.globalAlpha = b.life * 0.9
-      ctx.drawImage(SPRITES.warm, b.x - b.r * 2, b.y - b.r * 2, b.r * 4, b.r * 4)
+      ctx.beginPath()
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2)
+      ctx.fill()
     }
     ctx.globalAlpha = 1
 
@@ -1092,11 +1056,7 @@
     if (reduced) {
       // Estático: un solo frame, sin animación
       ctx.clearRect(0, 0, W, H)
-      for (const s of [...farStars, ...midStars, ...nearStars]) {
-        ctx.globalAlpha = s.base * 0.8
-        const size = s.r * 2
-        ctx.drawImage(s.sprite, s.x - size, s.y - size, size * 2, size * 2)
-      }
+      for (const s of [...farStars, ...midStars, ...nearStars]) drawStar(s)
       ctx.globalAlpha = 1
       return
     }
@@ -1107,23 +1067,6 @@
     initStars()
     if (document.body.classList.contains('celestial') && reduced) startGalaxy()
   })
-
-  /* ═══════════ ENTRADAS ESCALONADAS (perks) ═══════════ */
-  const perkItems = document.querySelectorAll('.panel-perks li')
-  if (reduced) {
-    perkItems.forEach(li => li.classList.add('in'))
-  } else {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return
-        const siblings = [...entry.target.parentElement.children]
-        const idx = siblings.indexOf(entry.target)
-        setTimeout(() => entry.target.classList.add('in'), (idx % 8) * 90)
-        io.unobserve(entry.target)
-      })
-    }, { threshold: 0.15 })
-    perkItems.forEach(li => io.observe(li))
-  }
 
   setPackage('eterna', true)
   // Reposiciona el thumb cuando cargan las fuentes (cambia el alto de los botones)
