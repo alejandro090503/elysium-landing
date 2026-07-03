@@ -67,42 +67,20 @@
   }
   body.celestial #galaxy { opacity: 1; }
 
-  section, .ribbon, .pkg-switch { position: relative; z-index: 1; }
+  section { position: relative; z-index: 1; }
 
-  .ribbon {
-    background: var(--espresso);
-    color: var(--pearl);
-    padding: 10px 18px;
-    text-align: center;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--champagne);
-  }
-  body.celestial .ribbon {
-    background: #05060f;
-    color: #f2ecdd;
-  }
-  .ribbon .dot { color: var(--champagne); margin: 0 10px; }
-
-  /* ────────── SWITCH DE PAQUETE (fijo, derecha) ────────── */
+  /* ────────── SWITCH DE PAQUETE (centrado, en la sección del panel) ────────── */
   .pkg-switch {
-    position: fixed;
-    top: 52px;
-    right: 10px;
-    z-index: 900;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    margin: 0 auto 20px;
     background: rgba(251, 248, 241, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(212, 175, 127, 0.6);
     border-radius: 999px;
     padding: 4px;
-    box-shadow: 0 8px 26px rgba(43, 31, 20, 0.18);
+    box-shadow: 0 8px 26px rgba(43, 31, 20, 0.15);
     transition: background var(--t-theme) ease, border-color var(--t-theme) ease, box-shadow var(--t-theme) ease;
   }
   body.celestial .pkg-switch {
@@ -116,20 +94,18 @@
     border: none;
     background: transparent;
     cursor: pointer;
-    min-width: 44px;
-    min-height: 44px;
-    padding: 8px 10px;
+    min-height: 48px;
+    padding: 10px 22px;
     border-radius: 999px;
     font-family: 'Inter', sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--smoke);
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
     align-items: center;
-    gap: 2px;
+    gap: 8px;
     transition: color 0.35s ease;
     -webkit-tap-highlight-color: transparent;
   }
@@ -138,13 +114,13 @@
   .pkg-switch .thumb {
     position: absolute;
     z-index: 1;
-    left: 4px;
-    width: calc(100% - 8px);
-    height: 52px;
+    top: 4px;
+    left: 0;
+    height: calc(100% - 8px);
     border-radius: 999px;
     background: linear-gradient(135deg, var(--champagne), var(--bronze));
     box-shadow: 0 4px 14px rgba(155, 123, 67, 0.45);
-    transition: transform 0.45s cubic-bezier(0.34, 1.4, 0.4, 1), background var(--t-theme) ease;
+    transition: transform 0.45s cubic-bezier(0.34, 1.4, 0.4, 1), width 0.45s cubic-bezier(0.34, 1.4, 0.4, 1), background var(--t-theme) ease;
   }
   body.celestial .pkg-switch .thumb {
     background: linear-gradient(135deg, #6d5bb0, #3b2f73);
@@ -328,24 +304,6 @@
     background: linear-gradient(180deg, transparent, rgba(109, 91, 176, 0.08));
     border-color: rgba(228, 196, 140, 0.25);
   }
-  .panel-icon {
-    width: 64px; height: 64px;
-    margin: 0 auto 18px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--champagne), var(--bronze));
-    display: flex; align-items: center; justify-content: center;
-    color: #fff;
-    font-size: 28px;
-    font-weight: 400;
-    line-height: 1;
-    box-shadow: 0 12px 24px rgba(155, 123, 67, 0.3);
-    animation: float-soft 5s ease-in-out infinite;
-  }
-  body.celestial .panel-icon {
-    background: linear-gradient(135deg, #6d5bb0, #3b2f73);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.5), 0 0 24px rgba(228, 196, 140, 0.3);
-  }
-
   .panel-perks {
     display: grid;
     gap: 14px;
@@ -661,11 +619,11 @@
     .price-now { font-size: 52px; }
     .card { width: 200px; height: 356px; margin-left: -100px; margin-top: -178px; }
     .coverflow-wrap { height: 470px; }
-    .pkg-switch { top: 46px; right: 8px; }
+    .pkg-switch button { padding: 10px 16px; font-size: 11px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .price-block, .panel-icon, .swipe-hint .hand, .includes li::before,
+    .price-block, .swipe-hint .hand, .includes li::before,
     .package-name .ornament { animation: none !important; }
     .panel-perks li { opacity: 1; transform: none; transition: none; }
     #galaxy { display: none; }
@@ -675,21 +633,6 @@
 <body>
 
 <canvas id="galaxy" aria-hidden="true"></canvas>
-
-<div class="ribbon">
-  Promo <span class="dot">◆</span> Por tiempo limitado <span class="dot">◆</span> Aparta con $500
-</div>
-
-<!-- Switch de paquete (fijo a la derecha) -->
-<div class="pkg-switch" id="pkgSwitch" role="tablist" aria-label="Elegir paquete">
-  <div class="thumb" id="pkgThumb"></div>
-  <button type="button" data-pkg="eterna" class="on" role="tab" aria-selected="true">
-    <span class="sym">◆</span>Eterna
-  </button>
-  <button type="button" data-pkg="celestial" role="tab" aria-selected="false">
-    <span class="sym">✦</span>Celestial
-  </button>
-</div>
 
 <section class="gallery-section">
   <div class="section-eyebrow">Portafolio en vivo</div>
@@ -717,7 +660,16 @@
 
 <section class="panel-section">
   <div class="section-eyebrow" id="panelEyebrow">Lo que más vale del paquete</div>
-  <div class="panel-icon">◆</div>
+  <!-- Switch de paquete -->
+  <div class="pkg-switch" id="pkgSwitch" role="tablist" aria-label="Elegir paquete">
+    <div class="thumb" id="pkgThumb"></div>
+    <button type="button" data-pkg="eterna" class="on" role="tab" aria-selected="true">
+      <span class="sym">◆</span>Eterna
+    </button>
+    <button type="button" data-pkg="celestial" role="tab" aria-selected="false">
+      <span class="sym">✦</span>Celestial
+    </button>
+  </div>
   <h2 class="section-title">Panel de invitados en tiempo real</h2>
   <p class="section-sub">Olvídate de la hoja de Excel y de andar persiguiendo confirmaciones una por una.</p>
   <ul class="panel-perks">
@@ -820,8 +772,8 @@
   function positionThumb() {
     const btn = pkgSwitch.querySelector(`button[data-pkg="${currentPkg}"]`)
     if (!btn) return
-    pkgThumb.style.height = btn.offsetHeight + 'px'
-    pkgThumb.style.transform = `translateY(${btn.offsetTop - 4}px)`
+    pkgThumb.style.width = btn.offsetWidth + 'px'
+    pkgThumb.style.transform = `translateX(${btn.offsetLeft}px)`
   }
 
   function setPackage(pkg, initial) {
@@ -883,11 +835,11 @@
   }
 
   function initStars() {
-    const n = Math.min(160, Math.floor(window.innerWidth * window.innerHeight / 6500))
+    const n = Math.min(260, Math.floor(window.innerWidth * window.innerHeight / 3800))
     stars = Array.from({ length: n }, () => ({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      r: Math.random() * 1.4 + 0.3,
+      r: Math.random() * 1.7 + 0.4,
       tw: Math.random() * Math.PI * 2,
       ts: Math.random() * 0.015 + 0.006,
       hue: Math.random() < 0.18 ? 'rgba(228,196,140,' : (Math.random() < 0.12 ? 'rgba(160,140,220,' : 'rgba(242,236,221,'),
@@ -921,7 +873,7 @@
       s.tw += s.ts
       s.y += s.drift
       if (s.y > window.innerHeight + 4) s.y = -4
-      const a = 0.35 + Math.abs(Math.sin(s.tw)) * 0.65
+      const a = 0.45 + Math.abs(Math.sin(s.tw)) * 0.55
       ctx.beginPath()
       ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2)
       ctx.fillStyle = s.hue + (a * 0.9) + ')'
