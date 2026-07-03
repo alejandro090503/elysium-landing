@@ -4,6 +4,7 @@
 //
 // Usage: node scripts/capture-thumbnails.mjs
 import { mkdir, writeFile } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import puppeteer from 'puppeteer'
@@ -42,12 +43,23 @@ const PROJECTS = [
     'boda-cynthia-y-arturo', 'boda-alejandro-y-mayreli', 'boda-jennifer',
     'boda-santiago-valentina', 'boda-valentina-rodrigo', 'boda-lupita-faisal',
     'boda-santiago-ximena', 'boda-jorge-eva',
+    // Sincronizados desde Vercel (jul 2026)
+    'boda-alejandra-y-paco', 'boda-franco-y-loreyma', 'boda-berenice-y-enrique',
+    'boda-carlos-victoria', 'boda-leslie-y-rudy', 'boda-nelvi-y-yessica',
+    'boda-francisco-y-ruth', 'boda-abigail-y-judith', 'boda-veronica-y-pedro',
+    'boda-america-y-ricardo', 'boda-alma-y-luis', 'boda-roxana-y-omar',
+    'boda-emilio-y-monica', 'boda-eliud-y-sulem', 'boda-rosa-y-jorge',
+    'boda-jonathan-y-ricardo', 'boda-stephanie-y-david', 'boda-arely-y-david',
+    'boda-guadalupe-y-leonardo', 'boda-ismael-y-anny', 'boda-adriana-y-enrique',
+    'boda-ana-y-wilber', 'boda-fabiola-y-fernando', 'boda-marcos-y-diana',
+    'boda-diana-y-darwin',
   ].map((slug) => ({ slug, type: 'boda' })),
 
   // ── XV ──
   ...[
     'xv-ailin', 'xv-melissa', 'xv-daphne', 'xv-valentina-three',
     'xv-julia-sofia', 'xv-natalia', 'xv-paola-yamelly',
+    'xv-natalia-maldonado', 'xv-fernanda-one', 'xv-natalia-victoria',
   ].map((slug) => ({ slug, type: 'xv' })),
 
   // ── CUMPLEAÑOS ──
@@ -88,6 +100,21 @@ const catalog = []
 try {
   for (const project of live) {
     const url = urlFor(project.slug)
+    const thumbFile = join(THUMB_DIR, `${project.slug}.png`)
+
+    // Incremental: skip capture when the thumbnail already exists, but keep it in the catalog
+    if (existsSync(thumbFile)) {
+      catalog.push({
+        slug: project.slug,
+        type: project.type,
+        title: SLUG_TO_TITLE(project.slug),
+        url,
+        thumbnail: `/thumbnails/${project.slug}.png`,
+      })
+      console.log(`→ ${project.slug}\n   ↷ existing (skipped)`)
+      continue
+    }
+
     console.log(`→ ${project.slug}`)
     let page
     try {
