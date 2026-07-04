@@ -794,9 +794,9 @@
   <div class="tagline" id="pkgTagline">Invitación digital + Panel de gestión de invitados</div>
   <div class="price-block">
     <div class="price-label">Inversión total</div>
-    <span class="price-strike" id="priceStrike">$2,200</span>
+    <span class="price-strike" id="priceStrike" hidden>$3,000</span>
     <div><span class="price-now" id="priceNow">$1,800<span class="mxn">MXN</span></span></div>
-    <div class="price-deadline">Precio de promoción por tiempo limitado</div>
+    <div class="price-deadline" id="priceDeadline" hidden>Precio de promoción por tiempo limitado</div>
   </div>
 </section>
 
@@ -828,7 +828,7 @@
       name: 'Eterna',
       eyebrow: 'Paquete Eterna',
       tagline: 'Invitación digital + Panel de gestión de invitados',
-      strike: '$2,200',
+      strike: '',
       price: '$1,800',
       panelEyebrow: 'Lo que más vale del paquete',
       wa: 'https://wa.me/524421235312?text=' + encodeURIComponent('Hola Elysium, me interesa el paquete Eterna $1,800 🌷'),
@@ -853,6 +853,7 @@
   const pkgName    = document.getElementById('pkgName')
   const pkgTagline = document.getElementById('pkgTagline')
   const priceStrike = document.getElementById('priceStrike')
+  const priceDeadline = document.getElementById('priceDeadline')
   const priceNow   = document.getElementById('priceNow')
   const ctaWa      = document.getElementById('ctaWa')
   const panelEyebrow = document.getElementById('panelEyebrow')
@@ -881,7 +882,15 @@
     heroEyebrow.textContent = P.eyebrow
     pkgName.textContent = P.name
     pkgTagline.textContent = P.tagline
-    priceStrike.textContent = P.strike
+    // Solo el paquete Celestial se muestra "en promoción" (precio tachado + leyenda)
+    if (P.strike) {
+      priceStrike.textContent = P.strike
+      priceStrike.hidden = false
+      priceDeadline.hidden = false
+    } else {
+      priceStrike.hidden = true
+      priceDeadline.hidden = true
+    }
     priceNow.innerHTML = P.price + '<span class="mxn">MXN</span>'
     ctaWa.href = P.wa
     panelEyebrow.textContent = P.panelEyebrow
