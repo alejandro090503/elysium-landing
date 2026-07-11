@@ -150,6 +150,60 @@
     box-shadow: 0 4px 18px rgba(109, 91, 176, 0.6), 0 0 20px rgba(228, 196, 140, 0.25);
   }
 
+  /* ────────── Precio junto al switch ────────── */
+  .switch-price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin: 18px auto 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .switch-price.swap {
+    animation: price-swap 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
+  }
+  @keyframes price-swap {
+    0%   { opacity: 0; transform: translateY(8px) scale(0.94); filter: blur(4px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  }
+  .sp-strike {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    text-decoration: line-through;
+    color: var(--smoke);
+    opacity: 0.7;
+    line-height: 1;
+  }
+  .sp-now {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 46px;
+    font-weight: 700;
+    color: var(--espresso);
+    line-height: 1;
+  }
+  .sp-now .sp-mxn {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--smoke);
+    vertical-align: super;
+    margin-left: 3px;
+    letter-spacing: 0.08em;
+  }
+  .sp-note {
+    font-family: 'Inter', sans-serif;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-top: 3px;
+  }
+  body.celestial .sp-note { color: var(--champagne); }
+  @media (prefers-reduced-motion: reduce) {
+    .switch-price.swap { animation: none; }
+  }
+
   .hero {
     position: relative;
     text-align: center;
@@ -773,6 +827,14 @@
       <span class="sym">✦</span>Celestial
     </button>
   </div>
+
+  <!-- Precio compacto junto al switch (crossfade + scale al cambiar) -->
+  <div class="switch-price" id="switchPrice">
+    <span class="sp-strike" id="spStrike" hidden></span>
+    <span class="sp-now" id="spNow">$1,800<span class="sp-mxn">MXN</span></span>
+    <span class="sp-note" id="spNote" hidden>Promo por tiempo limitado</span>
+  </div>
+
   <h2 class="section-title">Panel de invitados en tiempo real</h2>
   <p class="section-sub">Olvídate de la hoja de Excel y de andar persiguiendo confirmaciones una por una.</p>
   <ul class="panel-perks">
@@ -858,6 +920,10 @@
   const ctaWa      = document.getElementById('ctaWa')
   const panelEyebrow = document.getElementById('panelEyebrow')
   const themeColor = document.getElementById('themeColor')
+  const switchPrice = document.getElementById('switchPrice')
+  const spStrike = document.getElementById('spStrike')
+  const spNow    = document.getElementById('spNow')
+  const spNote   = document.getElementById('spNote')
 
   function positionThumb() {
     const btn = pkgSwitch.querySelector(`button[data-pkg="${currentPkg}"]`)
@@ -892,6 +958,23 @@
       priceDeadline.hidden = true
     }
     priceNow.innerHTML = P.price + '<span class="mxn">MXN</span>'
+
+    // Precio compacto junto al switch (crossfade + scale)
+    if (P.strike) {
+      spStrike.textContent = P.strike
+      spStrike.hidden = false
+      spNote.hidden = false
+    } else {
+      spStrike.hidden = true
+      spNote.hidden = true
+    }
+    spNow.innerHTML = P.price + '<span class="sp-mxn">MXN</span>'
+    if (!initial) {
+      switchPrice.classList.remove('swap')
+      void switchPrice.offsetWidth // reinicia la animación
+      switchPrice.classList.add('swap')
+    }
+
     ctaWa.href = P.wa
     panelEyebrow.textContent = P.panelEyebrow
     if (themeColor) themeColor.setAttribute('content', P.theme)
