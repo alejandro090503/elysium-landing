@@ -902,12 +902,6 @@
   <div class="brand">Elysium</div>
   <div class="package-name"><span class="ornament" id="orn1">◆</span><span id="pkgName">Eterna</span><span class="ornament" id="orn2">◆</span></div>
   <div class="tagline" id="pkgTagline">Invitación digital + Panel de gestión de invitados</div>
-  <div class="price-block">
-    <div class="price-label">Inversión total</div>
-    <span class="price-strike" id="priceStrike" hidden></span>
-    <div><span class="price-now" id="priceNow">$1,800<span class="mxn">MXN</span></span></div>
-    <div class="price-deadline" id="priceDeadline" hidden>Precio de promoción por tiempo limitado</div>
-  </div>
 </section>
 
 <section class="testimonios hidden" id="testimonios">
@@ -969,9 +963,6 @@
   const heroEyebrow = document.getElementById('heroEyebrow')
   const pkgName    = document.getElementById('pkgName')
   const pkgTagline = document.getElementById('pkgTagline')
-  const priceStrike = document.getElementById('priceStrike')
-  const priceDeadline = document.getElementById('priceDeadline')
-  const priceNow   = document.getElementById('priceNow')
   const ctaWa      = document.getElementById('ctaWa')
   const panelEyebrow = document.getElementById('panelEyebrow')
   const themeColor = document.getElementById('themeColor')
@@ -1003,17 +994,6 @@
     heroEyebrow.textContent = P.eyebrow
     pkgName.textContent = P.name
     pkgTagline.textContent = P.tagline
-    // Solo el paquete Celestial se muestra "en promoción" (precio tachado + leyenda)
-    if (P.strike) {
-      priceStrike.textContent = P.strike
-      priceStrike.hidden = false
-      priceDeadline.hidden = false
-    } else {
-      priceStrike.hidden = true
-      priceDeadline.hidden = true
-    }
-    priceNow.innerHTML = P.price + '<span class="mxn">MXN</span>'
-
     // Precio compacto junto al switch (crossfade + scale)
     if (P.strike) {
       spStrike.textContent = P.strike
