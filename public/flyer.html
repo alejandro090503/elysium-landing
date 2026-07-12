@@ -1354,32 +1354,79 @@
   }
   setInterval(rotNext, 2600)
 
-  /* ═══════════ OPINIONES (testimonios reales) ═══════════ */
-  ;(async function loadTestimonios(){
-    const SB_URL = 'https://bsjoelxktbvlavfoozhk.supabase.co'
-    const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJzam9lbHhrdGJ2bGF2Zm9vemhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc2NDYwNTIsImV4cCI6MjA5MzIyMjA1Mn0.jZlKZuH-KXlBLl5njadkKPmOemrj9cdm92nVZxBjFHI'
+  /* ═══════════ OPINIONES (carrusel automático, fijas) ═══════════ */
+  ;(function testimonios(){
+    // Opiniones reales de clientes. Para agregar nuevas, sumar objetos aquí.
+    const TESTIMONIOS = [
+      { cliente:'Diana & Darwin', evento:'Boda · Oct 2026', estrellas:5,
+        mensaje:'Mi parte favorita fue cómo abría la invitación, la foto de portada, el disco discreto para pausar o reanudar la música. También me encantó que la galería de fotos fuera giratoria y que pidiera los nombres de los asistentes.' },
+      { cliente:'Alejandra & Paco', evento:'Boda · Nov 2026', estrellas:5,
+        mensaje:'Me encantó el servicio, atienden todas las peticiones y puedes cambiar el diseño las veces que necesites si algo no te llena al 100%. Muy amables. ¡Quedó perfecta mi invitación! Gracias.' },
+      { cliente:'Janette & Edwin', evento:'Boda · Feb 2027', estrellas:5,
+        mensaje:'Estoy muy feliz con mi invitación, el servicio fue excelente y muy cordiales. Apreciamos mucho el tiempo y la dedicación. Gracias por hacer esta invitación inolvidable.' },
+      { cliente:'Azucena & Matthew', evento:'Boda · May 2026', estrellas:5,
+        mensaje:'Me encantó mi tarjeta de bodas. Son sumamente profesionales y me hicieron la invitación justo como la soñé. Excelente trabajo y muy recomendados 100%.' },
+      { cliente:'Olivia', evento:'Cumpleaños · Jun 2026', estrellas:5,
+        mensaje:'Excelente. Magnífica atención, siempre dispuesto a hacer modificaciones desde el inicio hasta la misma fecha del evento. La invitación muy hermosa, todos mis invitados me felicitaron. ¡Muchísimas gracias!' },
+      { cliente:'Paola', evento:'XV Años · Jun 2026', estrellas:5,
+        mensaje:'¡Súper rápido! Todos mis invitados se quedaron maravillados. ¡Gracias por tan bonito trabajo!' },
+      { cliente:'Nelvi & Yessica', evento:'Boda · Jul 2026', estrellas:5,
+        mensaje:'Excelente servicio en todo sentido.' },
+      { cliente:'Andrea', evento:'XV Años · May 2026', estrellas:5,
+        mensaje:'Muy bonita, la realizaron tal y como se las pedí. Muchas gracias.' },
+    ]
     const esc = s => String(s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
     const stars = n => '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5-n)
-    try {
-      const r = await fetch(SB_URL + '/rest/v1/rpc/get_testimonios', {
-        method:'POST',
-        headers:{ apikey:SB_ANON, Authorization:'Bearer '+SB_ANON, 'Content-Type':'application/json' },
-        body:'{}'
+
+    const section = document.getElementById('testimonios')
+    const track = document.getElementById('testiTrack')
+    track.innerHTML = TESTIMONIOS.map(t => `
+      <div class="testi-card">
+        <div class="testi-quote">&ldquo;</div>
+        <div class="testi-stars">${stars(t.estrellas)}</div>
+        <div class="testi-msg">${esc(t.mensaje)}</div>
+        <div class="testi-name">${esc(t.cliente)}</div>
+        ${t.evento ? `<div class="testi-ev">${esc(t.evento)}</div>` : ''}
+      </div>`).join('')
+    section.classList.remove('hidden')
+    document.getElementById('testiHint').textContent = '← Desliza para ver más →'
+
+    // Carrusel automático: avanza una tarjeta cada 4.5s, centrada; hace loop.
+    // Se pausa al tocar/arrastrar y retoma tras 6s de inactividad.
+    if (reduced) return
+    const cards = () => track.children
+    let idx = 0, timer = null, pausedUntil = 0
+
+    function centerOf(card) {
+      return card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2
+    }
+    function advance() {
+      if (Date.now() < pausedUntil) return
+      idx = (idx + 1) % cards().length
+      track.scrollTo({ left: centerOf(cards()[idx]), behavior: 'smooth' })
+    }
+    function start() { if (!timer) timer = setInterval(advance, 4500) }
+    // Al interactuar, pausa el auto-avance un rato y sincroniza el índice.
+    function pause() {
+      pausedUntil = Date.now() + 6000
+      // detecta la tarjeta más cercana al centro para no saltar
+      const c = track.scrollLeft + track.clientWidth / 2
+      let best = 0, bd = Infinity
+      ;[...cards()].forEach((card, i) => {
+        const d = Math.abs(card.offsetLeft + card.offsetWidth / 2 - c)
+        if (d < bd) { bd = d; best = i }
       })
-      const list = await r.json()
-      if (!Array.isArray(list) || !list.length) return   // sin opiniones: sección oculta
-      const track = document.getElementById('testiTrack')
-      track.innerHTML = list.map(t => `
-        <div class="testi-card">
-          <div class="testi-quote">&ldquo;</div>
-          <div class="testi-stars">${stars(t.estrellas||5)}</div>
-          <div class="testi-msg">${esc(t.mensaje)}</div>
-          <div class="testi-name">${esc(t.cliente)}</div>
-          ${t.evento ? `<div class="testi-ev">${esc(t.evento)}</div>` : ''}
-        </div>`).join('')
-      document.getElementById('testimonios').classList.remove('hidden')
-      if (list.length > 1) document.getElementById('testiHint').textContent = '← Desliza para ver más →'
-    } catch(e){ /* silencio: si falla, la sección simplemente no aparece */ }
+      idx = best
+    }
+    track.addEventListener('pointerdown', pause, { passive: true })
+    track.addEventListener('touchstart', pause, { passive: true })
+    track.addEventListener('scroll', () => { pausedUntil = Math.max(pausedUntil, Date.now() + 1500) }, { passive: true })
+
+    // Arranca solo cuando la sección entra en pantalla (ahorra batería).
+    const io = new IntersectionObserver((es) => {
+      es.forEach(e => { if (e.isIntersecting) start(); else if (timer) { clearInterval(timer); timer = null } })
+    }, { threshold: 0.2 })
+    io.observe(section)
   })()
 
   /* ═══════════ GALERÍA 3D ═══════════ */
