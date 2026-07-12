@@ -713,6 +713,74 @@
     text-transform: uppercase;
   }
 
+  /* ────────── Opiniones / testimonios ────────── */
+  .testimonios { padding: 52px 0 8px; text-align: center; }
+  .testimonios.hidden { display: none; }
+  .testi-track {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 24px 22px 10px;
+    scrollbar-width: none;
+  }
+  .testi-track::-webkit-scrollbar { display: none; }
+  .testi-card {
+    flex: 0 0 82%;
+    max-width: 340px;
+    scroll-snap-align: center;
+    background: var(--surface);
+    border: 1px solid rgba(212,175,127,0.45);
+    border-radius: 16px;
+    padding: 24px 22px 22px;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(43,31,20,0.07);
+    position: relative;
+    transition: background var(--t-theme) ease, border-color var(--t-theme) ease, box-shadow var(--t-theme) ease;
+  }
+  body.celestial .testi-card {
+    background: rgba(26,29,58,0.94);
+    border-color: rgba(228,196,140,0.4);
+    box-shadow: 0 10px 34px rgba(0,0,0,0.45), 0 0 20px rgba(228,196,140,0.08);
+  }
+  .testi-quote {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 60px; line-height: 0.6;
+    color: var(--champagne);
+    opacity: 0.5;
+    height: 26px;
+  }
+  .testi-stars {
+    color: var(--champagne);
+    font-size: 17px; letter-spacing: 3px;
+    margin: 6px 0 10px;
+  }
+  .testi-msg {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 19px; font-style: italic; line-height: 1.42;
+    color: var(--espresso);
+    margin-bottom: 14px;
+  }
+  .testi-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--bronze);
+  }
+  body.celestial .testi-name { color: var(--champagne); }
+  .testi-ev {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; letter-spacing: 0.1em;
+    color: var(--smoke); margin-top: 2px;
+  }
+  .testi-hint {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; color: var(--smoke);
+    letter-spacing: 0.14em; text-transform: uppercase;
+    margin-top: 8px;
+  }
+
   .cta-section {
     background: linear-gradient(180deg, var(--espresso), #1a1209);
     color: #FBF8F1;
@@ -860,6 +928,13 @@
     <div><span class="price-now" id="priceNow">$1,800<span class="mxn">MXN</span></span></div>
     <div class="price-deadline" id="priceDeadline" hidden>Precio de promoción por tiempo limitado</div>
   </div>
+</section>
+
+<section class="testimonios hidden" id="testimonios">
+  <div class="section-eyebrow">Opiniones reales</div>
+  <h2 class="section-title">Lo que dicen de Elysium</h2>
+  <div class="testi-track" id="testiTrack"></div>
+  <div class="testi-hint" id="testiHint"></div>
 </section>
 
 <section class="cta-section">
@@ -1278,6 +1353,34 @@
     }, reduced ? 0 : 470)
   }
   setInterval(rotNext, 2600)
+
+  /* ═══════════ OPINIONES (testimonios reales) ═══════════ */
+  ;(async function loadTestimonios(){
+    const SB_URL = 'https://bsjoelxktbvlavfoozhk.supabase.co'
+    const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJzam9lbHhrdGJ2bGF2Zm9vemhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc2NDYwNTIsImV4cCI6MjA5MzIyMjA1Mn0.jZlKZuH-KXlBLl5njadkKPmOemrj9cdm92nVZxBjFHI'
+    const esc = s => String(s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
+    const stars = n => '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5-n)
+    try {
+      const r = await fetch(SB_URL + '/rest/v1/rpc/get_testimonios', {
+        method:'POST',
+        headers:{ apikey:SB_ANON, Authorization:'Bearer '+SB_ANON, 'Content-Type':'application/json' },
+        body:'{}'
+      })
+      const list = await r.json()
+      if (!Array.isArray(list) || !list.length) return   // sin opiniones: sección oculta
+      const track = document.getElementById('testiTrack')
+      track.innerHTML = list.map(t => `
+        <div class="testi-card">
+          <div class="testi-quote">&ldquo;</div>
+          <div class="testi-stars">${stars(t.estrellas||5)}</div>
+          <div class="testi-msg">${esc(t.mensaje)}</div>
+          <div class="testi-name">${esc(t.cliente)}</div>
+          ${t.evento ? `<div class="testi-ev">${esc(t.evento)}</div>` : ''}
+        </div>`).join('')
+      document.getElementById('testimonios').classList.remove('hidden')
+      if (list.length > 1) document.getElementById('testiHint').textContent = '← Desliza para ver más →'
+    } catch(e){ /* silencio: si falla, la sección simplemente no aparece */ }
+  })()
 
   /* ═══════════ GALERÍA 3D ═══════════ */
   ;(async function() {
