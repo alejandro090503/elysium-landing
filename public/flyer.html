@@ -3,39 +3,23 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Elysium · Paquetes Eterna y Celestial · Invitación + Panel de Invitados</title>
-<meta name="description" content="Invitación digital editorial + Panel de invitados. Eterna $1,800 · Celestial $2,750 con mesas, acceso QR y recordatorios. Promo por tiempo limitado." />
-<meta property="og:title" content="Elysium · Paquetes Eterna y Celestial" />
-<meta property="og:description" content="Invitación digital + Panel de gestión de invitados. Eterna $1,800 · Celestial $2,750 MXN. Promo por tiempo limitado." />
+<title>Elysium · Invitaciones Digitales · Precio TikTok</title>
+<meta name="description" content="Invitaciones digitales que enamoran + panel para confirmar asistencia. Precio exclusivo para quienes llegan de TikTok. Entrega en 24-48h." />
+<meta property="og:title" content="Elysium · Invitaciones Digitales · Precio TikTok" />
+<meta property="og:description" content="Diseño único + panel de invitados. Precio exclusivo TikTok. Aparta con $500." />
 <meta property="og:image" content="https://elysium-landing-bice.vercel.app/flyer-og.png" />
 <meta property="og:url" content="https://elysium-landing-bice.vercel.app/flyer.html" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="theme-color" content="#FBF8F1" id="themeColor" />
+<meta name="theme-color" content="#010101" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Infant:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Infant:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --pearl:     #FBF8F1;
-    --ivory:     #EAE0CC;
-    --champagne: #D4AF7F;
-    --bronze:    #9B7B43;
-    --espresso:  #2B1F14;
-    --smoke:     #8B7E66;
-    --whatsapp:  #25D366;
-    --surface:   #ffffff;
-    --t-theme:   0.8s;
-  }
-  /* ────────── GALAXIA (paquete Celestial) ────────── */
-  body.celestial {
-    --pearl:     #0a0c22;
-    --ivory:     #12152e;
-    --champagne: #e4c48c;
-    --bronze:    #cfa45f;
-    --espresso:  #f2ecdd;
-    --smoke:     #a89fc4;
-    --surface:   rgba(23, 26, 52, 0.94);
+    --pearl:#FBF8F1; --ivory:#EAE0CC; --champagne:#D4AF7F;
+    --bronze:#9B7B43; --espresso:#2B1F14; --smoke:#8B7E66; --whatsapp:#25D366;
+    --tt-cyan:#25F4EE; --tt-red:#FE2C55; --tt-black:#0A0A0A;
   }
   html { scroll-behavior: smooth; }
   html, body {
@@ -45,1476 +29,599 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-  body, section, .ribbon, .panel-perks li, .includes li, .filters, .filters button,
-  .price-block, .swipe-hint, .package-name, .tagline, .section-title, .section-sub,
-  .gallery-count, .eyebrow, .price-now, .price-label, .price-strike {
-    transition:
-      background var(--t-theme) ease,
-      background-color var(--t-theme) ease,
-      color var(--t-theme) ease,
-      border-color var(--t-theme) ease,
-      box-shadow var(--t-theme) ease;
-  }
+  body { padding-bottom: 76px; } /* espacio para el CTA fijo */
+  section { padding: 34px 20px; text-align: center; position: relative; }
 
-  /* Nebulosa de fondo — manchas de color espacio profundo */
-  #nebula {
-    position: fixed;
-    inset: -6%;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 1.6s ease;
-    background:
-      radial-gradient(42% 30% at 18% 22%, rgba(109, 91, 176, 0.34), transparent 70%),
-      radial-gradient(50% 36% at 85% 12%, rgba(64, 52, 130, 0.30), transparent 70%),
-      radial-gradient(46% 34% at 70% 78%, rgba(150, 110, 200, 0.18), transparent 70%),
-      radial-gradient(38% 28% at 25% 85%, rgba(228, 196, 140, 0.08), transparent 70%);
+  /* ───────── LOGO TIKTOK (glitch cyan/rojo) ───────── */
+  .tt-logo {
+    display: inline-block; vertical-align: middle;
+    color: #fff;
+    filter: drop-shadow(-1.4px 0 var(--tt-cyan)) drop-shadow(1.4px 0 var(--tt-red));
   }
-  body.celestial #nebula {
-    opacity: 1;
-    animation: nebula-drift 26s ease-in-out infinite alternate;
+  .tt-logo.dark { color: #111; }
+  @keyframes tt-glitch {
+    0%, 92%, 100% { filter: drop-shadow(-1.4px 0 var(--tt-cyan)) drop-shadow(1.4px 0 var(--tt-red)); transform: translateX(0); }
+    94% { filter: drop-shadow(-3px 0 var(--tt-cyan)) drop-shadow(3px 0 var(--tt-red)); transform: translateX(1px); }
+    96% { filter: drop-shadow(2.5px 0 var(--tt-cyan)) drop-shadow(-2.5px 0 var(--tt-red)); transform: translateX(-1px); }
   }
-  @keyframes nebula-drift {
-    from { transform: scale(1) translateY(0); }
-    to   { transform: scale(1.1) translateY(-16px); }
-  }
+  .tt-glitch { animation: tt-glitch 4s steps(1) infinite; }
 
-  /* Canvas estelar — solo visible en modo celestial */
-  #galaxy {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 1.2s ease;
+  /* ───────── BARRA SUPERIOR TIKTOK (sticky) ───────── */
+  .tt-bar {
+    position: sticky; top: 0; z-index: 60;
+    background: var(--tt-black);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center; gap: 9px;
+    padding: 9px 14px;
+    font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid rgba(37,244,238,0.35);
   }
-  body.celestial #galaxy { opacity: 1; }
+  .tt-bar .tt-logo { width: 17px; height: 17px; }
+  .tt-bar b { color: var(--tt-cyan); }
+  .tt-bar .pin { color: var(--tt-red); }
 
-  section { position: relative; z-index: 1; }
-
-  /* ────────── SWITCH DE PAQUETE (centrado, en la sección del panel) ────────── */
-  .pkg-switch {
-    position: relative;
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    margin: 0 auto 20px;
-    background: rgba(251, 248, 241, 0.92);
-    border: 1px solid rgba(212, 175, 127, 0.6);
-    border-radius: 999px;
-    padding: 4px;
-    box-shadow: 0 8px 26px rgba(43, 31, 20, 0.15);
-    transition: background var(--t-theme) ease, border-color var(--t-theme) ease, box-shadow var(--t-theme) ease;
-  }
-  body.celestial .pkg-switch {
-    background: rgba(10, 12, 34, 0.85);
-    border-color: rgba(228, 196, 140, 0.5);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 24px rgba(228, 196, 140, 0.18);
-  }
-  .pkg-switch button {
-    position: relative;
-    z-index: 2;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    min-height: 48px;
-    padding: 10px 22px;
-    border-radius: 999px;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--smoke);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: color 0.35s ease;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .pkg-switch button .sym { font-size: 15px; line-height: 1; }
-  .pkg-switch button.on { color: #fff; }
-  .pkg-switch .thumb {
-    position: absolute;
-    z-index: 1;
-    top: 4px;
-    left: 0;
-    height: calc(100% - 8px);
-    border-radius: 999px;
-    background: linear-gradient(135deg, var(--champagne), var(--bronze));
-    box-shadow: 0 4px 14px rgba(155, 123, 67, 0.45);
-    transition: transform 0.45s cubic-bezier(0.34, 1.4, 0.4, 1), width 0.45s cubic-bezier(0.34, 1.4, 0.4, 1), background var(--t-theme) ease;
-  }
-  body.celestial .pkg-switch .thumb {
-    background: linear-gradient(135deg, #6d5bb0, #3b2f73);
-    box-shadow: 0 4px 18px rgba(109, 91, 176, 0.6), 0 0 20px rgba(228, 196, 140, 0.25);
-  }
-
-  /* ────────── Precio junto al switch ────────── */
-  .switch-price {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-    margin: 18px auto 4px;
-    font-variant-numeric: tabular-nums;
-  }
-  .switch-price.swap {
-    animation: price-swap 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
-  }
-  @keyframes price-swap {
-    0%   { opacity: 0; transform: translateY(8px) scale(0.94); filter: blur(4px); }
-    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-  }
-  .sp-strike {
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    text-decoration: line-through;
-    color: var(--smoke);
-    opacity: 0.7;
-    line-height: 1;
-  }
-  .sp-now {
-    font-family: 'Cormorant Infant', serif;
-    font-size: 46px;
-    font-weight: 700;
-    color: var(--espresso);
-    line-height: 1;
-  }
-  .sp-now .sp-mxn {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--smoke);
-    vertical-align: super;
-    margin-left: 3px;
-    letter-spacing: 0.08em;
-  }
-  .sp-note {
-    font-family: 'Inter', sans-serif;
-    font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--bronze);
-    margin-top: 3px;
-  }
-  body.celestial .sp-note { color: var(--champagne); }
-  @media (prefers-reduced-motion: reduce) {
-    .switch-price.swap { animation: none; }
-  }
-
+  /* ───────── HERO ───────── */
   .hero {
-    position: relative;
-    text-align: center;
-    padding: 56px 22px 40px;
     background:
-      radial-gradient(circle at 50% 0%, rgba(212, 175, 127, 0.32), transparent 55%),
-      linear-gradient(180deg, var(--ivory) 0%, var(--pearl) 70%);
+      radial-gradient(circle at 50% -6%, rgba(212,175,127,0.32), transparent 55%),
+      linear-gradient(180deg, var(--ivory) 0%, var(--pearl) 72%);
+    padding: 30px 20px 34px;
     overflow: hidden;
   }
-  body.celestial .hero {
-    background:
-      radial-gradient(circle at 20% 10%, rgba(109, 91, 176, 0.28), transparent 50%),
-      radial-gradient(circle at 85% 70%, rgba(228, 196, 140, 0.10), transparent 55%),
-      transparent;
+  .tt-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--tt-black); color: #fff;
+    padding: 7px 15px 7px 12px; border-radius: 999px;
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    margin-bottom: 16px;
   }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -120px; left: 50%;
-    transform: translateX(-50%);
-    width: 600px; height: 200px;
-    background: radial-gradient(ellipse, rgba(155, 123, 67, 0.22), transparent 70%);
-    filter: blur(40px);
-    pointer-events: none;
-  }
-  .eyebrow {
-    display: inline-block;
-    padding: 6px 16px;
-    border: 1px solid var(--champagne);
-    border-radius: 999px;
-    color: var(--bronze);
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.34em;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-  }
-  body.celestial .eyebrow { color: var(--champagne); }
+  .tt-badge .tt-logo { width: 15px; height: 15px; }
   .brand {
-    font-family: 'Great Vibes', cursive;
-    font-size: 88px;
-    line-height: 1.15;
-    padding-top: 18px;
+    font-family: 'Great Vibes', cursive; font-size: 72px; line-height: 1.05;
+    padding-top: 10px;
     background: linear-gradient(135deg, var(--champagne), var(--bronze) 50%, var(--espresso));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin-bottom: 4px;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  body.celestial .brand {
-    background: linear-gradient(135deg, #fff6e0, var(--champagne) 45%, #8f7bc9);
-    -webkit-background-clip: text;
-    background-clip: text;
+  .hook {
+    font-family: 'Cormorant Infant', serif; font-size: 30px; font-weight: 600;
+    line-height: 1.14; margin: 4px auto 8px; max-width: 340px;
   }
-  .package-name {
-    font-family: 'Cormorant Infant', serif;
-    font-size: 38px;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--espresso);
-    margin: 8px 0 6px;
-  }
-  .package-name .ornament {
-    color: var(--champagne);
-    margin: 0 14px;
-    font-size: 24px;
-    vertical-align: middle;
-    display: inline-block;
-  }
-  body.celestial .package-name .ornament { animation: twinkle 2.4s ease-in-out infinite; }
-  .tagline {
-    font-style: italic;
-    color: var(--smoke);
-    font-size: 18px;
-    margin-bottom: 26px;
-  }
-  .price-block {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--surface) 0%, var(--pearl) 100%);
-    border: 1.5px solid var(--champagne);
-    border-radius: 22px;
-    padding: 22px 30px 18px;
-    box-shadow: 0 10px 30px rgba(43, 31, 20, 0.10);
-    animation: float-soft 6s ease-in-out infinite;
-  }
-  body.celestial .price-block {
-    background: linear-gradient(150deg, rgba(32, 35, 68, 0.96), rgba(59, 47, 115, 0.92));
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45), 0 0 32px rgba(228, 196, 140, 0.16);
-  }
-  @keyframes float-soft {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-6px); }
-  }
-  .price-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--smoke);
-    margin-bottom: 6px;
-  }
-  .price-strike {
-    font-family: 'Inter', sans-serif;
-    font-size: 18px;
-    text-decoration: line-through;
-    color: var(--smoke);
-    opacity: 0.7;
-    display: block;
-  }
-  .price-now {
-    font-family: 'Cormorant Infant', serif;
-    font-size: 64px;
-    font-weight: 700;
-    color: var(--espresso);
-    line-height: 1;
-    display: inline-block;
-  }
-  .price-now .mxn {
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--smoke);
-    vertical-align: top;
-    margin-left: 4px;
-    letter-spacing: 0.1em;
-  }
-  .price-deadline {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    color: var(--bronze);
-    margin-top: 8px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-  body.celestial .price-deadline { color: var(--champagne); }
-
-  section {
-    padding: 56px 22px;
-    text-align: center;
-  }
-  .section-eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.34em;
-    text-transform: uppercase;
-    color: var(--bronze);
-    margin-bottom: 12px;
-  }
-  body.celestial .section-eyebrow { color: var(--champagne); }
-  .section-title {
-    font-family: 'Cormorant Infant', serif;
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 1.1;
-    margin-bottom: 14px;
-  }
-  .section-sub {
-    color: var(--smoke);
-    font-size: 17px;
-    max-width: 520px;
-    margin: 0 auto 36px;
-    font-style: italic;
+  .hook b { color: var(--bronze); font-style: italic; }
+  .hero-sub {
+    font-size: 16.5px; color: var(--smoke); font-style: italic;
+    max-width: 320px; margin: 0 auto 20px;
   }
 
-  .panel-section {
-    background: linear-gradient(180deg, var(--pearl), var(--surface));
-    border-top: 1px solid rgba(212, 175, 127, 0.4);
-    border-bottom: 1px solid rgba(212, 175, 127, 0.4);
+  /* ───────── DESCUENTO FLASHY ───────── */
+  .deal {
+    display: inline-block; position: relative;
+    background: var(--tt-black); color: #fff;
+    border-radius: 20px; padding: 18px 30px 16px;
+    box-shadow: 0 14px 34px rgba(0,0,0,0.30), 0 0 0 1px rgba(37,244,238,0.25) inset;
+    overflow: hidden;
   }
-  body.celestial .panel-section {
-    background: linear-gradient(180deg, transparent, rgba(109, 91, 176, 0.08));
-    border-color: rgba(228, 196, 140, 0.25);
+  .deal::after { /* shimmer que barre */
+    content: ''; position: absolute; top: 0; left: -60%;
+    width: 45%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,0.22), transparent);
+    transform: skewX(-18deg);
+    animation: shimmer 3.4s ease-in-out infinite;
   }
-  .panel-perks {
-    display: grid;
-    gap: 14px;
-    max-width: 480px;
-    margin: 24px auto 0;
-    text-align: left;
+  @keyframes shimmer { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+  .deal-label {
+    font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 800;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--tt-cyan); margin-bottom: 4px;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
   }
-  .panel-perks li {
-    list-style: none;
-    background: var(--surface);
-    border: 1px solid rgba(212, 175, 127, 0.4);
-    border-radius: 14px;
-    padding: 14px 16px 14px 46px;
-    position: relative;
-    font-size: 16px;
-    color: var(--espresso);
-    line-height: 1.4;
-    transition: transform 0.3s ease,
-      background var(--t-theme) ease, border-color var(--t-theme) ease, box-shadow 0.4s ease, color var(--t-theme) ease;
+  .deal-label .tt-logo { width: 13px; height: 13px; }
+  .deal-row { display: flex; align-items: baseline; justify-content: center; gap: 12px; }
+  .deal-strike {
+    font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 600;
+    text-decoration: line-through; color: rgba(255,255,255,0.5);
   }
-  .panel-perks li:active { transform: scale(0.98); }
-  @media (hover: hover) {
-    .panel-perks li:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 24px rgba(43, 31, 20, 0.12);
-    }
-    body.celestial .panel-perks li:hover {
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 18px rgba(228, 196, 140, 0.22);
-    }
+  .deal-now {
+    font-family: 'Cormorant Infant', serif; font-weight: 700; font-size: 58px;
+    line-height: 1; color: #fff; font-variant-numeric: tabular-nums;
   }
-  .panel-perks li::before {
-    content: '✓';
-    position: absolute;
-    left: 16px; top: 14px;
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    background: var(--champagne);
-    color: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-  }
-  body.celestial .panel-perks li::before { color: #1a1209; }
-  .panel-perks strong {
-    display: block;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--bronze);
-    margin-bottom: 3px;
-  }
-  body.celestial .panel-perks strong { color: var(--champagne); }
-
-  /* Premium perks (Celestial) — visibles bloqueadas en Eterna, encendidas en Celestial */
-  .panel-perks li.premium {
-    border-style: dashed;
-    border-color: rgba(155, 123, 67, 0.35);
-  }
-  .panel-perks li.premium::before { content: '✦'; background: linear-gradient(135deg, #6d5bb0, #3b2f73); }
-  .panel-perks li.premium .pk-badge {
-    position: absolute;
-    top: -9px; right: 12px;
-    font-family: 'Inter', sans-serif;
-    font-size: 8.5px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #6d5bb0, #3b2f73);
-    color: #f2ecdd;
-    box-shadow: 0 3px 10px rgba(61, 47, 115, 0.4);
-  }
-  body:not(.celestial) .panel-perks li.premium {
-    opacity: 0.55;
-    filter: saturate(0.6);
-  }
-  body.celestial .panel-perks li.premium {
-    border-style: solid;
-    border-color: rgba(228, 196, 140, 0.55);
-    background: linear-gradient(150deg, rgba(38, 41, 78, 0.96), rgba(70, 56, 130, 0.94));
-    box-shadow: 0 0 22px rgba(228, 196, 140, 0.14);
+  .deal-now .mxn { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.75); vertical-align: super; margin-left: 3px; }
+  .deal-save {
+    display: inline-block; margin-top: 8px;
+    background: var(--tt-red); color: #fff;
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 800;
+    letter-spacing: 0.06em; padding: 4px 12px; border-radius: 999px;
   }
 
-  /* ────────── "Tu invitación incluye" — tarjeta editorial ────────── */
-  .includes-rotator {
-    padding: 48px 22px 52px;
+  /* ───────── BOTONES CTA ───────── */
+  .cta-tt {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    background: var(--tt-black); color: #fff;
+    font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 800;
+    letter-spacing: 0.02em; text-decoration: none;
+    padding: 16px 30px; border-radius: 999px;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.32), 0 0 0 1.5px rgba(37,244,238,0.4) inset;
+    position: relative; overflow: hidden;
+    animation: breathe 2.4s ease-in-out infinite;
   }
-  .inc-card {
-    position: relative;
-    max-width: 360px;
-    margin: 0 auto;
-    padding: 34px 26px 28px;
-    border: 1px solid rgba(155, 123, 67, 0.45);
-    border-radius: 4px;
-    background: linear-gradient(165deg, var(--surface) 0%, var(--pearl) 100%);
-    box-shadow: 0 14px 40px rgba(43, 31, 20, 0.08);
-    transition: background var(--t-theme) ease, border-color var(--t-theme) ease, box-shadow var(--t-theme) ease;
+  .cta-tt .tt-logo { width: 20px; height: 20px; }
+  .cta-tt::after {
+    content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent);
+    transform: skewX(-18deg); animation: shimmer 3s ease-in-out infinite;
   }
-  /* Marco interior tipo papelería de invitación */
-  .inc-card::before {
-    content: '';
-    position: absolute;
-    inset: 6px;
-    border: 1px solid rgba(212, 175, 127, 0.35);
-    border-radius: 2px;
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); box-shadow: 0 10px 26px rgba(0,0,0,0.32), 0 0 0 1.5px rgba(37,244,238,0.4) inset; }
+    50% { transform: scale(1.035); box-shadow: 0 14px 34px rgba(254,44,85,0.4), 0 0 0 1.5px rgba(37,244,238,0.7) inset; }
+  }
+  .cta-tt:active { transform: scale(0.97); }
+  .hero-cta { margin-top: 22px; }
+  .trust {
+    margin-top: 14px; font-family: 'Inter', sans-serif; font-size: 11.5px;
+    color: var(--smoke); letter-spacing: 0.02em;
+  }
+  .trust .st { color: var(--champagne); letter-spacing: 1px; }
+
+  /* ───────── CTA FIJO ABAJO ───────── */
+  .sticky-cta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, rgba(10,10,10,0), rgba(10,10,10,0.92) 40%);
+    display: flex; justify-content: center;
     pointer-events: none;
-    transition: border-color var(--t-theme) ease;
   }
-  body.celestial .inc-card {
-    background: linear-gradient(165deg, rgba(26, 29, 58, 0.96), rgba(16, 18, 40, 0.94));
-    border-color: rgba(228, 196, 140, 0.5);
-    box-shadow: 0 14px 44px rgba(0, 0, 0, 0.5), 0 0 26px rgba(228, 196, 140, 0.10);
-  }
-  body.celestial .inc-card::before { border-color: rgba(228, 196, 140, 0.22); }
-  .inc-card .section-eyebrow { margin-bottom: 14px; }
-  .inc-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .inc-divider .line {
-    width: 52px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--champagne));
-  }
-  .inc-divider .line:last-child {
-    background: linear-gradient(90deg, var(--champagne), transparent);
-  }
-  .inc-divider .gem {
-    color: var(--champagne);
-    font-size: 11px;
-    animation: twinkle 3s ease-in-out infinite;
-  }
-  .rotator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 74px;
-    padding: 0 6px;
-  }
-  .rot-text {
-    font-family: 'Cormorant Infant', serif;
-    font-style: italic;
-    font-size: 30px;
-    font-weight: 500;
-    line-height: 1.15;
-    text-align: center;
-    color: var(--espresso);
-    opacity: 1;
-    filter: blur(0);
-    transition: opacity 0.45s ease, filter 0.45s ease, color var(--t-theme) ease;
-  }
-  .rot-text.fading {
-    opacity: 0;
-    filter: blur(7px);
-  }
-  .rot-dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 7px;
-    margin-top: 18px;
-  }
-  .rot-dots i {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: rgba(155, 123, 67, 0.28);
-    transition: background 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
-  }
-  body.celestial .rot-dots i { background: rgba(228, 196, 140, 0.22); }
-  .rot-dots i.on {
-    background: var(--champagne);
-    transform: scale(1.5);
-    box-shadow: 0 0 6px rgba(212, 175, 127, 0.6);
-  }
-  @keyframes twinkle {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%      { opacity: 0.45; transform: scale(0.82); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .rot-text { transition: none; }
-    .rot-text.fading { opacity: 1; filter: none; }
-  }
+  .sticky-cta .cta-tt { pointer-events: auto; width: 100%; max-width: 420px; padding: 15px 24px; }
 
-  .gallery-section { padding-bottom: 100px; }
-  .filters {
-    display: inline-flex;
-    background: var(--surface);
-    border: 1px solid rgba(212, 175, 127, 0.5);
-    border-radius: 999px;
-    padding: 4px;
-    margin-bottom: 28px;
-    box-shadow: 0 6px 16px rgba(43, 31, 20, 0.08);
+  /* ───────── TÍTULOS DE SECCIÓN ───────── */
+  .eyebrow {
+    font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 800;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--bronze);
+    margin-bottom: 10px; display: inline-flex; align-items: center; gap: 7px;
   }
-  body.celestial .filters { border-color: rgba(228, 196, 140, 0.35); }
+  .eyebrow .tt-logo { width: 13px; height: 13px; }
+  .s-title {
+    font-family: 'Cormorant Infant', serif; font-size: 32px; font-weight: 600;
+    line-height: 1.1; margin-bottom: 6px;
+  }
+  .s-sub { color: var(--smoke); font-size: 16px; font-style: italic; max-width: 480px; margin: 0 auto 20px; }
+
+  /* ───────── GALERÍA / COVERFLOW ───────── */
+  .filters {
+    display: inline-flex; background: #fff;
+    border: 1px solid rgba(212,175,127,0.5); border-radius: 999px;
+    padding: 4px; margin-bottom: 18px;
+    box-shadow: 0 6px 16px rgba(43,31,20,0.08);
+  }
   .filters button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 9px 18px;
-    min-height: 44px;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--smoke);
-    border-radius: 999px;
-    transition: all 0.25s ease;
+    background: transparent; border: none; cursor: pointer;
+    padding: 9px 16px; min-height: 42px;
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--smoke);
+    border-radius: 999px; transition: all 0.25s ease;
     -webkit-tap-highlight-color: transparent;
   }
-  .filters button.active {
-    background: linear-gradient(135deg, var(--champagne), var(--bronze));
-    color: #fff;
-    box-shadow: 0 6px 14px rgba(155, 123, 67, 0.4);
-  }
-  body.celestial .filters button.active { color: #1a1209; }
-
+  .filters button.active { background: linear-gradient(135deg, var(--champagne), var(--bronze)); color: #fff; }
   .coverflow-wrap {
-    position: relative;
-    width: 100%;
-    height: 540px;
-    perspective: 1400px;
-    overflow: hidden;
-    touch-action: pan-y;
-    user-select: none;
-    -webkit-user-select: none;
+    position: relative; width: 100%; height: 470px;
+    perspective: 1400px; overflow: hidden;
+    touch-action: pan-y; user-select: none; -webkit-user-select: none;
   }
-  .coverflow {
-    position: absolute;
-    top: 0; left: 50%;
-    width: 1px; height: 100%;
-    transform-style: preserve-3d;
-  }
+  .coverflow { position: absolute; top: 0; left: 50%; width: 1px; height: 100%; transform-style: preserve-3d; }
   .card {
-    position: absolute;
-    left: 50%; top: 50%;
-    width: 220px; height: 391px;
-    margin-left: -110px;
-    margin-top: -195px;
-    border-radius: 20px;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: 0 20px 50px rgba(43, 31, 20, 0.35);
-    transition: transform 0.55s cubic-bezier(0.16, 0.84, 0.44, 1), opacity 0.4s, box-shadow var(--t-theme) ease;
-    transform-style: preserve-3d;
-    will-change: transform;
+    position: absolute; left: 50%; top: 50%;
+    width: 200px; height: 356px; margin-left: -100px; margin-top: -178px;
+    border-radius: 18px; overflow: hidden; background: #fff;
+    box-shadow: 0 20px 46px rgba(43,31,20,0.35);
+    transition: transform 0.55s cubic-bezier(0.16,0.84,0.44,1), opacity 0.4s;
+    transform-style: preserve-3d; will-change: transform;
   }
-  body.celestial .card { box-shadow: 0 20px 55px rgba(0, 0, 0, 0.65), 0 0 30px rgba(228, 196, 140, 0.10); }
-  .card img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+  .card img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .card .overlay {
-    position: absolute;
-    inset: auto 0 0 0;
-    padding: 14px 14px 16px;
-    background: linear-gradient(to top, rgba(43, 31, 20, 0.85), transparent);
-    color: #fff;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(10px);
+    position: absolute; inset: auto 0 0 0; padding: 14px 12px 15px;
+    background: linear-gradient(to top, rgba(43,31,20,0.85), transparent);
+    color: #fff; text-align: center; opacity: 0; transform: translateY(10px);
     transition: opacity 0.3s, transform 0.3s;
   }
-  .card.active .overlay {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .card .title {
-    font-family: 'Cormorant Infant', serif;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    margin-bottom: 8px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
-  }
+  .card.active .overlay { opacity: 1; transform: translateY(0); }
+  .card .title { font-family: 'Cormorant Infant', serif; font-size: 17px; font-weight: 600; margin-bottom: 8px; text-shadow: 0 2px 4px rgba(0,0,0,0.4); }
   .card .open-btn {
-    display: inline-block;
-    background: var(--champagne);
-    color: #2B1F14;
-    padding: 10px 18px;
-    border-radius: 999px;
-    text-decoration: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
+    display: inline-block; background: var(--champagne); color: #2B1F14;
+    padding: 9px 16px; border-radius: 999px; text-decoration: none;
+    font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
   }
   .swipe-hint {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 18px;
-    padding: 8px 18px;
-    background: var(--surface);
-    border: 1px solid rgba(212, 175, 127, 0.5);
-    border-radius: 999px;
-    color: var(--bronze);
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    box-shadow: 0 4px 12px rgba(43, 31, 20, 0.08);
+    display: inline-flex; align-items: center; gap: 12px; margin-top: 14px;
+    padding: 7px 16px; background: #fff; border: 1px solid rgba(212,175,127,0.5);
+    border-radius: 999px; color: var(--bronze);
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
   }
-  body.celestial .swipe-hint { color: var(--champagne); border-color: rgba(228, 196, 140, 0.35); }
-  .swipe-hint .hand {
-    display: inline-block;
-    animation: swipe-anim 1.8s ease-in-out infinite;
-    font-size: 14px;
-  }
-  @keyframes swipe-anim {
-    0%, 100% { transform: translateX(-6px); }
-    50%      { transform: translateX(6px); }
-  }
-  .gallery-count {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    color: var(--smoke);
-    margin-top: 18px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
+  .swipe-hint .hand { animation: swipe-anim 1.8s ease-in-out infinite; }
+  @keyframes swipe-anim { 0%,100% { transform: translateX(-5px); } 50% { transform: translateX(5px); } }
+  .gallery-count { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--smoke); margin-top: 14px; letter-spacing: 0.14em; }
 
-  /* ────────── Opiniones estilo Google ────────── */
-  .testimonios { padding: 52px 0 10px; text-align: center; }
+  /* ───────── PAQUETES ───────── */
+  .packages { background: linear-gradient(180deg, var(--pearl), #fff); border-top: 1px solid rgba(212,175,127,0.4); }
+  .pkg-switch {
+    position: relative; display: inline-flex; align-items: center;
+    background: #fff; border: 1px solid rgba(212,175,127,0.6);
+    border-radius: 999px; padding: 4px; margin: 0 auto 18px;
+    box-shadow: 0 8px 22px rgba(43,31,20,0.10);
+  }
+  .pkg-switch button {
+    position: relative; z-index: 2; border: none; background: transparent;
+    cursor: pointer; min-height: 46px; padding: 10px 22px; border-radius: 999px;
+    font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--smoke);
+    display: inline-flex; align-items: center; gap: 7px; transition: color 0.35s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .pkg-switch button .sym { font-size: 14px; }
+  .pkg-switch button.on { color: #fff; }
+  .pkg-switch .thumb {
+    position: absolute; z-index: 1; top: 4px; left: 0; height: calc(100% - 8px);
+    border-radius: 999px; background: linear-gradient(135deg, var(--champagne), var(--bronze));
+    box-shadow: 0 4px 14px rgba(155,123,67,0.45);
+    transition: transform 0.45s cubic-bezier(0.34,1.4,0.4,1), width 0.45s cubic-bezier(0.34,1.4,0.4,1);
+  }
+  .pkg-deal {
+    display: flex; flex-direction: column; align-items: center; gap: 2px; margin-bottom: 10px;
+  }
+  .pkg-deal .pd-label { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tt-red); display:flex; align-items:center; gap:5px; }
+  .pkg-deal .pd-label .tt-logo { width: 12px; height: 12px; }
+  .pkg-deal .pd-row { display: flex; align-items: baseline; gap: 10px; }
+  .pkg-deal .pd-strike { font-family:'Inter',sans-serif; font-size: 16px; text-decoration: line-through; color: var(--smoke); }
+  .pkg-deal .pd-now { font-family:'Cormorant Infant',serif; font-weight:700; font-size:46px; line-height:1; color: var(--espresso); font-variant-numeric: tabular-nums; }
+  .pkg-deal .pd-now .mxn { font-family:'Inter',sans-serif; font-size:13px; color: var(--smoke); vertical-align: super; margin-left:3px; }
+  .pkg-deal.swap { animation: pkswap 0.5s cubic-bezier(0.16,0.84,0.44,1); }
+  @keyframes pkswap { 0% { opacity:0; transform: translateY(8px) scale(0.94); filter: blur(4px);} 100% { opacity:1; transform:none; filter:none; } }
+  .pkg-tag { font-family:'Cormorant Infant',serif; font-style:italic; font-size:17px; color: var(--smoke); margin-bottom: 18px; }
+  .perks { display: grid; gap: 10px; max-width: 460px; margin: 0 auto 18px; text-align: left; }
+  .perks li {
+    list-style: none; background: #fff; border: 1px solid rgba(212,175,127,0.4);
+    border-radius: 13px; padding: 13px 15px 13px 44px; position: relative;
+    font-size: 15.5px; color: var(--espresso); line-height: 1.35;
+  }
+  .perks li::before {
+    content: '✓'; position: absolute; left: 15px; top: 13px;
+    width: 21px; height: 21px; border-radius: 50%;
+    background: var(--champagne); color: #fff; font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .perks strong { display: block; font-family:'Inter',sans-serif; font-size: 11px; font-weight:700; letter-spacing:0.16em; text-transform: uppercase; color: var(--bronze); margin-bottom: 2px; }
+  .perks li.premium { border-style: dashed; }
+  .perks li.premium::before { content: '✦'; background: linear-gradient(135deg,#6d5bb0,#3b2f73); }
+  .perks li.premium .pk-badge { position:absolute; top:-9px; right:12px; font-family:'Inter',sans-serif; font-size:8.5px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; padding:3px 9px; border-radius:999px; background:linear-gradient(135deg,#6d5bb0,#3b2f73); color:#f2ecdd; }
+  body:not(.show-premium) .perks li.premium { opacity: 0.5; filter: saturate(0.6); }
+
+  /* ───────── OPINIONES (Google, carrusel continuo) ───────── */
   .testimonios.hidden { display: none; }
   .testi-track {
-    display: flex;
-    gap: 14px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 24px 40px 12px;
-    scrollbar-width: none;
-    /* Bordes izquierdo y derecho difuminados */
+    display: flex; gap: 14px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    padding: 22px 40px 12px; scrollbar-width: none;
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
     mask-image: linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
   }
   .testi-track::-webkit-scrollbar { display: none; }
-  .testi-card {
-    flex: 0 0 80%;
-    max-width: 320px;
-    background: #fff;
-    border: 1px solid rgba(0,0,0,0.09);
-    border-radius: 14px;
-    padding: 16px 18px 18px;
-    text-align: left;
-    box-shadow: 0 6px 22px rgba(43,31,20,0.10);
-  }
-  body.celestial .testi-card {
-    box-shadow: 0 8px 28px rgba(0,0,0,0.5);
-  }
+  .testi-card { flex: 0 0 80%; max-width: 320px; background: #fff; border: 1px solid rgba(0,0,0,0.09); border-radius: 14px; padding: 16px 18px 18px; text-align: left; box-shadow: 0 6px 22px rgba(43,31,20,0.10); }
   .g-head { display: flex; align-items: center; gap: 11px; margin-bottom: 10px; }
-  .g-avatar {
-    flex: 0 0 42px; width: 42px; height: 42px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 20px;
-    user-select: none;
-  }
+  .g-avatar { flex: 0 0 42px; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-family:'Inter',sans-serif; font-weight: 500; font-size: 20px; user-select: none; }
   .g-meta { flex: 1; min-width: 0; }
-  .g-name {
-    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14.5px;
-    color: #202124; line-height: 1.2;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  .g-sub { font-family: 'Inter', sans-serif; font-size: 12px; color: #5f6368; margin-top: 1px; }
+  .g-name { font-family:'Inter',sans-serif; font-weight: 600; font-size: 14.5px; color:#202124; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .g-sub { font-family:'Inter',sans-serif; font-size: 12px; color:#5f6368; margin-top:1px; }
   .g-logo { flex: 0 0 20px; width: 20px; height: 20px; }
   .g-stars-row { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; }
-  .g-stars { color: #FBBC04; font-size: 15px; letter-spacing: 1.5px; line-height: 1; }
-  .g-ago { font-family: 'Inter', sans-serif; font-size: 11.5px; color: #5f6368; }
-  .g-msg { font-family: 'Inter', sans-serif; font-size: 13.5px; line-height: 1.5; color: #3c4043; }
+  .g-stars { color:#FBBC04; font-size: 15px; letter-spacing: 1.5px; line-height:1; }
+  .g-msg { font-family:'Inter',sans-serif; font-size: 13.5px; line-height:1.5; color:#3c4043; }
 
-  .cta-section {
-    background: linear-gradient(180deg, var(--espresso), #1a1209);
-    color: #FBF8F1;
-    text-align: center;
-    padding: 64px 22px 90px;
-  }
-  body.celestial .cta-section {
-    background: linear-gradient(180deg, rgba(5, 6, 15, 0.6), #05060f);
-  }
-  .cta-section .section-eyebrow { color: var(--champagne); }
-  .cta-section .section-title { color: #fff; margin-bottom: 18px; }
-  .cta-section .section-sub { color: rgba(251, 248, 241, 0.7); }
-  .cta-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--whatsapp);
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    padding: 16px 30px;
-    border-radius: 999px;
-    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.45);
-    transition: transform 0.2s;
-  }
-  .cta-button:active { transform: scale(0.96); }
-  .cta-button svg { width: 20px; height: 20px; }
-  .footer-mini {
-    margin-top: 32px;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    color: rgba(251, 248, 241, 0.5);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-  .footer-mini a {
-    color: var(--champagne);
-    text-decoration: none;
-  }
-
-  @media (max-width: 380px) {
-    .brand { font-size: 70px; }
-    .package-name { font-size: 30px; }
-    .price-now { font-size: 52px; }
-    .card { width: 200px; height: 356px; margin-left: -100px; margin-top: -178px; }
-    .coverflow-wrap { height: 470px; }
-    .pkg-switch button { padding: 10px 16px; font-size: 11px; }
-  }
+  /* ───────── CTA FINAL ───────── */
+  .final { background: var(--tt-black); color: #fff; padding: 46px 20px 40px; }
+  .final .eyebrow { color: var(--tt-cyan); }
+  .final .s-title { color: #fff; }
+  .final .s-sub { color: rgba(255,255,255,0.72); }
+  .final .foot { margin-top: 22px; font-family:'Inter',sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .final .foot a { color: var(--tt-cyan); text-decoration: none; }
 
   @media (prefers-reduced-motion: reduce) {
-    .price-block, .swipe-hint .hand, .includes li::before,
-    .package-name .ornament, #nebula { animation: none !important; }
+    .cta-tt, .deal::after, .cta-tt::after, .tt-glitch, .swipe-hint .hand { animation: none !important; }
+  }
+  @media (max-width: 360px) {
+    .brand { font-size: 60px; }
+    .deal-now { font-size: 50px; }
+    .card { width: 176px; height: 313px; margin-left: -88px; margin-top: -156px; }
+    .coverflow-wrap { height: 420px; }
   }
 </style>
 </head>
 <body>
 
-<div id="nebula" aria-hidden="true"></div>
-<canvas id="galaxy" aria-hidden="true"></canvas>
+<!-- Barra TikTok -->
+<div class="tt-bar">
+  <svg class="tt-logo tt-glitch" viewBox="0 0 48 48"><path fill="currentColor" d="M33.5 6c.6 3.9 2.9 6.8 6.6 7.4v4.5c-2.4.2-4.7-.5-6.6-1.7v9c0 6-4.3 10.2-10 10.2-5.4 0-9.5-4-9.5-9.1 0-5.5 4.6-9.4 10.5-8.9v4.7c-.9-.3-1.9-.4-2.7-.2-2 .4-3.5 1.9-3.4 4.1.1 2.2 1.9 3.7 4 3.7 2.3 0 4-1.7 4-4.4V6h6.6z"/></svg>
+  <span>OFERTA <b>TIKTOK</b></span>
+  <span class="pin">•</span>
+  <span>Precio exclusivo por venir de TikTok</span>
+</div>
 
-<section class="gallery-section">
-  <div class="section-eyebrow">Portafolio en vivo</div>
-  <h2 class="section-title">Todas nuestras invitaciones</h2>
-  <p class="section-sub">Más de 80 eventos diseñados. Desliza para verlas, toca una para abrirla.</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="tt-badge">
+    <svg class="tt-logo" viewBox="0 0 48 48"><path fill="currentColor" d="M33.5 6c.6 3.9 2.9 6.8 6.6 7.4v4.5c-2.4.2-4.7-.5-6.6-1.7v9c0 6-4.3 10.2-10 10.2-5.4 0-9.5-4-9.5-9.1 0-5.5 4.6-9.4 10.5-8.9v4.7c-.9-.3-1.9-.4-2.7-.2-2 .4-3.5 1.9-3.4 4.1.1 2.2 1.9 3.7 4 3.7 2.3 0 4-1.7 4-4.4V6h6.6z"/></svg>
+    Llegaste desde TikTok
+  </div>
+  <div class="brand">Elysium</div>
+  <h1 class="hook">Invitaciones digitales que <b>enamoran</b> a tus invitados</h1>
+  <p class="hero-sub">Diseño único + panel para confirmar asistencia. Entrega en 24–48 h.</p>
+
+  <div class="deal">
+    <div class="deal-label">
+      <svg class="tt-logo" viewBox="0 0 48 48"><path fill="currentColor" d="M33.5 6c.6 3.9 2.9 6.8 6.6 7.4v4.5c-2.4.2-4.7-.5-6.6-1.7v9c0 6-4.3 10.2-10 10.2-5.4 0-9.5-4-9.5-9.1 0-5.5 4.6-9.4 10.5-8.9v4.7c-.9-.3-1.9-.4-2.7-.2-2 .4-3.5 1.9-3.4 4.1.1 2.2 1.9 3.7 4 3.7 2.3 0 4-1.7 4-4.4V6h6.6z"/></svg>
+      Precio TikTok
+    </div>
+    <div class="deal-row">
+      <span class="deal-strike">$2,200</span>
+      <span class="deal-now">$1,800<span class="mxn">MXN</span></span>
+    </div>
+    <span class="deal-save">Ahorras $400 hoy</span>
+  </div>
+
+  <div class="hero-cta">
+    <a class="cta-tt" href="#comprar" id="heroCta">
+      <svg class="tt-logo" viewBox="0 0 48 48"><path fill="currentColor" d="M33.5 6c.6 3.9 2.9 6.8 6.6 7.4v4.5c-2.4.2-4.7-.5-6.6-1.7v9c0 6-4.3 10.2-10 10.2-5.4 0-9.5-4-9.5-9.1 0-5.5 4.6-9.4 10.5-8.9v4.7c-.9-.3-1.9-.4-2.7-.2-2 .4-3.5 1.9-3.4 4.1.1 2.2 1.9 3.7 4 3.7 2.3 0 4-1.7 4-4.4V6h6.6z"/></svg>
+      Comprar ahora
+    </a>
+  </div>
+  <div class="trust"><span class="st">★★★★★</span> +80 eventos diseñados · Apartas con $500</div>
+</section>
+
+<!-- GALERÍA -->
+<section class="gallery">
+  <div class="eyebrow">Portafolio real</div>
+  <h2 class="s-title">Mira lo que diseñamos</h2>
+  <p class="s-sub">Más de 80 invitaciones reales. Desliza y toca una para abrirla.</p>
 
   <div class="filters" id="filters" role="tablist">
     <button data-filter="boda" class="active" role="tab">Bodas</button>
     <button data-filter="xv" role="tab">XV Años</button>
     <button data-filter="cumple" role="tab">Cumpleaños</button>
   </div>
-
-  <div class="coverflow-wrap" id="coverflowWrap">
-    <div class="coverflow" id="coverflow"></div>
-  </div>
-
-  <div class="swipe-hint">
-    <span class="hand">←</span>
-    Desliza para explorar
-    <span class="hand">→</span>
-  </div>
-
+  <div class="coverflow-wrap" id="coverflowWrap"><div class="coverflow" id="coverflow"></div></div>
+  <div class="swipe-hint"><span class="hand">←</span> Desliza para explorar <span class="hand">→</span></div>
   <div class="gallery-count" id="galleryCount">Cargando…</div>
 </section>
 
-<section class="includes-rotator">
-  <div class="inc-card">
-    <div class="section-eyebrow">Tu invitación incluye</div>
-    <div class="inc-divider">
-      <span class="line"></span>
-      <span class="gem">✦</span>
-      <span class="line"></span>
-    </div>
-    <div class="rotator">
-      <span class="rot-text" id="rotText" aria-live="polite">Eliges tu diseño favorito</span>
-    </div>
-    <div class="rot-dots" id="rotDots" aria-hidden="true"></div>
-  </div>
-</section>
-
-<section class="panel-section">
-  <div class="section-eyebrow" id="panelEyebrow">Lo que más vale del paquete</div>
-  <!-- Switch de paquete -->
+<!-- PAQUETES -->
+<section class="packages" id="comprar">
+  <div class="eyebrow">Elige tu paquete</div>
   <div class="pkg-switch" id="pkgSwitch" role="tablist" aria-label="Elegir paquete">
     <div class="thumb" id="pkgThumb"></div>
-    <button type="button" data-pkg="eterna" class="on" role="tab" aria-selected="true">
-      <span class="sym">◆</span>Eterna
-    </button>
-    <button type="button" data-pkg="celestial" role="tab" aria-selected="false">
-      <span class="sym">✦</span>Celestial
-    </button>
+    <button type="button" data-pkg="eterna" class="on" role="tab" aria-selected="true"><span class="sym">◆</span>Eterna</button>
+    <button type="button" data-pkg="celestial" role="tab" aria-selected="false"><span class="sym">✦</span>Celestial</button>
   </div>
 
-  <!-- Precio compacto junto al switch (crossfade + scale al cambiar) -->
-  <div class="switch-price" id="switchPrice">
-    <span class="sp-strike" id="spStrike" hidden></span>
-    <span class="sp-now" id="spNow">$1,800<span class="sp-mxn">MXN</span></span>
-    <span class="sp-note" id="spNote" hidden>Promo por tiempo limitado</span>
+  <div class="pkg-deal" id="pkgDeal">
+    <span class="pd-label">
+      <svg class="tt-logo" viewBox="0 0 48 48"><path fill="currentColor" d="M33.5 6c.6 3.9 2.9 6.8 6.6 7.4v4.5c-2.4.2-4.7-.5-6.6-1.7v9c0 6-4.3 10.2-10 10.2-5.4 0-9.5-4-9.5-9.1 0-5.5 4.6-9.4 10.5-8.9v4.7c-.9-.3-1.9-.4-2.7-.2-2 .4-3.5 1.9-3.4 4.1.1 2.2 1.9 3.7 4 3.7 2.3 0 4-1.7 4-4.4V6h6.6z"/></svg>
+      Precio TikTok
+    </span>
+    <span class="pd-row"><span class="pd-strike" id="pdStrike">$2,200</span><span class="pd-now" id="pdNow">$1,800<span class="mxn">MXN</span></span></span>
   </div>
+  <div class="pkg-tag" id="pkgTag">Invitación digital + Panel de gestión de invitados</div>
 
-  <h2 class="section-title">Panel de invitados en tiempo real</h2>
-  <p class="section-sub">Olvídate de la hoja de Excel y de andar persiguiendo confirmaciones una por una.</p>
-  <ul class="panel-perks">
-    <li><strong>Tiempo real</strong>Ves quién confirma en el momento que lo hace, desde tu celular o tu compu.</li>
-    <li><strong>Pases por familia</strong>Cada invitado solo puede confirmar los pases que tú le asignaste. Sin sobrecupo.</li>
-    <li><strong>Exportable</strong>Bajas la lista completa lista para tu wedding planner o tu salón.</li>
-    <li><strong>Link personalizado</strong>Mandas un link único por familia con su nombre y pases ya cargados.</li>
-    <li class="premium"><span class="pk-badge">✦ Celestial</span><strong>Asignación de mesas</strong>Acomoda a tus invitados por mesa desde el panel.</li>
-    <li class="premium"><span class="pk-badge">✦ Celestial</span><strong>Control de acceso QR</strong>Cada invitado llega con su pase QR único. Escaneas en la entrada y listo, sin colados.</li>
-    <li class="premium"><span class="pk-badge">✦ Celestial</span><strong>Mensajes de cariño</strong>Quienes no puedan asistir te dejan un mensaje que se guarda en tu panel.</li>
-    <li class="premium"><span class="pk-badge">✦ Celestial</span><strong>Recordatorios inteligentes</strong>Conforme se acerca la fecha, el panel te avisa exactamente quiénes faltan por confirmar.</li>
+  <ul class="perks">
+    <li><strong>Diseñada a tu gusto</strong>Eliges tu favorita del portafolio y la rediseñamos con tu paleta, fecha y todos tus datos.</li>
+    <li><strong>Panel en tiempo real</strong>Tus invitados confirman desde su cel; ves quién viene y cuántos pases usa cada familia.</li>
+    <li><strong>Todo incluido</strong>Sobre animado, música, galería giratoria, cuenta regresiva, mesa de regalos y álbum con QR.</li>
+    <li class="premium"><span class="pk-badge">✦ Celestial</span><strong>Control de acceso QR</strong>Cada invitado llega con su pase QR; escaneas en la entrada, sin colados.</li>
+    <li class="premium"><span class="pk-badge">✦ Celestial</span><strong>Asignación de mesas + alertas</strong>Acomodas por mesa y el panel te avisa quiénes faltan por confirmar.</li>
   </ul>
-</section>
 
-<section class="hero">
-  <div class="eyebrow" id="heroEyebrow">Paquete Eterna</div>
-  <div class="brand">Elysium</div>
-  <div class="package-name"><span class="ornament" id="orn1">◆</span><span id="pkgName">Eterna</span><span class="ornament" id="orn2">◆</span></div>
-  <div class="tagline" id="pkgTagline">Invitación digital + Panel de gestión de invitados</div>
-</section>
-
-<section class="testimonios hidden" id="testimonios">
-  <div class="section-eyebrow">Opiniones reales</div>
-  <h2 class="section-title">Lo que dicen de Elysium</h2>
-  <div class="testi-track" id="testiTrack"></div>
-  <div class="testi-hint" id="testiHint"></div>
-</section>
-
-<section class="cta-section">
-  <div class="section-eyebrow">Apartas tu fecha con $500</div>
-  <h2 class="section-title">¿Lista para diseñar la tuya?</h2>
-  <p class="section-sub">Escríbeme y arrancamos con el formulario. La propuesta personalizada te llega en 24 horas.</p>
-  <a class="cta-button" id="ctaWa" href="https://wa.me/524421235312?text=Hola%20Elysium%2C%20me%20interesa%20el%20paquete%20Eterna%20%241%2C800%20%F0%9F%8C%B7" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-    Escribir por WhatsApp
+  <a class="cta-tt" id="pkgCta" href="#" target="_blank" rel="noopener">
+    <svg class="tt-logo" viewBox="0 0 48 48"><path fill="currentColor" d="M33.5 6c.6 3.9 2.9 6.8 6.6 7.4v4.5c-2.4.2-4.7-.5-6.6-1.7v9c0 6-4.3 10.2-10 10.2-5.4 0-9.5-4-9.5-9.1 0-5.5 4.6-9.4 10.5-8.9v4.7c-.9-.3-1.9-.4-2.7-.2-2 .4-3.5 1.9-3.4 4.1.1 2.2 1.9 3.7 4 3.7 2.3 0 4-1.7 4-4.4V6h6.6z"/></svg>
+    Comprar ahora
   </a>
-  <div class="footer-mini">
-    Elysium Invitaciones · <a href="https://instagram.com/elysium.invitaciones" target="_blank">@elysium.invitaciones</a>
-  </div>
 </section>
+
+<!-- OPINIONES -->
+<section class="testimonios hidden" id="testimonios">
+  <div class="eyebrow">Opiniones reales</div>
+  <h2 class="s-title">Lo que dicen de Elysium</h2>
+  <div class="testi-track" id="testiTrack"></div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="eyebrow">
+    <svg class="tt-logo" viewBox="0 0 48 48"><path fill="currentColor" d="M33.5 6c.6 3.9 2.9 6.8 6.6 7.4v4.5c-2.4.2-4.7-.5-6.6-1.7v9c0 6-4.3 10.2-10 10.2-5.4 0-9.5-4-9.5-9.1 0-5.5 4.6-9.4 10.5-8.9v4.7c-.9-.3-1.9-.4-2.7-.2-2 .4-3.5 1.9-3.4 4.1.1 2.2 1.9 3.7 4 3.7 2.3 0 4-1.7 4-4.4V6h6.6z"/></svg>
+    Solo por TikTok
+  </div>
+  <h2 class="s-title">Aparta tu fecha hoy</h2>
+  <p class="s-sub">Escríbeme, te mando el formulario y tu propuesta llega en 24 h. Apartas con solo $500.</p>
+  <a class="cta-tt" id="finalCta" href="#" target="_blank" rel="noopener">
+    <svg class="tt-logo" viewBox="0 0 48 48"><path fill="currentColor" d="M33.5 6c.6 3.9 2.9 6.8 6.6 7.4v4.5c-2.4.2-4.7-.5-6.6-1.7v9c0 6-4.3 10.2-10 10.2-5.4 0-9.5-4-9.5-9.1 0-5.5 4.6-9.4 10.5-8.9v4.7c-.9-.3-1.9-.4-2.7-.2-2 .4-3.5 1.9-3.4 4.1.1 2.2 1.9 3.7 4 3.7 2.3 0 4-1.7 4-4.4V6h6.6z"/></svg>
+    Comprar ahora por WhatsApp
+  </a>
+  <div class="foot">Elysium Invitaciones · <a href="https://instagram.com/elysium.invitaciones" target="_blank">@elysium.invitaciones</a></div>
+</section>
+
+<!-- CTA FIJO -->
+<div class="sticky-cta">
+  <a class="cta-tt" id="stickyCta" href="#" target="_blank" rel="noopener">
+    <svg class="tt-logo" viewBox="0 0 48 48"><path fill="currentColor" d="M33.5 6c.6 3.9 2.9 6.8 6.6 7.4v4.5c-2.4.2-4.7-.5-6.6-1.7v9c0 6-4.3 10.2-10 10.2-5.4 0-9.5-4-9.5-9.1 0-5.5 4.6-9.4 10.5-8.9v4.7c-.9-.3-1.9-.4-2.7-.2-2 .4-3.5 1.9-3.4 4.1.1 2.2 1.9 3.7 4 3.7 2.3 0 4-1.7 4-4.4V6h6.6z"/></svg>
+    Comprar ahora · Precio TikTok
+  </a>
+</div>
 
 <script>
-(function() {
+(function(){
   'use strict'
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const $ = id => document.getElementById(id)
+  const vibrate = ms => { if (navigator.vibrate) navigator.vibrate(ms) }
+  const WA = '524421235312'
+  const waLink = txt => 'https://wa.me/' + WA + '?text=' + encodeURIComponent(txt)
 
-  function vibrate(ms) {
-    if (navigator.vibrate) navigator.vibrate(ms)
-  }
-
-  /* ═══════════ PAQUETES ═══════════ */
-  const PACKAGES = {
+  /* ─── Paquetes ─── */
+  const PKG = {
     eterna: {
-      name: 'Eterna',
-      eyebrow: 'Paquete Eterna',
-      tagline: 'Invitación digital + Panel de gestión de invitados',
-      strike: '',
-      price: '$1,800',
-      panelEyebrow: 'Lo que más vale del paquete',
-      wa: 'https://wa.me/524421235312?text=' + encodeURIComponent('Hola Elysium, me interesa el paquete Eterna $1,800 🌷'),
-      theme: '#FBF8F1',
+      name:'Eterna', strike:'$2,200', price:'$1,800',
+      tag:'Invitación digital + Panel de gestión de invitados',
+      wa: waLink('Hola! Vengo de TikTok 🎵 y quiero el paquete Eterna a $1,800 (precio TikTok). ¿Me ayudas?'),
     },
     celestial: {
-      name: 'Celestial',
-      eyebrow: 'Paquete Celestial',
-      tagline: 'Invitación digital + Panel completo: mesas, acceso QR y recordatorios',
-      strike: '$3,000',
-      price: '$2,750',
-      panelEyebrow: 'La experiencia completa',
-      wa: 'https://wa.me/524421235312?text=' + encodeURIComponent('Hola Elysium, me interesa el paquete Celestial $2,750 ✨'),
-      theme: '#0a0c22',
+      name:'Celestial', strike:'$3,000', price:'$2,750',
+      tag:'Invitación + Panel completo: mesas, acceso QR y recordatorios',
+      wa: waLink('Hola! Vengo de TikTok 🎵 y quiero el paquete Celestial a $2,750 (precio TikTok). ¿Me ayudas?'),
     },
   }
-  let currentPkg = 'eterna'
+  let cur = 'eterna'
+  const pkgSwitch = $('pkgSwitch'), pkgThumb = $('pkgThumb'), pkgDeal = $('pkgDeal')
 
-  const pkgSwitch  = document.getElementById('pkgSwitch')
-  const pkgThumb   = document.getElementById('pkgThumb')
-  const heroEyebrow = document.getElementById('heroEyebrow')
-  const pkgName    = document.getElementById('pkgName')
-  const pkgTagline = document.getElementById('pkgTagline')
-  const ctaWa      = document.getElementById('ctaWa')
-  const panelEyebrow = document.getElementById('panelEyebrow')
-  const themeColor = document.getElementById('themeColor')
-  const switchPrice = document.getElementById('switchPrice')
-  const spStrike = document.getElementById('spStrike')
-  const spNow    = document.getElementById('spNow')
-  const spNote   = document.getElementById('spNote')
-
-  function positionThumb() {
-    const btn = pkgSwitch.querySelector(`button[data-pkg="${currentPkg}"]`)
-    if (!btn) return
-    pkgThumb.style.width = btn.offsetWidth + 'px'
-    pkgThumb.style.transform = `translateX(${btn.offsetLeft}px)`
+  function positionThumb(){
+    const b = pkgSwitch.querySelector(`button[data-pkg="${cur}"]`)
+    if (!b) return
+    pkgThumb.style.width = b.offsetWidth + 'px'
+    pkgThumb.style.transform = `translateX(${b.offsetLeft}px)`
   }
-
-  function setPackage(pkg, initial) {
-    if (pkg === currentPkg && !initial) return
-    currentPkg = pkg
-    const P = PACKAGES[pkg]
-
-    document.body.classList.toggle('celestial', pkg === 'celestial')
+  function setPkg(pkg, initial){
+    if (pkg === cur && !initial) return
+    cur = pkg
+    const P = PKG[pkg]
+    document.body.classList.toggle('show-premium', pkg === 'celestial')
     pkgSwitch.querySelectorAll('button').forEach(b => {
       const on = b.dataset.pkg === pkg
-      b.classList.toggle('on', on)
-      b.setAttribute('aria-selected', on)
+      b.classList.toggle('on', on); b.setAttribute('aria-selected', on)
     })
     positionThumb()
-
-    heroEyebrow.textContent = P.eyebrow
-    pkgName.textContent = P.name
-    pkgTagline.textContent = P.tagline
-    // Precio compacto junto al switch (crossfade + scale)
-    if (P.strike) {
-      spStrike.textContent = P.strike
-      spStrike.hidden = false
-      spNote.hidden = false
-    } else {
-      spStrike.hidden = true
-      spNote.hidden = true
-    }
-    spNow.innerHTML = P.price + '<span class="sp-mxn">MXN</span>'
-    if (!initial) {
-      switchPrice.classList.remove('swap')
-      void switchPrice.offsetWidth // reinicia la animación
-      switchPrice.classList.add('swap')
-    }
-
-    ctaWa.href = P.wa
-    panelEyebrow.textContent = P.panelEyebrow
-    if (themeColor) themeColor.setAttribute('content', P.theme)
-
-    document.getElementById('orn1').textContent = pkg === 'celestial' ? '✦' : '◆'
-    document.getElementById('orn2').textContent = pkg === 'celestial' ? '✦' : '◆'
-
-    if (!initial) {
+    $('pdStrike').textContent = P.strike
+    $('pdNow').innerHTML = P.price + '<span class="mxn">MXN</span>'
+    $('pkgTag').textContent = P.tag
+    $('pkgCta').href = P.wa
+    pkgSwitch.querySelector(`button[data-pkg="${pkg}"] .sym`)
+    if (!initial){
+      pkgDeal.classList.remove('swap'); void pkgDeal.offsetWidth; pkgDeal.classList.add('swap')
       vibrate(10)
-      if (pkg === 'celestial') {
-        startGalaxy()
-        burstFromSwitch()
-      }
     }
   }
-
-  pkgSwitch.querySelectorAll('button').forEach(btn => {
-    btn.addEventListener('click', () => setPackage(btn.dataset.pkg))
-  })
+  pkgSwitch.querySelectorAll('button').forEach(b => b.addEventListener('click', () => setPkg(b.dataset.pkg)))
   window.addEventListener('resize', positionThumb)
-
-  /* ═══════════ GALAXIA — cielo estrellado HD (núcleos nítidos) ═══════════ */
-  const canvas = document.getElementById('galaxy')
-  const ctx = canvas.getContext('2d')
-  // DPR completo (cap 3) para que las estrellas se vean afiladas en pantallas retina
-  const DPR = Math.min(devicePixelRatio || 1, 3)
-  let W = 0, H = 0
-  let farStars = [], midStars = [], nearStars = []
-  let meteors = [], asteroids = [], bursts = []
-  let rafId = null, nextMeteor = 0, nextAsteroid = 0
-
-  const rand = (a, b) => a + Math.random() * (b - a)
-  const pick = (arr) => arr[Math.floor(Math.random() * arr.length)]
-  // Blanco lunar dominante, con acentos cálidos y fríos ocasionales
-  const STAR_COLORS = [
-    '255,255,255', '255,255,255', '255,255,255', '255,255,255',
-    '255,244,214', '255,236,200',
-    '208,216,255', '224,228,255',
-  ]
-
-  function resizeCanvas() {
-    W = window.innerWidth
-    H = window.innerHeight
-    canvas.width = W * DPR
-    canvas.height = H * DPR
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0)
-  }
-
-  function initStars() {
-    const area = W * H
-    const mk = (n, rMin, rMax, aMin, aMax, tsMin, tsMax, spikes) =>
-      Array.from({ length: n }, () => ({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        r: rand(rMin, rMax),
-        base: rand(aMin, aMax),
-        tw: rand(0, Math.PI * 2),
-        ts: rand(tsMin, tsMax),
-        color: pick(STAR_COLORS),
-        spikes,
-      }))
-    // Cielo fijo (sin deriva): solo pulso de brillo, como un cielo real
-    farStars  = mk(Math.min(230, area / 4200 | 0), 0.3, 0.55, 0.3, 0.6, 0.006, 0.014, false)
-    midStars  = mk(Math.min(70,  area / 12000 | 0), 0.55, 0.95, 0.5, 0.9, 0.008, 0.02, false)
-    nearStars = mk(Math.min(12,  area / 65000 | 0), 0.9, 1.4, 0.7, 1, 0.004, 0.01, true)
-  }
-
-  function drawStar(s) {
-    const a = s.base * (0.6 + 0.4 * Math.sin(s.tw))
-    // Núcleo nítido
-    ctx.globalAlpha = a
-    ctx.fillStyle = `rgb(${s.color})`
-    ctx.beginPath()
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2)
-    ctx.fill()
-    // Halo corto y sutil solo en estrellas medianas/grandes
-    if (s.r >= 0.75) {
-      ctx.globalAlpha = a * 0.12
-      ctx.beginPath()
-      ctx.arc(s.x, s.y, s.r * 2.4, 0, Math.PI * 2)
-      ctx.fill()
-    }
-    // Picos de difracción finos (0.6px) solo en las brillantes
-    if (s.spikes) {
-      const L = s.r * (3.6 + 1.2 * Math.sin(s.tw))
-      ctx.globalAlpha = a * 0.45
-      ctx.strokeStyle = `rgb(${s.color})`
-      ctx.lineWidth = 0.6
-      ctx.beginPath()
-      ctx.moveTo(s.x - L, s.y)
-      ctx.lineTo(s.x + L, s.y)
-      ctx.moveTo(s.x, s.y - L)
-      ctx.lineTo(s.x, s.y + L)
-      ctx.stroke()
-    }
-  }
-
-  function spawnMeteor() {
-    // Zonas variadas: cualquier x, cualquier altura del viewport
-    const dir = Math.random() < 0.5 ? 1 : -1
-    const ang = rand(0.4, 0.95)
-    const speed = rand(10, 16)
-    meteors.push({
-      x: rand(-0.05, 1.05) * W,
-      y: rand(0.02, 0.8) * H,
-      vx: Math.cos(ang) * speed * dir,
-      vy: Math.sin(ang) * speed,
-      len: rand(110, 190),
-      life: 1,
-      decay: rand(0.014, 0.022),
-    })
-  }
-
-  function spawnAsteroid() {
-    const dir = Math.random() < 0.5 ? 1 : -1
-    asteroids.push({
-      x: dir === 1 ? -40 : W + 40,
-      y: rand(0.08, 0.85) * H,
-      vx: rand(1.3, 2.3) * dir,
-      vy: rand(-0.25, 0.45),
-      r: rand(1.1, 1.7),
-      trail: [],
-    })
-  }
-
-  function burstFromSwitch() {
-    if (reduced) return
-    const rect = pkgSwitch.getBoundingClientRect()
-    const cx = rect.left + rect.width / 2
-    const cy = rect.top + rect.height / 2
-    for (let i = 0; i < 36; i++) {
-      const a = Math.random() * Math.PI * 2
-      const sp = Math.random() * 4 + 1.5
-      bursts.push({
-        x: cx, y: cy,
-        vx: Math.cos(a) * sp,
-        vy: Math.sin(a) * sp,
-        life: 1,
-        r: Math.random() * 1.2 + 0.5,
-      })
-    }
-  }
-
-  function frame(t) {
-    ctx.clearRect(0, 0, W, H)
-
-    // Cielo fijo: solo parpadeo, cero desplazamiento
-    for (const s of farStars)  { s.tw += s.ts; drawStar(s) }
-    for (const s of midStars)  { s.tw += s.ts; drawStar(s) }
-    for (const s of nearStars) { s.tw += s.ts; drawStar(s) }
-    ctx.globalAlpha = 1
-
-    // ── Estrellas fugaces: trazo fino de 1px ──
-    if (t > nextMeteor) {
-      spawnMeteor()
-      if (Math.random() < 0.25) spawnMeteor() // a veces caen en pares
-      nextMeteor = t + rand(2400, 5200)
-    }
-    meteors = meteors.filter(m => m.life > 0)
-    for (const m of meteors) {
-      m.x += m.vx
-      m.y += m.vy
-      m.life -= m.decay
-      const mag = Math.hypot(m.vx, m.vy)
-      const nx = m.vx / mag, ny = m.vy / mag
-      const a = Math.min(1, m.life * 1.6)
-      const tail = ctx.createLinearGradient(m.x, m.y, m.x - nx * m.len, m.y - ny * m.len)
-      tail.addColorStop(0, `rgba(255, 255, 255, ${0.9 * a})`)
-      tail.addColorStop(0.35, `rgba(255, 240, 210, ${0.32 * a})`)
-      tail.addColorStop(1, 'rgba(255, 240, 210, 0)')
-      ctx.strokeStyle = tail
-      ctx.lineWidth = 1
-      ctx.lineCap = 'round'
-      ctx.beginPath()
-      ctx.moveTo(m.x, m.y)
-      ctx.lineTo(m.x - nx * m.len, m.y - ny * m.len)
-      ctx.stroke()
-      // Cabeza: punto nítido pequeño
-      ctx.globalAlpha = a
-      ctx.fillStyle = '#ffffff'
-      ctx.beginPath()
-      ctx.arc(m.x, m.y, 1.3, 0, Math.PI * 2)
-      ctx.fill()
-      ctx.globalAlpha = 1
-    }
-
-    // ── Asteroides: brasas lentas con estela fina ──
-    if (t > nextAsteroid) {
-      spawnAsteroid()
-      nextAsteroid = t + rand(9000, 16000)
-    }
-    asteroids = asteroids.filter(a2 => a2.x > -80 && a2.x < W + 80)
-    for (const ast of asteroids) {
-      ast.x += ast.vx
-      ast.y += ast.vy
-      ast.trail.push({ x: ast.x, y: ast.y, life: 1 })
-      if (ast.trail.length > 22) ast.trail.shift()
-      ctx.fillStyle = 'rgb(255, 226, 180)'
-      for (const p of ast.trail) {
-        p.life -= 0.05
-        if (p.life <= 0) continue
-        ctx.globalAlpha = p.life * 0.35
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, 0.8, 0, Math.PI * 2)
-        ctx.fill()
-      }
-      // Núcleo de la brasa: nítido con halo mínimo
-      ctx.globalAlpha = 0.9
-      ctx.beginPath()
-      ctx.arc(ast.x, ast.y, ast.r, 0, Math.PI * 2)
-      ctx.fill()
-      ctx.globalAlpha = 0.16
-      ctx.beginPath()
-      ctx.arc(ast.x, ast.y, ast.r * 2.4, 0, Math.PI * 2)
-      ctx.fill()
-      ctx.globalAlpha = 1
-    }
-
-    // ── Polvo dorado del switch ──
-    bursts = bursts.filter(b => b.life > 0)
-    ctx.fillStyle = 'rgb(240, 214, 158)'
-    for (const b of bursts) {
-      b.x += b.vx
-      b.y += b.vy
-      b.vy += 0.05
-      b.life -= 0.02
-      ctx.globalAlpha = b.life * 0.9
-      ctx.beginPath()
-      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2)
-      ctx.fill()
-    }
-    ctx.globalAlpha = 1
-
-    if (document.body.classList.contains('celestial') || bursts.length || meteors.length) {
-      rafId = requestAnimationFrame(frame)
-    } else {
-      rafId = null
-      ctx.clearRect(0, 0, W, H)
-    }
-  }
-
-  function startGalaxy() {
-    resizeCanvas()
-    if (!farStars.length) initStars()
-    if (reduced) {
-      // Estático: un solo frame, sin animación
-      ctx.clearRect(0, 0, W, H)
-      for (const s of [...farStars, ...midStars, ...nearStars]) drawStar(s)
-      ctx.globalAlpha = 1
-      return
-    }
-    if (!rafId) rafId = requestAnimationFrame(frame)
-  }
-  window.addEventListener('resize', () => {
-    resizeCanvas()
-    initStars()
-    if (document.body.classList.contains('celestial') && reduced) startGalaxy()
-  })
-
-  setPackage('eterna', true)
-  // Reposiciona el thumb cuando cargan las fuentes (cambia el alto de los botones)
+  setPkg('eterna', true)
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(positionThumb)
 
-  /* ═══════════ ROTADOR "Tu invitación incluye" ═══════════ */
-  const INCLUDES = [
-    'Eliges tu diseño favorito',
-    'Sobre animado',
-    'Música personalizada',
-    'Cuenta regresiva',
-    'Carrusel de fotos',
-    'Itinerario del evento',
-    'Ubicaciones con mapa',
-    'Código de vestimenta',
-    'Sección de padres y padrinos',
-    'Mesa de regalos',
-    'Hospedaje recomendado',
-    'Clima del día',
-    'Confirmación de asistencia',
-    'Álbum compartido con QR',
-    'Frase o versículo especial',
-  ]
-  const rotText = document.getElementById('rotText')
-  const rotDots = document.getElementById('rotDots')
-  let rotIdx = 0
-
-  INCLUDES.forEach((_, i) => {
-    const dot = document.createElement('i')
-    if (i === 0) dot.className = 'on'
-    rotDots.appendChild(dot)
+  /* ─── CTAs a WhatsApp (hero, final, sticky) con fuente TikTok ─── */
+  const heroWa = waLink('Hola! Vengo de TikTok 🎵 y quiero mi invitación digital con el precio de descuento. ¿Me ayudas?')
+  $('finalCta').href = heroWa
+  $('stickyCta').href = heroWa
+  // El botón del hero baja a los paquetes (para que elijan) y de ahí compran
+  $('heroCta').addEventListener('click', (e) => {
+    e.preventDefault()
+    document.getElementById('comprar').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' })
   })
-  const dots = rotDots.children
 
-  function rotNext() {
-    rotText.classList.add('fading')
-    setTimeout(() => {
-      dots[rotIdx].className = ''
-      rotIdx = (rotIdx + 1) % INCLUDES.length
-      rotText.textContent = INCLUDES[rotIdx]
-      dots[rotIdx].className = 'on'
-      rotText.classList.remove('fading')
-    }, reduced ? 0 : 470)
-  }
-  setInterval(rotNext, 2600)
-
-  /* ═══════════ OPINIONES (carrusel automático, fijas) ═══════════ */
+  /* ═══════════ OPINIONES (Google, carrusel continuo) ═══════════ */
   ;(function testimonios(){
-    // Opiniones reales de clientes. Para agregar nuevas, sumar objetos aquí.
     const TESTIMONIOS = [
-      { cliente:'Diana & Darwin', evento:'Boda · Oct 2026', estrellas:5,
-        mensaje:'Mi parte favorita fue cómo abría la invitación, la foto de portada, el disco discreto para pausar o reanudar la música. También me encantó que la galería de fotos fuera giratoria y que pidiera los nombres de los asistentes.' },
-      { cliente:'Alejandra & Paco', evento:'Boda · Nov 2026', estrellas:5,
-        mensaje:'Me encantó el servicio, atienden todas las peticiones y puedes cambiar el diseño las veces que necesites si algo no te llena al 100%. Muy amables. ¡Quedó perfecta mi invitación! Gracias.' },
-      { cliente:'Janette & Edwin', evento:'Boda · Feb 2027', estrellas:5,
-        mensaje:'Estoy muy feliz con mi invitación, el servicio fue excelente y muy cordiales. Apreciamos mucho el tiempo y la dedicación. Gracias por hacer esta invitación inolvidable.' },
-      { cliente:'Azucena & Matthew', evento:'Boda · May 2026', estrellas:5,
-        mensaje:'Me encantó mi tarjeta de bodas. Son sumamente profesionales y me hicieron la invitación justo como la soñé. Excelente trabajo y muy recomendados 100%.' },
-      { cliente:'Olivia', evento:'Cumpleaños · Jun 2026', estrellas:5,
-        mensaje:'Excelente. Magnífica atención, siempre dispuesto a hacer modificaciones desde el inicio hasta la misma fecha del evento. La invitación muy hermosa, todos mis invitados me felicitaron. ¡Muchísimas gracias!' },
-      { cliente:'Paola', evento:'XV Años · Jun 2026', estrellas:5,
-        mensaje:'¡Súper rápido! Todos mis invitados se quedaron maravillados. ¡Gracias por tan bonito trabajo!' },
-      { cliente:'Nelvi & Yessica', evento:'Boda · Jul 2026', estrellas:5,
-        mensaje:'Excelente servicio en todo sentido.' },
-      { cliente:'Andrea', evento:'XV Años · May 2026', estrellas:5,
-        mensaje:'Muy bonita, la realizaron tal y como se las pedí. Muchas gracias.' },
+      { cliente:'Diana & Darwin', evento:'Boda · Oct 2026', estrellas:5, mensaje:'Mi parte favorita fue cómo abría la invitación, la foto de portada, el disco discreto para pausar o reanudar la música. También me encantó que la galería de fotos fuera giratoria y que pidiera los nombres de los asistentes.' },
+      { cliente:'Alejandra & Paco', evento:'Boda · Nov 2026', estrellas:5, mensaje:'Me encantó el servicio, atienden todas las peticiones y puedes cambiar el diseño las veces que necesites si algo no te llena al 100%. Muy amables. ¡Quedó perfecta mi invitación! Gracias.' },
+      { cliente:'Janette & Edwin', evento:'Boda · Feb 2027', estrellas:5, mensaje:'Estoy muy feliz con mi invitación, el servicio fue excelente y muy cordiales. Apreciamos mucho el tiempo y la dedicación. Gracias por hacer esta invitación inolvidable.' },
+      { cliente:'Azucena & Matthew', evento:'Boda · May 2026', estrellas:5, mensaje:'Me encantó mi tarjeta de bodas. Son sumamente profesionales y me hicieron la invitación justo como la soñé. Excelente trabajo y muy recomendados 100%.' },
+      { cliente:'Olivia', evento:'Cumpleaños · Jun 2026', estrellas:5, mensaje:'Excelente. Magnífica atención, siempre dispuesto a hacer modificaciones desde el inicio hasta la misma fecha del evento. La invitación muy hermosa, todos mis invitados me felicitaron. ¡Muchísimas gracias!' },
+      { cliente:'Paola', evento:'XV Años · Jun 2026', estrellas:5, mensaje:'¡Súper rápido! Todos mis invitados se quedaron maravillados. ¡Gracias por tan bonito trabajo!' },
+      { cliente:'Nelvi & Yessica', evento:'Boda · Jul 2026', estrellas:5, mensaje:'Excelente servicio en todo sentido.' },
+      { cliente:'Andrea', evento:'XV Años · May 2026', estrellas:5, mensaje:'Muy bonita, la realizaron tal y como se las pedí. Muchas gracias.' },
     ]
     const esc = s => String(s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
     const stars = n => '★'.repeat(n) + '☆'.repeat(5-n)
-    const AV_COLORS = ['#DB4437','#4285F4','#0F9D58','#F4B400','#AB47BC','#00ACC1','#FF7043','#5C6BC0']
-    const G_LOGO = '<svg class="g-logo" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>'
+    const AV = ['#DB4437','#4285F4','#0F9D58','#F4B400','#AB47BC','#00ACC1','#FF7043','#5C6BC0']
+    const G = '<svg class="g-logo" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>'
+    const card = (t,i) => `<div class="testi-card"><div class="g-head"><div class="g-avatar" style="background:${AV[i%AV.length]}">${(t.cliente||'?').trim().charAt(0).toUpperCase()}</div><div class="g-meta"><div class="g-name">${esc(t.cliente)}</div>${t.evento?`<div class="g-sub">${esc(t.evento)}</div>`:''}</div>${G}</div><div class="g-stars-row"><span class="g-stars">${stars(t.estrellas)}</span></div><div class="g-msg">${esc(t.mensaje)}</div></div>`
 
-    function cardHTML(t, i) {
-      const initial = (t.cliente||'?').trim().charAt(0).toUpperCase()
-      const color = AV_COLORS[i % AV_COLORS.length]
-      return `<div class="testi-card">
-        <div class="g-head">
-          <div class="g-avatar" style="background:${color}">${initial}</div>
-          <div class="g-meta">
-            <div class="g-name">${esc(t.cliente)}</div>
-            ${t.evento ? `<div class="g-sub">${esc(t.evento)}</div>` : ''}
-          </div>
-          ${G_LOGO}
-        </div>
-        <div class="g-stars-row"><span class="g-stars">${stars(t.estrellas)}</span></div>
-        <div class="g-msg">${esc(t.mensaje)}</div>
-      </div>`
-    }
-
-    const section = document.getElementById('testimonios')
-    const track = document.getElementById('testiTrack')
-    const hint = document.getElementById('testiHint')
-    if (hint) hint.remove()
-    // Duplicamos las tarjetas para un loop continuo sin cortes.
-    const html = TESTIMONIOS.map(cardHTML).join('')
+    const section = $('testimonios'), track = $('testiTrack')
+    const html = TESTIMONIOS.map(card).join('')
     track.innerHTML = html + html
     section.classList.remove('hidden')
-
     if (reduced) return
     const N = TESTIMONIOS.length
     let loopPoint = 0
     const computeLoop = () => { loopPoint = track.children[N].offsetLeft - track.children[0].offsetLeft }
     computeLoop(); window.addEventListener('resize', computeLoop)
-
-    const SPEED = 0.5   // px por frame ≈ movimiento suave continuo
     let interacting = false, resumeAt = 0, raf = null
-
-    function tick() {
-      if (!interacting && Date.now() >= resumeAt && loopPoint > 0) {
-        track.scrollLeft += SPEED
+    function tick(){
+      if (!interacting && Date.now() >= resumeAt && loopPoint > 0){
+        track.scrollLeft += 0.5
         if (track.scrollLeft >= loopPoint) track.scrollLeft -= loopPoint
       }
       raf = requestAnimationFrame(tick)
     }
-    track.addEventListener('pointerdown', () => { interacting = true }, { passive: true })
-    window.addEventListener('pointerup', () => { interacting = false; resumeAt = Date.now() + 2000 }, { passive: true })
+    track.addEventListener('pointerdown', () => { interacting = true }, { passive:true })
+    window.addEventListener('pointerup', () => { interacting = false; resumeAt = Date.now()+2000 }, { passive:true })
     track.addEventListener('mouseenter', () => { interacting = true })
-    track.addEventListener('mouseleave', () => { interacting = false; resumeAt = Date.now() + 600 })
-    track.addEventListener('touchend', () => { resumeAt = Date.now() + 2500 }, { passive: true })
-
-    const io = new IntersectionObserver((es) => {
-      es.forEach(e => {
-        if (e.isIntersecting) { if (!raf) raf = requestAnimationFrame(tick) }
-        else if (raf) { cancelAnimationFrame(raf); raf = null }
-      })
-    }, { threshold: 0.15 })
+    track.addEventListener('mouseleave', () => { interacting = false; resumeAt = Date.now()+600 })
+    track.addEventListener('touchend', () => { resumeAt = Date.now()+2500 }, { passive:true })
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting){ if(!raf) raf = requestAnimationFrame(tick) }
+      else if (raf){ cancelAnimationFrame(raf); raf = null }
+    }), { threshold: 0.15 })
     io.observe(section)
   })()
 
-  /* ═══════════ GALERÍA 3D ═══════════ */
-  ;(async function() {
+  /* ═══════════ GALERÍA 3D (coverflow) ═══════════ */
+  ;(async function(){
     let catalog = []
-    try {
-      const res = await fetch('/catalog.json?v=' + Date.now())
-      catalog = await res.json()
-    } catch (e) { console.error('catalog load failed', e) }
+    try { catalog = await (await fetch('/catalog.json?v=' + Date.now())).json() }
+    catch(e){ console.error('catalog load failed', e) }
 
-    const coverflow = document.getElementById('coverflow')
-    const filters   = document.getElementById('filters')
-    const countEl   = document.getElementById('galleryCount')
-    const wrap      = document.getElementById('coverflowWrap')
+    const coverflow = $('coverflow'), filters = $('filters'), countEl = $('galleryCount'), wrap = $('coverflowWrap')
+    let currentFilter = 'boda', activeIdx = 0, items = []
 
-    let currentFilter = 'boda'
-    let activeIdx = 0
-    let items = []
-
-    function applyFilter() {
+    function applyFilter(){
       coverflow.innerHTML = ''
       items = catalog.filter(c => c.type === currentFilter)
-      items.forEach((it) => {
+      items.forEach(it => {
         const card = document.createElement('div')
         card.className = 'card'
-        card.innerHTML = `
-          <img src="${it.thumbnail}" alt="${it.title}" loading="lazy" />
-          <div class="overlay">
-            <div class="title">${it.title}</div>
-            <a class="open-btn" href="${it.url}" target="_blank" rel="noopener">Abrir invitación</a>
-          </div>`
+        card.innerHTML = `<img src="${it.thumbnail}" alt="${it.title}" loading="lazy" /><div class="overlay"><div class="title">${it.title}</div><a class="open-btn" href="${it.url}" target="_blank" rel="noopener">Abrir invitación</a></div>`
         coverflow.appendChild(card)
       })
-      activeIdx = 0
-      layout()
+      activeIdx = 0; layout()
     }
-
-    function layout() {
+    function layout(){
       const cards = coverflow.querySelectorAll('.card')
-      cards.forEach((card, i) => {
-        const offset = i - activeIdx
-        const abs = Math.abs(offset)
-        const angle = offset * 32
-        const tx = offset * 130
-        const tz = -abs * 120
-        const opacity = abs > 3 ? 0 : 1 - abs * 0.18
-        card.style.transform = `translate3d(${tx}px, 0, ${tz}px) rotateY(${-angle}deg)`
-        card.style.opacity = opacity
+      cards.forEach((card,i) => {
+        const off = i - activeIdx, abs = Math.abs(off)
+        card.style.transform = `translate3d(${off*130}px,0,${-abs*120}px) rotateY(${-off*32}deg)`
+        card.style.opacity = abs > 3 ? 0 : 1 - abs*0.18
         card.style.zIndex = 100 - abs
-        card.classList.toggle('active', offset === 0)
+        card.classList.toggle('active', off === 0)
       })
-      if (countEl) countEl.textContent = items.length
-        ? `${activeIdx + 1} / ${items.length}`
-        : 'Sin resultados'
+      if (countEl) countEl.textContent = items.length ? `${activeIdx+1} / ${items.length}` : 'Sin resultados'
     }
+    function go(d){ if(!items.length) return; const p = activeIdx; activeIdx = Math.max(0, Math.min(items.length-1, activeIdx+d)); if(activeIdx!==p) vibrate(12); layout() }
 
-    function go(delta) {
-      if (!items.length) return
-      const prev = activeIdx
-      activeIdx = Math.max(0, Math.min(items.length - 1, activeIdx + delta))
-      if (activeIdx !== prev) vibrate(12)
-      layout()
-    }
-
-    filters.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        filters.querySelectorAll('button').forEach(b => b.classList.remove('active'))
-        btn.classList.add('active')
-        currentFilter = btn.dataset.filter
-        applyFilter()
-      })
-    })
-
-    coverflow.addEventListener('click', (e) => {
-      const card = e.target.closest('.card')
-      if (!card) return
-      const cards = [...coverflow.querySelectorAll('.card')]
-      const idx = cards.indexOf(card)
+    filters.querySelectorAll('button').forEach(btn => btn.addEventListener('click', () => {
+      filters.querySelectorAll('button').forEach(b => b.classList.remove('active'))
+      btn.classList.add('active'); currentFilter = btn.dataset.filter; applyFilter()
+    }))
+    coverflow.addEventListener('click', e => {
+      const card = e.target.closest('.card'); if(!card) return
+      const idx = [...coverflow.querySelectorAll('.card')].indexOf(card)
       if (idx === activeIdx) return
-      e.preventDefault()
-      activeIdx = idx
-      layout()
+      e.preventDefault(); activeIdx = idx; layout()
     })
-
-    // Swipe / drag: 1 gesto = 1 tarjeta, siempre.
-    let dragStart = null, dragLast = null, dragLocked = false
-    const SWIPE_THRESHOLD = 30
-
-    function startDrag(x) { dragStart = x; dragLast = x; dragLocked = false }
-    function moveDrag(x) {
-      if (dragStart === null || dragLocked) return
-      dragLast = x
-      const dx = x - dragStart
-      if (Math.abs(dx) >= SWIPE_THRESHOLD) {
-        dragLocked = true
-        go(dx < 0 ? 1 : -1)
-      }
-    }
-    function endDrag() { dragStart = null; dragLocked = false }
-
-    wrap.addEventListener('pointerdown', (e) => {
-      startDrag(e.clientX)
-      try { wrap.setPointerCapture(e.pointerId) } catch {}
-    })
-    wrap.addEventListener('pointermove', (e) => moveDrag(e.clientX))
-    wrap.addEventListener('pointerup', endDrag)
-    wrap.addEventListener('pointercancel', endDrag)
-    wrap.addEventListener('touchstart', (e) => {
-      if (e.touches.length !== 1) return
-      startDrag(e.touches[0].clientX)
-    }, { passive: true })
-    wrap.addEventListener('touchmove', (e) => moveDrag(e.touches[0].clientX), { passive: true })
-    wrap.addEventListener('touchend', endDrag)
-    wrap.addEventListener('touchcancel', endDrag)
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') go(-1)
-      if (e.key === 'ArrowRight') go(1)
-    })
-
+    let ds = null, dlck = false
+    const start = x => { ds = x; dlck = false }
+    const move = x => { if(ds===null||dlck) return; if(Math.abs(x-ds)>=30){ dlck = true; go(x<ds?1:-1) } }
+    const end = () => { ds = null; dlck = false }
+    wrap.addEventListener('pointerdown', e => { start(e.clientX); try{ wrap.setPointerCapture(e.pointerId) }catch{} })
+    wrap.addEventListener('pointermove', e => move(e.clientX))
+    wrap.addEventListener('pointerup', end); wrap.addEventListener('pointercancel', end)
+    wrap.addEventListener('touchstart', e => { if(e.touches.length===1) start(e.touches[0].clientX) }, { passive:true })
+    wrap.addEventListener('touchmove', e => move(e.touches[0].clientX), { passive:true })
+    wrap.addEventListener('touchend', end); wrap.addEventListener('touchcancel', end)
+    document.addEventListener('keydown', e => { if(e.key==='ArrowLeft') go(-1); if(e.key==='ArrowRight') go(1) })
     applyFilter()
   })()
 })()
