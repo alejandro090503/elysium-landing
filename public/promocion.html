@@ -10,7 +10,7 @@
 <meta property="og:image" content="https://elysium-landing-bice.vercel.app/flyer-og.png" />
 <meta property="og:url" content="https://elysium-landing-bice.vercel.app/promocion.html" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="theme-color" content="#2B1F14" />
+<meta name="theme-color" content="#2B1F14" id="themeColor" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Infant:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -19,6 +19,12 @@
   :root {
     --pearl:#FBF8F1; --ivory:#EAE0CC; --champagne:#D4AF7F;
     --bronze:#9B7B43; --espresso:#2B1F14; --smoke:#8B7E66; --whatsapp:#25D366;
+    --t-theme: 0.8s;
+  }
+  /* ───── GALAXIA (paquete Celestial) ───── */
+  body.celestial {
+    --pearl:#0a0c22; --ivory:#12152e; --champagne:#e4c48c;
+    --bronze:#cfa45f; --espresso:#f2ecdd; --smoke:#a89fc4;
   }
   html { scroll-behavior: smooth; }
   html, body {
@@ -27,7 +33,45 @@
     -webkit-font-smoothing: antialiased; overflow-x: hidden;
   }
   body { padding-bottom: 76px; }
-  section { padding: 34px 20px; text-align: center; position: relative; }
+  body, section, .promo-bar, .hero, .deal, .cd-box, .perks li, .pkg-switch,
+  .filters, .packages, .final, .cd-num, .cd-unit, .cd-label {
+    transition: background var(--t-theme) ease, background-color var(--t-theme) ease,
+      color var(--t-theme) ease, border-color var(--t-theme) ease, box-shadow var(--t-theme) ease;
+  }
+  section { padding: 34px 20px; text-align: center; position: relative; z-index: 1; }
+
+  /* Nebulosa + cielo estrellado (solo en Celestial) */
+  #nebula {
+    position: fixed; inset: -6%; z-index: 0; pointer-events: none; opacity: 0;
+    transition: opacity 1.6s ease;
+    background:
+      radial-gradient(42% 30% at 18% 22%, rgba(109,91,176,0.34), transparent 70%),
+      radial-gradient(50% 36% at 85% 12%, rgba(64,52,130,0.30), transparent 70%),
+      radial-gradient(46% 34% at 70% 78%, rgba(150,110,200,0.18), transparent 70%),
+      radial-gradient(38% 28% at 25% 85%, rgba(228,196,140,0.08), transparent 70%);
+  }
+  body.celestial #nebula { opacity: 1; animation: nebula-drift 26s ease-in-out infinite alternate; }
+  @keyframes nebula-drift { from { transform: scale(1) translateY(0); } to { transform: scale(1.1) translateY(-16px); } }
+  #galaxy { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; }
+  body.celestial #galaxy { opacity: 1; }
+
+  /* Superficies en modo galaxia */
+  body.celestial .promo-bar { background: #05060f; }
+  body.celestial .hero {
+    background:
+      radial-gradient(circle at 20% 8%, rgba(109,91,176,0.28), transparent 50%),
+      radial-gradient(circle at 85% 70%, rgba(228,196,140,0.10), transparent 55%), transparent;
+  }
+  body.celestial .brand { background: linear-gradient(135deg,#fff6e0,var(--champagne) 45%,#8f7bc9); -webkit-background-clip:text; background-clip:text; }
+  body.celestial .deal { background: linear-gradient(150deg, rgba(32,35,68,0.96), rgba(59,47,115,0.92)); border-color: rgba(228,196,140,0.5); box-shadow: 0 14px 40px rgba(0,0,0,0.45), 0 0 26px rgba(228,196,140,0.14); }
+  body.celestial .deal-strike { color: rgba(255,255,255,0.5); }
+  body.celestial .cd-box { background: rgba(26,29,58,0.92); border-color: rgba(228,196,140,0.35); box-shadow: 0 6px 18px rgba(0,0,0,0.4); }
+  body.celestial .packages { background: linear-gradient(180deg, transparent, rgba(109,91,176,0.08)); border-color: rgba(228,196,140,0.25); }
+  body.celestial .pkg-switch { background: rgba(10,12,34,0.85); border-color: rgba(228,196,140,0.5); }
+  body.celestial .filters { background: rgba(10,12,34,0.6); border-color: rgba(228,196,140,0.35); }
+  body.celestial .perks li { background: rgba(26,29,58,0.9); border-color: rgba(228,196,140,0.3); }
+  body.celestial .perks li.premium { background: linear-gradient(150deg, rgba(38,41,78,0.96), rgba(70,56,130,0.94)); border-color: rgba(228,196,140,0.55); box-shadow: 0 0 22px rgba(228,196,140,0.12); }
+  body.celestial .final { background: linear-gradient(180deg, rgba(5,6,15,0.55), #05060f); }
 
   /* ───────── BARRA PROMO (sticky) ───────── */
   .promo-bar {
@@ -200,7 +244,7 @@
   .final .foot { margin-top:22px; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(251,248,241,0.5); }
   .final .foot a { color:var(--champagne); text-decoration:none; }
 
-  @media (prefers-reduced-motion: reduce) { .deal::after, .swipe-hint .hand { animation:none !important; } }
+  @media (prefers-reduced-motion: reduce) { .deal::after, .swipe-hint .hand, #nebula { animation:none !important; } }
   @media (max-width: 360px) {
     .brand { font-size:62px; }
     .deal-now { font-size:50px; }
@@ -211,6 +255,9 @@
 </style>
 </head>
 <body>
+
+<div id="nebula" aria-hidden="true"></div>
+<canvas id="galaxy" aria-hidden="true"></canvas>
 
 <!-- Barra promo -->
 <div class="promo-bar">
@@ -317,6 +364,60 @@
   const vibrate = ms => { if (navigator.vibrate) navigator.vibrate(ms) }
   const WA = '524421235312'
   const waLink = txt => 'https://wa.me/' + WA + '?text=' + encodeURIComponent(txt)
+  const themeColor = $('themeColor')
+
+  /* ═══════════ GALAXIA (fondo del paquete Celestial) ═══════════ */
+  const canvas = $('galaxy'), gctx = canvas.getContext('2d')
+  const DPR = Math.min(devicePixelRatio || 1, 3)
+  let GW = 0, GH = 0, farStars = [], midStars = [], nearStars = [], meteors = [], asteroids = [], bursts = [], rafId = null, nextMeteor = 0, nextAsteroid = 0
+  const rnd = (a, b) => a + Math.random() * (b - a)
+  const pk = a => a[Math.floor(Math.random() * a.length)]
+  const SC = ['255,255,255','255,255,255','255,255,255','255,255,255','255,244,214','255,236,200','208,216,255','224,228,255']
+  function gResize(){ GW = innerWidth; GH = innerHeight; canvas.width = GW*DPR; canvas.height = GH*DPR; gctx.setTransform(DPR,0,0,DPR,0,0) }
+  function gInit(){
+    const area = GW*GH
+    const mk = (n,rmn,rmx,amn,amx,tmn,tmx,sp) => Array.from({length:n}, () => ({ x:Math.random()*GW, y:Math.random()*GH, r:rnd(rmn,rmx), base:rnd(amn,amx), tw:rnd(0,Math.PI*2), ts:rnd(tmn,tmx), color:pk(SC), spikes:sp }))
+    farStars = mk(Math.min(230, area/4200|0), 0.3,0.55, 0.3,0.6, 0.006,0.014, false)
+    midStars = mk(Math.min(70, area/12000|0), 0.55,0.95, 0.5,0.9, 0.008,0.02, false)
+    nearStars = mk(Math.min(12, area/65000|0), 0.9,1.4, 0.7,1, 0.004,0.01, true)
+  }
+  function gStar(s){
+    const a = s.base * (0.6 + 0.4*Math.sin(s.tw))
+    gctx.globalAlpha = a; gctx.fillStyle = `rgb(${s.color})`
+    gctx.beginPath(); gctx.arc(s.x, s.y, s.r, 0, Math.PI*2); gctx.fill()
+    if (s.r >= 0.75){ gctx.globalAlpha = a*0.12; gctx.beginPath(); gctx.arc(s.x, s.y, s.r*2.4, 0, Math.PI*2); gctx.fill() }
+    if (s.spikes){ const L = s.r*(3.6+1.2*Math.sin(s.tw)); gctx.globalAlpha = a*0.45; gctx.strokeStyle = `rgb(${s.color})`; gctx.lineWidth = 0.6; gctx.beginPath(); gctx.moveTo(s.x-L,s.y); gctx.lineTo(s.x+L,s.y); gctx.moveTo(s.x,s.y-L); gctx.lineTo(s.x,s.y+L); gctx.stroke() }
+  }
+  function gMeteor(){ const dir = Math.random()<0.5?1:-1, ang = rnd(0.4,0.95), sp = rnd(10,16); meteors.push({ x:rnd(-0.05,1.05)*GW, y:rnd(0.02,0.8)*GH, vx:Math.cos(ang)*sp*dir, vy:Math.sin(ang)*sp, len:rnd(110,190), life:1, decay:rnd(0.014,0.022) }) }
+  function gAsteroid(){ const dir = Math.random()<0.5?1:-1; asteroids.push({ x:dir===1?-40:GW+40, y:rnd(0.08,0.85)*GH, vx:rnd(1.3,2.3)*dir, vy:rnd(-0.25,0.45), r:rnd(1.1,1.7), trail:[] }) }
+  function gBurst(){
+    if (reduced) return
+    const rect = pkgSwitch.getBoundingClientRect(), cx = rect.left+rect.width/2, cy = rect.top+rect.height/2
+    for (let i=0;i<36;i++){ const a = Math.random()*Math.PI*2, sp = Math.random()*4+1.5; bursts.push({ x:cx, y:cy, vx:Math.cos(a)*sp, vy:Math.sin(a)*sp, life:1, r:Math.random()*1.2+0.5 }) }
+  }
+  function gFrame(t){
+    gctx.clearRect(0,0,GW,GH)
+    for (const s of farStars){ s.tw += s.ts; gStar(s) }
+    for (const s of midStars){ s.tw += s.ts; gStar(s) }
+    for (const s of nearStars){ s.tw += s.ts; gStar(s) }
+    gctx.globalAlpha = 1
+    if (t > nextMeteor){ gMeteor(); if (Math.random()<0.25) gMeteor(); nextMeteor = t + rnd(2400,5200) }
+    meteors = meteors.filter(m => m.life>0)
+    for (const m of meteors){ m.x+=m.vx; m.y+=m.vy; m.life-=m.decay; const mag=Math.hypot(m.vx,m.vy), nx=m.vx/mag, ny=m.vy/mag, a=Math.min(1,m.life*1.6); const g=gctx.createLinearGradient(m.x,m.y,m.x-nx*m.len,m.y-ny*m.len); g.addColorStop(0,`rgba(255,255,255,${0.9*a})`); g.addColorStop(0.35,`rgba(255,240,210,${0.32*a})`); g.addColorStop(1,'rgba(255,240,210,0)'); gctx.strokeStyle=g; gctx.lineWidth=1; gctx.lineCap='round'; gctx.beginPath(); gctx.moveTo(m.x,m.y); gctx.lineTo(m.x-nx*m.len,m.y-ny*m.len); gctx.stroke(); gctx.globalAlpha=a; gctx.fillStyle='#fff'; gctx.beginPath(); gctx.arc(m.x,m.y,1.3,0,Math.PI*2); gctx.fill(); gctx.globalAlpha=1 }
+    if (t > nextAsteroid){ gAsteroid(); nextAsteroid = t + rnd(9000,16000) }
+    asteroids = asteroids.filter(a2 => a2.x>-80 && a2.x<GW+80)
+    for (const ast of asteroids){ ast.x+=ast.vx; ast.y+=ast.vy; ast.trail.push({x:ast.x,y:ast.y,life:1}); if(ast.trail.length>22) ast.trail.shift(); gctx.fillStyle='rgb(255,226,180)'; for (const p of ast.trail){ p.life-=0.05; if(p.life<=0) continue; gctx.globalAlpha=p.life*0.35; gctx.beginPath(); gctx.arc(p.x,p.y,0.8,0,Math.PI*2); gctx.fill() } gctx.globalAlpha=0.9; gctx.beginPath(); gctx.arc(ast.x,ast.y,ast.r,0,Math.PI*2); gctx.fill(); gctx.globalAlpha=0.16; gctx.beginPath(); gctx.arc(ast.x,ast.y,ast.r*2.4,0,Math.PI*2); gctx.fill(); gctx.globalAlpha=1 }
+    bursts = bursts.filter(b => b.life>0); gctx.fillStyle='rgb(240,214,158)'
+    for (const b of bursts){ b.x+=b.vx; b.y+=b.vy; b.vy+=0.05; b.life-=0.02; gctx.globalAlpha=b.life*0.9; gctx.beginPath(); gctx.arc(b.x,b.y,b.r,0,Math.PI*2); gctx.fill() }
+    gctx.globalAlpha = 1
+    if (document.body.classList.contains('celestial') || bursts.length || meteors.length){ rafId = requestAnimationFrame(gFrame) } else { rafId = null; gctx.clearRect(0,0,GW,GH) }
+  }
+  function startGalaxy(){
+    gResize(); if (!farStars.length) gInit()
+    if (reduced){ gctx.clearRect(0,0,GW,GH); for (const s of [...farStars,...midStars,...nearStars]) gStar(s); gctx.globalAlpha=1; return }
+    if (!rafId) rafId = requestAnimationFrame(gFrame)
+  }
+  window.addEventListener('resize', () => { gResize(); gInit(); if (document.body.classList.contains('celestial') && reduced) startGalaxy() })
 
   /* ─── Cuenta regresiva al 25 de julio 2026 (hora México) ─── */
   const DEADLINE = new Date('2026-07-25T23:59:59-06:00').getTime()
@@ -334,9 +435,9 @@
 
   /* ─── Paquetes ─── */
   const PKG = {
-    eterna: { name:'Eterna', strike:'$2,200', price:'$1,800', tag:'Invitación digital + Panel de gestión de invitados',
+    eterna: { name:'Eterna', strike:'$2,200', price:'$1,800', tag:'Invitación digital + Panel de gestión de invitados', theme:'#2B1F14',
       wa: waLink('Hola! Vi su promoción y quiero el paquete Eterna a $1,800. ¿Me ayudas?') },
-    celestial: { name:'Celestial', strike:'$3,000', price:'$2,750', tag:'Invitación + Panel completo: mesas, acceso QR y recordatorios',
+    celestial: { name:'Celestial', strike:'$3,000', price:'$2,750', tag:'Invitación + Panel completo: mesas, acceso QR y recordatorios', theme:'#05060f',
       wa: waLink('Hola! Vi su promoción y quiero el paquete Celestial a $2,750. ¿Me ayudas?') },
   }
   let cur = 'eterna'
@@ -346,13 +447,18 @@
     if (pkg === cur && !initial) return
     cur = pkg; const P = PKG[pkg]
     document.body.classList.toggle('show-premium', pkg === 'celestial')
+    document.body.classList.toggle('celestial', pkg === 'celestial')
     pkgSwitch.querySelectorAll('button').forEach(b => { const on = b.dataset.pkg===pkg; b.classList.toggle('on', on); b.setAttribute('aria-selected', on) })
     positionThumb()
     $('pdStrike').textContent = P.strike
     $('pdNow').innerHTML = P.price + '<span class="mxn">MXN</span>'
     $('pkgTag').textContent = P.tag
     $('pkgCta').href = P.wa
-    if (!initial){ pkgDeal.classList.remove('swap'); void pkgDeal.offsetWidth; pkgDeal.classList.add('swap'); vibrate(10) }
+    if (themeColor) themeColor.setAttribute('content', P.theme)
+    if (!initial){
+      pkgDeal.classList.remove('swap'); void pkgDeal.offsetWidth; pkgDeal.classList.add('swap'); vibrate(10)
+      if (pkg === 'celestial'){ startGalaxy(); gBurst() }
+    }
   }
   pkgSwitch.querySelectorAll('button').forEach(b => b.addEventListener('click', () => setPkg(b.dataset.pkg)))
   window.addEventListener('resize', positionThumb)
