@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Elysium · Invitaciones Digitales · Promoción</title>
+<meta name="description" content="Invitaciones digitales que enamoran + panel para confirmar asistencia. Promoción especial hasta el 25 de julio 2026. Entrega en 24-48h." />
+<meta property="og:title" content="Elysium · Invitaciones Digitales · Promoción" />
+<meta property="og:description" content="Diseño único + panel de invitados. Promoción hasta el 25 de julio 2026. Aparta con $500." />
+<meta property="og:image" content="https://elysium-landing-bice.vercel.app/flyer-og.png" />
+<meta property="og:url" content="https://elysium-landing-bice.vercel.app/promocion.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#2B1F14" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Infant:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --pearl:#FBF8F1; --ivory:#EAE0CC; --champagne:#D4AF7F;
+    --bronze:#9B7B43; --espresso:#2B1F14; --smoke:#8B7E66; --whatsapp:#25D366;
+  }
+  html { scroll-behavior: smooth; }
+  html, body {
+    background: var(--pearl); color: var(--espresso);
+    font-family: 'Cormorant Infant', Georgia, serif;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  body { padding-bottom: 76px; }
+  section { padding: 34px 20px; text-align: center; position: relative; }
+
+  /* ───────── BARRA PROMO (sticky) ───────── */
+  .promo-bar {
+    position: sticky; top: 0; z-index: 60;
+    background: var(--espresso); color: var(--pearl);
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 10px 14px;
+    font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border-bottom: 1px solid var(--champagne);
+  }
+  .promo-bar b { color: var(--champagne); }
+  .promo-bar .dot { color: var(--champagne); }
+
+  /* ───────── HERO ───────── */
+  .hero {
+    background:
+      radial-gradient(circle at 50% -6%, rgba(212,175,127,0.34), transparent 55%),
+      linear-gradient(180deg, var(--ivory) 0%, var(--pearl) 72%);
+    padding: 30px 20px 34px; overflow: hidden;
+  }
+  .eyebrow-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #fff; border: 1px solid var(--champagne); color: var(--bronze);
+    padding: 7px 16px; border-radius: 999px;
+    font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .eyebrow-pill::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--champagne); }
+  .brand {
+    font-family: 'Great Vibes', cursive; font-size: 74px; line-height: 1.05; padding-top: 10px;
+    background: linear-gradient(135deg, var(--champagne), var(--bronze) 50%, var(--espresso));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hook {
+    font-family: 'Cormorant Infant', serif; font-size: 30px; font-weight: 600;
+    line-height: 1.14; margin: 4px auto 8px; max-width: 340px;
+  }
+  .hook b { color: var(--bronze); font-style: italic; }
+  .hero-sub { font-size: 16.5px; color: var(--smoke); font-style: italic; max-width: 320px; margin: 0 auto 20px; }
+
+  /* ───────── DESCUENTO ───────── */
+  .deal {
+    display: inline-block; position: relative;
+    background: linear-gradient(150deg, #fff, var(--pearl));
+    border: 1.5px solid var(--champagne);
+    border-radius: 20px; padding: 18px 30px 16px;
+    box-shadow: 0 14px 34px rgba(43,31,20,0.12); overflow: hidden;
+  }
+  .deal::after {
+    content: ''; position: absolute; top: 0; left: -60%; width: 45%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(212,175,127,0.35), transparent);
+    transform: skewX(-18deg); animation: shimmer 3.6s ease-in-out infinite;
+  }
+  @keyframes shimmer { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+  .deal-label {
+    font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 800;
+    letter-spacing: 0.24em; text-transform: uppercase; color: var(--bronze); margin-bottom: 4px;
+  }
+  .deal-row { display: flex; align-items: baseline; justify-content: center; gap: 12px; }
+  .deal-strike { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 600; text-decoration: line-through; color: var(--smoke); }
+  .deal-now { font-family: 'Cormorant Infant', serif; font-weight: 700; font-size: 58px; line-height: 1; color: var(--espresso); font-variant-numeric: tabular-nums; }
+  .deal-now .mxn { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: var(--smoke); vertical-align: super; margin-left: 3px; }
+  .deal-save {
+    display: inline-block; margin-top: 8px; background: linear-gradient(135deg, var(--champagne), var(--bronze));
+    color: #fff; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 800;
+    letter-spacing: 0.06em; padding: 4px 12px; border-radius: 999px;
+  }
+
+  /* ───────── CUENTA REGRESIVA ───────── */
+  .countdown { margin-top: 22px; }
+  .cd-label { font-family:'Inter',sans-serif; font-size:10px; font-weight:800; letter-spacing:0.24em; text-transform:uppercase; color:var(--bronze); margin-bottom:10px; }
+  .cd-row { display:flex; justify-content:center; gap:10px; }
+  .cd-box { background:#fff; border:1px solid rgba(212,175,127,0.5); border-radius:12px; padding:10px 4px; min-width:64px; box-shadow:0 6px 16px rgba(43,31,20,0.07); }
+  .cd-num { font-family:'Cormorant Infant',serif; font-weight:700; font-size:34px; line-height:1; color:var(--espresso); font-variant-numeric:tabular-nums; }
+  .cd-unit { font-family:'Inter',sans-serif; font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--smoke); margin-top:4px; }
+
+  /* ───────── BOTONES CTA ───────── */
+  .cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    background: linear-gradient(135deg, var(--champagne), var(--bronze)); color: #fff;
+    font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 800; letter-spacing: 0.02em;
+    text-decoration: none; padding: 16px 30px; border-radius: 999px;
+    box-shadow: 0 12px 28px rgba(155,123,67,0.4); position: relative; overflow: hidden;
+    transition: transform 0.2s;
+  }
+  .cta svg { width: 19px; height: 19px; }
+  .cta:active { transform: scale(0.97); }
+  .cta.wa { background: var(--whatsapp); box-shadow: 0 12px 28px rgba(37,211,102,0.4); }
+  .hero-cta { margin-top: 22px; }
+  .trust { margin-top: 14px; font-family:'Inter',sans-serif; font-size:11.5px; color:var(--smoke); }
+  .trust .st { color: var(--champagne); letter-spacing: 1px; }
+
+  /* ───────── CTA FIJO ───────── */
+  .sticky-cta {
+    position: fixed; left:0; right:0; bottom:0; z-index:70;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, rgba(43,31,20,0), rgba(43,31,20,0.9) 45%);
+    display: flex; justify-content: center; pointer-events: none;
+  }
+  .sticky-cta .cta { pointer-events: auto; width: 100%; max-width: 420px; }
+
+  /* ───────── TÍTULOS ───────── */
+  .eyebrow { font-family:'Inter',sans-serif; font-size:10px; font-weight:800; letter-spacing:0.3em; text-transform:uppercase; color:var(--bronze); margin-bottom:10px; }
+  .s-title { font-family:'Cormorant Infant',serif; font-size:32px; font-weight:600; line-height:1.1; margin-bottom:6px; }
+  .s-sub { color:var(--smoke); font-size:16px; font-style:italic; max-width:480px; margin:0 auto 20px; }
+
+  /* ───────── GALERÍA / COVERFLOW ───────── */
+  .filters { display:inline-flex; background:#fff; border:1px solid rgba(212,175,127,0.5); border-radius:999px; padding:4px; margin-bottom:18px; box-shadow:0 6px 16px rgba(43,31,20,0.08); }
+  .filters button { background:transparent; border:none; cursor:pointer; padding:9px 16px; min-height:42px; font-family:'Inter',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--smoke); border-radius:999px; transition:all 0.25s ease; -webkit-tap-highlight-color:transparent; }
+  .filters button.active { background:linear-gradient(135deg,var(--champagne),var(--bronze)); color:#fff; }
+  .coverflow-wrap { position:relative; width:100%; height:470px; perspective:1400px; overflow:hidden; touch-action:pan-y; user-select:none; -webkit-user-select:none; }
+  .coverflow { position:absolute; top:0; left:50%; width:1px; height:100%; transform-style:preserve-3d; }
+  .card { position:absolute; left:50%; top:50%; width:200px; height:356px; margin-left:-100px; margin-top:-178px; border-radius:18px; overflow:hidden; background:#fff; box-shadow:0 20px 46px rgba(43,31,20,0.35); transition:transform 0.55s cubic-bezier(0.16,0.84,0.44,1),opacity 0.4s; transform-style:preserve-3d; will-change:transform; }
+  .card img { width:100%; height:100%; object-fit:cover; display:block; }
+  .card .overlay { position:absolute; inset:auto 0 0 0; padding:14px 12px 15px; background:linear-gradient(to top,rgba(43,31,20,0.85),transparent); color:#fff; text-align:center; opacity:0; transform:translateY(10px); transition:opacity 0.3s,transform 0.3s; }
+  .card.active .overlay { opacity:1; transform:translateY(0); }
+  .card .title { font-family:'Cormorant Infant',serif; font-size:17px; font-weight:600; margin-bottom:8px; text-shadow:0 2px 4px rgba(0,0,0,0.4); }
+  .card .open-btn { display:inline-block; background:var(--champagne); color:#2B1F14; padding:9px 16px; border-radius:999px; text-decoration:none; font-family:'Inter',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; }
+  .swipe-hint { display:inline-flex; align-items:center; gap:12px; margin-top:14px; padding:7px 16px; background:#fff; border:1px solid rgba(212,175,127,0.5); border-radius:999px; color:var(--bronze); font-family:'Inter',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; }
+  .swipe-hint .hand { animation: swipe-anim 1.8s ease-in-out infinite; }
+  @keyframes swipe-anim { 0%,100% { transform:translateX(-5px); } 50% { transform:translateX(5px); } }
+  .gallery-count { font-family:'Inter',sans-serif; font-size:12px; color:var(--smoke); margin-top:14px; letter-spacing:0.14em; }
+
+  /* ───────── PAQUETES ───────── */
+  .packages { background:linear-gradient(180deg,var(--pearl),#fff); border-top:1px solid rgba(212,175,127,0.4); }
+  .pkg-switch { position:relative; display:inline-flex; align-items:center; background:#fff; border:1px solid rgba(212,175,127,0.6); border-radius:999px; padding:4px; margin:0 auto 18px; box-shadow:0 8px 22px rgba(43,31,20,0.10); }
+  .pkg-switch button { position:relative; z-index:2; border:none; background:transparent; cursor:pointer; min-height:46px; padding:10px 22px; border-radius:999px; font-family:'Inter',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--smoke); display:inline-flex; align-items:center; gap:7px; transition:color 0.35s ease; -webkit-tap-highlight-color:transparent; }
+  .pkg-switch button .sym { font-size:14px; }
+  .pkg-switch button.on { color:#fff; }
+  .pkg-switch .thumb { position:absolute; z-index:1; top:4px; left:0; height:calc(100% - 8px); border-radius:999px; background:linear-gradient(135deg,var(--champagne),var(--bronze)); box-shadow:0 4px 14px rgba(155,123,67,0.45); transition:transform 0.45s cubic-bezier(0.34,1.4,0.4,1),width 0.45s cubic-bezier(0.34,1.4,0.4,1); }
+  .pkg-deal { display:flex; flex-direction:column; align-items:center; gap:2px; margin-bottom:10px; }
+  .pkg-deal .pd-label { font-family:'Inter',sans-serif; font-size:10px; font-weight:800; letter-spacing:0.2em; text-transform:uppercase; color:var(--bronze); }
+  .pkg-deal .pd-row { display:flex; align-items:baseline; gap:10px; }
+  .pkg-deal .pd-strike { font-family:'Inter',sans-serif; font-size:16px; text-decoration:line-through; color:var(--smoke); }
+  .pkg-deal .pd-now { font-family:'Cormorant Infant',serif; font-weight:700; font-size:46px; line-height:1; color:var(--espresso); font-variant-numeric:tabular-nums; }
+  .pkg-deal .pd-now .mxn { font-family:'Inter',sans-serif; font-size:13px; color:var(--smoke); vertical-align:super; margin-left:3px; }
+  .pkg-deal.swap { animation:pkswap 0.5s cubic-bezier(0.16,0.84,0.44,1); }
+  @keyframes pkswap { 0% { opacity:0; transform:translateY(8px) scale(0.94); filter:blur(4px); } 100% { opacity:1; transform:none; filter:none; } }
+  .pkg-tag { font-family:'Cormorant Infant',serif; font-style:italic; font-size:17px; color:var(--smoke); margin-bottom:18px; }
+  .perks { display:grid; gap:10px; max-width:460px; margin:0 auto 18px; text-align:left; }
+  .perks li { list-style:none; background:#fff; border:1px solid rgba(212,175,127,0.4); border-radius:13px; padding:13px 15px 13px 44px; position:relative; font-size:15.5px; color:var(--espresso); line-height:1.35; }
+  .perks li::before { content:'✓'; position:absolute; left:15px; top:13px; width:21px; height:21px; border-radius:50%; background:var(--champagne); color:#fff; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .perks strong { display:block; font-family:'Inter',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--bronze); margin-bottom:2px; }
+  .perks li.premium { border-style:dashed; }
+  .perks li.premium::before { content:'✦'; background:linear-gradient(135deg,#6d5bb0,#3b2f73); }
+  .perks li.premium .pk-badge { position:absolute; top:-9px; right:12px; font-family:'Inter',sans-serif; font-size:8.5px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; padding:3px 9px; border-radius:999px; background:linear-gradient(135deg,#6d5bb0,#3b2f73); color:#f2ecdd; }
+  body:not(.show-premium) .perks li.premium { opacity:0.5; filter:saturate(0.6); }
+
+  /* ───────── OPINIONES (Google) ───────── */
+  .testimonios.hidden { display:none; }
+  .testi-track { display:flex; gap:14px; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:22px 40px 12px; scrollbar-width:none; -webkit-mask-image:linear-gradient(to right,transparent 0,#000 9%,#000 91%,transparent 100%); mask-image:linear-gradient(to right,transparent 0,#000 9%,#000 91%,transparent 100%); }
+  .testi-track::-webkit-scrollbar { display:none; }
+  .testi-card { flex:0 0 80%; max-width:320px; background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:14px; padding:16px 18px 18px; text-align:left; box-shadow:0 6px 22px rgba(43,31,20,0.10); }
+  .g-head { display:flex; align-items:center; gap:11px; margin-bottom:10px; }
+  .g-avatar { flex:0 0 42px; width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Inter',sans-serif; font-weight:500; font-size:20px; user-select:none; }
+  .g-meta { flex:1; min-width:0; }
+  .g-name { font-family:'Inter',sans-serif; font-weight:600; font-size:14.5px; color:#202124; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .g-sub { font-family:'Inter',sans-serif; font-size:12px; color:#5f6368; margin-top:1px; }
+  .g-logo { flex:0 0 20px; width:20px; height:20px; }
+  .g-stars-row { display:flex; align-items:center; gap:8px; margin-bottom:9px; }
+  .g-stars { color:#FBBC04; font-size:15px; letter-spacing:1.5px; line-height:1; }
+  .g-msg { font-family:'Inter',sans-serif; font-size:13.5px; line-height:1.5; color:#3c4043; }
+
+  /* ───────── CTA FINAL ───────── */
+  .final { background:linear-gradient(180deg,var(--espresso),#1a1209); color:var(--pearl); padding:46px 20px 40px; }
+  .final .eyebrow { color:var(--champagne); }
+  .final .s-title { color:#fff; }
+  .final .s-sub { color:rgba(251,248,241,0.72); }
+  .final .foot { margin-top:22px; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(251,248,241,0.5); }
+  .final .foot a { color:var(--champagne); text-decoration:none; }
+
+  @media (prefers-reduced-motion: reduce) { .deal::after, .swipe-hint .hand { animation:none !important; } }
+  @media (max-width: 360px) {
+    .brand { font-size:62px; }
+    .deal-now { font-size:50px; }
+    .cd-box { min-width:56px; }
+    .card { width:176px; height:313px; margin-left:-88px; margin-top:-156px; }
+    .coverflow-wrap { height:420px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Barra promo -->
+<div class="promo-bar">
+  <span>Promoción</span><span class="dot">◆</span><span>Hasta el <b>25 de julio 2026</b></span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow-pill">Promoción especial</div>
+  <div class="brand">Elysium</div>
+  <h1 class="hook">Invitaciones digitales que <b>enamoran</b> a tus invitados</h1>
+  <p class="hero-sub">Diseño único + panel para confirmar asistencia. Entrega en 24–48 h.</p>
+
+  <div class="deal">
+    <div class="deal-label">Precio de promoción</div>
+    <div class="deal-row"><span class="deal-strike">$2,200</span><span class="deal-now">$1,800<span class="mxn">MXN</span></span></div>
+    <span class="deal-save">Ahorras $400</span>
+  </div>
+
+  <!-- Cuenta regresiva -->
+  <div class="countdown" id="countdown">
+    <div class="cd-label">La promoción termina en</div>
+    <div class="cd-row">
+      <div class="cd-box"><div class="cd-num" id="cdD">--</div><div class="cd-unit">Días</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdH">--</div><div class="cd-unit">Horas</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdM">--</div><div class="cd-unit">Min</div></div>
+    </div>
+  </div>
+
+  <div class="hero-cta"><a class="cta" href="#comprar" id="heroCta">Ver paquetes y precios</a></div>
+  <div class="trust"><span class="st">★★★★★</span> +80 eventos diseñados · Apartas con $500</div>
+</section>
+
+<!-- GALERÍA -->
+<section class="gallery">
+  <div class="eyebrow">Portafolio real</div>
+  <h2 class="s-title">Mira lo que diseñamos</h2>
+  <p class="s-sub">Más de 80 invitaciones reales. Desliza y toca una para abrirla.</p>
+  <div class="filters" id="filters" role="tablist">
+    <button data-filter="boda" class="active" role="tab">Bodas</button>
+    <button data-filter="xv" role="tab">XV Años</button>
+    <button data-filter="cumple" role="tab">Cumpleaños</button>
+  </div>
+  <div class="coverflow-wrap" id="coverflowWrap"><div class="coverflow" id="coverflow"></div></div>
+  <div class="swipe-hint"><span class="hand">←</span> Desliza para explorar <span class="hand">→</span></div>
+  <div class="gallery-count" id="galleryCount">Cargando…</div>
+</section>
+
+<!-- PAQUETES -->
+<section class="packages" id="comprar">
+  <div class="eyebrow">Elige tu paquete</div>
+  <div class="pkg-switch" id="pkgSwitch" role="tablist" aria-label="Elegir paquete">
+    <div class="thumb" id="pkgThumb"></div>
+    <button type="button" data-pkg="eterna" class="on" role="tab" aria-selected="true"><span class="sym">◆</span>Eterna</button>
+    <button type="button" data-pkg="celestial" role="tab" aria-selected="false"><span class="sym">✦</span>Celestial</button>
+  </div>
+  <div class="pkg-deal" id="pkgDeal">
+    <span class="pd-label">Precio de promoción</span>
+    <span class="pd-row"><span class="pd-strike" id="pdStrike">$2,200</span><span class="pd-now" id="pdNow">$1,800<span class="mxn">MXN</span></span></span>
+  </div>
+  <div class="pkg-tag" id="pkgTag">Invitación digital + Panel de gestión de invitados</div>
+  <ul class="perks">
+    <li><strong>Diseñada a tu gusto</strong>Eliges tu favorita del portafolio y la rediseñamos con tu paleta, fecha y todos tus datos.</li>
+    <li><strong>Panel en tiempo real</strong>Tus invitados confirman desde su cel; ves quién viene y cuántos pases usa cada familia.</li>
+    <li><strong>Todo incluido</strong>Sobre animado, música, galería giratoria, cuenta regresiva, mesa de regalos y álbum con QR.</li>
+    <li class="premium"><span class="pk-badge">✦ Celestial</span><strong>Control de acceso QR</strong>Cada invitado llega con su pase QR; escaneas en la entrada, sin colados.</li>
+    <li class="premium"><span class="pk-badge">✦ Celestial</span><strong>Asignación de mesas + alertas</strong>Acomodas por mesa y el panel te avisa quiénes faltan por confirmar.</li>
+  </ul>
+  <a class="cta" id="pkgCta" href="#" target="_blank" rel="noopener">Quiero este paquete</a>
+</section>
+
+<!-- OPINIONES -->
+<section class="testimonios hidden" id="testimonios">
+  <div class="eyebrow">Opiniones reales</div>
+  <h2 class="s-title">Lo que dicen de Elysium</h2>
+  <div class="testi-track" id="testiTrack"></div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="eyebrow">Aparta tu fecha</div>
+  <h2 class="s-title">¿Lista para diseñar la tuya?</h2>
+  <p class="s-sub">Escríbeme, te mando el formulario y tu propuesta llega en 24 h. Apartas con solo $500 · Promo hasta el 25 de julio.</p>
+  <a class="cta wa" id="finalCta" href="#" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+    Escríbeme por WhatsApp
+  </a>
+  <div class="foot">Elysium Invitaciones · <a href="https://instagram.com/elysium.invitaciones" target="_blank">@elysium.invitaciones</a></div>
+</section>
+
+<!-- CTA FIJO -->
+<div class="sticky-cta">
+  <a class="cta wa" id="stickyCta" href="#" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+    Quiero mi invitación
+  </a>
+</div>
+
+<script>
+(function(){
+  'use strict'
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const $ = id => document.getElementById(id)
+  const vibrate = ms => { if (navigator.vibrate) navigator.vibrate(ms) }
+  const WA = '524421235312'
+  const waLink = txt => 'https://wa.me/' + WA + '?text=' + encodeURIComponent(txt)
+
+  /* ─── Cuenta regresiva al 25 de julio 2026 (hora México) ─── */
+  const DEADLINE = new Date('2026-07-25T23:59:59-06:00').getTime()
+  function tickCountdown(){
+    let d = DEADLINE - Date.now()
+    if (d < 0) d = 0
+    const days = Math.floor(d / 86400000); d -= days * 86400000
+    const hrs  = Math.floor(d / 3600000);  d -= hrs * 3600000
+    const mins = Math.floor(d / 60000)
+    $('cdD').textContent = days
+    $('cdH').textContent = String(hrs).padStart(2,'0')
+    $('cdM').textContent = String(mins).padStart(2,'0')
+  }
+  tickCountdown(); setInterval(tickCountdown, 30000)
+
+  /* ─── Paquetes ─── */
+  const PKG = {
+    eterna: { name:'Eterna', strike:'$2,200', price:'$1,800', tag:'Invitación digital + Panel de gestión de invitados',
+      wa: waLink('Hola! Vi su promoción y quiero el paquete Eterna a $1,800. ¿Me ayudas?') },
+    celestial: { name:'Celestial', strike:'$3,000', price:'$2,750', tag:'Invitación + Panel completo: mesas, acceso QR y recordatorios',
+      wa: waLink('Hola! Vi su promoción y quiero el paquete Celestial a $2,750. ¿Me ayudas?') },
+  }
+  let cur = 'eterna'
+  const pkgSwitch = $('pkgSwitch'), pkgThumb = $('pkgThumb'), pkgDeal = $('pkgDeal')
+  function positionThumb(){ const b = pkgSwitch.querySelector(`button[data-pkg="${cur}"]`); if(!b) return; pkgThumb.style.width = b.offsetWidth+'px'; pkgThumb.style.transform = `translateX(${b.offsetLeft}px)` }
+  function setPkg(pkg, initial){
+    if (pkg === cur && !initial) return
+    cur = pkg; const P = PKG[pkg]
+    document.body.classList.toggle('show-premium', pkg === 'celestial')
+    pkgSwitch.querySelectorAll('button').forEach(b => { const on = b.dataset.pkg===pkg; b.classList.toggle('on', on); b.setAttribute('aria-selected', on) })
+    positionThumb()
+    $('pdStrike').textContent = P.strike
+    $('pdNow').innerHTML = P.price + '<span class="mxn">MXN</span>'
+    $('pkgTag').textContent = P.tag
+    $('pkgCta').href = P.wa
+    if (!initial){ pkgDeal.classList.remove('swap'); void pkgDeal.offsetWidth; pkgDeal.classList.add('swap'); vibrate(10) }
+  }
+  pkgSwitch.querySelectorAll('button').forEach(b => b.addEventListener('click', () => setPkg(b.dataset.pkg)))
+  window.addEventListener('resize', positionThumb)
+  setPkg('eterna', true)
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(positionThumb)
+
+  const heroWa = waLink('Hola! Vi su promoción y quiero mi invitación digital. ¿Me ayudas?')
+  $('finalCta').href = heroWa
+  $('stickyCta').href = heroWa
+  $('heroCta').addEventListener('click', e => { e.preventDefault(); $('comprar').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }) })
+
+  /* ═══════════ OPINIONES (Google) ═══════════ */
+  ;(function testimonios(){
+    const T = [
+      { cliente:'Diana & Darwin', evento:'Boda · Oct 2026', estrellas:5, mensaje:'Mi parte favorita fue cómo abría la invitación, la foto de portada, el disco discreto para pausar o reanudar la música. También me encantó que la galería de fotos fuera giratoria y que pidiera los nombres de los asistentes.' },
+      { cliente:'Alejandra & Paco', evento:'Boda · Nov 2026', estrellas:5, mensaje:'Me encantó el servicio, atienden todas las peticiones y puedes cambiar el diseño las veces que necesites si algo no te llena al 100%. Muy amables. ¡Quedó perfecta mi invitación! Gracias.' },
+      { cliente:'Janette & Edwin', evento:'Boda · Feb 2027', estrellas:5, mensaje:'Estoy muy feliz con mi invitación, el servicio fue excelente y muy cordiales. Apreciamos mucho el tiempo y la dedicación. Gracias por hacer esta invitación inolvidable.' },
+      { cliente:'Azucena & Matthew', evento:'Boda · May 2026', estrellas:5, mensaje:'Me encantó mi tarjeta de bodas. Son sumamente profesionales y me hicieron la invitación justo como la soñé. Excelente trabajo y muy recomendados 100%.' },
+      { cliente:'Olivia', evento:'Cumpleaños · Jun 2026', estrellas:5, mensaje:'Excelente. Magnífica atención, siempre dispuesto a hacer modificaciones desde el inicio hasta la misma fecha del evento. La invitación muy hermosa, todos mis invitados me felicitaron. ¡Muchísimas gracias!' },
+      { cliente:'Paola', evento:'XV Años · Jun 2026', estrellas:5, mensaje:'¡Súper rápido! Todos mis invitados se quedaron maravillados. ¡Gracias por tan bonito trabajo!' },
+      { cliente:'Nelvi & Yessica', evento:'Boda · Jul 2026', estrellas:5, mensaje:'Excelente servicio en todo sentido.' },
+      { cliente:'Andrea', evento:'XV Años · May 2026', estrellas:5, mensaje:'Muy bonita, la realizaron tal y como se las pedí. Muchas gracias.' },
+    ]
+    const esc = s => String(s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
+    const stars = n => '★'.repeat(n) + '☆'.repeat(5-n)
+    const AV = ['#DB4437','#4285F4','#0F9D58','#F4B400','#AB47BC','#00ACC1','#FF7043','#5C6BC0']
+    const G = '<svg class="g-logo" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>'
+    const card = (t,i) => `<div class="testi-card"><div class="g-head"><div class="g-avatar" style="background:${AV[i%AV.length]}">${(t.cliente||'?').trim().charAt(0).toUpperCase()}</div><div class="g-meta"><div class="g-name">${esc(t.cliente)}</div>${t.evento?`<div class="g-sub">${esc(t.evento)}</div>`:''}</div>${G}</div><div class="g-stars-row"><span class="g-stars">${stars(t.estrellas)}</span></div><div class="g-msg">${esc(t.mensaje)}</div></div>`
+    const section = $('testimonios'), track = $('testiTrack')
+    const html = T.map(card).join(''); track.innerHTML = html + html
+    section.classList.remove('hidden')
+    if (reduced) return
+    const N = T.length; let loopPoint = 0
+    const computeLoop = () => { loopPoint = track.children[N].offsetLeft - track.children[0].offsetLeft }
+    computeLoop(); window.addEventListener('resize', computeLoop)
+    let interacting = false, resumeAt = 0, raf = null
+    function tick(){ if(!interacting && Date.now()>=resumeAt && loopPoint>0){ track.scrollLeft += 0.5; if(track.scrollLeft>=loopPoint) track.scrollLeft -= loopPoint } raf = requestAnimationFrame(tick) }
+    track.addEventListener('pointerdown', () => { interacting=true }, {passive:true})
+    window.addEventListener('pointerup', () => { interacting=false; resumeAt=Date.now()+2000 }, {passive:true})
+    track.addEventListener('mouseenter', () => { interacting=true })
+    track.addEventListener('mouseleave', () => { interacting=false; resumeAt=Date.now()+600 })
+    track.addEventListener('touchend', () => { resumeAt=Date.now()+2500 }, {passive:true})
+    const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ if(!raf) raf=requestAnimationFrame(tick) } else if(raf){ cancelAnimationFrame(raf); raf=null } }), { threshold:0.15 })
+    io.observe(section)
+  })()
+
+  /* ═══════════ GALERÍA 3D ═══════════ */
+  ;(async function(){
+    let catalog = []
+    try { catalog = await (await fetch('/catalog.json?v=' + Date.now())).json() } catch(e){ console.error('catalog load failed', e) }
+    const coverflow = $('coverflow'), filters = $('filters'), countEl = $('galleryCount'), wrap = $('coverflowWrap')
+    let currentFilter = 'boda', activeIdx = 0, items = []
+    function applyFilter(){
+      coverflow.innerHTML = ''
+      items = catalog.filter(c => c.type === currentFilter)
+      items.forEach(it => { const card = document.createElement('div'); card.className='card'; card.innerHTML = `<img src="${it.thumbnail}" alt="${it.title}" loading="lazy" /><div class="overlay"><div class="title">${it.title}</div><a class="open-btn" href="${it.url}" target="_blank" rel="noopener">Abrir invitación</a></div>`; coverflow.appendChild(card) })
+      activeIdx = 0; layout()
+    }
+    function layout(){
+      const cards = coverflow.querySelectorAll('.card')
+      cards.forEach((card,i) => { const off=i-activeIdx, abs=Math.abs(off); card.style.transform = `translate3d(${off*130}px,0,${-abs*120}px) rotateY(${-off*32}deg)`; card.style.opacity = abs>3?0:1-abs*0.18; card.style.zIndex = 100-abs; card.classList.toggle('active', off===0) })
+      if (countEl) countEl.textContent = items.length ? `${activeIdx+1} / ${items.length}` : 'Sin resultados'
+    }
+    function go(d){ if(!items.length) return; const p=activeIdx; activeIdx=Math.max(0,Math.min(items.length-1,activeIdx+d)); if(activeIdx!==p) vibrate(12); layout() }
+    filters.querySelectorAll('button').forEach(btn => btn.addEventListener('click', () => { filters.querySelectorAll('button').forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentFilter=btn.dataset.filter; applyFilter() }))
+    coverflow.addEventListener('click', e => { const card=e.target.closest('.card'); if(!card) return; const idx=[...coverflow.querySelectorAll('.card')].indexOf(card); if(idx===activeIdx) return; e.preventDefault(); activeIdx=idx; layout() })
+    let ds=null, dlck=false
+    const start = x => { ds=x; dlck=false }
+    const move = x => { if(ds===null||dlck) return; if(Math.abs(x-ds)>=30){ dlck=true; go(x<ds?1:-1) } }
+    const end = () => { ds=null; dlck=false }
+    wrap.addEventListener('pointerdown', e => { start(e.clientX); try{ wrap.setPointerCapture(e.pointerId) }catch{} })
+    wrap.addEventListener('pointermove', e => move(e.clientX))
+    wrap.addEventListener('pointerup', end); wrap.addEventListener('pointercancel', end)
+    wrap.addEventListener('touchstart', e => { if(e.touches.length===1) start(e.touches[0].clientX) }, {passive:true})
+    wrap.addEventListener('touchmove', e => move(e.touches[0].clientX), {passive:true})
+    wrap.addEventListener('touchend', end); wrap.addEventListener('touchcancel', end)
+    document.addEventListener('keydown', e => { if(e.key==='ArrowLeft') go(-1); if(e.key==='ArrowRight') go(1) })
+    applyFilter()
+  })()
+})()
+</script>
+</body>
+</html>
