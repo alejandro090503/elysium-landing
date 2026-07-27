@@ -112,6 +112,10 @@
   }
   .hook b { color: var(--bronze); font-style: italic; }
   .hero-sub { font-size: 16.5px; color: var(--smoke); font-style: italic; max-width: 320px; margin: 0 auto 20px; }
+  .cur-switch { display:inline-flex; background:#fff; border:1px solid rgba(212,175,127,0.5); border-radius:999px; padding:3px; margin-bottom:16px; box-shadow:0 4px 12px rgba(43,31,20,0.08); }
+  .cur-switch button { border:none; background:transparent; cursor:pointer; padding:8px 16px; min-height:38px; border-radius:999px; font-family:'Inter',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.1em; color:var(--smoke); transition:all .25s ease; -webkit-tap-highlight-color:transparent; }
+  .cur-switch button.on { background:linear-gradient(135deg,var(--champagne),var(--bronze)); color:#fff; }
+  body.celestial .cur-switch { background:rgba(10,12,34,0.85); border-color:rgba(228,196,140,0.5); }
 
   /* ───────── DESCUENTO ───────── */
   .deal {
@@ -271,10 +275,15 @@
   <h1 class="hook">Invitaciones digitales que <b>enamoran</b> a tus invitados</h1>
   <p class="hero-sub">Diseño único + panel para confirmar asistencia. Entrega en 24–48 h.</p>
 
+  <div class="cur-switch" id="curSwitch" role="tablist" aria-label="Elegir moneda">
+    <button type="button" data-cur="mxn" class="on" role="tab">MXN 🇲🇽</button>
+    <button type="button" data-cur="usd" role="tab">USD 🌎</button>
+  </div>
+
   <div class="deal">
     <div class="deal-label">Precio de promoción</div>
-    <div class="deal-row"><span class="deal-strike">$2,200</span><span class="deal-now">$1,800<span class="mxn">MXN</span></span></div>
-    <span class="deal-save">Ahorras $400</span>
+    <div class="deal-row"><span class="deal-strike" id="dealStrike">$2,200</span><span class="deal-now" id="dealNow">$1,800<span class="mxn">MXN</span></span></div>
+    <span class="deal-save" id="dealSave">Ahorras $400</span>
   </div>
 
   <!-- Cuenta regresiva -->
@@ -421,27 +430,46 @@
   }
   tickCountdown(); setInterval(tickCountdown, 30000)
 
-  /* ─── Paquetes ─── */
-  const PKG = {
-    eterna: { name:'Eterna', strike:'$2,200', price:'$1,800', tag:'Invitación digital + Panel de gestión de invitados', theme:'#2B1F14',
-      wa: waLink('Hola! Vi su promoción y quiero el paquete Eterna a $1,800. ¿Me ayudas?') },
-    celestial: { name:'Celestial', strike:'$3,000', price:'$2,750', tag:'Invitación + Panel completo: mesas, acceso QR y recordatorios', theme:'#05060f',
-      wa: waLink('Hola! Vi su promoción y quiero el paquete Celestial a $2,750. ¿Me ayudas?') },
+  /* ─── Precios en MXN y USD ─── */
+  const PRICE = {
+    eterna:    { name:'Eterna', tag:'Invitación digital + Panel de gestión de invitados', theme:'#2B1F14',
+      mxn:{ s:'$2,200', n:'$1,800', save:'$400' }, usd:{ s:'$130', n:'$105', save:'$25' } },
+    celestial: { name:'Celestial', tag:'Invitación + Panel completo: mesas, acceso QR y recordatorios', theme:'#05060f',
+      mxn:{ s:'$3,000', n:'$2,750', save:'$250' }, usd:{ s:'$185', n:'$158', save:'$27' } },
   }
+  let currency = 'mxn'
   let cur = 'eterna'
-  const pkgSwitch = $('pkgSwitch'), pkgThumb = $('pkgThumb'), pkgDeal = $('pkgDeal')
+  const pkgSwitch = $('pkgSwitch'), pkgThumb = $('pkgThumb'), pkgDeal = $('pkgDeal'), curSwitch = $('curSwitch')
+  const dealStrike = $('dealStrike'), dealNow = $('dealNow'), dealSave = $('dealSave')
+
+  const suffix = () => '<span class="mxn">' + currency.toUpperCase() + '</span>'
+  function waFor(pkg){
+    const p = PRICE[pkg][currency]
+    return waLink('Hola! Vi su promoción y quiero el paquete ' + PRICE[pkg].name + ' a ' + p.n + ' ' + currency.toUpperCase() + '. ¿Me ayudas?')
+  }
+  function renderHero(){ // el hero siempre muestra el precio de Eterna
+    const p = PRICE.eterna[currency]
+    dealStrike.textContent = p.s
+    dealNow.innerHTML = p.n + suffix()
+    dealSave.textContent = 'Ahorras ' + p.save
+  }
+  function renderPkg(){
+    const p = PRICE[cur][currency]
+    $('pdStrike').textContent = p.s
+    $('pdNow').innerHTML = p.n + suffix()
+    $('pkgCta').href = waFor(cur)
+  }
+
   function positionThumb(){ const b = pkgSwitch.querySelector(`button[data-pkg="${cur}"]`); if(!b) return; pkgThumb.style.width = b.offsetWidth+'px'; pkgThumb.style.transform = `translateX(${b.offsetLeft}px)` }
   function setPkg(pkg, initial){
     if (pkg === cur && !initial) return
-    cur = pkg; const P = PKG[pkg]
+    cur = pkg; const P = PRICE[pkg]
     document.body.classList.toggle('show-premium', pkg === 'celestial')
     document.body.classList.toggle('celestial', pkg === 'celestial')
     pkgSwitch.querySelectorAll('button').forEach(b => { const on = b.dataset.pkg===pkg; b.classList.toggle('on', on); b.setAttribute('aria-selected', on) })
     positionThumb()
-    $('pdStrike').textContent = P.strike
-    $('pdNow').innerHTML = P.price + '<span class="mxn">MXN</span>'
+    renderPkg()
     $('pkgTag').textContent = P.tag
-    $('pkgCta').href = P.wa
     if (themeColor) themeColor.setAttribute('content', P.theme)
     if (!initial){
       pkgDeal.classList.remove('swap'); void pkgDeal.offsetWidth; pkgDeal.classList.add('swap'); vibrate(10)
@@ -449,7 +477,19 @@
     }
   }
   pkgSwitch.querySelectorAll('button').forEach(b => b.addEventListener('click', () => setPkg(b.dataset.pkg)))
+
+  // Switch de moneda
+  curSwitch.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    if (b.dataset.cur === currency) return
+    currency = b.dataset.cur
+    curSwitch.querySelectorAll('button').forEach(x => x.classList.toggle('on', x.dataset.cur === currency))
+    renderHero(); renderPkg()
+    pkgDeal.classList.remove('swap'); void pkgDeal.offsetWidth; pkgDeal.classList.add('swap')
+    vibrate(8)
+  }))
+
   window.addEventListener('resize', positionThumb)
+  renderHero()
   setPkg('eterna', true)
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(positionThumb)
 
