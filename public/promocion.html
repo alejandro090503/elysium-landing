@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Elysium · Invitaciones Digitales · Promoción</title>
-<meta name="description" content="Invitaciones digitales que enamoran + panel para confirmar asistencia. Promoción especial hasta el 31 de julio 2026. Entrega en 24-48h." />
+<meta name="description" content="Invitaciones digitales que enamoran + panel para confirmar asistencia. Promoción por tiempo limitado. Entrega en 24-48h." />
 <meta property="og:title" content="Elysium · Invitaciones Digitales · Promoción" />
-<meta property="og:description" content="Diseño único + panel de invitados. Promoción hasta el 31 de julio 2026." />
+<meta property="og:description" content="Diseño único + panel de invitados. Promoción por tiempo limitado." />
 <meta property="og:image" content="https://elysium-landing-bice.vercel.app/flyer-og.png" />
 <meta property="og:url" content="https://elysium-landing-bice.vercel.app/promocion.html" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -265,7 +265,7 @@
 
 <!-- Barra promo -->
 <div class="promo-bar">
-  <span>Promoción</span><span class="dot">◆</span><span>Hasta el <b>viernes 31 de julio 2026</b></span>
+  <span>Promoción</span><span class="dot">◆</span><span>Precio especial · <b>últimas horas</b></span>
 </div>
 
 <!-- HERO -->
@@ -288,11 +288,11 @@
 
   <!-- Cuenta regresiva -->
   <div class="countdown" id="countdown">
-    <div class="cd-label">La promoción termina en</div>
+    <div class="cd-label">Tu precio de promoción termina en</div>
     <div class="cd-row">
-      <div class="cd-box"><div class="cd-num" id="cdD">--</div><div class="cd-unit">Días</div></div>
       <div class="cd-box"><div class="cd-num" id="cdH">--</div><div class="cd-unit">Horas</div></div>
       <div class="cd-box"><div class="cd-num" id="cdM">--</div><div class="cd-unit">Min</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdS">--</div><div class="cd-unit">Seg</div></div>
     </div>
   </div>
 
@@ -416,19 +416,26 @@
   }
   window.addEventListener('resize', () => { gResize(); gInit(); if (document.body.classList.contains('celestial') && reduced) startGalaxy() })
 
-  /* ─── Cuenta regresiva al 31 de julio 2026 (hora México) ─── */
-  const DEADLINE = new Date('2026-07-31T23:59:59-06:00').getTime()
+  /* ─── Reloj de 24h por visitante (evergreen) ─── */
+  const CD_KEY = 'elysium_promo_deadline'
+  const CD_WINDOW = 24 * 3600 * 1000 // 24 horas
+  function getDeadline(){
+    let dl = parseInt(localStorage.getItem(CD_KEY) || '0', 10)
+    if (!dl || dl - Date.now() <= 0){ dl = Date.now() + CD_WINDOW; try { localStorage.setItem(CD_KEY, String(dl)) } catch(e){} }
+    return dl
+  }
+  let cdDeadline = getDeadline()
   function tickCountdown(){
-    let d = DEADLINE - Date.now()
-    if (d < 0) d = 0
-    const days = Math.floor(d / 86400000); d -= days * 86400000
+    let d = cdDeadline - Date.now()
+    if (d <= 0){ cdDeadline = getDeadline(); d = cdDeadline - Date.now() }
     const hrs  = Math.floor(d / 3600000);  d -= hrs * 3600000
-    const mins = Math.floor(d / 60000)
-    $('cdD').textContent = days
+    const mins = Math.floor(d / 60000);    d -= mins * 60000
+    const secs = Math.floor(d / 1000)
     $('cdH').textContent = String(hrs).padStart(2,'0')
     $('cdM').textContent = String(mins).padStart(2,'0')
+    $('cdS').textContent = String(secs).padStart(2,'0')
   }
-  tickCountdown(); setInterval(tickCountdown, 30000)
+  tickCountdown(); setInterval(tickCountdown, 1000)
 
   /* ─── Precios en MXN y USD ─── */
   const PRICE = {
