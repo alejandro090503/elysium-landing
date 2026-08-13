@@ -3,7 +3,7 @@ import { ResetScroll } from '@/app/components/ResetScroll'
 import { IPhoneFrame } from '@/app/components/ui/IPhoneFrame'
 
 // Meta Ads–specific WhatsApp pre-fill so the source can be tracked.
-const WHATSAPP_NUMBER = '524421235312'
+const WHATSAPP_NUMBER = '524421118867'
 const WHATSAPP_MSG = 'Hola, vengo del anuncio Hot Sale ⚡ Quiero conocer los paquetes de Elysium'
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MSG)}`
 
