@@ -1,7 +1,9 @@
-// Genera public/catalogo-og.png (1200x630): "Catálogo" + iPhone con la carátula
+// Genera public/catalogo-og.jpg (1200x630): "Catálogo" + iPhone con la carátula
 // de la primera invitación del carrusel (boda-cristal-y-humberto).
+// JPEG y 1200x630 exactos a propósito: WhatsApp descarta previews pesados
+// (>~300 KB), por eso no sirve un PNG @2x.
 // Uso: node scripts/make-catalogo-og.mjs
-import { readFile } from 'node:fs/promises'
+import { readFile, stat } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import puppeteer from 'puppeteer'
@@ -9,7 +11,7 @@ import puppeteer from 'puppeteer'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const COVER = join(ROOT, 'public', 'thumbnails', 'boda-cristal-y-humberto.png')
-const OUT = join(ROOT, 'public', 'catalogo-og.png')
+const OUT = join(ROOT, 'public', 'catalogo-og.jpg')
 
 const cover = `data:image/png;base64,${(await readFile(COVER)).toString('base64')}`
 
@@ -71,10 +73,12 @@ const html = `<!DOCTYPE html><html><head><meta charset="utf-8">
 
 const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'] })
 const page = await browser.newPage()
-await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 })
+await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 })
 await page.setContent(html, { waitUntil: 'networkidle0' })
 await page.evaluate(() => document.fonts.ready).catch(() => {})
 await new Promise((r) => setTimeout(r, 600))
-await page.screenshot({ path: OUT, type: 'png', clip: { x: 0, y: 0, width: 1200, height: 630 } })
+await page.screenshot({ path: OUT, type: 'jpeg', quality: 82, clip: { x: 0, y: 0, width: 1200, height: 630 } })
 await browser.close()
-console.log(`✓ ${OUT}`)
+const { size } = await stat(OUT)
+console.log(`✓ ${OUT} — ${Math.round(size / 1024)} KB`)
+if (size > 300_000) console.log('⚠ pesa más de 300 KB: WhatsApp puede ignorar el preview')
