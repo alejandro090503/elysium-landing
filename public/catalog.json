@@ -1,10 +1,10 @@
 [
   {
-    "slug": "boda-abigail-y-judith",
+    "slug": "boda-cristal-y-humberto",
     "type": "boda",
-    "title": "Abigail & Judith",
-    "url": "https://boda-abigail-y-judith.vercel.app",
-    "thumbnail": "/thumbnails/boda-abigail-y-judith.png"
+    "title": "Cristal & Humberto",
+    "url": "https://boda-cristal-y-humberto.vercel.app",
+    "thumbnail": "/thumbnails/boda-cristal-y-humberto.png"
   },
   {
     "slug": "boda-adriana-y-enrique",
@@ -75,13 +75,6 @@
     "title": "Ana & Francisco",
     "url": "https://boda-ana-y-francisco.vercel.app",
     "thumbnail": "/thumbnails/boda-ana-y-francisco.png"
-  },
-  {
-    "slug": "boda-ana-y-francisco-2",
-    "type": "boda",
-    "title": "Ana & Francisco",
-    "url": "https://boda-ana-y-francisco-2.vercel.app",
-    "thumbnail": "/thumbnails/boda-ana-y-francisco-2.png"
   },
   {
     "slug": "boda-ana-y-wilber",
@@ -187,13 +180,6 @@
     "title": "Cinthia & Sergio",
     "url": "https://boda-cinthia-y-sergio.vercel.app",
     "thumbnail": "/thumbnails/boda-cinthia-y-sergio.png"
-  },
-  {
-    "slug": "boda-cristal-y-humberto",
-    "type": "boda",
-    "title": "Cristal & Humberto",
-    "url": "https://boda-cristal-y-humberto.vercel.app",
-    "thumbnail": "/thumbnails/boda-cristal-y-humberto.png"
   },
   {
     "slug": "boda-cristina-y-luis",
@@ -945,6 +931,13 @@
     "thumbnail": "/thumbnails/boda-zaira-y-alexis.png"
   },
   {
+    "slug": "boda-abigail-y-judith",
+    "type": "boda",
+    "title": "Abigail & Judith",
+    "url": "https://boda-abigail-y-judith.vercel.app",
+    "thumbnail": "/thumbnails/boda-abigail-y-judith.png"
+  },
+  {
     "slug": "cumple-francisco",
     "type": "cumple",
     "title": "Francisco",
@@ -957,13 +950,6 @@
     "title": "Jayden",
     "url": "https://babyshower-jayden.vercel.app",
     "thumbnail": "/thumbnails/babyshower-jayden.png"
-  },
-  {
-    "slug": "bautizo-jayden",
-    "type": "cumple",
-    "title": "Jayden",
-    "url": "https://bautizo-jayden.vercel.app",
-    "thumbnail": "/thumbnails/bautizo-jayden.png"
   },
   {
     "slug": "65-olivia-fierro",

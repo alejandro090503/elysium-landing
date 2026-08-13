@@ -77,7 +77,15 @@ try {
   await browser.close()
 }
 
-// Orden: más reciente primero se pierde aquí (van por slug); dejamos por tipo y título.
-catalog.sort((a, b) => a.type.localeCompare(b.type) || a.title.localeCompare(b.title))
+// Orden: por tipo y título, con ajustes manuales de vitrina.
+const PIN_FIRST = ['boda-cristal-y-humberto'] // abren el carrusel
+const PUSH_LAST = ['boda-abigail-y-judith'] // se mandan al final de su tipo
+const rank = (s) => (PIN_FIRST.includes(s) ? -1 : PUSH_LAST.includes(s) ? 1 : 0)
+catalog.sort(
+  (a, b) =>
+    a.type.localeCompare(b.type) ||
+    rank(a.slug) - rank(b.slug) ||
+    a.title.localeCompare(b.title)
+)
 await writeFile(CATALOG, JSON.stringify(catalog, null, 2), 'utf8')
 console.log(`\n✓ Catálogo escrito (${catalog.length}): ${CATALOG}`)
