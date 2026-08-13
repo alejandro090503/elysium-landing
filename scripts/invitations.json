@@ -1,0 +1,822 @@
+[
+  {
+    "slug": "65-olivia-fierro",
+    "url": "https://65-olivia-fierro.vercel.app",
+    "type": "cumple"
+  },
+  {
+    "slug": "babyshower-jayden",
+    "url": "https://babyshower-jayden.vercel.app",
+    "type": "cumple"
+  },
+  {
+    "slug": "bautizo-jayden",
+    "url": "https://bautizo-jayden.vercel.app",
+    "type": "cumple"
+  },
+  {
+    "slug": "boda-abigail-y-judith",
+    "url": "https://boda-abigail-y-judith.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-adriana-y-enrique",
+    "url": "https://boda-adriana-y-enrique.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-adry-y-heri",
+    "url": "https://boda-adry-y-heri.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-alan-y-kenia",
+    "url": "https://boda-alan-y-kenia.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-alejandra-y-paco",
+    "url": "https://boda-alejandra-y-paco.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-alejandro-manuel",
+    "url": "https://boda-alejandro-manuel.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-alejandro-y-mayreli",
+    "url": "https://boda-alejandro-y-mayreli.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-alma-y-luis",
+    "url": "https://boda-alma-y-luis.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-america-y-ricardo",
+    "url": "https://boda-america-y-ricardo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-ana-y-christos",
+    "url": "https://boda-ana-y-christos.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-ana-y-francisco",
+    "url": "https://boda-ana-y-francisco.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-ana-y-francisco-2",
+    "url": "https://boda-ana-y-francisco-2.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-ana-y-wilber",
+    "url": "https://boda-ana-y-wilber.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-anabel-y-salvador",
+    "url": "https://boda-anabel-y-salvador.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-andrea-y-marco",
+    "url": "https://boda-andrea-y-marco.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-angel-y-jacqueline",
+    "url": "https://boda-angel-y-jacqueline.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-arely-y-david",
+    "url": "https://boda-arely-y-david.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-ariadna-y-carlos",
+    "url": "https://boda-ariadna-y-carlos.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-arturo-y-jaqueline",
+    "url": "https://boda-arturo-y-jaqueline.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-azucena-matthew",
+    "url": "https://boda-valerie-joseph.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-barbara-y-esteban",
+    "url": "https://boda-barbara-y-esteban.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-berenice-y-enrique",
+    "url": "https://boda-berenice-y-enrique.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-betsabe-y-alejandro",
+    "url": "https://boda-betsabe-y-alejandro.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-carlos-victoria",
+    "url": "https://boda-carlos-victoria.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-cesar-y-beatriz",
+    "url": "https://boda-cesar-y-beatriz.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-christopher-y-tania",
+    "url": "https://boda-christopher-y-tania.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-cinthia-y-sergio",
+    "url": "https://boda-cinthia-y-sergio.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-cristal-y-humberto",
+    "url": "https://boda-cristal-y-humberto.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-cristina-y-luis",
+    "url": "https://boda-cristina-y-luis.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-damaris-y-jesus",
+    "url": "https://boda-damaris-y-jesus.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-daniela-y-ladislao",
+    "url": "https://boda-daniela-y-ladislao.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-david-y-gerardo",
+    "url": "https://boda-david-y-gerardo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-denisse-y-jairo",
+    "url": "https://boda-denisse-y-jairo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-diana-olivares",
+    "url": "https://boda-diana-olivares.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-diana-y-darwin",
+    "url": "https://boda-diana-y-darwin.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-diego-camila",
+    "url": "https://boda-diego-camila.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-dulce-y-david",
+    "url": "https://boda-dulce-y-david.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-eduardo-y-karen",
+    "url": "https://boda-eduardo-y-karen.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-edwin-y-karina",
+    "url": "https://boda-edwin-y-karina.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-eliud-y-sulem",
+    "url": "https://boda-eliud-y-sulem.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-elsa-y-adrian",
+    "url": "https://boda-elsa-y-adrian.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-emilio-y-monica",
+    "url": "https://boda-emilio-y-monica.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-enedina-y-marco",
+    "url": "https://boda-enedina-y-marco.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-enma-y-uziel",
+    "url": "https://boda-enma-y-uziel.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-erika-vera",
+    "url": "https://boda-erika-vera.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-fabi-y-rafa",
+    "url": "https://boda-fabi-y-rafa.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-fabiola-y-fernando",
+    "url": "https://boda-fabiola-y-fernando.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-faustino-y-sandra",
+    "url": "https://boda-faustino-y-sandra.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-fer-y-lupita",
+    "url": "https://boda-fer-y-lupita.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-fernanda-y-guillermo",
+    "url": "https://boda-fernanda-y-guillermo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-fernanda-y-ricardo",
+    "url": "https://boda-fernanda-y-ricardo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-francisco-y-fernanda",
+    "url": "https://boda-francisco-y-fernanda.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-francisco-y-nora",
+    "url": "https://boda-francisco-y-nora.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-francisco-y-ruth",
+    "url": "https://boda-francisco-y-ruth.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-franco-y-loreyma",
+    "url": "https://boda-franco-y-loreyma.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-georgina-y-andres",
+    "url": "https://boda-georgina-y-andres.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-guadalupe-luis",
+    "url": "https://boda-guadalupe-luis.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-guadalupe-y-leonardo",
+    "url": "https://boda-guadalupe-y-leonardo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-guillermo-fatima",
+    "url": "https://boda-guillermo-fatima.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-gustavo-y-paola",
+    "url": "https://boda-gustavo-y-paola.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-hector-y-cecilia",
+    "url": "https://boda-hector-y-cecilia.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-hitver-y-oriana",
+    "url": "https://boda-hitver-y-oriana.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-im-2027",
+    "url": "https://boda-im-2027.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-irais-y-jesus",
+    "url": "https://boda-irais-y-jesus.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-isaac-y-claudia",
+    "url": "https://boda-isaac-y-claudia.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-isael-y-diana",
+    "url": "https://boda-isael-y-diana.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-isamar-y-erik",
+    "url": "https://boda-isamar-y-erik.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-ismael-y-anny",
+    "url": "https://boda-jose-y-ana.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-iveth-y-eduardo",
+    "url": "https://boda-iveth-y-eduardo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-janette-y-edwin",
+    "url": "https://boda-janette-y-edwin.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-jeffersson-y-vanessa",
+    "url": "https://boda-jeffersson-y-vanessa.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-jefferzon-eva",
+    "url": "https://boda-jefferzon-eva.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-jennifer",
+    "url": "https://boda-jennifer.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-jennifer-tello-y-omar-gomez",
+    "url": "https://boda-jennifer-tello-y-omar-gomez.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-jennyfer-y-jonathan",
+    "url": "https://boda-jennyfer-y-jonathan.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-jessica-y-jesus",
+    "url": "https://boda-jessica-y-jesus.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-jesus-alejandra",
+    "url": "https://boda-jesus-alejandra.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-jonathan-y-maria",
+    "url": "https://boda-jonathan-y-maria.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-jorge-eva",
+    "url": "https://boda-jorge-eva.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-jovana-y-margarito",
+    "url": "https://boda-jovana-y-margarito.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-juana-y-eduardo",
+    "url": "https://boda-juana-y-eduardo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-karen-y-manuel",
+    "url": "https://boda-karen-y-manuel.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-karen-y-raymundo",
+    "url": "https://boda-karen-y-raymundo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-karla-y-leonel",
+    "url": "https://boda-karla-y-leonel.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-katherine-y-javier",
+    "url": "https://boda-katherine-y-javier.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-laura-y-jorge",
+    "url": "https://boda-laura-y-jorge.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-leilani-y-jose",
+    "url": "https://boda-leilani-y-jose.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-leonardo-y-jovanna",
+    "url": "https://boda-leonardo-y-jovanna.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-leslie-y-rudy",
+    "url": "https://boda-leslie-y-rudy.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-ligia-y-guillermo",
+    "url": "https://boda-ligia-y-guillermo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-liliana-y-jose",
+    "url": "https://boda-liliana-y-jose.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-lucia-y-abner",
+    "url": "https://boda-lucia-y-abner.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-lupita-faisal",
+    "url": "https://boda-lupita-faisal.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-madeleine",
+    "url": "https://boda-madeleine.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-marcos-y-diana",
+    "url": "https://boda-marcos-y-diana.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-maria-fede",
+    "url": "https://boda-maria-fede.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-maria-luisa-y-jorge-eduardo",
+    "url": "https://boda-maria-luisa-y-jorge-eduardo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-maria-y-alvaro",
+    "url": "https://boda-maria-y-alvaro.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-maria-y-ivan",
+    "url": "https://boda-maria-y-ivan.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-mariana-y-aldo",
+    "url": "https://boda-mariana-y-aldo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-mariana-y-pedro",
+    "url": "https://boda-mariana-y-pedro.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-mario-e-ileana",
+    "url": "https://boda-mario-e-ileana.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-mauricio-y-brenda",
+    "url": "https://boda-mauricio-y-brenda.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-metzli-y-rodolfo",
+    "url": "https://boda-metzli-y-rodolfo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-nao-leo",
+    "url": "https://boda-nao-leo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-nelvi-y-yessica",
+    "url": "https://boda-nelvi-y-yessica.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-olivia-y-carlos",
+    "url": "https://boda-olivia-y-carlos.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-osvaldo-y-carolina",
+    "url": "https://boda-osvaldo-y-carolina.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-owen-y-marin",
+    "url": "https://boda-owen-y-marin.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-paola-david",
+    "url": "https://boda-paola-david.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-paulina-leonardo",
+    "url": "https://boda-paulina-leonardo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-perci-y-virsabit",
+    "url": "https://boda-perci-y-virsabit.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-ramiro-y-rosy",
+    "url": "https://boda-ramiro-y-rosy.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-rogelio-y-yesenia",
+    "url": "https://boda-rogelio-y-yesenia.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-romy-y-miguel",
+    "url": "https://boda-romy-y-miguel.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-rosa-y-jorge",
+    "url": "https://boda-rosa-y-jorge.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-roxana-y-omar",
+    "url": "https://boda-roxana-y-omar.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-roxana-y-pedro",
+    "url": "https://boda-roxana-y-pedro.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-salvador-y-jacqueline",
+    "url": "https://boda-salvador-y-jacqueline.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-samantha-y-alexander",
+    "url": "https://boda-samantha-y-alexander.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-sandra-y-alfredo",
+    "url": "https://boda-sandra-y-alfredo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-santiago-valentina",
+    "url": "https://boda-santiago-valentina.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-santiago-ximena",
+    "url": "https://boda-santiago-ximena.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-sarahi-y-miguel",
+    "url": "https://boda-sarahi-y-miguel.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-sindy-y-emmanuel",
+    "url": "https://boda-sindy-y-emmanuel.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-stephanie-y-david",
+    "url": "https://boda-stephanie-y-david.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-stephany-y-alberto",
+    "url": "https://boda-stephany-y-alberto.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-tania-leonardo",
+    "url": "https://boda-tania-leonardo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-tania-y-gus",
+    "url": "https://boda-tania-y-gus.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-valentina-rodrigo",
+    "url": "https://boda-valentina-rodrigo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-valeria-y-hussein",
+    "url": "https://boda-valeria-y-hussein.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-veronica-y-pedro",
+    "url": "https://boda-veronica-y-pedro.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-victor-fernanda",
+    "url": "https://boda-victor-fernanda.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-zaira-y-alexis",
+    "url": "https://boda-zaira-y-alexis.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "cumple-francisco",
+    "url": "https://cumple-francisco.vercel.app",
+    "type": "cumple"
+  },
+  {
+    "slug": "save-the-date-mia-valencia",
+    "url": "https://save-the-date-mia-valencia.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "xv-ailin",
+    "url": "https://xv-ailin.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-alejandra",
+    "url": "https://xv-alejandra-drab.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-andrea",
+    "url": "https://xv-andrea-phi.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-anelly",
+    "url": "https://xv-anelly.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-arleth",
+    "url": "https://xv-arleth.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-carolina",
+    "url": "https://xv-carolina.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-daphne",
+    "url": "https://xv-daphne.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-fernanda",
+    "url": "https://xv-fernanda-one.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-giselle",
+    "url": "https://xv-giselle.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-itzel",
+    "url": "https://xv-itzel.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-julia-sofia",
+    "url": "https://xv-julia-sofia.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-lizeth",
+    "url": "https://xv-lizeth.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-maria-libertad",
+    "url": "https://xv-maria-libertad.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-mia",
+    "url": "https://xv-mia-psi.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-natalia",
+    "url": "https://xv-natalia.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-natalia-maldonado",
+    "url": "https://xv-natalia-maldonado.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-natalia-ruiz",
+    "url": "https://xv-natalia-ruiz.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-natalia-victoria",
+    "url": "https://xv-natalia-victoria.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-paola-magdaleno",
+    "url": "https://xv-paola-magdaleno.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-paola-yamelly",
+    "url": "https://xv-paola-yamelly.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-renata",
+    "url": "https://xv-renata.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-sofia",
+    "url": "https://xv-sofia-gamma.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-sofia-perez",
+    "url": "https://xv-sofia-perez.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-valentina",
+    "url": "https://xv-valentina-three.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-valerie",
+    "url": "https://xv-valerie.vercel.app",
+    "type": "xv"
+  }
+]
