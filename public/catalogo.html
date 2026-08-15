@@ -115,6 +115,35 @@
   .hint .hand { display: inline-block; animation: sw 1.8s ease-in-out infinite; }
   @keyframes sw { 0%,100% { transform: translateX(-5px); } 50% { transform: translateX(5px); } }
 
+  /* Promo + contador */
+  .promo { text-align: center; padding: 26px 20px 4px; }
+  .promo-btn {
+    display: inline-flex; align-items: center; gap: 16px;
+    padding: 16px 20px 16px 28px; border-radius: 999px; text-decoration: none;
+    background: linear-gradient(135deg, var(--champagne), var(--bronze));
+    box-shadow: 0 12px 28px rgba(155,123,67,0.42);
+    animation: breathe 2.6s ease-in-out infinite;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .promo-btn:active { transform: scale(0.97); }
+  .promo-label {
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: #fff;
+  }
+  .promo-timer {
+    font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;
+    letter-spacing: 0.06em; color: #fff; font-variant-numeric: tabular-nums;
+    background: rgba(43,31,20,0.28); border-radius: 999px; padding: 7px 14px;
+  }
+  .promo-note {
+    font-family: 'Cormorant Infant', serif; font-style: italic;
+    font-size: 16px; color: var(--smoke); margin-top: 12px;
+  }
+  @keyframes breathe {
+    0%, 100% { box-shadow: 0 12px 28px rgba(155,123,67,0.42); }
+    50% { box-shadow: 0 12px 38px rgba(155,123,67,0.62); }
+  }
+
   footer { text-align: center; padding: 20px 20px 40px; }
   footer a {
     display: inline-flex; align-items: center; gap: 8px;
@@ -127,7 +156,10 @@
     .card { width: 205px; height: 364px; margin-left: -102px; margin-top: -182px; }
     .coverflow-wrap { height: 500px; }
   }
-  @media (prefers-reduced-motion: reduce) { .hint .hand { animation: none; } }
+  @media (max-width: 380px) {
+    .promo-btn { flex-direction: column; gap: 10px; padding: 18px 26px; border-radius: 26px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hint .hand, .promo-btn { animation: none; } }
 </style>
 </head>
 <body>
@@ -152,6 +184,14 @@
   <button id="next" aria-label="Siguiente">›</button>
 </div>
 <div class="hint"><span class="hand">←</span> Desliza o toca una para abrirla <span class="hand">→</span></div>
+
+<div class="promo">
+  <a class="promo-btn" id="promoBtn" href="#" target="_blank" rel="noopener">
+    <span class="promo-label">Aprovecha la promoción</span>
+    <span class="promo-timer"><span id="cdH">00</span>:<span id="cdM">00</span>:<span id="cdS">00</span></span>
+  </a>
+  <div class="promo-note">Escríbenos por WhatsApp antes de que termine</div>
+</div>
 
 <footer>
   <a href="https://instagram.com/elysium.invitaciones" target="_blank" rel="noopener">@elysium.invitaciones</a>
@@ -218,6 +258,29 @@
   document.addEventListener('keydown', e => { if(e.key==='ArrowLeft') go(-1); if(e.key==='ArrowRight') go(1) })
 
   applyFilter()
+
+  // Promo: contador de 24h por visitante + WhatsApp
+  const WA = '524421118867'
+  const MSG = 'Hola, vi el catálogo de invitaciones y quiero aprovechar la promoción 😊'
+  $('promoBtn').href = `https://wa.me/${WA}?text=${encodeURIComponent(MSG)}`
+
+  const CD_KEY = 'elysium_catalogo_deadline', CD_WINDOW = 24 * 3600 * 1000
+  function deadline(){
+    let dl = parseInt(localStorage.getItem(CD_KEY) || '0', 10)
+    if (!dl || dl - Date.now() <= 0){ dl = Date.now() + CD_WINDOW; try { localStorage.setItem(CD_KEY, String(dl)) } catch(e){} }
+    return dl
+  }
+  let dl = deadline()
+  const pad = n => String(n).padStart(2, '0')
+  function tick(){
+    let left = dl - Date.now()
+    if (left <= 0){ dl = deadline(); left = dl - Date.now() }
+    const s = Math.floor(left / 1000)
+    $('cdH').textContent = pad(Math.floor(s / 3600))
+    $('cdM').textContent = pad(Math.floor(s / 60) % 60)
+    $('cdS').textContent = pad(s % 60)
+  }
+  tick(); setInterval(tick, 1000)
 })()
 </script>
 </body>
