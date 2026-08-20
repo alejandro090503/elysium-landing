@@ -1,15 +1,5 @@
 [
   {
-    "slug": "65-olivia-fierro",
-    "url": "https://65-olivia-fierro.vercel.app",
-    "type": "cumple"
-  },
-  {
-    "slug": "babyshower-jayden",
-    "url": "https://babyshower-jayden.vercel.app",
-    "type": "cumple"
-  },
-  {
     "slug": "boda-abigail-y-judith",
     "url": "https://boda-abigail-y-judith.vercel.app",
     "type": "boda"
@@ -27,6 +17,11 @@
   {
     "slug": "boda-alan-y-kenia",
     "url": "https://boda-alan-y-kenia.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-alejandra-y-douglass",
+    "url": "https://boda-alejandra-y-douglass.vercel.app",
     "type": "boda"
   },
   {
@@ -52,6 +47,11 @@
   {
     "slug": "boda-america-y-ricardo",
     "url": "https://boda-america-y-ricardo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-ana-karen-y-oswaldo",
+    "url": "https://boda-ana-karen-y-oswaldo.vercel.app",
     "type": "boda"
   },
   {
@@ -82,6 +82,11 @@
   {
     "slug": "boda-angel-y-jacqueline",
     "url": "https://boda-angel-y-jacqueline.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-angel-y-jaquelinne",
+    "url": "https://boda-angel-y-jaquelinne.vercel.app",
     "type": "boda"
   },
   {
@@ -120,8 +125,23 @@
     "type": "boda"
   },
   {
+    "slug": "boda-blanca-y-abdiel",
+    "url": "https://boda-blanca-y-abdiel.vercel.app",
+    "type": "boda"
+  },
+  {
     "slug": "boda-carlos-victoria",
     "url": "https://boda-carlos-victoria.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-carlos-y-sarai",
+    "url": "https://boda-carlos-y-sarai.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-carolina-y-alfonso",
+    "url": "https://boda-carolina-y-alfonso.vercel.app",
     "type": "boda"
   },
   {
@@ -140,6 +160,11 @@
     "type": "boda"
   },
   {
+    "slug": "boda-ciro-y-osmata",
+    "url": "https://boda-ciro-y-osmata.vercel.app",
+    "type": "boda"
+  },
+  {
     "slug": "boda-cristal-y-humberto",
     "url": "https://boda-cristal-y-humberto.vercel.app",
     "type": "boda"
@@ -147,6 +172,11 @@
   {
     "slug": "boda-cristina-y-luis",
     "url": "https://boda-cristina-y-luis.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-cynthia-y-arturo",
+    "url": "https://boda-cynthia-y-arturo.vercel.app",
     "type": "boda"
   },
   {
@@ -167,6 +197,11 @@
   {
     "slug": "boda-denisse-y-jairo",
     "url": "https://boda-denisse-y-jairo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-deny-y-arturo",
+    "url": "https://boda-deny-y-arturo.vercel.app",
     "type": "boda"
   },
   {
@@ -285,6 +320,11 @@
     "type": "boda"
   },
   {
+    "slug": "boda-griselda-y-jorge",
+    "url": "https://boda-griselda-y-jorge.vercel.app",
+    "type": "boda"
+  },
+  {
     "slug": "boda-guadalupe-luis",
     "url": "https://boda-guadalupe-luis.vercel.app",
     "type": "boda"
@@ -395,6 +435,11 @@
     "type": "boda"
   },
   {
+    "slug": "boda-jonathan-y-ricardo",
+    "url": "https://boda-jonathan-y-ricardo.vercel.app",
+    "type": "boda"
+  },
+  {
     "slug": "boda-jorge-eva",
     "url": "https://boda-jorge-eva.vercel.app",
     "type": "boda"
@@ -475,6 +520,11 @@
     "type": "boda"
   },
   {
+    "slug": "boda-marcela-y-hilario",
+    "url": "https://boda-marcela-y-hilario.vercel.app",
+    "type": "boda"
+  },
+  {
     "slug": "boda-marcos-y-diana",
     "url": "https://boda-marcos-y-diana.vercel.app",
     "type": "boda"
@@ -525,8 +575,18 @@
     "type": "boda"
   },
   {
+    "slug": "boda-michel-y-lesly",
+    "url": "https://boda-michel-y-lesly.vercel.app",
+    "type": "boda"
+  },
+  {
     "slug": "boda-nao-leo",
     "url": "https://boda-nao-leo.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-nelly-y-anyelo",
+    "url": "https://boda-nelly-y-anyelo.vercel.app",
     "type": "boda"
   },
   {
@@ -555,6 +615,11 @@
     "type": "boda"
   },
   {
+    "slug": "boda-paola-e-ivan",
+    "url": "https://boda-paola-e-ivan.vercel.app",
+    "type": "boda"
+  },
+  {
     "slug": "boda-paulina-leonardo",
     "url": "https://boda-paulina-leonardo.vercel.app",
     "type": "boda"
@@ -572,6 +637,11 @@
   {
     "slug": "boda-rogelio-y-yesenia",
     "url": "https://boda-rogelio-y-yesenia.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "boda-romina-y-john",
+    "url": "https://boda-romina-y-john.vercel.app",
     "type": "boda"
   },
   {
@@ -660,6 +730,11 @@
     "type": "boda"
   },
   {
+    "slug": "boda-veronica-y-andres",
+    "url": "https://boda-veronica-y-andres.vercel.app",
+    "type": "boda"
+  },
+  {
     "slug": "boda-veronica-y-pedro",
     "url": "https://boda-veronica-y-pedro.vercel.app",
     "type": "boda"
@@ -675,14 +750,34 @@
     "type": "boda"
   },
   {
+    "slug": "save-the-date-mia-valencia",
+    "url": "https://save-the-date-mia-valencia.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "wedding-azucena-matthew",
+    "url": "https://wedding-azucena-matthew.vercel.app",
+    "type": "boda"
+  },
+  {
+    "slug": "65-olivia-fierro",
+    "url": "https://65-olivia-fierro.vercel.app",
+    "type": "cumple"
+  },
+  {
+    "slug": "babyshower-jayden",
+    "url": "https://babyshower-jayden.vercel.app",
+    "type": "cumple"
+  },
+  {
     "slug": "cumple-francisco",
     "url": "https://cumple-francisco.vercel.app",
     "type": "cumple"
   },
   {
-    "slug": "save-the-date-mia-valencia",
-    "url": "https://save-the-date-mia-valencia.vercel.app",
-    "type": "boda"
+    "slug": "invitacion-juanita-55",
+    "url": "https://invitacion-juanita-55.vercel.app",
+    "type": "cumple"
   },
   {
     "slug": "xv-ailin",
@@ -745,8 +840,18 @@
     "type": "xv"
   },
   {
+    "slug": "xv-magy",
+    "url": "https://xv-magy.vercel.app",
+    "type": "xv"
+  },
+  {
     "slug": "xv-maria-libertad",
     "url": "https://xv-maria-libertad.vercel.app",
+    "type": "xv"
+  },
+  {
+    "slug": "xv-melissa",
+    "url": "https://xv-melissa.vercel.app",
     "type": "xv"
   },
   {

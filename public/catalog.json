@@ -28,6 +28,13 @@
     "thumbnail": "/thumbnails/boda-alan-y-kenia.png"
   },
   {
+    "slug": "boda-alejandra-y-douglass",
+    "type": "boda",
+    "title": "Alejandra & Douglass",
+    "url": "https://boda-alejandra-y-douglass.vercel.app",
+    "thumbnail": "/thumbnails/boda-alejandra-y-douglass.png"
+  },
+  {
     "slug": "boda-alejandra-y-paco",
     "type": "boda",
     "title": "Alejandra & Paco",
@@ -84,6 +91,13 @@
     "thumbnail": "/thumbnails/boda-ana-y-wilber.png"
   },
   {
+    "slug": "boda-ana-karen-y-oswaldo",
+    "type": "boda",
+    "title": "Ana Karen & Oswaldo",
+    "url": "https://boda-ana-karen-y-oswaldo.vercel.app",
+    "thumbnail": "/thumbnails/boda-ana-karen-y-oswaldo.png"
+  },
+  {
     "slug": "boda-anabel-y-salvador",
     "type": "boda",
     "title": "Anabel & Salvador",
@@ -103,6 +117,13 @@
     "title": "Angel & Jacqueline",
     "url": "https://boda-angel-y-jacqueline.vercel.app",
     "thumbnail": "/thumbnails/boda-angel-y-jacqueline.png"
+  },
+  {
+    "slug": "boda-angel-y-jaquelinne",
+    "type": "boda",
+    "title": "Angel & Jaquelinne",
+    "url": "https://boda-angel-y-jaquelinne.vercel.app",
+    "thumbnail": "/thumbnails/boda-angel-y-jaquelinne.png"
   },
   {
     "slug": "boda-arely-y-david",
@@ -154,11 +175,32 @@
     "thumbnail": "/thumbnails/boda-betsabe-y-alejandro.png"
   },
   {
+    "slug": "boda-blanca-y-abdiel",
+    "type": "boda",
+    "title": "Blanca & Abdiel",
+    "url": "https://boda-blanca-y-abdiel.vercel.app",
+    "thumbnail": "/thumbnails/boda-blanca-y-abdiel.png"
+  },
+  {
+    "slug": "boda-carlos-y-sarai",
+    "type": "boda",
+    "title": "Carlos & Sarai",
+    "url": "https://boda-carlos-y-sarai.vercel.app",
+    "thumbnail": "/thumbnails/boda-carlos-y-sarai.png"
+  },
+  {
     "slug": "boda-carlos-victoria",
     "type": "boda",
     "title": "Carlos Victoria",
     "url": "https://boda-carlos-victoria.vercel.app",
     "thumbnail": "/thumbnails/boda-carlos-victoria.png"
+  },
+  {
+    "slug": "boda-carolina-y-alfonso",
+    "type": "boda",
+    "title": "Carolina & Alfonso",
+    "url": "https://boda-carolina-y-alfonso.vercel.app",
+    "thumbnail": "/thumbnails/boda-carolina-y-alfonso.png"
   },
   {
     "slug": "boda-cesar-y-beatriz",
@@ -182,11 +224,25 @@
     "thumbnail": "/thumbnails/boda-cinthia-y-sergio.png"
   },
   {
+    "slug": "boda-ciro-y-osmata",
+    "type": "boda",
+    "title": "Ciro & Osmata",
+    "url": "https://boda-ciro-y-osmata.vercel.app",
+    "thumbnail": "/thumbnails/boda-ciro-y-osmata.png"
+  },
+  {
     "slug": "boda-cristina-y-luis",
     "type": "boda",
     "title": "Cristina & Luis",
     "url": "https://boda-cristina-y-luis.vercel.app",
     "thumbnail": "/thumbnails/boda-cristina-y-luis.png"
+  },
+  {
+    "slug": "boda-cynthia-y-arturo",
+    "type": "boda",
+    "title": "Cynthia & Arturo",
+    "url": "https://boda-cynthia-y-arturo.vercel.app",
+    "thumbnail": "/thumbnails/boda-cynthia-y-arturo.png"
   },
   {
     "slug": "boda-damaris-y-jesus",
@@ -215,6 +271,13 @@
     "title": "Denisse & Jairo",
     "url": "https://boda-denisse-y-jairo.vercel.app",
     "thumbnail": "/thumbnails/boda-denisse-y-jairo.png"
+  },
+  {
+    "slug": "boda-deny-y-arturo",
+    "type": "boda",
+    "title": "Deny & Arturo",
+    "url": "https://boda-deny-y-arturo.vercel.app",
+    "thumbnail": "/thumbnails/boda-deny-y-arturo.png"
   },
   {
     "slug": "boda-diana-y-darwin",
@@ -378,6 +441,13 @@
     "thumbnail": "/thumbnails/boda-georgina-y-andres.png"
   },
   {
+    "slug": "boda-griselda-y-jorge",
+    "type": "boda",
+    "title": "Griselda & Jorge",
+    "url": "https://boda-griselda-y-jorge.vercel.app",
+    "thumbnail": "/thumbnails/boda-griselda-y-jorge.png"
+  },
+  {
     "slug": "boda-guadalupe-y-leonardo",
     "type": "boda",
     "title": "Guadalupe & Leonardo",
@@ -532,6 +602,13 @@
     "thumbnail": "/thumbnails/boda-jonathan-y-maria.png"
   },
   {
+    "slug": "boda-jonathan-y-ricardo",
+    "type": "boda",
+    "title": "Jonathan & Ricardo",
+    "url": "https://boda-jonathan-y-ricardo.vercel.app",
+    "thumbnail": "/thumbnails/boda-jonathan-y-ricardo.png"
+  },
+  {
     "slug": "boda-jorge-eva",
     "type": "boda",
     "title": "Jorge Eva",
@@ -644,6 +721,13 @@
     "thumbnail": "/thumbnails/boda-madeleine.png"
   },
   {
+    "slug": "boda-marcela-y-hilario",
+    "type": "boda",
+    "title": "Marcela & Hilario",
+    "url": "https://boda-marcela-y-hilario.vercel.app",
+    "thumbnail": "/thumbnails/boda-marcela-y-hilario.png"
+  },
+  {
     "slug": "boda-marcos-y-diana",
     "type": "boda",
     "title": "Marcos & Diana",
@@ -721,11 +805,25 @@
     "thumbnail": "/thumbnails/save-the-date-mia-valencia.png"
   },
   {
+    "slug": "boda-michel-y-lesly",
+    "type": "boda",
+    "title": "Michel & Lesly",
+    "url": "https://boda-michel-y-lesly.vercel.app",
+    "thumbnail": "/thumbnails/boda-michel-y-lesly.png"
+  },
+  {
     "slug": "boda-nao-leo",
     "type": "boda",
     "title": "Nao Leo",
     "url": "https://boda-nao-leo.vercel.app",
     "thumbnail": "/thumbnails/boda-nao-leo.png"
+  },
+  {
+    "slug": "boda-nelly-y-anyelo",
+    "type": "boda",
+    "title": "Nelly & Anyelo",
+    "url": "https://boda-nelly-y-anyelo.vercel.app",
+    "thumbnail": "/thumbnails/boda-nelly-y-anyelo.png"
   },
   {
     "slug": "boda-nelvi-y-yessica",
@@ -763,6 +861,13 @@
     "thumbnail": "/thumbnails/boda-paola-david.png"
   },
   {
+    "slug": "boda-paola-e-ivan",
+    "type": "boda",
+    "title": "Paola E Ivan",
+    "url": "https://boda-paola-e-ivan.vercel.app",
+    "thumbnail": "/thumbnails/boda-paola-e-ivan.png"
+  },
+  {
     "slug": "boda-paulina-leonardo",
     "type": "boda",
     "title": "Paulina Leonardo",
@@ -789,6 +894,13 @@
     "title": "Rogelio & Yesenia",
     "url": "https://boda-rogelio-y-yesenia.vercel.app",
     "thumbnail": "/thumbnails/boda-rogelio-y-yesenia.png"
+  },
+  {
+    "slug": "boda-romina-y-john",
+    "type": "boda",
+    "title": "Romina & John",
+    "url": "https://boda-romina-y-john.vercel.app",
+    "thumbnail": "/thumbnails/boda-romina-y-john.png"
   },
   {
     "slug": "boda-romy-y-miguel",
@@ -910,6 +1022,13 @@
     "thumbnail": "/thumbnails/boda-valeria-y-hussein.png"
   },
   {
+    "slug": "boda-veronica-y-andres",
+    "type": "boda",
+    "title": "Veronica & Andres",
+    "url": "https://boda-veronica-y-andres.vercel.app",
+    "thumbnail": "/thumbnails/boda-veronica-y-andres.png"
+  },
+  {
     "slug": "boda-veronica-y-pedro",
     "type": "boda",
     "title": "Veronica & Pedro",
@@ -922,6 +1041,13 @@
     "title": "Victor Fernanda",
     "url": "https://boda-victor-fernanda.vercel.app",
     "thumbnail": "/thumbnails/boda-victor-fernanda.png"
+  },
+  {
+    "slug": "wedding-azucena-matthew",
+    "type": "boda",
+    "title": "Wedding Azucena Matthew",
+    "url": "https://wedding-azucena-matthew.vercel.app",
+    "thumbnail": "/thumbnails/wedding-azucena-matthew.png"
   },
   {
     "slug": "boda-zaira-y-alexis",
@@ -943,6 +1069,13 @@
     "title": "Francisco",
     "url": "https://cumple-francisco.vercel.app",
     "thumbnail": "/thumbnails/cumple-francisco.png"
+  },
+  {
+    "slug": "invitacion-juanita-55",
+    "type": "cumple",
+    "title": "Invitacion Juanita",
+    "url": "https://invitacion-juanita-55.vercel.app",
+    "thumbnail": "/thumbnails/invitacion-juanita-55.png"
   },
   {
     "slug": "babyshower-jayden",
@@ -1043,11 +1176,25 @@
     "thumbnail": "/thumbnails/xv-lizeth.png"
   },
   {
+    "slug": "xv-magy",
+    "type": "xv",
+    "title": "Magy",
+    "url": "https://xv-magy.vercel.app",
+    "thumbnail": "/thumbnails/xv-magy.png"
+  },
+  {
     "slug": "xv-maria-libertad",
     "type": "xv",
     "title": "Maria Libertad",
     "url": "https://xv-maria-libertad.vercel.app",
     "thumbnail": "/thumbnails/xv-maria-libertad.png"
+  },
+  {
+    "slug": "xv-melissa",
+    "type": "xv",
+    "title": "Melissa",
+    "url": "https://xv-melissa.vercel.app",
+    "thumbnail": "/thumbnails/xv-melissa.png"
   },
   {
     "slug": "xv-mia",
