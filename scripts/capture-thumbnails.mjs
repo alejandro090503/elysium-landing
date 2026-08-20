@@ -32,7 +32,14 @@ async function isLive(url) {
   } catch { return false }
 }
 
-const PROJECTS = JSON.parse(await readFile(LIST, 'utf8'))
+// Quitadas a mano: duplicados exactos de otra invitación, o sin sobre de portada.
+const EXCLUIDAS = new Set([
+  'boda-ana-y-francisco-2',
+  'bautizo-jayden',
+  'boda-angel-y-jaquelinne',
+  'invitacion-juanita-55',
+])
+const PROJECTS = JSON.parse(await readFile(LIST, 'utf8')).filter((p) => !EXCLUIDAS.has(p.slug))
 await mkdir(THUMB_DIR, { recursive: true })
 
 console.log(`Revisando ${PROJECTS.length} invitaciones…`)

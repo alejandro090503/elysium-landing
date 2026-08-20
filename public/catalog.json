@@ -119,13 +119,6 @@
     "thumbnail": "/thumbnails/boda-angel-y-jacqueline.png"
   },
   {
-    "slug": "boda-angel-y-jaquelinne",
-    "type": "boda",
-    "title": "Angel & Jaquelinne",
-    "url": "https://boda-angel-y-jaquelinne.vercel.app",
-    "thumbnail": "/thumbnails/boda-angel-y-jaquelinne.png"
-  },
-  {
     "slug": "boda-arely-y-david",
     "type": "boda",
     "title": "Arely & David",
@@ -1069,13 +1062,6 @@
     "title": "Francisco",
     "url": "https://cumple-francisco.vercel.app",
     "thumbnail": "/thumbnails/cumple-francisco.png"
-  },
-  {
-    "slug": "invitacion-juanita-55",
-    "type": "cumple",
-    "title": "Invitacion Juanita",
-    "url": "https://invitacion-juanita-55.vercel.app",
-    "thumbnail": "/thumbnails/invitacion-juanita-55.png"
   },
   {
     "slug": "babyshower-jayden",
