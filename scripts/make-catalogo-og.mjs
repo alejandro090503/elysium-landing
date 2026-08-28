@@ -11,7 +11,7 @@ import puppeteer from 'puppeteer'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const COVER = join(ROOT, 'public', 'thumbnails', 'boda-cristal-y-humberto.png')
-const OUT = join(ROOT, 'public', 'catalogo-og.jpg')
+const OUT = join(ROOT, 'public', 'preview-catalogo.jpg')
 
 const cover = `data:image/png;base64,${(await readFile(COVER)).toString('base64')}`
 
@@ -37,7 +37,7 @@ const html = `<!DOCTYPE html><html><head><meta charset="utf-8">
     text-transform:uppercase;color:#9B7B43}
   .title{font-size:62px;font-weight:600;line-height:1.06;margin-top:10px;letter-spacing:.01em}
   .title em{font-style:italic;color:#9B7B43}
-  .sub{font-size:27px;font-style:italic;color:#7C7059;margin-top:14px}
+  .sub{font-size:25px;font-style:italic;color:#7C7059;margin-top:14px;line-height:1.35}
   .pill{display:inline-block;margin-top:30px;padding:15px 34px;border-radius:999px;
     background:linear-gradient(135deg,#D4AF7F,#9B7B43);color:#fff;
     font-family:'Inter',sans-serif;font-size:14px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
@@ -61,8 +61,8 @@ const html = `<!DOCTYPE html><html><head><meta charset="utf-8">
     <div class="brand">Elysium</div>
     <div class="rule"></div>
     <div class="kicker">Invitaciones digitales</div>
-    <div class="title">Catálogo <em>completo</em></div>
-    <div class="sub">Más de 160 diseños reales · Bodas y XV años</div>
+    <div class="title">Portafolio <em>Elysium</em></div>
+    <div class="sub">Más de 170 invitaciones entregadas<br>a clientes satisfechos</div>
     <div class="pill">Ábrelo y deslízalo</div>
   </div>
   <div class="right">
