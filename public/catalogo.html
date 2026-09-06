@@ -233,7 +233,7 @@
       <span class="promo-timer" id="cdText">--:--:--</span>
     </a>
   </span>
-  <div class="promo-note">Promoción válida hasta el 31 de agosto</div>
+  <div class="promo-note">Promoción extendida hasta el 6 de septiembre</div>
 </div>
 
 <footer>
@@ -308,8 +308,8 @@
   $('promoBtn').href = `https://wa.me/${WA}?text=${encodeURIComponent(MSG)}`
   $('promoBtn').addEventListener('click', () => vibrate(18))
 
-  // Promoción con fecha fija: 31 de agosto de 2026, 23:59:59 (hora del centro de México)
-  const FIN = new Date('2026-08-31T23:59:59-06:00').getTime()
+  // Promoción extendida con fecha fija: 6 de septiembre de 2026, 23:59:59 (centro de México)
+  const FIN = new Date('2026-09-06T23:59:59-06:00').getTime()
   const pad = n => String(n).padStart(2, '0')
   function tick(){
     const left = FIN - Date.now()
