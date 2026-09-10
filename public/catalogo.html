@@ -78,7 +78,16 @@
     transition: opacity 1.4s ease;
   }
   #lluvia.on { opacity: 1; }
-  @media (prefers-reduced-motion: reduce) { #lluvia { display: none; } }
+  /* Velo por encima de la lluvia y por debajo del contenido: sin el, los
+     textos compiten con los sobres que caen y se pierden. */
+  #velo {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: linear-gradient(180deg,
+      rgba(251,248,241,0.72) 0%,
+      rgba(251,248,241,0.60) 42%,
+      rgba(251,248,241,0.72) 100%);
+  }
+  @media (prefers-reduced-motion: reduce) { #lluvia, #velo { display: none; } }
 
   /* Coverflow 3D */
   .coverflow-wrap {
@@ -277,6 +286,7 @@
 <body>
 
 <canvas id="lluvia" aria-hidden="true"></canvas>
+<div id="velo" aria-hidden="true"></div>
 
 
 <header>
@@ -451,62 +461,84 @@
 
 <script>
 // --- Lluvia de invitaciones -------------------------------------------------
-// Carátulas reales cayendo detrás del contenido. Sprites propios y ligeros:
-// las miniaturas del carrusel pesan megas y aquí se ven a 60px.
+// Carátulas dentro de un iPhone, cayendo detrás del contenido. Sprites propios
+// (WebP con marco ya dibujado): las miniaturas del carrusel pesan megas.
 (function(){
   const cv = document.getElementById('lluvia')
   if (!cv) return
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
   const ctx = cv.getContext('2d', { alpha: true })
-  const TOTAL = 16
+  const TOTAL = 28
+  const RATIO = 272 / 132          // proporción del sprite con marco
   const imgs = []
-  let W = 0, H = 0, dpr = 1, gotas = [], raf = 0, activo = true
+  let W = 0, H = 0, gotas = [], raf = 0, activo = true
+
+  // Altura de reciclaje: la mayor vista. Si usáramos H, al contraerse la barra
+  // del navegador varias invitaciones quedarían "abajo" y se reciclarían todas
+  // de golpe -> se ven saltar al hacer scroll.
+  let Hmax = 0
 
   function medir(){
-    dpr = Math.min(window.devicePixelRatio || 1, 2)
+    const dpr = Math.min(window.devicePixelRatio || 1, 2)
     W = cv.clientWidth; H = cv.clientHeight
+    Hmax = Math.max(Hmax, H)
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr)
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
   }
 
-  // Pocas en móvil: cada una es una imagen rotada y eso cuesta.
-  const cuantas = () => (window.innerWidth < 640 ? 14 : 22)
+  const cuantas = () => (window.innerWidth < 640 ? 12 : 20)
 
-  function nueva(alto){
-    const w = 44 + Math.random() * 52           // 44-96px de ancho
+  // Baraja sin reemplazo: así no se ve la misma invitación dos veces en pantalla.
+  let mazo = []
+  function siguienteImg(){
+    if (!mazo.length){
+      mazo = imgs.map((_, i) => i)
+      for (let i = mazo.length - 1; i > 0; i--){
+        const j = (Math.random() * (i + 1)) | 0
+        ;[mazo[i], mazo[j]] = [mazo[j], mazo[i]]
+      }
+    }
+    return imgs[mazo.pop()]
+  }
+
+  function nueva(repartir){
+    const w = 46 + Math.random() * 54
     return {
-      img: imgs[(Math.random() * imgs.length) | 0],
+      img: siguienteImg(),
       x: Math.random() * W,
-      y: alto ? Math.random() * H : -w * 1.8 - Math.random() * 220,   // al poblar, repartidas; al reciclar, arriba
-      w, h: w * 1.78,
-      vy: 14 + Math.random() * 30,              // px por segundo
-      giro: (Math.random() - 0.5) * 0.5,
-      vGiro: (Math.random() - 0.5) * 0.12,
+      y: repartir ? Math.random() * Hmax : -w * RATIO - Math.random() * 260,
+      w, h: w * RATIO,
+      vy: 14 + Math.random() * 28,
+      giro: (Math.random() - 0.5) * 0.42,
+      vGiro: (Math.random() - 0.5) * 0.1,
       vaiven: 8 + Math.random() * 16,
       fase: Math.random() * Math.PI * 2,
-      alpha: 0.24 + Math.random() * 0.24,       // se nota, pero sigue siendo fondo
+      alpha: 0.26 + Math.random() * 0.22,
     }
   }
 
-  function poblar(){ gotas = Array.from({ length: cuantas() }, () => nueva(true)) }
+  function poblar(){
+    Hmax = H
+    mazo = []
+    gotas = Array.from({ length: cuantas() }, () => nueva(true))
+  }
 
   let ultimo = performance.now()
   function pintar(ahora){
     raf = requestAnimationFrame(pintar)
-    if (!activo) { ultimo = ahora; return }
-    const dt = Math.min((ahora - ultimo) / 1000, 0.05)   // capa saltos al volver de otra pestaña
+    if (!activo){ ultimo = ahora; return }
+    const dt = Math.min((ahora - ultimo) / 1000, 0.05)
     ultimo = ahora
     ctx.clearRect(0, 0, W, H)
     for (const g of gotas){
       g.y += g.vy * dt
       g.fase += dt
       g.giro += g.vGiro * dt
-      if (g.y > H + g.h){ Object.assign(g, nueva(false)) }
-      const x = g.x + Math.sin(g.fase) * g.vaiven
+      if (g.y > Hmax + g.h) Object.assign(g, nueva(false))
       ctx.save()
       ctx.globalAlpha = g.alpha
-      ctx.translate(x, g.y)
+      ctx.translate(g.x + Math.sin(g.fase) * g.vaiven, g.y)
       ctx.rotate(g.giro)
       ctx.drawImage(g.img, -g.w / 2, -g.h / 2, g.w, g.h)
       ctx.restore()
@@ -516,18 +548,38 @@
   let cargadas = 0
   for (let i = 1; i <= TOTAL; i++){
     const im = new Image()
-    im.src = `/lluvia/l${i}.jpg`
+    im.src = `/lluvia/l${i}.webp`
     im.onload = () => {
       imgs.push(im)
-      if (++cargadas === TOTAL || imgs.length === 6){   // arranca sin esperar a todas
-        if (!raf){ medir(); poblar(); cv.classList.add('on'); raf = requestAnimationFrame(pintar) }
+      cargadas++
+      // Arranca con la mitad para no hacer esperar, pero no antes: con pocas
+      // imágenes la baraja se agota enseguida y se ven repetidas.
+      if (!raf && imgs.length >= TOTAL / 2){
+        medir(); poblar(); cv.classList.add('on'); raf = requestAnimationFrame(pintar)
       }
+      if (cargadas === TOTAL) mazo = []   // rebaraja ya con todas disponibles
     }
     im.onerror = () => { cargadas++ }
   }
 
+  // En móvil, al hacer scroll la barra de direcciones se contrae y el alto del
+  // viewport cambia: eso dispara 'resize'. Si repoblamos ahí, las invitaciones
+  // saltan de golpe. Solo reaccionamos a un cambio real de ancho (girar el
+  // teléfono, redimensionar la ventana).
+  let anchoPrevio = window.innerWidth
   let t
-  addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => { medir(); poblar() }, 200) })
+  addEventListener('resize', () => {
+    if (window.innerWidth === anchoPrevio){
+      // Solo cambió el alto: reajusta el lienzo sin tocar las gotas.
+      clearTimeout(t)
+      t = setTimeout(medir, 120)
+      return
+    }
+    anchoPrevio = window.innerWidth
+    clearTimeout(t)
+    t = setTimeout(() => { medir(); poblar() }, 200)
+  })
+
   document.addEventListener('visibilitychange', () => { activo = !document.hidden })
 })()
 </script>
