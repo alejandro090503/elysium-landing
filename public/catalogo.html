@@ -31,6 +31,12 @@
     --bronze:#9B7B43; --espresso:#2B1F14; --smoke:#8B7E66;
   }
   html { scroll-behavior: smooth; }
+  /* iOS: el doble toque hace zoom. 'manipulation' lo quita pero conserva el
+     pellizco para ampliar, así no se pierde accesibilidad (user-scalable=no sí la rompe). */
+  html, body, a, button, .card, .tcard, .filters, .nav { touch-action: manipulation; }
+  button, .filters, .nav, .hint, .promo-btn, .tcard { -webkit-user-select: none; user-select: none; }
+  a, button { -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   html, body {
     background:
       radial-gradient(circle at 50% -8%, rgba(212,175,127,0.28), transparent 55%),
@@ -93,7 +99,7 @@
   .coverflow-wrap {
     position: relative; width: 100%; height: 560px; margin-top: 14px;
     perspective: 1500px; overflow: hidden;
-    touch-action: pan-y; user-select: none; -webkit-user-select: none;
+    touch-action: pan-y pinch-zoom; user-select: none; -webkit-user-select: none;
   }
   .coverflow { position: absolute; top: 0; left: 50%; width: 1px; height: 100%; transform-style: preserve-3d; }
   .card {
