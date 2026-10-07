@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#FBFAF7">
+<title>Tablero del Asesor - Elysium Invitaciones</title>
+<meta name="description" content="Documento interno de Elysium Invitaciones.">
+<link rel="icon" href="data:,">
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap">
+
+<style>
+/* Paleta clara, un solo look. Monocromo cálido con pasteles lavados. */
+:root{
+  --bg:#FBFAF7; --card:#FFFFFF; --soft:#F7F6F2;
+  --line:#EDEBE6; --line-2:#DCD8CF;
+  --tx:#2F3437; --tx-2:#7A7772; --tx-3:#A5A29C;
+  --ink:#1A1A1A; --inkTx:#FFFFFF;
+  --yel:#FDF6E3; --yelT:#8A5D00;
+  --grn:#EFF5EE; --grnT:#2F6236;
+  --red:#FDEEEF; --redT:#97302E;
+  --blu:#E8F4FD; --bluT:#1D6693;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',sans-serif;
+  --mono:'SF Mono','Geist Mono','JetBrains Mono',Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding-block:36px 96px;padding-inline:16px}
+@media(min-width:760px){.wrap{padding-block:56px 120px;padding-inline:32px}}
+
+.top{margin-bottom:40px}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--tx-3);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:clamp(34px,7vw,52px);font-weight:500;letter-spacing:-.025em;line-height:1.05;margin:0}
+
+/* accesos */
+.go{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:48px}
+@media(min-width:680px){.go{grid-template-columns:1.2fr 1fr 1fr}}
+.gc{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;text-decoration:none;color:inherit;transition:box-shadow .2s,border-color .2s}
+.gc:hover{box-shadow:0 2px 8px rgba(0,0,0,.04);border-color:var(--line-2)}
+.gi{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;flex-shrink:0;background:var(--yel);color:var(--yelT)}
+.gc b{display:block;font-size:15px;font-weight:600;letter-spacing:-.01em}
+.gc span{display:block;font-size:12.5px;color:var(--tx-3);line-height:1.4;margin-top:1px}
+
+/* tabs */
+.tabs{display:flex;gap:2px;overflow-x:auto;border-bottom:1px solid var(--line);margin-bottom:52px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tb{background:none;border:none;border-bottom:2px solid transparent;color:var(--tx-3);font:inherit;font-size:14px;font-weight:600;padding:12px 16px;cursor:pointer;white-space:nowrap;letter-spacing:-.01em}
+.tb:hover{color:var(--tx-2)}
+.tb[aria-selected="true"]{color:var(--tx);border-bottom-color:var(--ink)}
+.tb:focus-visible{outline:2px solid var(--yelT);outline-offset:-2px}
+
+section{animation:in .5s cubic-bezier(.16,1,.3,1)}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.blk{margin-bottom:72px}
+.blk:last-child{margin-bottom:0}
+h2{font-family:var(--serif);font-size:30px;font-weight:500;letter-spacing:-.02em;line-height:1.1;margin:0 0 28px}
+.hint{font-size:14.5px;color:var(--tx-2);margin:-18px 0 28px;max-width:62ch}
+
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;padding:4px 9px;border-radius:9999px}
+.t-y{background:var(--yel);color:var(--yelT)}
+.t-g{background:var(--grn);color:var(--grnT)}
+.t-r{background:var(--red);color:var(--redT)}
+.t-b{background:var(--blu);color:var(--bluT)}
+
+/* paquetes */
+.pk{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:760px){.pk{grid-template-columns:1.15fr 1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px}
+.card.lead{border-color:var(--line-2)}
+.pn{font-family:var(--serif);font-size:34px;font-weight:500;letter-spacing:-.02em;margin:14px 0 2px}
+.pr{font-family:var(--serif);font-size:52px;font-weight:500;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.pr sup{font-size:18px;vertical-align:super;color:var(--tx-3);font-family:var(--sans);font-weight:400;margin-right:2px}
+.duo{display:flex;gap:28px;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.duo div{flex:1}
+.duo p{margin:0;font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--tx-3)}
+.duo b{display:block;font-family:var(--serif);font-size:26px;font-weight:600;margin-top:3px;font-variant-numeric:tabular-nums}
+.duo b.gain{color:var(--grnT)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.chip{font-size:13px;color:var(--tx-2);background:var(--soft);border:1px solid var(--line);padding:5px 11px;border-radius:7px}
+.chip.hi{background:var(--yel);border-color:transparent;color:var(--yelT);font-weight:600}
+.said{margin:22px 0 0;padding-top:18px;border-top:1px solid var(--line);font-family:var(--serif);font-size:19px;line-height:1.35;color:var(--tx)}
+
+.vs{display:grid;grid-template-columns:1fr;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
+.vr{display:grid;grid-template-columns:1fr;gap:4px;padding:18px 22px;border-bottom:1px solid var(--line)}
+@media(min-width:620px){.vr{grid-template-columns:210px 1fr;gap:20px;align-items:baseline}}
+.vr:last-child{border-bottom:none}
+.vr b{font-size:14px;font-weight:600;color:var(--tx)}
+.vr span{font-size:14px;color:var(--tx-2)}
+
+/* pasos */
+.flow{display:grid;grid-template-columns:1fr}
+.fs{display:grid;grid-template-columns:28px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}
+.fs:last-child{border-bottom:none}
+.fn{font-family:var(--mono);font-size:12px;color:var(--tx-3);padding-top:4px}
+.fs h3{margin:0;font-size:16px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.fs p{margin:5px 0 0;font-size:14.5px;color:var(--tx-2)}
+.fs.other{opacity:.62}
+.fs a{color:var(--tx);font-weight:500;text-decoration:none;border-bottom:1px solid var(--line-2)}
+.fs a:hover{border-bottom-color:var(--tx)}
+
+.sg{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:680px){.sg{grid-template-columns:repeat(4,1fr)}}
+.sc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
+.sc .n{font-family:var(--serif);font-size:42px;font-weight:500;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.sc p{margin:8px 0 0;font-size:13px;color:var(--tx-2);line-height:1.4}
+
+/* guiones */
+.acc{border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 2px;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:hover .sm b{color:var(--tx-2)}
+summary:focus-visible{outline:2px solid var(--yelT);outline-offset:-2px}
+.sm b{display:block;font-size:15.5px;font-weight:600;letter-spacing:-.01em}
+.sm span{display:block;font-size:13px;color:var(--tx-3);margin-top:1px}
+.pm{flex-shrink:0;width:18px;height:18px;position:relative}
+.pm::before,.pm::after{content:'';position:absolute;background:var(--tx-3);transition:transform .2s}
+.pm::before{left:0;top:8px;width:18px;height:2px}
+.pm::after{left:8px;top:0;width:2px;height:18px}
+details[open] .pm::after{transform:scaleY(0)}
+.body{padding:0 2px 24px}
+.msg{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:18px 20px;font-size:14.5px;line-height:1.65;white-space:pre-wrap;color:var(--tx)}
+.cp{margin-top:12px;background:var(--ink);color:var(--inkTx);border:none;font:inherit;font-size:13px;font-weight:600;padding:9px 16px;border-radius:5px;cursor:pointer;transition:opacity .2s}
+.cp:hover{opacity:.85}
+.cp:active{transform:scale(.98)}
+.cp:focus-visible{outline:2px solid var(--yelT);outline-offset:2px}
+.why{margin:12px 0 0;font-size:13.5px;color:var(--tx-3);max-width:62ch}
+
+/* calculadora */
+.calc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px}
+.sl{display:grid;grid-template-columns:1fr;gap:28px;margin-bottom:28px}
+@media(min-width:620px){.sl{grid-template-columns:1fr 1fr}}
+label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--tx-3);margin-bottom:10px}
+.lv{font-family:var(--serif);font-size:38px;font-weight:500;line-height:1;letter-spacing:-.03em;margin-bottom:12px;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--yelT);margin:0}
+.res{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line);padding-top:26px}
+@media(min-width:620px){.res{grid-template-columns:1fr 1.3fr 1fr;gap:24px}}
+.rb{padding:4px 0}
+.rb + .rb{border-top:1px solid var(--line);padding-top:20px;margin-top:20px}
+@media(min-width:620px){.rb + .rb{border-top:none;border-left:1px solid var(--line);padding-top:4px;margin-top:0;padding-left:24px}}
+.rb p{margin:0;font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--tx-3)}
+.rb .n{font-family:var(--serif);font-size:44px;font-weight:500;letter-spacing:-.03em;line-height:1;margin-top:7px;font-variant-numeric:tabular-nums}
+.rb.hero .n{font-size:56px;color:var(--grnT)}
+.rb small{display:block;font-size:12.5px;color:var(--tx-3);margin-top:7px}
+
+.asks{display:grid;grid-template-columns:1fr;gap:8px}
+.ak{font-family:var(--mono);font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 16px;color:var(--tx)}
+kbd{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line);border-radius:4px;background:var(--soft);padding:2px 6px;color:var(--tx-2)}
+
+.rule{display:flex;gap:14px;align-items:flex-start;background:var(--yel);border-radius:10px;padding:18px 20px;margin-top:22px}
+.rule.g{background:var(--grn)}
+.rule.r{background:var(--red)}
+.rule.b{background:var(--blu)}
+.rule p{margin:0;font-size:14.5px;line-height:1.55;color:var(--yelT)}
+.rule.g p{color:var(--grnT)}
+.rule.r p{color:var(--redT)}
+.rule.b p{color:var(--bluT)}
+.rule p b{font-weight:700}
+.rule svg{flex-shrink:0;margin-top:2px}
+
+.foot{margin-top:72px;padding-top:22px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--tx-3);line-height:1.7}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <p class="kick">Elysium Invitaciones</p>
+    <h1>Tablero del Asesor</h1>
+  </div>
+
+  <div class="go">
+    <a class="gc" href="https://elysium-landing-bice.vercel.app/catalogo.html" target="_blank" rel="noopener">
+      <span class="gi"><svg width="19" height="19" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><rect x="2" y="2" width="7" height="7" rx="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5"/><rect x="2" y="11" width="7" height="7" rx="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5"/></svg></span>
+      <span><b>Catálogo</b><span>167 invitaciones y audios de clientas</span></span>
+    </a>
+    <a class="gc" href="https://elysium-form.vercel.app/admin" target="_blank" rel="noopener">
+      <span class="gi"><svg width="19" height="19" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M4 1.5h8.2L16.5 5.8V18a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V2a.5.5 0 0 1 .5-.5zM5 3v14h10V6.5h-3.5V3H5z"/><path d="M9 8.5h2V11h2.5v2H11v2.5H9V13H6.5v-2H9V8.5z"/></svg></span>
+      <span><b>Crear formulario</b><span>Cuando ya dijo sí</span></span>
+    </a>
+    <a class="gc" href="https://elysium-erp-cyan.vercel.app" target="_blank" rel="noopener">
+      <span class="gi"><svg width="19" height="19" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><rect x="2" y="3" width="3" height="3" rx="1"/><rect x="7" y="3.75" width="11" height="1.5" rx=".75"/><rect x="2" y="8.5" width="3" height="3" rx="1"/><rect x="7" y="9.25" width="11" height="1.5" rx=".75"/><rect x="2" y="14" width="3" height="3" rx="1"/><rect x="7" y="14.75" width="11" height="1.5" rx=".75"/></svg></span>
+      <span><b>ERP</b><span>Tu lista del día</span></span>
+    </a>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tb" role="tab" aria-selected="true" data-p="paq">Paquetes</button>
+    <button class="tb" role="tab" aria-selected="false" data-p="pro">Proceso</button>
+    <button class="tb" role="tab" aria-selected="false" data-p="dec">Qué decir</button>
+    <button class="tb" role="tab" aria-selected="false" data-p="com">Comisión</button>
+    <button class="tb" role="tab" aria-selected="false" data-p="cc">Claude Code</button>
+  </div>
+
+  <!-- PAQUETES -->
+  <section id="p-paq">
+    <div class="blk">
+      <h2>Enseña Celestial primero</h2>
+      <p class="hint">Cuando el prospecto ancla en $2,750, el Eterna se siente accesible. Al revés nunca funciona.</p>
+      <div class="pk">
+        <div class="card lead">
+          <span class="tag t-y">Ofrécelo primero</span>
+          <h3 class="pn">Celestial</h3>
+          <div class="pr"><sup>$</sup>2,750</div>
+          <div class="duo">
+            <div><p>Anticipo</p><b>$1,375</b></div>
+            <div><p>Tu comisión</p><b class="gain">$500</b></div>
+          </div>
+          <div class="chips">
+            <span class="chip">Todo lo de Eterna</span>
+            <span class="chip hi">Mesas desde el panel</span>
+            <span class="chip hi">Acceso con QR</span>
+            <span class="chip hi">Recordatorios automáticos</span>
+            <span class="chip hi">Mensajes de los ausentes</span>
+          </div>
+          <p class="said">«¿Quién va a estar en la puerta checando quién entra?»</p>
+        </div>
+        <div class="card">
+          <span class="tag t-b">Dos de cada tres</span>
+          <h3 class="pn">Eterna</h3>
+          <div class="pr"><sup>$</sup>1,800</div>
+          <div class="duo">
+            <div><p>Anticipo</p><b>$900</b></div>
+            <div><p>Tu comisión</p><b class="gain">$300</b></div>
+          </div>
+          <div class="chips">
+            <span class="chip">Diseño a su medida</span>
+            <span class="chip">Secciones ilimitadas</span>
+            <span class="chip">Música y galería</span>
+            <span class="chip">Cuenta regresiva</span>
+            <span class="chip">Mesa de regalos</span>
+            <span class="chip">Panel de invitados</span>
+            <span class="chip">Pase por familia</span>
+            <span class="chip">Confirmaciones en vivo</span>
+            <span class="chip">Cambios ilimitados</span>
+          </div>
+        </div>
+      </div>
+      <div class="rule">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 2l2.4 5.3 5.6.6-4.2 3.8 1.2 5.6L10 14.5 4.9 17.3l1.2-5.6L1.9 7.9l5.7-.6L10 2z"/></svg>
+        <p><b>Save the Date de regalo</b> en los dos paquetes, para eventos del próximo año. Entrega en 24 horas. Promoción vigente.</p>
+      </div>
+      <div class="rule b">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17zm.9 9.4H9.1V5.4h1.8v5.5zm0 3.2H9.1v-1.8h1.8v1.8z"/></svg>
+        <p>Precios cerrados. <b>Cualquier descuento lo autoriza Alejandro.</b></p>
+      </div>
+    </div>
+
+    <div class="blk">
+      <h2>Sin límite de secciones</h2>
+      <p class="hint">No hay un catálogo cerrado. La invitación lleva las secciones que la clienta pida, y si se le ocurre algo que nadie ha pedido, se programa.</p>
+      <div class="card">
+        <div class="chips">
+          <span class="chip">Nuestra historia</span>
+          <span class="chip">Padrinos</span>
+          <span class="chip">Misa</span>
+          <span class="chip">Civil</span>
+          <span class="chip">Recepción</span>
+          <span class="chip">Itinerario</span>
+          <span class="chip">Código de vestimenta</span>
+          <span class="chip">Mesa de regalos</span>
+          <span class="chip">Hospedaje sugerido</span>
+          <span class="chip">Transporte</span>
+          <span class="chip">Galería de fotos</span>
+          <span class="chip">Álbum con QR</span>
+          <span class="chip">Cuenta regresiva</span>
+          <span class="chip">Música</span>
+          <span class="chip">Sin niños</span>
+          <span class="chip">Mapa del lugar</span>
+          <span class="chip">Confirmación</span>
+          <span class="chip">Mensajes para los novios</span>
+          <span class="chip hi">Lo que se les ocurra</span>
+        </div>
+      </div>
+      <div class="rule g">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17zm-.8 12.4l-3.4-3.4 1.3-1.3 2.1 2.1 4.4-4.4 1.3 1.3-5.7 5.7z"/></svg>
+        <p><b>No es una plantilla de Canva.</b> Es una invitación hecha a base de página web y cada detalle está programado, por eso se puede hacer prácticamente cualquier cosa en lo estético.</p>
+      </div>
+    </div>
+
+    <div class="blk">
+      <h2>Cuando te comparen</h2>
+      <div class="vs">
+        <div class="vr"><b>Invitaciones impresas</b><span>Las tuyas las ven todos, confirman solos y se editan sin reimprimir</span></div>
+        <div class="vr"><b>Una imagen por WhatsApp</b><span>Panel de invitados, pase por familia y lista en tiempo real</span></div>
+        <div class="vr"><b>Plantillas de Canva</b><span>Aquí cada detalle se programa: animaciones, tipografías, efectos y secciones a la medida</span></div>
+        <div class="vr"><b>Otra agencia más barata</b><span>167 entregadas, con audios de clientas reales contándolo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section id="p-pro" hidden>
+    <div class="blk">
+      <h2>Tus tres pasos</h2>
+      <p class="hint">Del cuarto en adelante lo toma producción. Tú no diseñas ni prometes fechas de diseño.</p>
+      <div class="flow">
+        <div class="fs">
+          <span class="fn">01</span>
+          <div>
+            <h3>Contestas <span class="tag t-r">Tú</span></h3>
+            <p>Evento, fecha y ciudad antes de dar precio. Manda un ejemplo del <a href="https://elysium-landing-bice.vercel.app/catalogo.html" target="_blank" rel="noopener">catálogo</a> parecido al suyo.</p>
+          </div>
+        </div>
+        <div class="fs">
+          <span class="fn">02</span>
+          <div>
+            <h3>Levantas el pedido <span class="tag t-r">Tú</span></h3>
+            <p>En <a href="https://elysium-form.vercel.app/admin" target="_blank" rel="noopener">/admin</a>: nombre, evento, WhatsApp, fecha y <b>tu nombre como asesor</b>. Sale su link.</p>
+          </div>
+        </div>
+        <div class="fs">
+          <span class="fn">03</span>
+          <div>
+            <h3>Paga el anticipo <span class="tag t-g">Tu comisión</span></h3>
+            <p>En el paso 10 del formulario transfiere el 50%. Nunca mandes datos bancarios por chat.</p>
+          </div>
+        </div>
+        <div class="fs other">
+          <span class="fn">04</span>
+          <div>
+            <h3>Propuesta en menos de 24 horas</h3>
+            <p>Ve su invitación en vivo, con su nombre y sus fotos. No un boceto.</p>
+          </div>
+        </div>
+        <div class="fs other">
+          <span class="fn">05</span>
+          <div>
+            <h3>Se pule cada detalle que pida</h3>
+            <p>Las rondas de cambios que haga falta, hasta que quede exactamente como la quiere.</p>
+          </div>
+        </div>
+        <div class="fs other">
+          <span class="fn">06</span>
+          <div>
+            <h3>Videollamada y liquidación</h3>
+            <p>Ya lista, agendamos la llamada para explicarle su panel de gestión de invitados y se hace la liquidación.</p>
+          </div>
+        </div>
+        <div class="fs other">
+          <span class="fn">07</span>
+          <div>
+            <h3>Soporte hasta el día del evento</h3>
+            <p>No termina al entregar. Cualquier cambio que surja se hace, y todas las invitaciones ya enviadas se actualizan solas.</p>
+          </div>
+        </div>
+      </div>
+      <div class="rule g">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17zm-.8 12.4l-3.4-3.4 1.3-1.3 2.1 2.1 4.4-4.4 1.3 1.3-5.7 5.7z"/></svg>
+        <p>Usa esto para cerrar: <b>si cambia el salón o la hora a última hora, se edita y todos los que ya tienen el link ven lo nuevo.</b> Con papel eso no existe.</p>
+      </div>
+    </div>
+
+    <div class="blk">
+      <h2>Lo que dicen los números</h2>
+      <div class="sg">
+        <div class="sc"><div class="n">82<span style="font-size:24px">%</span></div><p>De los pedidos levantados paga anticipo</p></div>
+        <div class="sc"><div class="n">70<span style="font-size:24px">%</span></div><p>Paga el mismo día</p></div>
+        <div class="sc"><div class="n">96<span style="font-size:24px">%</span></div><p>Paga en la primera semana</p></div>
+        <div class="sc"><div class="n">4<span style="font-size:24px">%</span></div><p>Paga después. Casi nadie</p></div>
+      </div>
+      <div class="rule">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17zm.9 9.4H9.1V5.4h1.8v5.5zm0 3.2H9.1v-1.8h1.8v1.8z"/></svg>
+        <p>Si logras que llene el formulario, ya casi vendiste. Y si un pedido <b>cruza la semana sin pagar</b>, casi siempre ya está muerto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÉ DECIR -->
+  <section id="p-dec" hidden>
+    <div class="blk">
+      <h2>Mensajes listos</h2>
+      <p class="hint">Cópialos y cambia lo que está entre corchetes.</p>
+      <div class="acc" id="scripts"></div>
+    </div>
+  </section>
+
+  <!-- COMISIÓN -->
+  <section id="p-com" hidden>
+    <div class="blk">
+      <h2>Tu mes</h2>
+      <p class="hint">La meta son 3 al día. No la primera semana: se construye en tres meses.</p>
+      <div class="calc">
+        <div class="sl">
+          <div>
+            <label for="dia">Ventas al día</label>
+            <div class="lv" id="vdia">3</div>
+            <input type="range" id="dia" min="1" max="5" step="0.5" value="3">
+          </div>
+          <div>
+            <label for="cel">Celestial de cada 10</label>
+            <div class="lv" id="vcel">2</div>
+            <input type="range" id="cel" min="0" max="10" step="1" value="2">
+          </div>
+        </div>
+        <div class="res">
+          <div class="rb"><p>Ventas al mes</p><div class="n" id="oVen">66</div><small>22 días hábiles</small></div>
+          <div class="rb hero"><p>Ganas</p><div class="n" id="oGan">$22,440</div><small id="oDet">53 Eterna + 13 Celestial</small></div>
+          <div class="rb"><p>Por semana</p><div class="n" id="oSem">$5,182</div><small>Aproximado</small></div>
+        </div>
+      </div>
+      <div class="rule g">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 2l2.4 5.3 5.6.6-4.2 3.8 1.2 5.6L10 14.5 4.9 17.3l1.2-5.6L1.9 7.9l5.7-.6L10 2z"/></svg>
+        <p>Sube la segunda barra. <b>Vender Celestial te deja $200 más por el mismo trabajo.</b></p>
+      </div>
+    </div>
+
+    <div class="blk">
+      <h2>Qué cuenta como tuya</h2>
+      <div class="vs">
+        <div class="vr"><b><span class="tag t-g">Sí</span> Más de 48 horas</b><span>Un prospecto que nadie atendió en dos días</span></div>
+        <div class="vr"><b><span class="tag t-g">Sí</span> Vencidos revividos</b><span>Pedidos viejos que tú lograste cerrar</span></div>
+        <div class="vr"><b><span class="tag t-g">Sí</span> Levantados por ti</b><span>Prospectos que tú trajiste desde cero</span></div>
+        <div class="vr"><b><span class="tag t-r">No</span> Menos de 48 horas</b><span>Los que Alejandro ya está atendiendo</span></div>
+        <div class="vr"><b><span class="tag t-r">No</span> El finiquito</b><span>Tu comisión es solo por el anticipo</span></div>
+      </div>
+      <div class="rule">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17zm-.8 12.4l-3.4-3.4 1.3-1.3 2.1 2.1 4.4-4.4 1.3 1.3-5.7 5.7z"/></svg>
+        <p>Te seleccionas como asesor al crear el formulario, así que <b>cada venta queda con tu nombre</b>. Sin discusiones al cierre de semana.</p>
+      </div>
+    </div>
+
+    <div class="blk">
+      <h2>Los cuatro números de tu semana</h2>
+      <div class="sg">
+        <div class="sc"><span class="tag t-b">01</span><p style="margin-top:14px"><b style="color:var(--tx);font-size:15px">Leads</b><br>Cuántos escribieron</p></div>
+        <div class="sc"><span class="tag t-b">02</span><p style="margin-top:14px"><b style="color:var(--tx);font-size:15px">Pedidos</b><br>Cuántos metiste al ERP</p></div>
+        <div class="sc" style="border-color:var(--line-2)"><span class="tag t-g">03</span><p style="margin-top:14px"><b style="color:var(--tx);font-size:15px">Anticipos</b><br>El que define tu pago</p></div>
+        <div class="sc"><span class="tag t-r">04</span><p style="margin-top:14px"><b style="color:var(--tx);font-size:15px">Razones del no</b><br>Por qué se cayó cada uno</p></div>
+      </div>
+      <div class="rule">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17zm.9 9.4H9.1V5.4h1.8v5.5zm0 3.2H9.1v-1.8h1.8v1.8z"/></svg>
+        <p>El cuarto es el que todos se saltan. <b>Si veinte dicen lo mismo, el problema no eres tú.</b></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLAUDE CODE -->
+  <section id="p-cc" hidden>
+    <div class="blk">
+      <h2>Pídele links, no explicaciones</h2>
+      <p class="hint">Cuando pidan una temática o un color, pregúntale en vez de buscar a mano.</p>
+      <div class="asks">
+        <div class="ak">Dame links de XV en azul rey y plata</div>
+        <div class="ak">¿Tenemos bodas estilo bosque encantado? solo los links</div>
+        <div class="ak">Links de boda en playa, las 3 mejores</div>
+        <div class="ak">¿Tenemos algo tema Cenicienta para XV?</div>
+        <div class="ak">Links de bodas en vino y dorado</div>
+      </div>
+      <div class="rule">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17zm-.8 12.4l-3.4-3.4 1.3-1.3 2.1 2.1 4.4-4.4 1.3 1.3-5.7 5.7z"/></svg>
+        <p>Termina siempre con <kbd>solo los links</kbd>. Reenvías una URL por línea, la mejor primero.</p>
+      </div>
+    </div>
+
+    <div class="blk">
+      <h2>Confirma antes de prometer</h2>
+      <div class="asks">
+        <div class="ak">¿El Eterna permite asignar mesas?</div>
+        <div class="ak">¿Qué incluye el control de acceso con QR?</div>
+        <div class="ak">¿Podemos hacerla bilingüe español e inglés?</div>
+        <div class="ak">¿Se puede poner video en la portada?</div>
+        <div class="ak">¿Se puede programar [lo que pidió la clienta]?</div>
+      </div>
+      <div class="rule r">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17zm.9 9.4H9.1V5.4h1.8v5.5zm0 3.2H9.1v-1.8h1.8v1.8z"/></svg>
+        <p>Si no queda claro, <b>pregúntale a Alejandro el mismo día</b>. Lo que prometes lo cumple producción.</p>
+      </div>
+    </div>
+
+    <div class="blk">
+      <h2>Lo que te estorbe, lo automatizamos</h2>
+      <p class="hint">Un contador de tus ventas, plantillas por tipo de evento, un filtro del catálogo por color, un recordatorio de a quién le toca seguimiento. Si lo necesitas más de dos veces, dilo.</p>
+    </div>
+  </section>
+
+  <p class="foot">Datos del ERP · 7 oct 2026<br>Dudas o casos raros: pregúntale a Alejandro el mismo día. Nunca improvises una promesa.</p>
+</div>
+
+<script>
+const SCRIPTS = [
+  {t:'Primer contacto', q:'Pregunta precio',
+   m:'¡Hola! Qué emoción 🤍 Claro que sí te ayudo.\n\nPara darte el precio exacto y mandarte ejemplos parecidos a lo que buscas, cuéntame tres cosas:\n\n1. ¿Es boda, XV u otro evento?\n2. ¿Qué fecha es?\n3. ¿En qué ciudad?',
+   w:'Nunca el precio en el primer mensaje. Sin contexto, cualquier precio suena caro.'},
+  {t:'Mandar ejemplos', q:'Ya te dijo evento y fecha',
+   m:'Mira, esta es de una boda parecida a la tuya, ábrela desde tu celular 👇\n\n[LINK DEL CATÁLOGO]\n\nTodas llevan su música, galería, cuenta regresiva y un panel donde tú ves en tiempo real quién va confirmando. Dime qué te late y le damos tu estilo.',
+   w:'Del mismo tipo de evento o la misma ciudad, no la primera de la lista.'},
+  {t:'Presentar precios', q:'Ya vio un ejemplo y le gustó',
+   m:'Tenemos dos paquetes 🤍\n\n✦ CELESTIAL · $2,750\nTodo lo de Eterna + asignación de mesas, control de acceso con QR por invitado y recordatorios automáticos a quien no ha confirmado.\n\n✦ ETERNA · $1,800\nTu invitación completa con panel de invitados, pases personalizados y confirmaciones en tiempo real.\n\nLos dos llevan cambios ilimitados y soporte hasta el día de tu evento. ¿Cuántos invitados esperas?',
+   w:'Celestial primero. Cierra con la pregunta de invitados: te deja vender el QR.'},
+  {t:'Cerrar la venta', q:'Ya eligió paquete',
+   m:'¡Perfecto! 🤍 Te acabo de generar tu formulario:\n\n[LINK DEL FORMULARIO]\n\nAhí eliges tu diseño, subes tus fotos y capturas los datos. Se guarda solo, puedes llenarlo con calma desde el celular.\n\nAl final viene el anticipo del 50% con los datos de transferencia. En cuanto lo subes, en menos de 24 horas ya estás viendo tu invitación con tu nombre.',
+   w:'Crea el formulario en /admin antes de mandar esto, y selecciónate como asesor.'},
+  {t:'«Lo checo con mi prometido»', q:'La objeción más común',
+   m:'Claro que sí, es decisión de los dos 🤍\n\nTe mando este ejemplo para que lo vean juntos hoy en la noche:\n\n[LINK DEL CATÁLOGO]\n\n¿Te marco mañana en la mañana o prefieres en la tarde?',
+   w:'No la peleas: le das la razón y le pones fecha. «Yo le aviso» es un no.'},
+  {t:'«Le pregunto a mi hija»', q:'XV, escribe la mamá',
+   m:'¡Claro! Al final es su día 🤍\n\nMándale estos tres a ella para que escoja el que más le guste:\n\n[LINK 1]\n[LINK 2]\n[LINK 3]\n\nCuando me diga cuál le encantó, se lo adaptamos con sus colores y sus fotos. ¿Cómo se llama la festejada?',
+   w:'La que decide es la festejada. Manda los diseños a la hija y se cierra sola.'},
+  {t:'Evento del próximo año', q:'No hay urgencia de fecha',
+   m:'¡Qué bueno que te estás adelantando! 🤍\n\nAhorita por cierre de año tenemos una promoción: en los dos paquetes va incluido el SAVE THE DATE de regalo, para que ya les avises a todos la fecha.\n\nEse te lo entregamos en menos de 24 horas y tu invitación completa la armamos más adelante, cuando tengas los detalles definidos. ¿Te late?',
+   w:'Para eventos lejanos la urgencia es la promoción, no el calendario.'},
+  {t:'«Está muy caro»', q:'Objeción de precio',
+   m:'Te entiendo 🤍 Para que lo veas en contexto: cien invitaciones impresas pasan de los $3,000 y se quedan guardadas en un cajón.\n\nEsta la ven todos tus invitados, confirman solos sin que persigas a nadie, y les queda de recuerdo. Y si cambia el salón o la hora, se edita y todos los que ya tienen el link ven lo nuevo al instante.\n\n¿Qué parte te gustaría que te explicara mejor?',
+   w:'Nunca bajes el precio. Si el precio es el problema, no vio el valor: regresa al panel.'},
+  {t:'«Vi otras más baratas»', q:'Te comparan con otro proveedor',
+   m:'Sí, hay de todo 🤍 La diferencia es que la nuestra no es una plantilla: es una página web donde cada detalle se programa, por eso le podemos poner las secciones y los efectos que tú quieras.\n\nY no te dejamos sola al entregarla: te damos videollamada para que aprendas a usar tu panel y soporte hasta el día de tu evento.\n\nÁbrele a esta y compárala tú misma 👇\n\n[LINK DEL CATÁLOGO]',
+   w:'No hables mal de nadie. Enseña la diferencia y deja que compare.'},
+  {t:'«Lo voy a pensar»', q:'Indecisión sin objeción clara',
+   m:'Claro que sí 🤍 Nada más para que lo tengas en mente: con el anticipo te aparto el lugar y en menos de 24 horas ya la estás viendo con tu nombre.\n\nSi la ves y no te gusta, te devuelvo el anticipo completo. Así no tienes nada que perder. ¿Te genero tu formulario?',
+   w:'La devolución quita el miedo y casi nadie la pide: de 273 eventos solo 12 cancelaron.'},
+  {t:'Seguimiento día 2', q:'Levantaste el pedido, no ha pagado',
+   m:'¡Hola [NOMBRE]! 🤍 ¿Pudiste ver tu formulario?\n\nSi te quedó alguna duda con alguna sección, dime y la vemos juntas. Varias me dicen que la parte de las fotos es la que más les cuesta y ahí te puedo ayudar.',
+   w:'Si va para el día 3, llámale en vez de escribir.'},
+  {t:'Seguimiento día 5', q:'Último intento antes de Vencidos',
+   m:'¡Hola [NOMBRE]! Solo para confirmar una cosa 🤍\n\n¿Sigues interesada en tu invitación o preferiste otra opción? Cualquiera de las dos está bien, nada más para saber si te guardo tu lugar o lo libero.',
+   w:'Funciona porque le da permiso de decir no. Un no claro vale más que diez días de silencio.'}
+];
+
+const cont = document.getElementById('scripts');
+SCRIPTS.forEach((s,i)=>{
+  const d = document.createElement('details');
+  d.innerHTML =
+    '<summary><span class="sm"><b>'+s.t+'</b><span>'+s.q+'</span></span><span class="pm" aria-hidden="true"></span></summary>'+
+    '<div class="body"><div class="msg" id="m'+i+'"></div>'+
+    '<button class="cp" data-i="'+i+'">Copiar</button><p class="why">'+s.w+'</p></div>';
+  cont.appendChild(d);
+  d.querySelector('#m'+i).textContent = s.m;
+});
+
+cont.addEventListener('click', async e => {
+  const b = e.target.closest('.cp');
+  if(!b) return;
+  let ok=false;
+  try{ await navigator.clipboard.writeText(SCRIPTS[+b.dataset.i].m); ok=true; }catch(_){}
+  if(!ok){ try{
+    const r=document.createRange(); r.selectNodeContents(document.getElementById('m'+b.dataset.i));
+    const s=getSelection(); s.removeAllRanges(); s.addRange(r);
+  }catch(_){} }
+  b.textContent = ok ? 'Copiado' : 'Selecciónalo';
+  setTimeout(()=>{ b.textContent='Copiar'; }, 2000);
+});
+
+const dia=document.getElementById('dia'), cel=document.getElementById('cel');
+const money=n=>'$'+Math.round(n).toLocaleString('es-MX');
+function calc(){
+  const d=+dia.value, c=+cel.value;
+  const v=Math.round(d*22), nC=Math.round(v*c/10), nE=v-nC;
+  const t=nE*300+nC*500;
+  document.getElementById('vdia').textContent=d;
+  document.getElementById('vcel').textContent=c;
+  document.getElementById('oVen').textContent=v;
+  document.getElementById('oGan').textContent=money(t);
+  document.getElementById('oSem').textContent=money(t/4.33);
+  document.getElementById('oDet').textContent=nE+' Eterna + '+nC+' Celestial';
+}
+dia.addEventListener('input',calc); cel.addEventListener('input',calc); calc();
+
+const PANES=['paq','pro','dec','com','cc'];
+const tabs=[...document.querySelectorAll('.tb')];
+function show(p){
+  tabs.forEach(t=>t.setAttribute('aria-selected',String(t.dataset.p===p)));
+  PANES.forEach(k=>document.getElementById('p-'+k).hidden=(k!==p));
+  try{ localStorage.setItem('elys-tab',p); }catch(_){}
+}
+tabs.forEach(t=>t.addEventListener('click',()=>show(t.dataset.p)));
+try{ const s=localStorage.getItem('elys-tab'); if(s&&PANES.includes(s)) show(s); }catch(_){}
+</script>
+
+</body>
+</html>
