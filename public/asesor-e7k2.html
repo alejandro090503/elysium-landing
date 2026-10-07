@@ -108,28 +108,6 @@ h2{font-family:var(--serif);font-size:30px;font-weight:500;letter-spacing:-.02em
 .sc .n{font-family:var(--serif);font-size:42px;font-weight:500;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
 .sc p{margin:8px 0 0;font-size:13px;color:var(--tx-2);line-height:1.4}
 
-/* guiones */
-.acc{border-top:1px solid var(--line)}
-details{border-bottom:1px solid var(--line)}
-summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 2px;cursor:pointer;list-style:none}
-summary::-webkit-details-marker{display:none}
-summary:hover .sm b{color:var(--tx-2)}
-summary:focus-visible{outline:2px solid var(--yelT);outline-offset:-2px}
-.sm b{display:block;font-size:15.5px;font-weight:600;letter-spacing:-.01em}
-.sm span{display:block;font-size:13px;color:var(--tx-3);margin-top:1px}
-.pm{flex-shrink:0;width:18px;height:18px;position:relative}
-.pm::before,.pm::after{content:'';position:absolute;background:var(--tx-3);transition:transform .2s}
-.pm::before{left:0;top:8px;width:18px;height:2px}
-.pm::after{left:8px;top:0;width:2px;height:18px}
-details[open] .pm::after{transform:scaleY(0)}
-.body{padding:0 2px 24px}
-.msg{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:18px 20px;font-size:14.5px;line-height:1.65;white-space:pre-wrap;color:var(--tx)}
-.cp{margin-top:12px;background:var(--ink);color:var(--inkTx);border:none;font:inherit;font-size:13px;font-weight:600;padding:9px 16px;border-radius:5px;cursor:pointer;transition:opacity .2s}
-.cp:hover{opacity:.85}
-.cp:active{transform:scale(.98)}
-.cp:focus-visible{outline:2px solid var(--yelT);outline-offset:2px}
-.why{margin:12px 0 0;font-size:13.5px;color:var(--tx-3);max-width:62ch}
-
 /* calculadora */
 .calc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px}
 .sl{display:grid;grid-template-columns:1fr;gap:28px;margin-bottom:28px}
@@ -190,7 +168,6 @@ kbd{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line);border
   <div class="tabs" role="tablist">
     <button class="tb" role="tab" aria-selected="true" data-p="paq">Paquetes</button>
     <button class="tb" role="tab" aria-selected="false" data-p="pro">Proceso</button>
-    <button class="tb" role="tab" aria-selected="false" data-p="dec">Qué decir</button>
     <button class="tb" role="tab" aria-selected="false" data-p="com">Comisión</button>
     <button class="tb" role="tab" aria-selected="false" data-p="cc">Claude Code</button>
   </div>
@@ -309,7 +286,7 @@ kbd{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line);border
           <span class="fn">02</span>
           <div>
             <h3>Levantas el pedido <span class="tag t-r">Tú</span></h3>
-            <p>En <a href="https://elysium-form.vercel.app/admin" target="_blank" rel="noopener">/admin</a>: nombre, evento, WhatsApp, fecha y <b>tu nombre como asesor</b>. Sale su link.</p>
+            <p>Entras a <a href="https://elysium-form.vercel.app/admin" target="_blank" rel="noopener">Crear formulario</a> y le das a <b>Nuevo formulario</b>: nombre, evento, WhatsApp, fecha y <b>tu nombre como asesor</b>. Sale su link y se lo compartes.</p>
           </div>
         </div>
         <div class="fs">
@@ -366,15 +343,6 @@ kbd{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line);border
         <svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17zm.9 9.4H9.1V5.4h1.8v5.5zm0 3.2H9.1v-1.8h1.8v1.8z"/></svg>
         <p>Si logras que llene el formulario, ya casi vendiste. Y si un pedido <b>cruza la semana sin pagar</b>, casi siempre ya está muerto.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- QUÉ DECIR -->
-  <section id="p-dec" hidden>
-    <div class="blk">
-      <h2>Mensajes listos</h2>
-      <p class="hint">Cópialos y cambia lo que está entre corchetes.</p>
-      <div class="acc" id="scripts"></div>
     </div>
   </section>
 
@@ -441,8 +409,8 @@ kbd{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line);border
   <!-- CLAUDE CODE -->
   <section id="p-cc" hidden>
     <div class="blk">
-      <h2>Pídele links, no explicaciones</h2>
-      <p class="hint">Cuando pidan una temática o un color, pregúntale en vez de buscar a mano.</p>
+      <h2>Te vamos a dar acceso a Claude Code</h2>
+      <p class="hint">Es tu buscador del catálogo y tu consulta del servicio. Cuando pidan una temática o un color, pregúntale en vez de buscar a mano.</p>
       <div class="asks">
         <div class="ak">Dame links de XV en azul rey y plata</div>
         <div class="ak">¿Tenemos bodas estilo bosque encantado? solo los links</div>
@@ -481,69 +449,6 @@ kbd{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line);border
 </div>
 
 <script>
-const SCRIPTS = [
-  {t:'Primer contacto', q:'Pregunta precio',
-   m:'¡Hola! Qué emoción 🤍 Claro que sí te ayudo.\n\nPara darte el precio exacto y mandarte ejemplos parecidos a lo que buscas, cuéntame tres cosas:\n\n1. ¿Es boda, XV u otro evento?\n2. ¿Qué fecha es?\n3. ¿En qué ciudad?',
-   w:'Nunca el precio en el primer mensaje. Sin contexto, cualquier precio suena caro.'},
-  {t:'Mandar ejemplos', q:'Ya te dijo evento y fecha',
-   m:'Mira, esta es de una boda parecida a la tuya, ábrela desde tu celular 👇\n\n[LINK DEL CATÁLOGO]\n\nTodas llevan su música, galería, cuenta regresiva y un panel donde tú ves en tiempo real quién va confirmando. Dime qué te late y le damos tu estilo.',
-   w:'Del mismo tipo de evento o la misma ciudad, no la primera de la lista.'},
-  {t:'Presentar precios', q:'Ya vio un ejemplo y le gustó',
-   m:'Tenemos dos paquetes 🤍\n\n✦ CELESTIAL · $2,750\nTodo lo de Eterna + asignación de mesas, control de acceso con QR por invitado y recordatorios automáticos a quien no ha confirmado.\n\n✦ ETERNA · $1,800\nTu invitación completa con panel de invitados, pases personalizados y confirmaciones en tiempo real.\n\nLos dos llevan cambios ilimitados y soporte hasta el día de tu evento. ¿Cuántos invitados esperas?',
-   w:'Celestial primero. Cierra con la pregunta de invitados: te deja vender el QR.'},
-  {t:'Cerrar la venta', q:'Ya eligió paquete',
-   m:'¡Perfecto! 🤍 Te acabo de generar tu formulario:\n\n[LINK DEL FORMULARIO]\n\nAhí eliges tu diseño, subes tus fotos y capturas los datos. Se guarda solo, puedes llenarlo con calma desde el celular.\n\nAl final viene el anticipo del 50% con los datos de transferencia. En cuanto lo subes, en menos de 24 horas ya estás viendo tu invitación con tu nombre.',
-   w:'Crea el formulario en /admin antes de mandar esto, y selecciónate como asesor.'},
-  {t:'«Lo checo con mi prometido»', q:'La objeción más común',
-   m:'Claro que sí, es decisión de los dos 🤍\n\nTe mando este ejemplo para que lo vean juntos hoy en la noche:\n\n[LINK DEL CATÁLOGO]\n\n¿Te marco mañana en la mañana o prefieres en la tarde?',
-   w:'No la peleas: le das la razón y le pones fecha. «Yo le aviso» es un no.'},
-  {t:'«Le pregunto a mi hija»', q:'XV, escribe la mamá',
-   m:'¡Claro! Al final es su día 🤍\n\nMándale estos tres a ella para que escoja el que más le guste:\n\n[LINK 1]\n[LINK 2]\n[LINK 3]\n\nCuando me diga cuál le encantó, se lo adaptamos con sus colores y sus fotos. ¿Cómo se llama la festejada?',
-   w:'La que decide es la festejada. Manda los diseños a la hija y se cierra sola.'},
-  {t:'Evento del próximo año', q:'No hay urgencia de fecha',
-   m:'¡Qué bueno que te estás adelantando! 🤍\n\nAhorita por cierre de año tenemos una promoción: en los dos paquetes va incluido el SAVE THE DATE de regalo, para que ya les avises a todos la fecha.\n\nEse te lo entregamos en menos de 24 horas y tu invitación completa la armamos más adelante, cuando tengas los detalles definidos. ¿Te late?',
-   w:'Para eventos lejanos la urgencia es la promoción, no el calendario.'},
-  {t:'«Está muy caro»', q:'Objeción de precio',
-   m:'Te entiendo 🤍 Para que lo veas en contexto: cien invitaciones impresas pasan de los $3,000 y se quedan guardadas en un cajón.\n\nEsta la ven todos tus invitados, confirman solos sin que persigas a nadie, y les queda de recuerdo. Y si cambia el salón o la hora, se edita y todos los que ya tienen el link ven lo nuevo al instante.\n\n¿Qué parte te gustaría que te explicara mejor?',
-   w:'Nunca bajes el precio. Si el precio es el problema, no vio el valor: regresa al panel.'},
-  {t:'«Vi otras más baratas»', q:'Te comparan con otro proveedor',
-   m:'Sí, hay de todo 🤍 La diferencia es que la nuestra no es una plantilla: es una página web donde cada detalle se programa, por eso le podemos poner las secciones y los efectos que tú quieras.\n\nY no te dejamos sola al entregarla: te damos videollamada para que aprendas a usar tu panel y soporte hasta el día de tu evento.\n\nÁbrele a esta y compárala tú misma 👇\n\n[LINK DEL CATÁLOGO]',
-   w:'No hables mal de nadie. Enseña la diferencia y deja que compare.'},
-  {t:'«Lo voy a pensar»', q:'Indecisión sin objeción clara',
-   m:'Claro que sí 🤍 Nada más para que lo tengas en mente: con el anticipo te aparto el lugar y en menos de 24 horas ya la estás viendo con tu nombre.\n\nSi la ves y no te gusta, te devuelvo el anticipo completo. Así no tienes nada que perder. ¿Te genero tu formulario?',
-   w:'La devolución quita el miedo y casi nadie la pide: de 273 eventos solo 12 cancelaron.'},
-  {t:'Seguimiento día 2', q:'Levantaste el pedido, no ha pagado',
-   m:'¡Hola [NOMBRE]! 🤍 ¿Pudiste ver tu formulario?\n\nSi te quedó alguna duda con alguna sección, dime y la vemos juntas. Varias me dicen que la parte de las fotos es la que más les cuesta y ahí te puedo ayudar.',
-   w:'Si va para el día 3, llámale en vez de escribir.'},
-  {t:'Seguimiento día 5', q:'Último intento antes de Vencidos',
-   m:'¡Hola [NOMBRE]! Solo para confirmar una cosa 🤍\n\n¿Sigues interesada en tu invitación o preferiste otra opción? Cualquiera de las dos está bien, nada más para saber si te guardo tu lugar o lo libero.',
-   w:'Funciona porque le da permiso de decir no. Un no claro vale más que diez días de silencio.'}
-];
-
-const cont = document.getElementById('scripts');
-SCRIPTS.forEach((s,i)=>{
-  const d = document.createElement('details');
-  d.innerHTML =
-    '<summary><span class="sm"><b>'+s.t+'</b><span>'+s.q+'</span></span><span class="pm" aria-hidden="true"></span></summary>'+
-    '<div class="body"><div class="msg" id="m'+i+'"></div>'+
-    '<button class="cp" data-i="'+i+'">Copiar</button><p class="why">'+s.w+'</p></div>';
-  cont.appendChild(d);
-  d.querySelector('#m'+i).textContent = s.m;
-});
-
-cont.addEventListener('click', async e => {
-  const b = e.target.closest('.cp');
-  if(!b) return;
-  let ok=false;
-  try{ await navigator.clipboard.writeText(SCRIPTS[+b.dataset.i].m); ok=true; }catch(_){}
-  if(!ok){ try{
-    const r=document.createRange(); r.selectNodeContents(document.getElementById('m'+b.dataset.i));
-    const s=getSelection(); s.removeAllRanges(); s.addRange(r);
-  }catch(_){} }
-  b.textContent = ok ? 'Copiado' : 'Selecciónalo';
-  setTimeout(()=>{ b.textContent='Copiar'; }, 2000);
-});
-
 const dia=document.getElementById('dia'), cel=document.getElementById('cel');
 const money=n=>'$'+Math.round(n).toLocaleString('es-MX');
 function calc(){
@@ -559,7 +464,7 @@ function calc(){
 }
 dia.addEventListener('input',calc); cel.addEventListener('input',calc); calc();
 
-const PANES=['paq','pro','dec','com','cc'];
+const PANES=['paq','pro','com','cc'];
 const tabs=[...document.querySelectorAll('.tb')];
 function show(p){
   tabs.forEach(t=>t.setAttribute('aria-selected',String(t.dataset.p===p)));
