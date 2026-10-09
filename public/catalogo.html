@@ -118,6 +118,12 @@
     transition: opacity 0.3s, transform 0.3s;
   }
   .card.active .overlay { opacity: 1; transform: translateY(0); }
+  /* En computadora la tarjeta del centro se abre con un clic. */
+  .card.active { cursor: pointer; }
+  @media (hover: hover) and (pointer: fine) {
+    .card.active:hover { box-shadow: 0 26px 60px rgba(43,31,20,0.45); }
+    .nav button:hover { background: var(--champagne); color: #fff; }
+  }
   .card .title { font-family: 'Cormorant Infant', serif; font-size: 19px; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 9px; text-shadow: 0 2px 4px rgba(0,0,0,0.4); }
   .card .open-btn {
     display: inline-block; background: var(--champagne); color: #2B1F14;
@@ -368,28 +374,52 @@
   const coverflow = $('coverflow'), filters = $('filters'), countEl = $('count'), wrap = $('coverflowWrap')
   let currentFilter = 'boda', activeIdx = 0, items = []
 
+  // Solo existen en pantalla las tarjetas cercanas a la activa. Con 167 bodas,
+  // montarlas todas deja al navegador componiendo 167 capas 3D y descargando
+  // imagenes que nadie va a ver.
+  const VENTANA = 4
+
   function applyFilter(){
     coverflow.innerHTML = ''
     items = catalog.filter(c => c.type === currentFilter)
-    items.forEach(it => {
+    items.forEach((it, i) => {
       const card = document.createElement('div')
       card.className = 'card'
-      card.innerHTML = `<img src="${it.thumbnail}" alt="${it.title}" loading="lazy" /><div class="overlay"><div class="title">${it.title}</div><a class="open-btn" href="${it.url}" target="_blank" rel="noopener">Abrir invitación</a></div>`
+      card.dataset.i = i
+      card.dataset.url = it.url
+      // data-src en vez de src: la imagen se pide cuando la tarjeta se acerca.
+      card.innerHTML =
+        `<img data-src="${it.thumbnail}" alt="${it.title}" decoding="async" />` +
+        `<div class="overlay"><div class="title">${it.title}</div>` +
+        `<a class="open-btn" href="${it.url}" target="_blank" rel="noopener">Abrir invitación</a></div>`
       coverflow.appendChild(card)
     })
     activeIdx = 0; layout()
   }
+
+  function cargar(card){
+    const img = card.querySelector('img[data-src]')
+    if (img){ img.src = img.dataset.src; img.removeAttribute('data-src') }
+  }
+
   function layout(){
-    const cards = coverflow.querySelectorAll('.card')
-    cards.forEach((card,i) => {
-      const off = i - activeIdx, abs = Math.abs(off)
+    const cards = coverflow.children
+    for (let i = 0; i < cards.length; i++){
+      const card = cards[i], off = i - activeIdx, abs = Math.abs(off)
+      if (abs > VENTANA){
+        if (card.style.display !== 'none') card.style.display = 'none'
+        continue
+      }
+      card.style.display = ''
+      cargar(card)
       card.style.transform = `translate3d(${off*135}px,0,${-abs*130}px) rotateY(${-off*33}deg)`
       card.style.opacity = abs > 3 ? 0 : 1 - abs*0.17
       card.style.zIndex = 100 - abs
       card.classList.toggle('active', off === 0)
-    })
+    }
     countEl.textContent = items.length ? `${activeIdx+1} / ${items.length}` : 'Sin resultados'
   }
+
   function go(d){ if(!items.length) return; const p = activeIdx; activeIdx = Math.max(0, Math.min(items.length-1, activeIdx+d)); if(activeIdx!==p) vibrate(10); layout() }
 
   filters.querySelectorAll('button').forEach(btn => btn.addEventListener('click', () => {
@@ -399,24 +429,52 @@
   $('prev').addEventListener('click', () => go(-1))
   $('next').addEventListener('click', () => go(1))
 
+  // Clic: una tarjeta lateral se trae al centro; la del centro abre su invitación.
+  // (En computadora el botón solo aparece al pasar el mouse, así que la tarjeta
+  //  entera tiene que ser clicable o no hay forma de abrirla.)
   coverflow.addEventListener('click', e => {
     const card = e.target.closest('.card'); if(!card) return
-    const idx = [...coverflow.querySelectorAll('.card')].indexOf(card)
-    if (idx === activeIdx) return
+    if (e.target.closest('a')) return                 // el enlace se encarga solo
+    const idx = +card.dataset.i
+    if (idx === activeIdx){
+      if (!arrastro) window.open(card.dataset.url, '_blank', 'noopener')
+      return
+    }
     e.preventDefault(); activeIdx = idx; layout()
   })
 
-  let ds = null, dlck = false
-  const start = x => { ds = x; dlck = false }
-  const move = x => { if(ds===null||dlck) return; if(Math.abs(x-ds)>=30){ dlck = true; go(x<ds?1:-1) } }
-  const end = () => { ds = null; dlck = false }
-  wrap.addEventListener('pointerdown', e => { start(e.clientX); try{ wrap.setPointerCapture(e.pointerId) }catch{} })
+  // Arrastre: sin setPointerCapture. Capturar el puntero en el contenedor hace
+  // que el clic nunca llegue a la tarjeta y en computadora no abría nada.
+  let ds = null, dlck = false, arrastro = false
+  const start = x => { ds = x; dlck = false; arrastro = false }
+  const move = x => {
+    if(ds===null) return
+    if(Math.abs(x-ds) > 6) arrastro = true
+    if(dlck) return
+    if(Math.abs(x-ds)>=30){ dlck = true; go(x<ds?1:-1) }
+  }
+  const end = () => { ds = null; dlck = false; setTimeout(() => { arrastro = false }, 0) }
+  wrap.addEventListener('pointerdown', e => start(e.clientX))
   wrap.addEventListener('pointermove', e => move(e.clientX))
   wrap.addEventListener('pointerup', end); wrap.addEventListener('pointercancel', end)
+  wrap.addEventListener('pointerleave', end)
   wrap.addEventListener('touchstart', e => { if(e.touches.length===1) start(e.touches[0].clientX) }, { passive:true })
   wrap.addEventListener('touchmove', e => move(e.touches[0].clientX), { passive:true })
   wrap.addEventListener('touchend', end); wrap.addEventListener('touchcancel', end)
-  document.addEventListener('keydown', e => { if(e.key==='ArrowLeft') go(-1); if(e.key==='ArrowRight') go(1) })
+  document.addEventListener('keydown', e => {
+    if(e.key==='ArrowLeft') go(-1)
+    if(e.key==='ArrowRight') go(1)
+    if(e.key==='Enter' && items[activeIdx]) window.open(items[activeIdx].url, '_blank', 'noopener')
+  })
+  // La rueda del mouse también mueve el carrusel en computadora.
+  let rueda = 0
+  wrap.addEventListener('wheel', e => {
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return   // scroll vertical: dejar pasar
+    e.preventDefault()
+    const ahora = Date.now()
+    if (ahora - rueda < 220) return
+    rueda = ahora; go(e.deltaX > 0 ? 1 : -1)
+  }, { passive:false })
 
   applyFilter()
 
